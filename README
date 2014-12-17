@@ -1,0 +1,6 @@
+This is the Dialogue Framework Play! application
+================================================
+
+To run this application, please have the latest Play! Framework installed on your machine with activator. 
+Then simply issue "activator run" from command line inside df folder.
+

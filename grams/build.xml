@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Dec 2, 2014 4:25:37 PM                                                        
+
+     grams    
+     Build all gram files under grams folder
+                   
+     s5pan                                                                
+     ====================================================================== -->
+<project name="grams" default="compile" basedir="..">
+    <description>
+            Build all gram files under grams folder
+    </description>
+	<!-- define properties -->
+	<property name="encoding" value="GB18030" />
+	<property name="maxmemory" value="-Xmx1024M" />
+	<property name="libdir" value="${basedir}/lib/" />
+	<property name="source" value="${basedir}/grams/input/" />
+	<property name="temp" value="${basedir}/grams/temp/" />
+	<property name="temp_jar" value="${temp}/grams.jar" />
+	<property name="release" value="${basedir}/grams/output/" />
+	<property name="release_bin" value="${release}/grams.bin" />
+	<property name="antlib" value="${libdir}/ant-1.7.1.jar" />
+	<property name="groovylib" value="${libdir}/groovy-all-1.7.0.jar" />
+	<property name="gramlib" value="${libdir}/gramlib-1.0.jar" />
+	<property name="gramclib" value="${libdir}/gramc-1.0.jar" />
+	<property name="gramutillib" value="${libdir}/gramutil.jar" />
+	<property name="manifestfile" value="${basedir}/grams/MANIFEST.MF" />
+	
+	
+	
+
+    <!-- ================================= 
+          target: compile              
+         ================================= -->
+    <target name="compile" description="Build all gram files under grams folder">
+    	<delete dir="${temp}" />
+    	<delete file="${release_bin}" />
+        <exec executable="java" failonerror="true">
+			<arg value="${maxmemory}" />
+			<arg value="-cp" />
+			<arg value="${gramlib}:${gramclib}:${groovylib}:${antlib}:${gramutillib}" />
+			<arg value="gram.Gramc" />
+			<arg value="-encoding" />
+			<arg value="${encoding}" />
+			<arg value="-d" />
+			<arg value="${temp}" />
+			<arg value="${source}" />
+    	</exec>
+    	<jar destfile="${temp_jar}" basedir="${temp}" manifest="${manifestfile}" />
+    	<exec executable="java" failonerror="true">
+    		<arg value="${maxmemory}" />
+    		<arg value="-cp" />
+    		<arg value="${gramlib}:${gramclib}:${groovylib}:${antlib}" />
+    		<arg value="gram.Gramc" />
+    		<arg value="-encoding" />
+    	    <arg value="${encoding}" />
+    	    <arg value="-b" />
+    		<arg value="${release_bin}" />
+    		<arg value="-server" />
+    		<arg value="localhost" />
+    		<arg value="${temp_jar}" />
+    	</exec>
+    </target>
+
+</project>

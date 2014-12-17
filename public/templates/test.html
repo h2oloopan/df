@@ -1,0 +1,27 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="well">
+				<h4 class="page-header">Redis Storage Test</h4>
+				<form class="form">
+					<div class="form-group">
+						{{textarea value=message class="form-control" rows="3"}}
+					</div>
+				</form>
+				<form class="form-inline">
+					<div class="form-group">
+						{{input class="form-control" placeholder="Key" value=setKey}}
+						{{input class="form-control" placeholder="Value" value=setValue}}
+						<button class="btn btn-default" {{action "set"}}>Set</button>
+					</div>
+					<br/><br/>
+					<div class="form-group">
+						{{input class="form-control" placeholder="Key" value=getKey}}
+						{{input class="form-control" disabled=true value=getValue}}
+						<button class="btn btn-default" {{action "get"}}>Get</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
