@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="dummy" default="compile" basedir=".">
+	<property name="encoding" value="GB18030" />
+	<property name="maxmemory" value="-Xmx1024M" />
+	<property name="root" location="${basedir}/../.." />
+	<property name="libdir" location="${root}/lib/" />
+	<property name="source" location="${basedir}/confs/*.gram" />
+	<property name="temp" location="${basedir}/temp" />
+	<property name="temp_jar" location="${temp}/grams.jar" />
+	<property name="release" location="${basedir}/execs" />
+	<property name="release_bin" location="${release}/grams.bin" />
+	<property name="antlib" location="${libdir}/ant-1.7.1.jar" />
+	<property name="groovylib" location="${libdir}/groovy-all-1.7.0.jar" />
+	<property name="gramlib" location="${libdir}/gramlib-1.0.jar" />
+	<property name="gramclib" location="${libdir}/gramc-1.0.jar" />
+	<property name="gramutillib" location="${libdir}/gramutil.jar" />
+	<property name="manifestfile" location="${basedir}/MANIFEST.MF" />
+	<target name="compile">
+		<delete dir="${temp}" />
+    	<delete file="${release_bin}" />
+        <exec executable="java" failonerror="true">
+			<arg value="${maxmemory}" />
+			<arg value="-cp" />
+			<arg value="${gramlib};${gramclib};${groovylib};${antlib};S${gramutillib}" />
+			<arg value="gram.Gramc" />
+			<arg value="-encoding" />
+			<arg value="${encoding}" />
+			<arg value="-d" />
+			<arg value="${temp}" />
+			<arg value="${source}" />
+    	</exec>
+    	<jar destfile="${temp_jar}" basedir="${temp}" manifest="${manifestfile}" />
+    	<exec executable="java" failonerror="true">
+    		<arg value="${maxmemory}" />
+    		<arg value="-cp" />
+    		<arg value="${gramlib};${gramclib};${groovylib};${antlib}" />
+    		<arg value="gram.Gramc" />
+    		<arg value="-encoding" />
+    	    <arg value="${encoding}" />
+    	    <arg value="-b" />
+    		<arg value="${release_bin}" />
+    		<arg value="-server" />
+    		<arg value="localhost" />
+    		<arg value="${temp_jar}" />
+    	</exec>
+	</target>
+</project>

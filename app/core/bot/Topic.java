@@ -35,8 +35,7 @@ public class Topic {
 		
 		for (int i = 0; i < categories.size(); i++) {
 			Category c = categories.get(i);
-			Logger.info(c.getPattern().getContent());
-			//output += "[" + i + "] " + categories.get(i).toString();
+			output += "[" + i + "] " + categories.get(i).toString();
 		}
 		
 		return output;

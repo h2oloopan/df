@@ -5,6 +5,12 @@ public class Category {
 	private That that;
 	private Template template;
 
+	public Category() {
+		this.pattern = null;
+		this.that = null;
+		this.template = null;
+	}
+	
 	public Pattern getPattern() {
 		return this.pattern;
 	}
@@ -31,9 +37,9 @@ public class Category {
 	
 	@Override
 	public String toString() {
-		return "Pattern: " + this.pattern == null ? "null" : this.pattern.toString() 
-				+ " That: " + this.that == null? "null" : this.that.toString() 
-				+ " Template: " + this.template == null? "null" : this.template.toString();
+		return "Pattern: " + (this.pattern == null ? "null" : this.pattern.toString()) 
+				+ " That: " + (this.that == null? "null" : this.that.toString()) 
+				+ " Template: " + (this.template == null? "null" : this.template.toString());
 	}
 	
 }

@@ -1,12 +1,344 @@
-2014-12-17 10:31:54,220 - [INFO] - from play in pool-4-thread-2 
+2014-12-17 10:45:02,163 - [INFO] - from play in pool-4-thread-2 
 Listening for HTTP on /0:0:0:0:0:0:0:0:9000
 
-2014-12-17 10:32:02,628 - [INFO] - from application in play-internal-execution-context-1 
+2014-12-17 10:45:04,707 - [INFO] - from application in play-internal-execution-context-1 
 Redis Plugin enabled. Connecting to Redis on localhost:6379 to 0 with timeout 2000.
 
-2014-12-17 10:32:02,665 - [INFO] - from application in play-internal-execution-context-1 
-Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@4a98a609[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
+2014-12-17 10:45:04,713 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@5ef96137[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
 
-2014-12-17 10:32:03,191 - [INFO] - from play in play-internal-execution-context-1 
+2014-12-17 10:45:04,964 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
+
+2014-12-17 10:45:05,292 - [INFO] - from play in play-akka.actor.default-dispatcher-2 
+Starting application default Akka system.
+
+2014-12-17 10:45:05,307 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
+
+2014-12-17 10:45:05,313 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
+
+2014-12-17 10:45:05,354 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+aiml
+
+2014-12-17 10:45:05,355 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+你好吗
+		
+		
+			你好
+
+2014-12-17 10:45:05,355 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+#document
+
+2014-12-17 10:45:05,356 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+#text
+
+2014-12-17 10:45:05,356 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+
+
+2014-12-17 10:45:05,356 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+aiml
+
+2014-12-17 10:45:05,358 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+topic
+
+2014-12-17 10:45:05,358 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+你好吗
+		
+		
+			你好
+
+2014-12-17 10:45:05,358 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+aiml
+
+2014-12-17 10:45:05,358 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+#text
+
+2014-12-17 10:45:05,358 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+
+
+2014-12-17 10:45:05,358 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+topic
+
+2014-12-17 10:45:05,358 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+category
+
+2014-12-17 10:45:05,358 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+你好吗
+		
+		
+			你好
+
+2014-12-17 10:45:05,359 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+topic
+
+2014-12-17 10:45:05,359 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+#text
+
+2014-12-17 10:45:05,359 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+
+
+2014-12-17 10:45:05,359 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+category
+
+2014-12-17 10:45:05,359 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+pattern
+
+2014-12-17 10:45:05,359 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+你好吗
+
+2014-12-17 10:45:05,359 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+category
+
+2014-12-17 10:47:36,386 - [INFO] - from play in play-internal-execution-context-1 
+Shutdown application default Akka system.
+
+2014-12-17 10:47:36,453 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin enabled. Connecting to Redis on localhost:6379 to 0 with timeout 2000.
+
+2014-12-17 10:47:36,454 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@7d4e8eb5[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
+
+2014-12-17 10:47:36,467 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2014-12-17 10:47:38,456 - [INFO] - from play in play-akka.actor.default-dispatcher-10 
+Starting application default Akka system.
+
+2014-12-17 10:47:38,460 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
+
+2014-12-17 10:47:38,462 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
+
+2014-12-17 10:47:38,464 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+aiml
+
+2014-12-17 10:47:38,464 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+你好吗
+		
+		
+			你好
+
+2014-12-17 10:47:38,464 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+#document
+
+2014-12-17 10:47:38,464 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+#text
+
+2014-12-17 10:47:38,464 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+
+
+2014-12-17 10:47:38,464 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+aiml
+
+2014-12-17 10:47:38,464 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+topic
+
+2014-12-17 10:47:38,464 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+你好吗
+		
+		
+			你好
+
+2014-12-17 10:47:38,464 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+aiml
+
+2014-12-17 10:47:38,465 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+#text
+
+2014-12-17 10:47:38,465 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+
+
+2014-12-17 10:47:38,465 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+topic
+
+2014-12-17 10:47:38,465 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+category
+
+2014-12-17 10:47:38,465 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+你好吗
+		
+		
+			你好
+
+2014-12-17 10:47:38,465 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+topic
+
+2014-12-17 10:47:38,465 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+#text
+
+2014-12-17 10:47:38,465 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+
+
+2014-12-17 10:47:38,465 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+category
+
+2014-12-17 10:47:38,466 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+pattern
+
+2014-12-17 10:47:38,466 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+你好吗
+
+2014-12-17 10:47:38,466 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+category
+
+2014-12-17 10:47:38,466 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+#text
+
+2014-12-17 10:47:38,466 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+你好吗
+
+2014-12-17 10:47:38,466 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+pattern
+
+2014-12-17 10:47:38,466 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+#text
+
+2014-12-17 10:47:38,466 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+
+
+2014-12-17 10:47:38,466 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+category
+
+2014-12-17 10:47:38,466 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+template
+
+2014-12-17 10:47:38,466 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+你好
+
+2014-12-17 10:47:38,466 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+category
+
+2014-12-17 10:47:38,467 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+#text
+
+2014-12-17 10:47:38,467 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+你好
+
+2014-12-17 10:47:38,467 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+template
+
+2014-12-17 10:47:38,467 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+#text
+
+2014-12-17 10:47:38,467 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+
+
+2014-12-17 10:47:38,467 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+category
+
+2014-12-17 10:47:38,467 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+#text
+
+2014-12-17 10:47:38,467 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+
+
+2014-12-17 10:47:38,467 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+topic
+
+2014-12-17 10:47:38,467 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+#text
+
+2014-12-17 10:47:38,467 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+
+
+2014-12-17 10:47:38,467 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+aiml
+
+2014-12-17 10:48:06,122 - [INFO] - from play in play-internal-execution-context-1 
+Shutdown application default Akka system.
+
+2014-12-17 10:48:06,173 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin enabled. Connecting to Redis on localhost:6379 to 0 with timeout 2000.
+
+2014-12-17 10:48:06,173 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@3a565a48[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
+
+2014-12-17 10:48:06,186 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2014-12-17 10:48:06,214 - [INFO] - from play in play-akka.actor.default-dispatcher-11 
+Starting application default Akka system.
+
+2014-12-17 10:48:06,223 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
+
+2014-12-17 10:48:06,226 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
+
+2014-12-17 10:48:06,229 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+你好吗
+
+2014-12-17 10:48:06,229 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+Topic[basic] Categories
+
+
+2014-12-17 10:48:35,603 - [INFO] - from play in play-internal-execution-context-1 
+Shutdown application default Akka system.
+
+2014-12-17 10:48:35,686 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin enabled. Connecting to Redis on localhost:6379 to 0 with timeout 2000.
+
+2014-12-17 10:48:35,687 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@575be572[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
+
+2014-12-17 10:48:35,699 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2014-12-17 10:48:35,725 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
+Starting application default Akka system.
+
+2014-12-17 10:48:35,728 - [INFO] - from application in application-akka.actor.default-dispatcher-6 
+Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
+
+2014-12-17 10:48:35,729 - [INFO] - from application in application-akka.actor.default-dispatcher-6 
+Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
+
+2014-12-17 10:50:09,939 - [INFO] - from play in play-internal-execution-context-1 
+Shutdown application default Akka system.
+
+2014-12-17 10:50:09,993 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin enabled. Connecting to Redis on localhost:6379 to 0 with timeout 2000.
+
+2014-12-17 10:50:09,993 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@2ca2b072[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
+
+2014-12-17 10:50:10,005 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2014-12-17 10:50:10,042 - [INFO] - from play in play-akka.actor.default-dispatcher-6 
+Starting application default Akka system.
+
+2014-12-17 10:50:10,047 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
+
+2014-12-17 10:50:10,048 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
+
+2014-12-17 10:52:13,099 - [INFO] - from play in play-internal-execution-context-1 
+Shutdown application default Akka system.
+
+2014-12-17 10:52:13,144 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin enabled. Connecting to Redis on localhost:6379 to 0 with timeout 2000.
+
+2014-12-17 10:52:13,145 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@d16e445[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
+
+2014-12-17 10:52:13,156 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2014-12-17 10:52:13,181 - [INFO] - from play in play-akka.actor.default-dispatcher-12 
+Starting application default Akka system.
+
+2014-12-17 10:52:13,183 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
+
+2014-12-17 10:52:13,184 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
+
+2014-12-17 10:52:13,186 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+Topic[basic] Categories
+[0] Pattern: 你好吗 That: null Template: 你好
 

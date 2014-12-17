@@ -53,13 +53,13 @@ public class Parser {
 	}
 	
 	private void resolve(Topic t, Node n, Category c) throws Exception {
-		Logger.info(n.getNodeName());
-		Logger.info(n.getTextContent());
-		Logger.info(n.getParentNode().getNodeName().toLowerCase());
+		//Logger.info(n.getNodeName());
+		//Logger.info(n.getTextContent().trim());
+		//Logger.info(n.getParentNode().getNodeName().toLowerCase());
 		switch (n.getNodeName().toLowerCase()) {
 			case "topic":
 				if (n.getParentNode().getNodeName().toLowerCase().equals("aiml")) {
-					t.setName(n.getAttributes().getNamedItem("name").getNodeValue().trim());
+					t.setName(n.getAttributes().getNamedItem("name").getTextContent().trim());
 				} else {
 					throw new Exception("A topic node must be directly under aiml node");
 				}
@@ -74,7 +74,7 @@ public class Parser {
 				break;
 			case "pattern":
 				if (n.getParentNode().getNodeName().toLowerCase().equals("category")) {
-					Pattern pattern = new Pattern(n.getNodeValue().trim());
+					Pattern pattern = new Pattern(n.getTextContent().trim());
 					c.setPattern(pattern);
 				} else {
 					throw new Exception("A pattern node must be directly under category node");
@@ -82,7 +82,7 @@ public class Parser {
 				break;
 			case "that":
 				if (n.getParentNode().getNodeName().toLowerCase().equals("category")) {
-					That that = new That(n.getNodeValue().trim());
+					That that = new That(n.getTextContent().trim());
 					c.setThat(that);
 				} else {
 					throw new Exception("A that node must be directly under category node");
@@ -90,7 +90,7 @@ public class Parser {
 				break;
 			case "template":
 				if (n.getParentNode().getNodeName().toLowerCase().equals("category")) {
-					Template template = new Template(n.getNodeValue().trim());
+					Template template = new Template(n.getTextContent().trim());
 					c.setTemplate(template);
 				} else {
 					throw new Exception("A template node must be directly under category node");
