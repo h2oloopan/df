@@ -12,11 +12,16 @@ import gram.util.SpaceType;
 import grammar.Matcher;
 
 public class LaoMaMatcher implements Matcher {
-	private String location = "grams/output/grams.bin";
 	private GMatcher matcher;
+	
+	@Override
+	public Map<String, Float> match(String sentence) {
+		return matcher.match(sentence);
+	}
 
-	public LaoMaMatcher() throws Throwable {
-		File f = new File(location);
+	@Override
+	public void initialize(String path) throws Throwable {
+		File f = new File(path);
 		if (!f.exists()) {
 			matcher = null;
 		} else {
@@ -29,11 +34,7 @@ public class LaoMaMatcher implements Matcher {
 				throw t;
 			}
 		}
-	}
-	
-	@Override
-	public Map<String, Float> match(String sentence) {
-		return matcher.match(sentence);
+		
 	}
 
 }
