@@ -10,6 +10,7 @@ import java.util.Map;
 
 import com.google.inject.Inject;
 
+import core.bot.BasicBotActorCreator;
 import core.bot.BotActorCreator;
 import play.libs.Akka;
 import play.libs.F.Callback;
@@ -24,10 +25,12 @@ public class BotActorFarm implements ActorFarm {
 	
 	
 	private final GrammarCompiler compiler;
+	private final BotActorCreator creator;
 
 	@Inject
-	public BotActorFarm(GrammarCompiler compiler) throws Exception {
+	public BotActorFarm(GrammarCompiler compiler, BotActorCreator creator) throws Exception {
 		this.compiler = compiler;
+		this.creator = creator;
 		initialize();
 	}
 	
@@ -45,7 +48,8 @@ public class BotActorFarm implements ActorFarm {
 			final String name = bots[i];
 			final String path = (new File(root, name)).getCanonicalPath();
 			compiler.compile(path);
-			ActorRef router = Akka.system().actorOf(new RoundRobinPool(instances).props(Props.create(new BotActorCreator(name, path))), "router-" + name);
+			creator.update(name, path);
+			ActorRef router = Akka.system().actorOf(new RoundRobinPool(instances).props(Props.create(creator)), "router-" + name);
 			routers.put(name, router);
 			
 		}

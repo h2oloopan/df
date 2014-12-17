@@ -5,6 +5,7 @@ import com.google.inject.Singleton;
 
 import core.ActorFarm;
 import core.BotActorFarm;
+import core.bot.*;
 import storage.*;
 import grammar.*;
 import play.Application;
@@ -23,10 +24,16 @@ public class Global extends GlobalSettings {
 				bind(SessionStorage.class).to(RedisSessionStorage.class).in(Singleton.class);
 				bind(Matcher.class).to(LaoMaMatcher.class).in(Singleton.class);
 				bind(ActorFarm.class).to(BotActorFarm.class).in(Singleton.class);
+				bind(Parser.class).to(BasicParser.class).in(Singleton.class);
+				bind(BotActorCreator.class).to(BasicBotActorCreator.class).in(Singleton.class);
 			}
 		});
 		//start bot actors
 		
+	}
+	
+	public Injector getInjector() {
+		return this.injector;
 	}
 	
 	@Override
