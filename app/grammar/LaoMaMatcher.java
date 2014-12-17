@@ -9,6 +9,7 @@ import gram.gravy.GPrecursor;
 import gram.gravy.GResult;
 import gram.gravy.GTerm;
 import gram.util.SpaceType;
+import grammar.Matcher;
 
 public class LaoMaMatcher implements Matcher {
 	private String location = "grams/output/grams.bin";
