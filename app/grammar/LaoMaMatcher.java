@@ -1,40 +1,46 @@
 package grammar;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Map;
 
 import gram.gravy.GMatcher;
 import gram.gravy.GPrecursor;
-import gram.gravy.GResult;
-import gram.gravy.GTerm;
 import gram.util.SpaceType;
 import grammar.Matcher;
 
 public class LaoMaMatcher implements Matcher {
 	private GMatcher matcher;
-	
-	@Override
-	public Map<String, Float> match(String sentence) {
-		return matcher.match(sentence);
-	}
 
 	@Override
-	public void initialize(String path) throws Throwable {
-		File f = new File(path);
-		if (!f.exists()) {
+	public void initialize(String path) throws Exception {
+		File grams = new File(new File(path), "execs/grams.bin");
+		if (!grams.exists()) {
 			matcher = null;
 		} else {
 			GPrecursor precursor;
 			try {
-				precursor = GPrecursor.loadPrecursor(f);
+				precursor = GPrecursor.loadPrecursor(grams);
 				matcher = precursor.newMatcher(SpaceType.chinese);
-			} catch (Throwable t) {
-				t.printStackTrace();
-				throw t;
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw e;
 			}
 		}
-		
 	}
 
+	@Override
+	public String match(String query) {
+		@SuppressWarnings("unchecked")
+		Map<String, Float> result = (Map<String, Float>)matcher.match(query);
+		Float largest = 0f;
+		String output = null;
+		for (String key : result.keySet()) {
+			Float value = result.get(key);
+			if (value >= largest) {
+				output = key;
+				largest = value;
+			}
+		}
+		return output;
+	}
 }

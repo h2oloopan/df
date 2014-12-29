@@ -23,4 +23,8 @@ public class Pattern {
 	public String toString() {
 		return this.content;
 	}
+	
+	public boolean match(String query) {
+		return this.content.equals(query);
+	}
 }

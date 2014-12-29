@@ -26,13 +26,21 @@ public class BotActor extends UntypedActor {
 		this.matcher = matcher;
 		this.name = name;
 		this.path = path;
-		this.topics = new BasicParser().parse(path);
+		this.topics = this.parser.parse(path);
+		this.matcher.initialize(path);
 	}
 	
 	@Override
-	public void onReceive(Object arg0) throws Exception {
+	public void onReceive(Object message) throws Exception {
 		// TODO Auto-generated method stub
-		
+		if (message instanceof String) {
+			String query = (String)message;
+			String match = matcher.match(query);
+			Logger.info("Query: " + query);
+			Logger.info("Match: " + match);
+			getSender().tell(match, getSelf());
+		} else {
+			unhandled(message);
+		}
 	}
-
 }
