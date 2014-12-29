@@ -19,7 +19,8 @@ define ['routes/testRoute', 'ehbs!templates/index'], (TestRoute) ->
 							url: '/bot/talk'
 							type: 'POST'
 							data: JSON.stringify
-								question: question
+								bot: 'dummy'
+								query: question
 							dataType: 'json'
 							contentType: 'application/json; charset=utf-8'
 						.done (result) ->
