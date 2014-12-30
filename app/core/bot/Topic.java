@@ -29,6 +29,10 @@ public class Topic {
 		this.categories.add(c);
 	}
 	
+	public ArrayList<Category> getCategories() {
+		return categories;
+	}
+	
 	@Override
 	public String toString() {
 		String output = "Topic[" + this.name + "] Categories\r\n";
