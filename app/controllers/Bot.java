@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 
 import core.ActorFarm;
+import core.messages.Query;
 import play.Logger;
 import play.libs.F.*;
 import play.mvc.*;
@@ -20,8 +21,12 @@ public class Bot extends Controller {
 			String bot = json.findPath("bot").textValue();
 			String query = json.findPath("query").textValue();
 			Logger.info("Asking bot " + bot + " for query " + query);
+			
+			//Create actor message here
+			Query q = new Query(query);
+			
 			ActorRef actor = farm.getActor(bot);
-			return Promise.wrap(ask(actor, query, 5000)).map(
+			return Promise.wrap(ask(actor, q, 5000)).map(
 				new Function<Object, Result>() {
 					public Result apply(Object response) {
 						return ok(response.toString());

@@ -25,6 +25,7 @@ public class Global extends GlobalSettings {
 				bind(Matcher.class).to(LaoMaMatcher.class).in(Singleton.class);
 				bind(ActorFarm.class).to(BotActorFarm.class).in(Singleton.class);
 				bind(Parser.class).to(BasicParser.class).in(Singleton.class);
+				bind(Finder.class).to(RandomizedFinder.class).in(Singleton.class);
 				bind(BotActorCreator.class).to(BasicBotActorCreator.class).in(Singleton.class);
 			}
 		});
