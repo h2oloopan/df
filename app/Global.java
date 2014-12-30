@@ -26,6 +26,7 @@ public class Global extends GlobalSettings {
 				bind(ActorFarm.class).to(BotActorFarm.class).in(Singleton.class);
 				bind(Parser.class).to(BasicParser.class).in(Singleton.class);
 				bind(Finder.class).to(RandomizedFinder.class).in(Singleton.class);
+				bind(Processor.class).to(BasicProcessor.class).in(Singleton.class);
 				bind(BotActorCreator.class).to(BasicBotActorCreator.class).in(Singleton.class);
 			}
 		});

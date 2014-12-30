@@ -20,13 +20,15 @@ public class BotActor extends UntypedActor {
 	private Parser parser;
 	private Matcher matcher;
 	private Finder finder;
+	private Processor processor;
 	
 	//constructor
-	public BotActor(Parser parser, Matcher matcher, Finder finder, String name, String path) throws Exception {
+	public BotActor(Parser parser, Matcher matcher, Finder finder, Processor processor, String name, String path) throws Exception {
 		Logger.info("Initializing bot " + name + " at " + path);
 		this.parser = parser;
 		this.matcher = matcher;
 		this.finder = finder;
+		this.processor = processor;
 		this.name = name;
 		this.path = path;
 		this.topics = this.parser.parse(path);
@@ -39,10 +41,15 @@ public class BotActor extends UntypedActor {
 		if (message instanceof Query) {
 			String text = ((Query)message).getText();
 			String topic = ((Query)message).getTopic();
-			String match = matcher.match(text);
+			String pattern = matcher.match(text);
 			Logger.info("Query: " + text);
-			Logger.info("Match: " + match);
-			finder.find(topics, pattern)
+			Logger.info("Match: " + pattern);
+			Category match = finder.find(topics, topic, pattern);
+			
+			//Need to use context provider to get context here
+			
+			//Construct a response message
+			
 			/*
 			if (match == null) {
 				getSender().tell("null", getContext().parent()); //thus "null" is a reserved word, it is used to return when there is no match what so ever

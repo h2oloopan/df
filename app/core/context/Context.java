@@ -1,4 +1,4 @@
-package core.bot;
+package core.context;
 
 import java.util.ArrayList;
 
