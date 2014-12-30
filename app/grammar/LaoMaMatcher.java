@@ -3,6 +3,7 @@ package grammar;
 import java.io.File;
 import java.util.Map;
 
+import play.Logger;
 import gram.gravy.GMatcher;
 import gram.gravy.GPrecursor;
 import gram.util.SpaceType;
@@ -14,6 +15,7 @@ public class LaoMaMatcher implements Matcher {
 	@Override
 	public void initialize(String path) throws Exception {
 		File grams = new File(new File(path), "execs/grams.bin");
+		Logger.info(grams.getAbsolutePath());
 		if (!grams.exists()) {
 			matcher = null;
 		} else {
@@ -29,18 +31,22 @@ public class LaoMaMatcher implements Matcher {
 	}
 
 	@Override
-	public String match(String query) {
-		@SuppressWarnings("unchecked")
-		Map<String, Float> result = (Map<String, Float>)matcher.match(query);
-		Float largest = 0f;
-		String output = null;
-		for (String key : result.keySet()) {
-			Float value = result.get(key);
-			if (value >= largest) {
-				output = key;
-				largest = value;
+	public String match(String query) throws Exception {
+		if (matcher == null) {
+			throw new Exception("No matcher exists");
+		} else {
+			@SuppressWarnings("unchecked")
+			Map<String, Float> result = (Map<String, Float>)matcher.match(query);
+			Float largest = 0f;
+			String output = null;
+			for (String key : result.keySet()) {
+				Float value = result.get(key);
+				if (value >= largest) {
+					output = key;
+					largest = value;
+				}
 			}
+			return output;
 		}
-		return output;
 	}
 }

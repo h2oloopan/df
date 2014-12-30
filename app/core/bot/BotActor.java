@@ -38,7 +38,11 @@ public class BotActor extends UntypedActor {
 			String match = matcher.match(query);
 			Logger.info("Query: " + query);
 			Logger.info("Match: " + match);
-			getSender().tell(match, getSelf());
+			if (match == null) {
+				getSender().tell("null", getContext().parent()); //thus "null" is a reserved word, it is used to return when there is no match what so ever
+			} else {
+				getSender().tell(match, getContext().parent());
+			}
 		} else {
 			unhandled(message);
 		}

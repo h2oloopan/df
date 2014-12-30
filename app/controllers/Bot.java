@@ -1,10 +1,12 @@
 package controllers;
 import akka.actor.ActorRef;
 import static akka.pattern.Patterns.ask;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 
 import core.ActorFarm;
+import play.Logger;
 import play.libs.F.*;
 import play.mvc.*;
 
@@ -17,8 +19,9 @@ public class Bot extends Controller {
 			JsonNode json = request().body().asJson();
 			String bot = json.findPath("bot").textValue();
 			String query = json.findPath("query").textValue();
+			Logger.info("Asking bot " + bot + " for query " + query);
 			ActorRef actor = farm.getActor(bot);
-			return Promise.wrap(ask(actor, query, 2000)).map(
+			return Promise.wrap(ask(actor, query, 5000)).map(
 				new Function<Object, Result>() {
 					public Result apply(Object response) {
 						return ok(response.toString());

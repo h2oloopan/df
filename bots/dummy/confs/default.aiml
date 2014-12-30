@@ -3,7 +3,7 @@
 <topic name="basic">
 	<category>
 		<pattern>
-			你好吗
+			default.你好吗
 		</pattern>
 		<template>
 			你好
