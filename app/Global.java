@@ -20,14 +20,16 @@ public class Global extends GlobalSettings {
 		injector = Guice.createInjector(new AbstractModule() {
 			@Override
 			protected void configure() {
-				bind(GrammarCompiler.class).to(LaoMaGrammarCompiler.class).in(Singleton.class);
-				bind(SessionStorage.class).to(RedisSessionStorage.class).in(Singleton.class);
-				bind(Matcher.class).to(LaoMaMatcher.class).in(Singleton.class);
-				bind(ActorFarm.class).to(BotActorFarm.class).in(Singleton.class);
-				bind(Parser.class).to(BasicParser.class).in(Singleton.class);
-				bind(Finder.class).to(RandomizedFinder.class).in(Singleton.class);
-				bind(Processor.class).to(BasicProcessor.class).in(Singleton.class);
+				bind(SessionStorage.class).to(RedisSessionStorage.class);
+				bind(Matcher.class).to(LaoMaMatcher.class);
+				bind(Parser.class).to(BasicParser.class);
+				bind(Finder.class).to(RandomizedFinder.class);
+				bind(Processor.class).to(BasicProcessor.class);
+				bind(ContextProvider.class).to(DefaultContextProvider.class);
+				
 				bind(BotActorCreator.class).to(BasicBotActorCreator.class).in(Singleton.class);
+				bind(GrammarCompiler.class).to(LaoMaGrammarCompiler.class).in(Singleton.class);
+				bind(ActorFarm.class).to(BotActorFarm.class).in(Singleton.class);
 			}
 		});
 		//start bot actors
