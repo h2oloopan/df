@@ -5,6 +5,9 @@ import com.google.inject.Inject;
 import grammar.Matcher;
 import akka.japi.Creator;
 
+import storage.*;
+
+
 public class BasicBotActorCreator extends BotActorCreator {
 	private static final long serialVersionUID = 1L;
 	private String name;
@@ -12,17 +15,23 @@ public class BasicBotActorCreator extends BotActorCreator {
 	private Parser parser;
 	private Matcher matcher;
 	private Finder finder;
+	private Processor processor;
+	private ContextProvider contextProvider;
+	private ProfileProvider profileProvider;
 	
 	@Inject
-	public BasicBotActorCreator(Parser parser, Matcher matcher, Finder finder) {
+	public BasicBotActorCreator(Parser parser, Matcher matcher, Finder finder, Processor processor, ContextProvider contextProvider, ProfileProvider profileProvider) {
 		this.parser = parser;
 		this.matcher = matcher;
 		this.finder = finder;
+		this.processor = processor;
+		this.contextProvider = contextProvider;
+		this.profileProvider = profileProvider;
 	}
 	
 	@Override
 	public BotActor create() throws Exception {
-		return new BotActor(parser, matcher, finder, name, path);
+		return new BotActor(parser, matcher, finder, processor, contextProvider, profileProvider, name, path);
 	}
 
 	@Override

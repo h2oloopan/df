@@ -8,6 +8,7 @@ import com.google.inject.Inject;
 
 import core.messages.Query;
 import play.Logger;
+import storage.*;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
@@ -21,14 +22,19 @@ public class BotActor extends UntypedActor {
 	private Matcher matcher;
 	private Finder finder;
 	private Processor processor;
+	private ContextProvider contextProvider;
+	private ProfileProvider profileProvider;
 	
 	//constructor
-	public BotActor(Parser parser, Matcher matcher, Finder finder, Processor processor, String name, String path) throws Exception {
+	public BotActor(Parser parser, Matcher matcher, Finder finder, Processor processor, ContextProvider contextProvider, ProfileProvider profileProvider, 
+			String name, String path) throws Exception {
 		Logger.info("Initializing bot " + name + " at " + path);
 		this.parser = parser;
 		this.matcher = matcher;
 		this.finder = finder;
 		this.processor = processor;
+		this.contextProvider = contextProvider;
+		this.profileProvider = profileProvider;
 		this.name = name;
 		this.path = path;
 		this.topics = this.parser.parse(path);
