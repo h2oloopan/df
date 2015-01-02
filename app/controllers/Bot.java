@@ -12,6 +12,7 @@ import core.SessionTable;
 import core.messages.Query;
 import core.messages.Response;
 import play.Logger;
+import play.libs.Json;
 import play.libs.F.*;
 import play.mvc.*;
 
@@ -49,11 +50,11 @@ public class Bot extends Controller {
 						Response response = (Response)message;
 						switch (response.getCode()) {
 						case 200:
-							return ok(response.getText());
+							return ok(Json.toJson(response));
 						case 500:
 							return internalServerError(response.getText());
 						default:
-							return ok(response.getText());
+							return ok(Json.toJson(response));
 						}
 					}
 				}

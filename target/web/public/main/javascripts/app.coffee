@@ -28,7 +28,7 @@ define ['routes/testRoute', 'ehbs!templates/index'], (TestRoute) ->
 						.done (result) ->
 							display = thiz.get 'display'
 							display += '[HUMAN] ' + thiz.get('question') + '\r\n'
-							display += '[BOT] ' + result.answer + '\r\n'
+							display += '[BOT] ' + result.text + '\r\n'
 							thiz.set 'display', display
 							thiz.set 'question', null
 							#scroll

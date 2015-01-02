@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
+import play.Logger;
+
 public class RandomizedFinder implements Finder {
 
 
@@ -43,7 +45,8 @@ public class RandomizedFinder implements Finder {
 		ArrayList<Category> matchPatternThat = new ArrayList<Category>();
 		for (int i = 0; i < categories.size(); i++) {
 			Category category = categories.get(i);
-			if (category.getPattern() != null && category.getPattern().equals(pattern)) {
+			Logger.info(category.toString());
+			if (category.getPattern() != null && category.getPattern().toString().equals(pattern)) {
 				matchPattern.add(category);
 				if (that != null && category.getThat() != null && category.getThat().equals(that)) {
 					matchPatternThat.add(category);

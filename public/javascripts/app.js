@@ -39,7 +39,7 @@ define(['routes/testRoute', 'ehbs!templates/index'], function(TestRoute) {
               var display;
               display = thiz.get('display');
               display += '[HUMAN] ' + thiz.get('question') + '\r\n';
-              display += '[BOT] ' + result.answer + '\r\n';
+              display += '[BOT] ' + result.text + '\r\n';
               thiz.set('display', display);
               thiz.set('question', null);
               return setTimeout(function() {

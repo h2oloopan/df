@@ -46,7 +46,11 @@ public class LaoMaMatcher implements Matcher {
 					largest = value;
 				}
 			}
-			return output;
+			if (output != null) {
+				return output.trim();
+			} else {
+				return output;
+			}
 		}
 	}
 }
