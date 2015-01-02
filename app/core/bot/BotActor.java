@@ -1,17 +1,14 @@
 package core.bot;
 
-import grammar.Matcher;
+import core.context.Context;
+import core.grammar.Matcher;
 
 import java.util.Map;
 
-import com.google.inject.Inject;
-
 import core.messages.Query;
 import play.Logger;
-import storage.*;
-import akka.actor.Props;
+import core.storage.*;
 import akka.actor.UntypedActor;
-import akka.japi.Creator;
 
 public class BotActor extends UntypedActor {
 	private String name;
@@ -45,14 +42,16 @@ public class BotActor extends UntypedActor {
 	public void onReceive(Object message) throws Exception {
 		// TODO Auto-generated method stub
 		if (message instanceof Query) {
-			String text = ((Query)message).getText();
-			String topic = ((Query)message).getTopic();
+			Query query = (Query)message;
+			String text = query.getText();
+			String topic = query.getTopic();
 			String pattern = matcher.match(text);
 			Logger.info("Query: " + text);
 			Logger.info("Match: " + pattern);
 			Category match = finder.find(topics, topic, pattern);
 			
 			//Need to use context provider to get context here
+			Context context = contextProvider.getContext(query.getUid(), query.getSid());
 			
 			//Construct a response message
 			

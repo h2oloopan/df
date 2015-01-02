@@ -1,10 +1,11 @@
 package controllers;
 import play.libs.F.*;
 import play.mvc.*;
-import com.fasterxml.jackson.databind.*;
-import storage.SessionStorage;
 
+import com.fasterxml.jackson.databind.*;
 import com.google.inject.Inject;
+
+import core.storage.SessionStorage;
 
 public class Test extends Controller {
 	@Inject

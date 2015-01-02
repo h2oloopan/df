@@ -1,4 +1,4 @@
-package storage;
+package core.storage;
 
 public class ProfileProvider {
 

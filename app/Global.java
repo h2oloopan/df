@@ -6,8 +6,8 @@ import com.google.inject.Singleton;
 import core.ActorFarm;
 import core.BotActorFarm;
 import core.bot.*;
-import storage.*;
-import grammar.*;
+import core.grammar.*;
+import core.storage.*;
 import play.Application;
 import play.GlobalSettings;
 

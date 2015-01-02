@@ -1,7 +1,5 @@
 package core;
 
-import grammar.GrammarCompiler;
-
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -12,6 +10,7 @@ import com.google.inject.Inject;
 
 import core.bot.BasicBotActorCreator;
 import core.bot.BotActorCreator;
+import core.grammar.GrammarCompiler;
 import play.Logger;
 import play.libs.Akka;
 import play.libs.F.Callback;

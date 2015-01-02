@@ -1,10 +1,9 @@
 package controllers;
 
 
-import grammar.GrammarCompiler;
-
 import com.google.inject.Inject;
 
+import core.grammar.GrammarCompiler;
 import play.libs.F.*;
 import play.mvc.*;
 

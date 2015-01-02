@@ -2,10 +2,9 @@ package core.bot;
 
 import com.google.inject.Inject;
 
-import grammar.Matcher;
+import core.grammar.Matcher;
+import core.storage.*;
 import akka.japi.Creator;
-
-import storage.*;
 
 
 public class BasicBotActorCreator extends BotActorCreator {

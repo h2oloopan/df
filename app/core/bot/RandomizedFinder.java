@@ -2,6 +2,7 @@ package core.bot;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Random;
 
 public class RandomizedFinder implements Finder {
 
@@ -31,8 +32,33 @@ public class RandomizedFinder implements Finder {
 	}
 	
 	//PRIVATE STUFF
+	private int random(int min, int max) {
+		Random rand = new Random();
+		int randomInt = rand.nextInt((max - min) + 1) + min;
+		return randomInt;
+	}
+	
 	private Category lookup(ArrayList<Category> categories, String pattern, String that) {
-		
+		ArrayList<Category> matchPattern = new ArrayList<Category>();
+		ArrayList<Category> matchPatternThat = new ArrayList<Category>();
+		for (int i = 0; i < categories.size(); i++) {
+			Category category = categories.get(i);
+			if (category.getPattern() != null && category.getPattern().equals(pattern)) {
+				matchPattern.add(category);
+				if (that != null && category.getThat() != null && category.getThat().equals(that)) {
+					matchPatternThat.add(category);
+				}
+			}
+		}
+		if (matchPatternThat.size() > 0) {
+			int index = random(0, matchPatternThat.size() - 1);
+			return matchPatternThat.get(index);
+		} else if (matchPattern.size() > 0) {
+			int index = random(0, matchPattern.size() - 1);
+			return matchPattern.get(index);
+		} else {
+			return null;
+		}
 	}
 
 	

@@ -1,4 +1,4 @@
-package grammar;
+package core.grammar;
 
 import play.libs.F.*;
 
