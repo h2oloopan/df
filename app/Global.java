@@ -28,6 +28,7 @@ public class Global extends GlobalSettings {
 				bind(Finder.class).to(RandomizedFinder.class);
 				bind(Processor.class).to(BasicProcessor.class);
 				bind(ContextProvider.class).to(DefaultContextProvider.class);
+				bind(ProfileProvider.class).to(MySqlProfileProvider.class);
 				
 				bind(BotActorCreator.class).to(BasicBotActorCreator.class).in(Singleton.class);
 				bind(GrammarCompiler.class).to(LaoMaGrammarCompiler.class).in(Singleton.class);

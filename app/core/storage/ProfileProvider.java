@@ -1,5 +1,5 @@
 package core.storage;
 
-public class ProfileProvider {
+public interface ProfileProvider {
 
 }
