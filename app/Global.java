@@ -5,6 +5,8 @@ import com.google.inject.Singleton;
 
 import core.ActorFarm;
 import core.BotActorFarm;
+import core.InMemorySessionTable;
+import core.SessionTable;
 import core.bot.*;
 import core.grammar.*;
 import core.storage.*;
@@ -30,6 +32,7 @@ public class Global extends GlobalSettings {
 				bind(BotActorCreator.class).to(BasicBotActorCreator.class).in(Singleton.class);
 				bind(GrammarCompiler.class).to(LaoMaGrammarCompiler.class).in(Singleton.class);
 				bind(ActorFarm.class).to(BotActorFarm.class).in(Singleton.class);
+				bind(SessionTable.class).to(InMemorySessionTable.class).in(Singleton.class);
 			}
 		});
 		//start bot actors
