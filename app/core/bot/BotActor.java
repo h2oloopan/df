@@ -6,6 +6,7 @@ import core.grammar.Matcher;
 import java.util.Map;
 
 import core.messages.Query;
+import core.messages.Response;
 import play.Logger;
 import core.storage.*;
 import akka.actor.UntypedActor;
@@ -58,14 +59,13 @@ public class BotActor extends UntypedActor {
 			//Then generate response from the matching category, context, and profile
 			
 			//Construct a response message
-			
-			/*
+			//Not sure, but maybe it's the dialog developer's responsibility to provide a default match
 			if (match == null) {
-				getSender().tell("null", getContext().parent()); //thus "null" is a reserved word, it is used to return when there is no match what so ever
+				unhandled(message);
 			} else {
-				getSender().tell(match, getContext().parent());
+				Response response = new Response(match.getTemplate().toString());
+				getSender().tell(response, getContext().parent());
 			}
-			*/
 		} else {
 			unhandled(message);
 		}
