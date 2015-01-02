@@ -29,11 +29,12 @@ public class Bot extends Controller {
 			Logger.info("Asking bot " + bot + " for query " + query);
 			
 			//Create actor message here
-			
 			//Get uid and sid
+			if (sid == null) {
+				sid = table.getSid(uid);
+			}
 			
-			
-			
+			Query q = new Query(uid, sid, query);
 			ActorRef actor = farm.getActor(bot);
 			return Promise.wrap(ask(actor, q, 5000)).map(
 				new Function<Object, Result>() {

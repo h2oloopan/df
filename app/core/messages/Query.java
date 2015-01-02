@@ -44,4 +44,9 @@ public class Query {
 	public Date getTimestamp() {
 		return this.timestamp;
 	}
+	
+	@Override
+	public String toString() {
+		return uid + " " + sid + " " + text + " " + topic + " " + timestamp.toString();
+	}
 }
