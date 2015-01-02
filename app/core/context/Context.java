@@ -14,4 +14,13 @@ public class Context {
 	
 	public Date dateCreated;
 	public Date dateExpired;
+	
+	public Context(String uid, String sid) {
+		this.uid = uid;
+		this.sid = sid;
+		this.queries = new ArrayList<String>();
+		this.responses = new ArrayList<String>();
+		this.map = new HashMap<String, String>();
+		this.dateCreated = new Date();
+	}
 }

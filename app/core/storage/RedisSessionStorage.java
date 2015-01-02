@@ -17,12 +17,7 @@ public class RedisSessionStorage implements SessionStorage{
 	public String get(final String key) throws Exception {
 		Jedis j = play.Play.application().plugin(RedisPlugin.class).jedisPool().getResource();
 		try {
-			String result = j.get(key);
-			if (result == null) {
-				throw new Exception("Nothing matches provided key");
-			} else {
-				return j.get(key);
-			}
+			return j.get(key);
 		} catch (Exception e) {
 			throw e;
 		} finally {

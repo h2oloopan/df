@@ -18,7 +18,14 @@ public class DefaultContextProvider implements ContextProvider {
 	public Context getContext(String uid, String sid) throws Exception {
 		String key = uid + '_' + sid;
 		String value = sessionStorage.get(key);
-		return Json.fromJson(Json.parse(value), Context.class);
+		if (value == null) {
+			//create a new context
+			Context context = new Context(uid, sid);
+			sessionStorage.set(key, Json.stringify(Json.toJson(context)));
+			return context;
+		} else {
+			return Json.fromJson(Json.parse(value), Context.class);
+		}
 	}
 
 	@Override

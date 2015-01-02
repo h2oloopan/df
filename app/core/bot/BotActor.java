@@ -48,10 +48,14 @@ public class BotActor extends UntypedActor {
 			String pattern = matcher.match(text);
 			Logger.info("Query: " + text);
 			Logger.info("Match: " + pattern);
-			Category match = finder.find(topics, topic, pattern);
 			
+			
+			Category match = finder.find(topics, topic, pattern);
 			//Need to use context provider to get context here
 			Context context = contextProvider.getContext(query.getUid(), query.getSid());
+			//And to get profile here
+			
+			//Then generate response from the matching category, context, and profile
 			
 			//Construct a response message
 			
