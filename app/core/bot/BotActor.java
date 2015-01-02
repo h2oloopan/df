@@ -50,20 +50,26 @@ public class BotActor extends UntypedActor {
 			Logger.info("Query: " + text);
 			Logger.info("Match: " + pattern);
 			
-			
-			Category match = finder.find(topics, topic, pattern);
-			//Need to use context provider to get context here
-			Context context = contextProvider.getContext(query.getUid(), query.getSid());
-			//And to get profile here
-			
-			//Then generate response from the matching category, context, and profile
-			
-			//Construct a response message
-			//Not sure, but maybe it's the dialog developer's responsibility to provide a default match
-			if (match == null) {
-				unhandled(message);
-			} else {
-				Response response = new Response(match.getTemplate().toString());
+			try {
+				Category match = finder.find(topics, topic, pattern);
+				//Need to use context provider to get context here
+				Context context = contextProvider.getContext(query.getUid(), query.getSid());
+				//And to get profile here
+				
+				//Then generate response from the matching category, context, and profile
+				
+				//Construct a response message
+				//Not sure, but maybe it's the dialog developer's responsibility to provide a default match
+				if (match == null) {
+					Response response = new Response(500, "There is no rule to handle given request");
+					getSender().tell(response, getContext().parent());
+				} else {
+					Response response = new Response(200, match.getTemplate().toString());
+					getSender().tell(response, getContext().parent());
+				}
+			} catch (Exception e) {
+				Logger.error(e.getMessage(), e);
+				Response response = new Response(500, e.getMessage());
 				getSender().tell(response, getContext().parent());
 			}
 		} else {

@@ -8,18 +8,20 @@ define ['routes/testRoute', 'ehbs!templates/index'], (TestRoute) ->
 
 			App.IndexRoute = Ember.Route.extend
 				model: ->
-					return { question: null, display: '' }
+					return { question: null, uid: null, display: '' }
 
 			App.IndexController = Ember.ObjectController.extend
 				actions:
 					talk: ->
 						thiz = @
+						uid = @get 'uid'
 						question = @get 'question'
 						$.ajax
 							url: '/bot/talk'
 							type: 'POST'
 							data: JSON.stringify
 								bot: 'dummy'
+								uid: uid
 								query: question
 							dataType: 'json'
 							contentType: 'application/json; charset=utf-8'

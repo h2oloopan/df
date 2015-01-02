@@ -1,6 +1,6 @@
 // @SOURCE:/home/s5pan/Projects/df/conf/routes
-// @HASH:a781390d4f6834cdec69c77cf1c82547a17628d1
-// @DATE:Wed Dec 17 07:27:32 PST 2014
+// @HASH:f0923880fcd0a6f10af6a84d6272f7628e21c987
+// @DATE:Fri Jan 02 15:44:26 EST 2015
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -15,18 +15,16 @@ import _root_.play.libs.F
 import Router.queryString
 
 
-// @LINE:16
-// @LINE:13
-// @LINE:10
+// @LINE:12
 // @LINE:9
 // @LINE:6
 package controllers {
 
-// @LINE:13
+// @LINE:9
 class ReverseBot {
 
 
-// @LINE:13
+// @LINE:9
 def talk(): Call = {
    import ReverseRouteContext.empty
    Call("POST", _prefix + { _defaultPrefix } + "bot/talk")
@@ -36,33 +34,11 @@ def talk(): Call = {
 }
                           
 
-// @LINE:10
-// @LINE:9
-class ReverseTest {
-
-
-// @LINE:10
-def set(key:String): Call = {
-   import ReverseRouteContext.empty
-   Call("POST", _prefix + { _defaultPrefix } + "test/set/" + implicitly[PathBindable[String]].unbind("key", dynamicString(key)))
-}
-                        
-
-// @LINE:9
-def get(key:String): Call = {
-   import ReverseRouteContext.empty
-   Call("GET", _prefix + { _defaultPrefix } + "test/get/" + implicitly[PathBindable[String]].unbind("key", dynamicString(key)))
-}
-                        
-
-}
-                          
-
-// @LINE:16
+// @LINE:12
 class ReverseAssets {
 
 
-// @LINE:16
+// @LINE:12
 def at(file:String): Call = {
    implicit val _rrc = new ReverseRouteContext(Map(("path", "/public")))
    Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[String]].unbind("file", file))
@@ -89,19 +65,17 @@ def index(): Call = {
                   
 
 
-// @LINE:16
-// @LINE:13
-// @LINE:10
+// @LINE:12
 // @LINE:9
 // @LINE:6
 package controllers.javascript {
 import ReverseRouteContext.empty
 
-// @LINE:13
+// @LINE:9
 class ReverseBot {
 
 
-// @LINE:13
+// @LINE:9
 def talk : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Bot.talk",
    """
@@ -115,41 +89,11 @@ def talk : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
-// @LINE:10
-// @LINE:9
-class ReverseTest {
-
-
-// @LINE:10
-def set : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.Test.set",
-   """
-      function(key) {
-      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "test/set/" + (""" + implicitly[PathBindable[String]].javascriptUnbind + """)("key", encodeURIComponent(key))})
-      }
-   """
-)
-                        
-
-// @LINE:9
-def get : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.Test.get",
-   """
-      function(key) {
-      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "test/get/" + (""" + implicitly[PathBindable[String]].javascriptUnbind + """)("key", encodeURIComponent(key))})
-      }
-   """
-)
-                        
-
-}
-              
-
-// @LINE:16
+// @LINE:12
 class ReverseAssets {
 
 
-// @LINE:16
+// @LINE:12
 def at : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Assets.at",
    """
@@ -184,19 +128,17 @@ def index : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
-// @LINE:16
-// @LINE:13
-// @LINE:10
+// @LINE:12
 // @LINE:9
 // @LINE:6
 package controllers.ref {
 
 
-// @LINE:13
+// @LINE:9
 class ReverseBot {
 
 
-// @LINE:13
+// @LINE:9
 def talk(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    play.api.Play.maybeApplication.map(_.global).getOrElse(play.api.DefaultGlobal).getControllerInstance(classOf[controllers.Bot]).talk(), HandlerDef(this.getClass.getClassLoader, "", "controllers.Bot", "talk", Seq(), "POST", """ Bot""", _prefix + """bot/talk""")
 )
@@ -205,31 +147,11 @@ def talk(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 }
                           
 
-// @LINE:10
-// @LINE:9
-class ReverseTest {
-
-
-// @LINE:10
-def set(key:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   play.api.Play.maybeApplication.map(_.global).getOrElse(play.api.DefaultGlobal).getControllerInstance(classOf[controllers.Test]).set(key), HandlerDef(this.getClass.getClassLoader, "", "controllers.Test", "set", Seq(classOf[String]), "POST", """""", _prefix + """test/set/$key<[^/]+>""")
-)
-                      
-
-// @LINE:9
-def get(key:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   play.api.Play.maybeApplication.map(_.global).getOrElse(play.api.DefaultGlobal).getControllerInstance(classOf[controllers.Test]).get(key), HandlerDef(this.getClass.getClassLoader, "", "controllers.Test", "get", Seq(classOf[String]), "GET", """ Test""", _prefix + """test/get/$key<[^/]+>""")
-)
-                      
-
-}
-                          
-
-// @LINE:16
+// @LINE:12
 class ReverseAssets {
 
 
-// @LINE:16
+// @LINE:12
 def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Assets.at(path, file), HandlerDef(this.getClass.getClassLoader, "", "controllers.Assets", "at", Seq(classOf[String], classOf[String]), "GET", """ Map static resources from the /public folder to the /assets URL path""", _prefix + """assets/$file<.+>""")
 )

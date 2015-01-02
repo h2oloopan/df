@@ -1,4 +1,6 @@
 package controllers;
+import java.util.UUID;
+
 import akka.actor.ActorRef;
 import static akka.pattern.Patterns.ask;
 
@@ -8,6 +10,7 @@ import com.google.inject.Inject;
 import core.ActorFarm;
 import core.SessionTable;
 import core.messages.Query;
+import core.messages.Response;
 import play.Logger;
 import play.libs.F.*;
 import play.mvc.*;
@@ -30,6 +33,10 @@ public class Bot extends Controller {
 			
 			//Create actor message here
 			//Get uid and sid
+			if (uid == null) {
+				uid = UUID.randomUUID().toString();
+			}
+			
 			if (sid == null) {
 				sid = table.getSid(uid);
 			}
@@ -38,8 +45,16 @@ public class Bot extends Controller {
 			ActorRef actor = farm.getActor(bot);
 			return Promise.wrap(ask(actor, q, 5000)).map(
 				new Function<Object, Result>() {
-					public Result apply(Object response) {
-						return ok(response.toString());
+					public Result apply(Object message) {
+						Response response = (Response)message;
+						switch (response.getCode()) {
+						case 200:
+							return ok(response.getText());
+						case 500:
+							return internalServerError(response.getText());
+						default:
+							return ok(response.getText());
+						}
 					}
 				}
 			);

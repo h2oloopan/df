@@ -13,6 +13,7 @@ define(['routes/testRoute', 'ehbs!templates/index'], function(TestRoute) {
         model: function() {
           return {
             question: null,
+            uid: null,
             display: ''
           };
         }
@@ -20,14 +21,16 @@ define(['routes/testRoute', 'ehbs!templates/index'], function(TestRoute) {
       return App.IndexController = Ember.ObjectController.extend({
         actions: {
           talk: function() {
-            var question, thiz;
+            var question, thiz, uid;
             thiz = this;
+            uid = this.get('uid');
             question = this.get('question');
             $.ajax({
               url: '/bot/talk',
               type: 'POST',
               data: JSON.stringify({
                 bot: 'dummy',
+                uid: uid,
                 query: question
               }),
               dataType: 'json',

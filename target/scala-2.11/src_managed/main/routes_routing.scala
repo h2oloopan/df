@@ -1,6 +1,6 @@
 // @SOURCE:/home/s5pan/Projects/df/conf/routes
-// @HASH:a781390d4f6834cdec69c77cf1c82547a17628d1
-// @DATE:Wed Dec 17 07:27:32 PST 2014
+// @HASH:f0923880fcd0a6f10af6a84d6272f7628e21c987
+// @DATE:Fri Jan 02 15:44:26 EST 2015
 
 
 import play.core._
@@ -40,33 +40,19 @@ HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "index",
         
 
 // @LINE:9
-private[this] lazy val controllers_Test_get1_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("test/get/"),DynamicPart("key", """[^/]+""",true))))
-private[this] lazy val controllers_Test_get1_invoker = createInvoker(
-play.api.Play.maybeApplication.map(_.global).getOrElse(play.api.DefaultGlobal).getControllerInstance(classOf[controllers.Test]).get(fakeValue[String]),
-HandlerDef(this.getClass.getClassLoader, "", "controllers.Test", "get", Seq(classOf[String]),"GET", """ Test""", Routes.prefix + """test/get/$key<[^/]+>"""))
-        
-
-// @LINE:10
-private[this] lazy val controllers_Test_set2_route = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("test/set/"),DynamicPart("key", """[^/]+""",true))))
-private[this] lazy val controllers_Test_set2_invoker = createInvoker(
-play.api.Play.maybeApplication.map(_.global).getOrElse(play.api.DefaultGlobal).getControllerInstance(classOf[controllers.Test]).set(fakeValue[String]),
-HandlerDef(this.getClass.getClassLoader, "", "controllers.Test", "set", Seq(classOf[String]),"POST", """""", Routes.prefix + """test/set/$key<[^/]+>"""))
-        
-
-// @LINE:13
-private[this] lazy val controllers_Bot_talk3_route = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("bot/talk"))))
-private[this] lazy val controllers_Bot_talk3_invoker = createInvoker(
+private[this] lazy val controllers_Bot_talk1_route = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("bot/talk"))))
+private[this] lazy val controllers_Bot_talk1_invoker = createInvoker(
 play.api.Play.maybeApplication.map(_.global).getOrElse(play.api.DefaultGlobal).getControllerInstance(classOf[controllers.Bot]).talk(),
 HandlerDef(this.getClass.getClassLoader, "", "controllers.Bot", "talk", Nil,"POST", """ Bot""", Routes.prefix + """bot/talk"""))
         
 
-// @LINE:16
-private[this] lazy val controllers_Assets_at4_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+""",false))))
-private[this] lazy val controllers_Assets_at4_invoker = createInvoker(
+// @LINE:12
+private[this] lazy val controllers_Assets_at2_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+""",false))))
+private[this] lazy val controllers_Assets_at2_invoker = createInvoker(
 controllers.Assets.at(fakeValue[String], fakeValue[String]),
 HandlerDef(this.getClass.getClassLoader, "", "controllers.Assets", "at", Seq(classOf[String], classOf[String]),"GET", """ Map static resources from the /public folder to the /assets URL path""", Routes.prefix + """assets/$file<.+>"""))
         
-def documentation = List(("""GET""", prefix,"""@controllers.Application@.index()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """test/get/$key<[^/]+>""","""@controllers.Test@.get(key:String)"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """test/set/$key<[^/]+>""","""@controllers.Test@.set(key:String)"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """bot/talk""","""@controllers.Bot@.talk()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
+def documentation = List(("""GET""", prefix,"""@controllers.Application@.index()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """bot/talk""","""@controllers.Bot@.talk()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
   case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
   case l => s ++ l.asInstanceOf[List[(String,String,String)]]
 }}
@@ -83,33 +69,17 @@ case controllers_Application_index0_route(params) => {
         
 
 // @LINE:9
-case controllers_Test_get1_route(params) => {
-   call(params.fromPath[String]("key", None)) { (key) =>
-        controllers_Test_get1_invoker.call(play.api.Play.maybeApplication.map(_.global).getOrElse(play.api.DefaultGlobal).getControllerInstance(classOf[controllers.Test]).get(key))
-   }
-}
-        
-
-// @LINE:10
-case controllers_Test_set2_route(params) => {
-   call(params.fromPath[String]("key", None)) { (key) =>
-        controllers_Test_set2_invoker.call(play.api.Play.maybeApplication.map(_.global).getOrElse(play.api.DefaultGlobal).getControllerInstance(classOf[controllers.Test]).set(key))
-   }
-}
-        
-
-// @LINE:13
-case controllers_Bot_talk3_route(params) => {
+case controllers_Bot_talk1_route(params) => {
    call { 
-        controllers_Bot_talk3_invoker.call(play.api.Play.maybeApplication.map(_.global).getOrElse(play.api.DefaultGlobal).getControllerInstance(classOf[controllers.Bot]).talk())
+        controllers_Bot_talk1_invoker.call(play.api.Play.maybeApplication.map(_.global).getOrElse(play.api.DefaultGlobal).getControllerInstance(classOf[controllers.Bot]).talk())
    }
 }
         
 
-// @LINE:16
-case controllers_Assets_at4_route(params) => {
+// @LINE:12
+case controllers_Assets_at2_route(params) => {
    call(Param[String]("path", Right("/public")), params.fromPath[String]("file", None)) { (path, file) =>
-        controllers_Assets_at4_invoker.call(controllers.Assets.at(path, file))
+        controllers_Assets_at2_invoker.call(controllers.Assets.at(path, file))
    }
 }
         

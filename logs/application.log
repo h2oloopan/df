@@ -1,242 +1,266 @@
-2014-12-29 16:30:07,399 - [INFO] - from play in pool-4-thread-1 
+2015-01-02 15:44:50,804 - [INFO] - from play in pool-4-thread-3 
 Listening for HTTP on /0:0:0:0:0:0:0:0:9000
 
-2014-12-29 16:30:57,460 - [INFO] - from application in play-internal-execution-context-1 
+2015-01-02 15:45:05,760 - [INFO] - from application in play-internal-execution-context-1 
 Redis Plugin enabled. Connecting to Redis on localhost:6379 to 0 with timeout 2000.
 
-2014-12-29 16:30:57,468 - [INFO] - from application in play-internal-execution-context-1 
-Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@4f1b1f00[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
+2015-01-02 15:45:05,775 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@76657772[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
 
-2014-12-29 16:30:57,703 - [INFO] - from play in play-internal-execution-context-1 
+2015-01-02 15:45:06,222 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 
-2014-12-29 16:31:00,162 - [INFO] - from play in play-akka.actor.default-dispatcher-4 
+2015-01-02 15:52:43,282 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin enabled. Connecting to Redis on localhost:6379 to 0 with timeout 2000.
+
+2015-01-02 15:52:43,283 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@1e08d6ce[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
+
+2015-01-02 15:52:43,318 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2015-01-02 15:55:07,516 - [INFO] - from play in play-akka.actor.default-dispatcher-23 
 Starting application default Akka system.
 
-2014-12-29 16:31:00,173 - [INFO] - from application in play-akka.actor.default-dispatcher-4 
+2015-01-02 15:55:07,532 - [INFO] - from application in play-akka.actor.default-dispatcher-23 
 Added bot dummy
 
-2014-12-29 16:31:00,175 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+2015-01-02 15:55:07,534 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
 Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
 
-2014-12-29 16:31:00,175 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+2015-01-02 15:55:07,534 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
 Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
 
-2014-12-29 16:31:00,180 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+2015-01-02 15:55:07,537 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
 Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
 
-2014-12-29 16:31:00,180 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+2015-01-02 15:55:07,537 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
 Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
 
-2014-12-29 16:31:00,200 - [INFO] - from application in play-akka.actor.default-dispatcher-4 
-Asking bot dummy for query adt
+2015-01-02 15:55:07,558 - [INFO] - from application in play-akka.actor.default-dispatcher-23 
+Asking bot dummy for query Hello
 
-2014-12-29 16:31:00,222 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+2015-01-02 15:55:07,612 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
 Topic[basic] Categories
-[0] Pattern: 你好吗 That: null Template: 你好
+[0] Pattern: default.你好吗 That: null Template: 你好
 
-2014-12-29 16:31:00,222 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+2015-01-02 15:55:07,612 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+Topic[basic] Categories
+[0] Pattern: default.你好吗 That: null Template: 你好
+
+2015-01-02 15:55:07,612 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
 /home/s5pan/Projects/df/bots/dummy/execs/grams.bin
 
-2014-12-29 16:31:00,225 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
-Topic[basic] Categories
-[0] Pattern: 你好吗 That: null Template: 你好
-
-2014-12-29 16:31:00,225 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+2015-01-02 15:55:07,612 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
 /home/s5pan/Projects/df/bots/dummy/execs/grams.bin
 
-2014-12-29 16:31:00,508 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
-Query: adt
+2015-01-02 15:55:08,088 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+Query: Hello
 
-2014-12-29 16:31:00,509 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+2015-01-02 15:55:08,089 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
 Match: null
 
-2014-12-29 16:31:00,517 - [INFO] - from application in application-akka.actor.default-dispatcher-5 
-Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
+2015-01-02 15:55:46,872 - [INFO] - from application in play-akka.actor.default-dispatcher-34 
+Asking bot dummy for query Hello
 
-2014-12-29 16:31:00,517 - [INFO] - from application in application-akka.actor.default-dispatcher-5 
-Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
+2015-01-02 15:55:46,873 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+Query: Hello
 
-2014-12-29 16:31:00,517 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
-Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
+2015-01-02 15:55:46,873 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+Match: null
 
-2014-12-29 16:31:00,518 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
-Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
-
-2014-12-29 16:31:00,519 - [INFO] - from application in application-akka.actor.default-dispatcher-5 
-Topic[basic] Categories
-[0] Pattern: 你好吗 That: null Template: 你好
-
-2014-12-29 16:31:00,519 - [INFO] - from application in application-akka.actor.default-dispatcher-5 
-/home/s5pan/Projects/df/bots/dummy/execs/grams.bin
-
-2014-12-29 16:31:00,520 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
-Topic[basic] Categories
-[0] Pattern: 你好吗 That: null Template: 你好
-
-2014-12-29 16:31:00,520 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
-/home/s5pan/Projects/df/bots/dummy/execs/grams.bin
-
-2014-12-29 16:31:05,219 - [ERROR] - from play in play-akka.actor.default-dispatcher-8 
-Cannot invoke the action, eventually got an error: akka.pattern.AskTimeoutException: Ask timed out on [Actor[akka://application/user/router-dummy#-1520856334]] after [5000 ms]
-
-2014-12-29 16:31:05,229 - [ERROR] - from application in play-akka.actor.default-dispatcher-8 
-
-
-! @6kk9aefei - Internal server error, for (POST) [/bot/talk] ->
-
-play.api.Application$$anon$1: Execution exception[[AskTimeoutException: Ask timed out on [Actor[akka://application/user/router-dummy#-1520856334]] after [5000 ms]]]
-	at play.api.Application$class.handleError(Application.scala:296) ~[play_2.11-2.3.6.jar:2.3.6]
-	at play.api.DefaultApplication.handleError(Application.scala:402) [play_2.11-2.3.6.jar:2.3.6]
-	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3$$anonfun$applyOrElse$4.apply(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.6.jar:2.3.6]
-	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3$$anonfun$applyOrElse$4.apply(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.6.jar:2.3.6]
-	at scala.Option.map(Option.scala:145) [scala-library-2.11.2.jar:na]
-	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3.applyOrElse(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.6.jar:2.3.6]
-	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3.applyOrElse(PlayDefaultUpstreamHandler.scala:316) [play_2.11-2.3.6.jar:2.3.6]
-	at scala.concurrent.Future$$anonfun$recoverWith$1.apply(Future.scala:344) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.Future$$anonfun$recoverWith$1.apply(Future.scala:343) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library-2.11.2.jar:na]
-	at play.api.libs.iteratee.Execution$trampoline$.execute(Execution.scala:46) [play-iteratees_2.11-2.3.6.jar:2.3.6]
-	at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:40) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:248) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.Promise$class.complete(Promise.scala:55) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:153) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.Future$$anonfun$map$1.apply(Future.scala:235) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.Future$$anonfun$map$1.apply(Future.scala:235) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library-2.11.2.jar:na]
-	at play.core.j.HttpExecutionContext$$anon$2.run(HttpExecutionContext.scala:40) [play_2.11-2.3.6.jar:2.3.6]
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:41) [akka-actor_2.11-2.3.4.jar:na]
-	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:393) [akka-actor_2.11-2.3.4.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) [scala-library-2.11.2.jar:na]
-Caused by: akka.pattern.AskTimeoutException: Ask timed out on [Actor[akka://application/user/router-dummy#-1520856334]] after [5000 ms]
-	at akka.pattern.PromiseActorRef$$anonfun$1.apply$mcV$sp(AskSupport.scala:333) ~[akka-actor_2.11-2.3.4.jar:na]
-	at akka.actor.Scheduler$$anon$7.run(Scheduler.scala:117) ~[akka-actor_2.11-2.3.4.jar:na]
-	at scala.concurrent.Future$InternalCallbackExecutor$.unbatchedExecute(Future.scala:599) ~[scala-library-2.11.2.jar:na]
-	at scala.concurrent.BatchingExecutor$class.execute(BatchingExecutor.scala:109) ~[scala-library-2.11.2.jar:na]
-	at scala.concurrent.Future$InternalCallbackExecutor$.execute(Future.scala:597) ~[scala-library-2.11.2.jar:na]
-	at akka.actor.LightArrayRevolverScheduler$TaskHolder.executeTask(Scheduler.scala:467) ~[akka-actor_2.11-2.3.4.jar:na]
-	at akka.actor.LightArrayRevolverScheduler$$anon$8.executeBucket$1(Scheduler.scala:419) ~[akka-actor_2.11-2.3.4.jar:na]
-	at akka.actor.LightArrayRevolverScheduler$$anon$8.nextTick(Scheduler.scala:423) ~[akka-actor_2.11-2.3.4.jar:na]
-	at akka.actor.LightArrayRevolverScheduler$$anon$8.run(Scheduler.scala:375) ~[akka-actor_2.11-2.3.4.jar:na]
-	at java.lang.Thread.run(Thread.java:745) ~[na:1.7.0_72]
-
-2014-12-29 16:32:10,633 - [INFO] - from play in play-internal-execution-context-1 
+2015-01-02 15:58:36,708 - [INFO] - from play in play-internal-execution-context-1 
 Shutdown application default Akka system.
 
-2014-12-29 16:32:10,706 - [INFO] - from application in play-internal-execution-context-1 
+2015-01-02 15:58:36,779 - [INFO] - from application in play-internal-execution-context-1 
 Redis Plugin enabled. Connecting to Redis on localhost:6379 to 0 with timeout 2000.
 
-2014-12-29 16:32:10,706 - [INFO] - from application in play-internal-execution-context-1 
-Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@1e7d956[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
+2015-01-02 15:58:36,779 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@7dbf177[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
 
-2014-12-29 16:32:10,725 - [INFO] - from play in play-internal-execution-context-1 
+2015-01-02 15:58:36,811 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 
-2014-12-29 16:32:12,876 - [INFO] - from play in play-akka.actor.default-dispatcher-12 
+2015-01-02 15:58:45,571 - [INFO] - from play in play-akka.actor.default-dispatcher-32 
 Starting application default Akka system.
 
-2014-12-29 16:32:12,878 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
-Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
-
-2014-12-29 16:32:12,878 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
-Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
-
-2014-12-29 16:32:12,878 - [INFO] - from application in play-akka.actor.default-dispatcher-12 
+2015-01-02 15:58:45,574 - [INFO] - from application in play-akka.actor.default-dispatcher-32 
 Added bot dummy
 
-2014-12-29 16:32:12,879 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+2015-01-02 15:58:45,574 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
+
+2015-01-02 15:58:45,575 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
 Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
 
-2014-12-29 16:32:12,879 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+2015-01-02 15:58:45,578 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+Topic[basic] Categories
+[0] Pattern: default.你好吗 That: null Template: 你好
+
+2015-01-02 15:58:45,579 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+/home/s5pan/Projects/df/bots/dummy/execs/grams.bin
+
+2015-01-02 15:58:45,580 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
+
+2015-01-02 15:58:45,580 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
 Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
 
-2014-12-29 16:32:12,882 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
-Topic[basic] Categories
-[0] Pattern: 你好吗 That: null Template: 你好
+2015-01-02 15:58:45,583 - [INFO] - from application in play-akka.actor.default-dispatcher-32 
+Asking bot dummy for query hello
 
-2014-12-29 16:32:12,882 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+2015-01-02 15:58:45,584 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+Topic[basic] Categories
+[0] Pattern: default.你好吗 That: null Template: 你好
+
+2015-01-02 15:58:45,584 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
 /home/s5pan/Projects/df/bots/dummy/execs/grams.bin
 
-2014-12-29 16:32:12,882 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
-Topic[basic] Categories
-[0] Pattern: 你好吗 That: null Template: 你好
+2015-01-02 15:58:45,585 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+Query: hello
 
-2014-12-29 16:32:12,882 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
-/home/s5pan/Projects/df/bots/dummy/execs/grams.bin
-
-2014-12-29 16:32:12,884 - [INFO] - from application in play-akka.actor.default-dispatcher-12 
-Asking bot dummy for query bbb
-
-2014-12-29 16:32:12,885 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
-Query: bbb
-
-2014-12-29 16:32:12,885 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+2015-01-02 15:58:45,586 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
 Match: null
 
-2014-12-29 16:32:17,899 - [ERROR] - from play in play-akka.actor.default-dispatcher-2 
-Cannot invoke the action, eventually got an error: akka.pattern.AskTimeoutException: Ask timed out on [Actor[akka://application/user/router-dummy#686549249]] after [5000 ms]
+2015-01-02 15:59:05,972 - [INFO] - from application in play-akka.actor.default-dispatcher-41 
+Asking bot dummy for query 你好
 
-2014-12-29 16:32:17,901 - [ERROR] - from application in play-akka.actor.default-dispatcher-2 
+2015-01-02 15:59:05,972 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+Query: 你好
 
+2015-01-02 15:59:05,972 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+Match: null
 
-! @6kk9aij1o - Internal server error, for (POST) [/bot/talk] ->
-
-play.api.Application$$anon$1: Execution exception[[AskTimeoutException: Ask timed out on [Actor[akka://application/user/router-dummy#686549249]] after [5000 ms]]]
-	at play.api.Application$class.handleError(Application.scala:296) ~[play_2.11-2.3.6.jar:2.3.6]
-	at play.api.DefaultApplication.handleError(Application.scala:402) [play_2.11-2.3.6.jar:2.3.6]
-	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3$$anonfun$applyOrElse$4.apply(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.6.jar:2.3.6]
-	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3$$anonfun$applyOrElse$4.apply(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.6.jar:2.3.6]
-	at scala.Option.map(Option.scala:145) [scala-library-2.11.2.jar:na]
-	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3.applyOrElse(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.6.jar:2.3.6]
-	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3.applyOrElse(PlayDefaultUpstreamHandler.scala:316) [play_2.11-2.3.6.jar:2.3.6]
-	at scala.concurrent.Future$$anonfun$recoverWith$1.apply(Future.scala:344) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.Future$$anonfun$recoverWith$1.apply(Future.scala:343) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library-2.11.2.jar:na]
-	at play.api.libs.iteratee.Execution$trampoline$.execute(Execution.scala:46) [play-iteratees_2.11-2.3.6.jar:2.3.6]
-	at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:40) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:248) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.Promise$class.complete(Promise.scala:55) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:153) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.Future$$anonfun$map$1.apply(Future.scala:235) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.Future$$anonfun$map$1.apply(Future.scala:235) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library-2.11.2.jar:na]
-	at play.core.j.HttpExecutionContext$$anon$2.run(HttpExecutionContext.scala:40) [play_2.11-2.3.6.jar:2.3.6]
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:41) [akka-actor_2.11-2.3.4.jar:na]
-	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:393) [akka-actor_2.11-2.3.4.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) [scala-library-2.11.2.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) [scala-library-2.11.2.jar:na]
-Caused by: akka.pattern.AskTimeoutException: Ask timed out on [Actor[akka://application/user/router-dummy#686549249]] after [5000 ms]
-	at akka.pattern.PromiseActorRef$$anonfun$1.apply$mcV$sp(AskSupport.scala:333) ~[akka-actor_2.11-2.3.4.jar:na]
-	at akka.actor.Scheduler$$anon$7.run(Scheduler.scala:117) ~[akka-actor_2.11-2.3.4.jar:na]
-	at scala.concurrent.Future$InternalCallbackExecutor$.unbatchedExecute(Future.scala:599) ~[scala-library-2.11.2.jar:na]
-	at scala.concurrent.BatchingExecutor$class.execute(BatchingExecutor.scala:109) ~[scala-library-2.11.2.jar:na]
-	at scala.concurrent.Future$InternalCallbackExecutor$.execute(Future.scala:597) ~[scala-library-2.11.2.jar:na]
-	at akka.actor.LightArrayRevolverScheduler$TaskHolder.executeTask(Scheduler.scala:467) ~[akka-actor_2.11-2.3.4.jar:na]
-	at akka.actor.LightArrayRevolverScheduler$$anon$8.executeBucket$1(Scheduler.scala:419) ~[akka-actor_2.11-2.3.4.jar:na]
-	at akka.actor.LightArrayRevolverScheduler$$anon$8.nextTick(Scheduler.scala:423) ~[akka-actor_2.11-2.3.4.jar:na]
-	at akka.actor.LightArrayRevolverScheduler$$anon$8.run(Scheduler.scala:375) ~[akka-actor_2.11-2.3.4.jar:na]
-	at java.lang.Thread.run(Thread.java:745) ~[na:1.7.0_72]
-
-2014-12-29 16:35:42,833 - [INFO] - from application in play-akka.actor.default-dispatcher-18 
+2015-01-02 15:59:31,406 - [INFO] - from application in play-akka.actor.default-dispatcher-43 
 Asking bot dummy for query 你好吗
 
-2014-12-29 16:35:42,835 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+2015-01-02 15:59:31,408 - [INFO] - from application in application-akka.actor.default-dispatcher-6 
 Query: 你好吗
 
-2014-12-29 16:35:42,835 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+2015-01-02 15:59:31,408 - [INFO] - from application in application-akka.actor.default-dispatcher-6 
 Match: default.你好吗
 
-2014-12-29 17:15:11,771 - [INFO] - from application in play-akka.actor.default-dispatcher-24 
+2015-01-02 16:00:40,285 - [INFO] - from play in play-internal-execution-context-1 
+Shutdown application default Akka system.
+
+2015-01-02 16:00:40,343 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin enabled. Connecting to Redis on localhost:6379 to 0 with timeout 2000.
+
+2015-01-02 16:00:40,344 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@37c9b151[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
+
+2015-01-02 16:00:40,376 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2015-01-02 16:00:40,411 - [INFO] - from play in play-akka.actor.default-dispatcher-44 
+Starting application default Akka system.
+
+2015-01-02 16:00:40,413 - [INFO] - from application in play-akka.actor.default-dispatcher-44 
+Added bot dummy
+
+2015-01-02 16:00:40,413 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
+
+2015-01-02 16:00:40,414 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
+
+2015-01-02 16:00:40,414 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
+
+2015-01-02 16:00:40,414 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
+
+2015-01-02 16:00:40,415 - [INFO] - from application in play-akka.actor.default-dispatcher-44 
 Asking bot dummy for query 你好吗
 
-2014-12-29 17:15:11,772 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+2015-01-02 16:00:40,420 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+Topic[basic] Categories
+[0] Pattern: default.你好吗 That: null Template: 你好
+
+2015-01-02 16:00:40,421 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+Topic[basic] Categories
+[0] Pattern: default.你好吗 That: null Template: 你好
+
+2015-01-02 16:00:40,421 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+/home/s5pan/Projects/df/bots/dummy/execs/grams.bin
+
+2015-01-02 16:00:40,421 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+/home/s5pan/Projects/df/bots/dummy/execs/grams.bin
+
+2015-01-02 16:00:40,423 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
 Query: 你好吗
 
-2014-12-29 17:15:11,772 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+2015-01-02 16:00:40,424 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
 Match: default.你好吗
+
+2015-01-02 16:01:13,593 - [INFO] - from play in play-internal-execution-context-1 
+Shutdown application default Akka system.
+
+2015-01-02 16:01:13,644 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin enabled. Connecting to Redis on localhost:6379 to 0 with timeout 2000.
+
+2015-01-02 16:01:13,644 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@44756c26[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
+
+2015-01-02 16:01:13,681 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2015-01-02 16:01:18,827 - [INFO] - from play in play-akka.actor.default-dispatcher-48 
+Starting application default Akka system.
+
+2015-01-02 16:01:18,829 - [INFO] - from application in play-akka.actor.default-dispatcher-48 
+Added bot dummy
+
+2015-01-02 16:01:18,829 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
+
+2015-01-02 16:01:18,830 - [INFO] - from application in application-akka.actor.default-dispatcher-6 
+Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
+
+2015-01-02 16:01:18,831 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
+
+2015-01-02 16:01:18,831 - [INFO] - from application in application-akka.actor.default-dispatcher-6 
+Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
+
+2015-01-02 16:01:18,833 - [INFO] - from application in play-akka.actor.default-dispatcher-48 
+Asking bot dummy for query 你好吗
+
+2015-01-02 16:01:18,836 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+Topic[basic] Categories
+[0] Pattern: default.你好吗 That: null Template: 你好
+
+2015-01-02 16:01:18,836 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+/home/s5pan/Projects/df/bots/dummy/execs/grams.bin
+
+2015-01-02 16:01:18,840 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+Query: 你好吗
+
+2015-01-02 16:01:18,840 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+Match: default.你好吗
+
+2015-01-02 16:01:18,837 - [INFO] - from application in application-akka.actor.default-dispatcher-6 
+Topic[basic] Categories
+[0] Pattern: default.你好吗 That: null Template: 你好
+
+2015-01-02 16:01:18,840 - [INFO] - from application in application-akka.actor.default-dispatcher-6 
+/home/s5pan/Projects/df/bots/dummy/execs/grams.bin
+
+2015-01-02 16:01:50,342 - [INFO] - from application in play-akka.actor.default-dispatcher-49 
+Asking bot dummy for query 你好吗
+
+2015-01-02 16:01:50,342 - [INFO] - from application in application-akka.actor.default-dispatcher-5 
+Query: 你好吗
+
+2015-01-02 16:01:50,342 - [INFO] - from application in application-akka.actor.default-dispatcher-5 
+Match: default.你好吗
+
+2015-01-02 16:01:57,189 - [INFO] - from application in play-akka.actor.default-dispatcher-47 
+Asking bot dummy for query 你好
+
+2015-01-02 16:01:57,189 - [INFO] - from application in application-akka.actor.default-dispatcher-5 
+Query: 你好
+
+2015-01-02 16:01:57,189 - [INFO] - from application in application-akka.actor.default-dispatcher-5 
+Match: null
 

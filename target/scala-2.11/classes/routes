@@ -5,10 +5,6 @@
 # Home page
 GET     /                           @controllers.Application.index()
 
-# Test
-GET     /test/get/:key              @controllers.Test.get(key: String)
-POST    /test/set/:key              @controllers.Test.set(key: String)
-
 # Bot
 POST    /bot/talk                   @controllers.Bot.talk()
 
