@@ -16,4 +16,10 @@ public class Profile {
 		this.createdDate = new Date();
 	}
 	
+	public Profile(String uid, String name, HashMap<String, String> map) {
+		this.uid = uid;
+		this.name = name;
+		this.map = map;
+	}
+	
 }
