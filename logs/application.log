@@ -1,3 +1,12 @@
-2015-01-02 17:04:32,210 - [INFO] - from play in pool-4-thread-5 
+2015-01-06 09:55:42,536 - [INFO] - from play in pool-4-thread-1 
 Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+
+2015-01-06 09:56:27,779 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin enabled. Connecting to Redis on localhost:6379 to 0 with timeout 2000.
+
+2015-01-06 09:56:27,821 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@53532ad[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
+
+2015-01-06 09:56:28,237 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
 

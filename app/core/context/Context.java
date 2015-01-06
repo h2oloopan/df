@@ -23,4 +23,9 @@ public class Context {
 		this.map = new HashMap<String, String>();
 		this.dateCreated = new Date();
 	}
+	
+	public void insert(String query, String response) {
+		queries.add(query);
+		responses.add(response);
+	}
 }
