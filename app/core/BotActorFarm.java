@@ -1,10 +1,11 @@
-package core;
 
+package core;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import com.google.inject.Inject;
 
@@ -15,7 +16,10 @@ import play.Logger;
 import play.libs.Akka;
 import play.libs.F.Callback;
 import play.libs.F.Promise;
+import scala.concurrent.duration.Duration;
 import akka.actor.*;
+import akka.actor.SupervisorStrategy.Directive;
+import akka.japi.Function;
 import akka.routing.RoundRobinPool;
 
 public class BotActorFarm implements ActorFarm {
@@ -50,7 +54,19 @@ public class BotActorFarm implements ActorFarm {
 			//DO not compile if not needed
 			//compiler.compile(path);
 			creator.update(name, path);
-			ActorRef router = Akka.system().actorOf(new RoundRobinPool(instances).props(Props.create(creator)), "router-" + name);
+			
+			final SupervisorStrategy strategy = new OneForOneStrategy(10, Duration.create(1, TimeUnit.MINUTES), new Function<Throwable, Directive>() {
+				@Override
+				public Directive apply(Throwable t) {
+					Logger.error(t.getMessage(), t);
+					return SupervisorStrategy.escalate();
+				}
+			});
+			
+			ActorRef router = Akka.system().actorOf(new RoundRobinPool(instances).withSupervisorStrategy(strategy).props(Props.create(creator)), "router-" + name);
+			
+			
+			
 			routers.put(name, router);
 			Logger.info("Added bot " + name);
 		}

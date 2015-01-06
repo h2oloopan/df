@@ -75,6 +75,7 @@ public class BotActor extends UntypedActor {
 			getSender().tell(response, getContext().parent());
 			if (response != null && context != null) {
 				context.insert(query.getText(), response.getText());
+				contextProvider.saveContext(query.getUid(), query.getSid(), context);
 			}
 			
 		} else {

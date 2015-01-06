@@ -3,10 +3,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
 
-import core.ActorFarm;
-import core.BotActorFarm;
-import core.InMemorySessionTable;
-import core.SessionTable;
+import core.*;
 import core.bot.*;
 import core.grammar.*;
 import core.storage.*;
