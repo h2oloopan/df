@@ -28,4 +28,28 @@ public class Context {
 		queries.add(query);
 		responses.add(response);
 	}
+	
+	public String getThat() {
+		if (responses.size() > 0) {
+			return responses.get(responses.size() - 1);
+		} else {
+			return null;
+		}
+	}
+	
+	public String getLastResponse(int index) {
+		if (index > responses.size()) {
+			return null;
+		} else {
+			return responses.get(responses.size() - index);
+		}
+	}
+	
+	public String getLastQuery(int index) {
+		if (index > queries.size()) {
+			return null;
+		} else {
+			return queries.get(queries.size() - index);
+		}
+	}
 }

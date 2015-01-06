@@ -66,7 +66,6 @@ public class BotActorFarm implements ActorFarm {
 			ActorRef router = Akka.system().actorOf(new RoundRobinPool(instances).withSupervisorStrategy(strategy).props(Props.create(creator)), "router-" + name);
 			
 			
-			
 			routers.put(name, router);
 			Logger.info("Added bot " + name);
 		}

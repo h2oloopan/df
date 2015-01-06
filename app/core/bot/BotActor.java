@@ -54,13 +54,13 @@ public class BotActor extends UntypedActor {
 			Context context = null;
 			
 			try {
-				Category match = finder.find(topics, topic, pattern);
 				//Need to use context provider to get context here
 				context = contextProvider.getContext(query.getUid(), query.getSid());
+				String that = context.getThat();
 				//And to get profile here
 				
 				//Then generate response from the matching category, context, and profile
-				
+				Category match = finder.find(topics, topic, pattern, that);
 				//Construct a response message
 				//Not sure, but maybe it's the dialog developer's responsibility to provide a default match
 				if (match == null) {
