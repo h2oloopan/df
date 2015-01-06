@@ -4,7 +4,7 @@
 		module="df_2.11"
 		revision="1.0-SNAPSHOT"
 		status="integration"
-		publication="20141217072512"
+		publication="20150106155226"
 	>
 		<description>
 		df
@@ -50,6 +50,7 @@
 		<dependency org="com.typesafe.play" name="play-cache_2.11" rev="2.3.6" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.play" name="play-java-ws_2.11" rev="2.3.6" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.play.plugins" name="play-plugins-redis_2.11" rev="2.3.1" conf="compile->default(compile)"/>
+		<dependency org="mysql" name="mysql-connector-java" rev="5.1.28" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.trace" name="trace-play-2.3.6_2.11" rev="0.1.7" conf="echo-trace-compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

@@ -1,6 +1,7 @@
 package core.bot;
 
 import core.context.Context;
+import core.context.Profile;
 import core.grammar.Matcher;
 
 import java.util.Map;
@@ -52,12 +53,14 @@ public class BotActor extends UntypedActor {
 			
 			Response response = null;
 			Context context = null;
+			Profile profile = null;
 			
 			try {
 				//Need to use context provider to get context here
 				context = contextProvider.getContext(query.getUid(), query.getSid());
 				String that = context.getThat();
 				//And to get profile here
+				profile = profileProvider.getProfile(query.getUid());
 				
 				//Then generate response from the matching category, context, and profile
 				Category match = finder.find(topics, topic, pattern, that);
@@ -78,6 +81,7 @@ public class BotActor extends UntypedActor {
 				context.insert(query.getText(), response.getText());
 				contextProvider.saveContext(query.getUid(), query.getSid(), context);
 			}
+			profileProvider.saveProfile(query.getUid(), profile);
 			
 		} else {
 			unhandled(message);

@@ -1,115 +1,65 @@
-2015-01-06 11:49:37,985 - [INFO] - from play in pool-4-thread-4 
+2015-01-06 17:02:21,191 - [INFO] - from play in pool-4-thread-1 
 Listening for HTTP on /0:0:0:0:0:0:0:0:9000
 
-2015-01-06 11:57:27,959 - [INFO] - from application in play-internal-execution-context-1 
+2015-01-06 17:02:29,183 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost/df
+
+2015-01-06 17:02:29,198 - [INFO] - from application in play-internal-execution-context-1 
 Redis Plugin enabled. Connecting to Redis on localhost:6379 to 0 with timeout 2000.
 
-2015-01-06 11:57:27,975 - [INFO] - from application in play-internal-execution-context-1 
-Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@b18e904[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
+2015-01-06 17:02:29,205 - [INFO] - from application in play-internal-execution-context-1 
+Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@4ce515f4[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
 
-2015-01-06 11:57:28,338 - [INFO] - from play in play-internal-execution-context-1 
+2015-01-06 17:02:29,411 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 
-2015-01-06 11:57:36,515 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
+2015-01-06 17:02:34,082 - [INFO] - from play in play-akka.actor.default-dispatcher-6 
 Starting application default Akka system.
 
-2015-01-06 11:57:36,526 - [INFO] - from application in play-akka.actor.default-dispatcher-3 
+2015-01-06 17:02:34,093 - [INFO] - from application in play-akka.actor.default-dispatcher-6 
 Added bot dummy
 
-2015-01-06 11:57:36,528 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+2015-01-06 17:02:34,097 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
 Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
 
-2015-01-06 11:57:36,528 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+2015-01-06 17:02:34,097 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
 Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
 
-2015-01-06 11:57:36,553 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+2015-01-06 17:02:34,100 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
 Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
 
-2015-01-06 11:57:36,553 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+2015-01-06 17:02:34,100 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
 Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
 
-2015-01-06 11:57:36,569 - [INFO] - from application in play-akka.actor.default-dispatcher-3 
-Asking bot dummy for query 你好
-
-2015-01-06 11:57:36,636 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+2015-01-06 17:02:34,106 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
 Topic[basic] Categories
 [0] Pattern: default.你好吗 That: null Template: 你好
 
-2015-01-06 11:57:36,636 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+2015-01-06 17:02:34,106 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
 Topic[basic] Categories
 [0] Pattern: default.你好吗 That: null Template: 你好
 
-2015-01-06 11:57:36,636 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+2015-01-06 17:02:34,106 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
 /home/s5pan/Projects/df/bots/dummy/execs/grams.bin
 
-2015-01-06 11:57:36,636 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+2015-01-06 17:02:34,106 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
 /home/s5pan/Projects/df/bots/dummy/execs/grams.bin
 
-2015-01-06 11:57:37,024 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
-Query: 你好
+2015-01-06 17:02:34,121 - [INFO] - from application in play-akka.actor.default-dispatcher-6 
+Asking bot dummy for query 你好吗
 
-2015-01-06 11:57:37,024 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
-Match: null
+2015-01-06 17:02:34,382 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+Query: 你好吗
 
-2015-01-06 11:57:37,076 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+2015-01-06 17:02:34,382 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+Match: default.你好吗
+
+2015-01-06 17:02:34,442 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+reaching here
+
+2015-01-06 17:02:34,442 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
 Pattern: default.你好吗 That: null Template: 你好
 
-2015-01-06 12:02:30,212 - [INFO] - from play in play-internal-execution-context-1 
-Shutdown application default Akka system.
-
-2015-01-06 12:02:30,300 - [INFO] - from application in play-internal-execution-context-1 
-Redis Plugin enabled. Connecting to Redis on localhost:6379 to 0 with timeout 2000.
-
-2015-01-06 12:02:30,301 - [INFO] - from application in play-internal-execution-context-1 
-Redis Plugin pool configuration: redis.clients.jedis.JedisPoolConfig@7fc7b048[maxTotal=8,maxIdle=8,minIdle=0,lifo=true,maxWaitMillis=-1,minEvictableIdleTimeMillis=60000,softMinEvictableIdleTimeMillis=1800000,numTestsPerEvictionRun=-1,evictionPolicyClassName=org.apache.commons.pool2.impl.DefaultEvictionPolicy,testOnBorrow=false,testOnReturn=false,testWhileIdle=true,timeBetweenEvictionRunsMillis=30000,blockWhenExhausted=true,jmxEnabled=true,jmxNamePrefix=pool]
-
-2015-01-06 12:02:30,328 - [INFO] - from play in play-internal-execution-context-1 
-Application started (Dev)
-
-2015-01-06 12:02:34,692 - [INFO] - from play in play-akka.actor.default-dispatcher-12 
-Starting application default Akka system.
-
-2015-01-06 12:02:34,694 - [INFO] - from application in play-akka.actor.default-dispatcher-12 
-Added bot dummy
-
-2015-01-06 12:02:34,695 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
-Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
-
-2015-01-06 12:02:34,695 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
-Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
-
-2015-01-06 12:02:34,696 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
-Initializing bot dummy at /home/s5pan/Projects/df/bots/dummy
-
-2015-01-06 12:02:34,696 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
-Loading aiml file: /home/s5pan/Projects/df/bots/dummy/confs/default.aiml
-
-2015-01-06 12:02:34,698 - [INFO] - from application in play-akka.actor.default-dispatcher-12 
-Asking bot dummy for query 好
-
-2015-01-06 12:02:34,699 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
-Topic[basic] Categories
-[0] Pattern: default.你好吗 That: null Template: 你好
-
-2015-01-06 12:02:34,699 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
-Topic[basic] Categories
-[0] Pattern: default.你好吗 That: null Template: 你好
-
-2015-01-06 12:02:34,699 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
-/home/s5pan/Projects/df/bots/dummy/execs/grams.bin
-
-2015-01-06 12:02:34,699 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
-/home/s5pan/Projects/df/bots/dummy/execs/grams.bin
-
-2015-01-06 12:02:34,701 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
-Query: 好
-
-2015-01-06 12:02:34,701 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
-Match: null
-
-2015-01-06 12:02:34,710 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
-Pattern: default.你好吗 That: null Template: 你好
-
-2015-01-06 12:02:34,711 - [WARN] - from application in application-akka.actor.default-dispatcher-2 
-There is no rule to handle given request{"uid":"9d18da88-b4f6-4a3d-8e9f-28d527ef214a","sid":"5fffaa9e-3504-4141-90ff-48cee8c12b69","text":"好","topic":null,"timestamp":1420563754699}
+2015-01-06 17:02:34,448 - [INFO] - from application in application-akka.actor.default-dispatcher-4 
+INSERT INTO profiles (uid, name, map, created_date) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE name = ?, map = ?;
 
