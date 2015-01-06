@@ -2,6 +2,8 @@ package core.messages;
 
 import java.util.Date;
 
+import play.libs.Json;
+
 public class Query {
 	//Make sure this is immutable
 	private final String uid;
@@ -47,6 +49,6 @@ public class Query {
 	
 	@Override
 	public String toString() {
-		return uid + " " + sid + " " + text + " " + topic + " " + timestamp.toString();
+		return Json.stringify(Json.toJson(this));
 	}
 }

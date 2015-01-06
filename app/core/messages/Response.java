@@ -2,6 +2,8 @@ package core.messages;
 
 import java.util.Date;
 
+import play.libs.Json;
+
 public class Response {
 	private final String text;
 	private final Date timestamp;
@@ -27,5 +29,10 @@ public class Response {
 	
 	public Date getTimestamp() {
 		return timestamp;
+	}
+	
+	@Override
+	public String toString() {
+		return Json.stringify(Json.toJson(this));
 	}
 }

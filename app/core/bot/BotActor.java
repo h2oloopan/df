@@ -64,6 +64,7 @@ public class BotActor extends UntypedActor {
 				//Construct a response message
 				//Not sure, but maybe it's the dialog developer's responsibility to provide a default match
 				if (match == null) {
+					Logger.warn("There is no rule to handle given request" + query.toString());
 					response = new Response(500, "There is no rule to handle given request");
 				} else {
 					response = new Response(200, match.getTemplate().toString());
