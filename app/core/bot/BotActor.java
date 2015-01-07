@@ -30,6 +30,7 @@ public class BotActor extends UntypedActor {
 	public BotActor(Parser parser, Matcher matcher, Finder finder, Processor processor, ContextProvider contextProvider, ProfileProvider profileProvider, 
 			String name, String path) throws Exception {
 		Logger.info("Initializing bot " + name + " at " + path);
+		this.brain = new Brain(name, path);
 		this.parser = parser;
 		this.matcher = matcher;
 		this.finder = finder;

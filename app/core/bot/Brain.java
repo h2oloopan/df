@@ -8,7 +8,6 @@ package core.bot;
 
 import java.util.HashMap;
 
-import org.alicebot.ab.PreProcessor;
 
 import core.bot.knowledge.*;
 
@@ -19,14 +18,16 @@ import core.bot.knowledge.*;
 //A brain here is like a bot for program-ab
 public class Brain
 {
-    private String name;
-    private Properties properties;
-    private PreProcessor preProcessor;
-    private Graphmaster graph;
-    private HashMap<String, AIMLSet> setMap;
-    private HashMap<String, AIMLMap> mapMap;
+    public String name;
+    public Properties properties;
+    public PreProcessor preProcessor;
+    public Graphmaster graph;
+    public HashMap<String, AIMLSet> setMap;
+    public HashMap<String, AIMLMap> mapMap;
     
-    public Barin() {
-        
+    public Brain(String name, String path) {
+        this.name = name;
+        //load everything
+        this.graph = new Graphmaster(this);
     }
 }
