@@ -17,6 +17,8 @@ public class BotActor extends UntypedActor {
 	private String path;
 	private Map<String, Topic> topics;
 	
+	private Brain brain;
+	
 	private Parser parser;
 	private Matcher matcher;
 	private Finder finder;
@@ -58,9 +60,8 @@ public class BotActor extends UntypedActor {
 			try {
 				//Need to use context provider to get context here
 				context = contextProvider.getContext(query.getUid(), query.getSid());
-				String that = context.getThat();
-				//And to get profile here
 				profile = profileProvider.getProfile(query.getUid());
+				String that = context.getThat();
 				
 				//Then generate response from the matching category, context, and profile
 				Category match = finder.find(topics, topic, pattern, that);
