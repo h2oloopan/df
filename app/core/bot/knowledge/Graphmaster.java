@@ -39,9 +39,9 @@ public class Graphmaster
         this(brain, "brain");
     }
 
-    public Graphmaster (Brain bot, String name) {
+    public Graphmaster (Brain brain, String name) {
         root = new Nodemapper();
-        this.brain = bot;
+        this.brain = brain;
         this.name = name;
         vocabulary = new HashSet<String>();
     }

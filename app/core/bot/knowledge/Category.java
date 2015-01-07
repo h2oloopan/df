@@ -6,6 +6,8 @@
  */
 package core.bot.knowledge;
 
+import java.util.Comparator;
+
 import core.bot.Brain;
 
 /**

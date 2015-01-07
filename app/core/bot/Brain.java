@@ -7,7 +7,7 @@
 package core.bot;
 
 import java.util.HashMap;
-
+import java.io.*;
 
 import core.bot.knowledge.*;
 
@@ -25,19 +25,28 @@ public class Brain
     public HashMap<String, AIMLSet> setMap;
     public HashMap<String, AIMLMap> mapMap;
     
-    public String root_path;// = "c:/ab";
+    //public String root_path;// = "c:/ab";
     public String bot_path;// = root_path+"/bots";
-    public String bot_name_path;// = bot_path+"/super";
-    public String aimlif_path;// = bot_path+"/aimlif";
+    //public String bot_name_path;// = bot_path+"/super";
+    //public String aimlif_path;// = bot_path+"/aimlif";
     public String aiml_path;// = bot_path+"/aiml";
-    public String config_path;// = bot_path+"/config";
-    public String log_path;// = bot_path+"/log";
+    //public String config_path;// = bot_path+"/config";
+    //public String log_path;// = bot_path+"/log";
     public String sets_path;// = bot_path+"/sets";
     public String maps_path;// = bot_path+"/maps";
     
-    public Brain(String name, String path) {
+    public Brain(String name, String path) throws Exception {
         this.name = name;
+        setPath(path);
         //load everything
         this.graph = new Graphmaster(this);
+        this.preProcessor = new PreProcessor(this);
+    }
+    
+    public void setPath(String path) throws Exception {
+        this.bot_path = path;
+        this.aiml_path = (new File(new File(path), "confs")).getCanonicalPath();
+        this.sets_path = (new File(new File(path), "sets")).getCanonicalPath();
+        this.maps_path = (new File(new File(path), "maps")).getCanonicalPath();
     }
 }
