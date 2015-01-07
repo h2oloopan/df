@@ -171,11 +171,11 @@ public class Category
      *
      * @param input      matching input
      */
-    public void addMatch (String input, Bot bot) {
+    public void addMatch (String input, Brain brain) {
         if (matches == null) {
             String setName = this.inputThatTopic().replace("*", "STAR").replace("_", "UNDERSCORE").replace(" ","-").replace("<THAT>","THAT").replace("<TOPIC>","TOPIC");
            // System.out.println("Created match set "+setName);
-            matches = new AIMLSet(setName, bot);
+            matches = new AIMLSet(setName, brain);
         }
         matches.add(input);
     }
