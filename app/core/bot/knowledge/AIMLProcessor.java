@@ -51,11 +51,9 @@ public class AIMLProcessor
                 NodeList kids = m.getChildNodes();
                 if (kids.getLength() > 0 && kids.item(0).getNodeName().equals("grammar")) {
                     grammar = DomUtils.nodeToString(kids.item(0));
-                } else if (kids.getLength() == 0) {
-                    pattern = DomUtils.nodeToString(m);
                 } else {
-                    throw new IOException("Invalid aiml format near the pattern tag");
-                }
+                    pattern = DomUtils.nodeToString(m);
+                } 
             } else if (mName.equals("that")) that = DomUtils.nodeToString(m);
             else if (mName.equals("topic")) topic = DomUtils.nodeToString(m);
             else if (mName.equals("template")) template = DomUtils.nodeToString(m);

@@ -6,6 +6,7 @@
  */
 package core.bot.knowledge;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -82,6 +83,7 @@ public class Graphmaster
         }
         return pattern;
     }
+    //Add a category into the graph
     public void addCategory (Category category) {
         String inputThatTopic = inputThatTopic(category.getPattern(), category.getThat(), category.getTopic());
         //System.out.println("addCategory: "+inputThatTopic);
@@ -107,19 +109,21 @@ public class Graphmaster
         //System.out.println("thatStarTopicStar "+tail+" "+tail.equals("<THAT> * <TOPIC> *"));
         return tail.equals("<THAT> * <TOPIC> *");
     }
-    void addSets (String type, Bot bot, Nodemapper node, String filename) {
+    
+    void addSets (String type, Brain brain, Nodemapper node, String filename) {
         //System.out.println("adding Set "+type+" from "+bot.setMap);
         String setName = Utilities.tagTrim(type, "SET").toLowerCase();
         //AIMLSet aimlSet;
-        if (bot.setMap.containsKey(setName)) {
+        if (brain.setMap.containsKey(setName)) {
             if (node.sets == null) node.sets = new ArrayList<String>();
             if (!node.sets.contains(setName)) node.sets.add(setName);
             //System.out.println("sets = "+node.sets);
         }
         else {
-            System.out.println("No AIML Set found for <set>"+setName+"</set> in "+bot.name+" "+filename);
+            System.out.println("No AIML Set found for <set>"+setName+"</set> in "+brain.name+" "+filename);
         }
     }
+    
     /**
      * add a path to the graph from the root to a Category
      *
@@ -151,7 +155,7 @@ public class Graphmaster
             node.shortCut = true;
         }
         else if (NodemapperOperator.containsKey(node, path.word)) {
-            if (path.word.startsWith("<SET>")) addSets(path.word, bot, node, category.getFilename());
+            if (path.word.startsWith("<SET>")) addSets(path.word, brain, node, category.getFilename());
             Nodemapper nextNode = NodemapperOperator.get(node, path.word);
             addPath(nextNode, path.next, category);
             int offset = 1;
@@ -161,7 +165,7 @@ public class Graphmaster
         else {
             Nodemapper nextNode = new Nodemapper();
             if (path.word.startsWith("<SET>")) {
-                addSets(path.word, bot, node, category.getFilename());
+                addSets(path.word, brain, node, category.getFilename());
             }
             if (node.key != null)  {
                 NodemapperOperator.upgrade(node);
