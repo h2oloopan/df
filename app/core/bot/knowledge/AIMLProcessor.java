@@ -34,14 +34,8 @@ public class AIMLProcessor
     public static AIMLProcessorExtension extension;
     
     //Actually analyze and load a category from parsed xml node
-    private static void processCategory(Node n, ArrayList<Category> categories, String topic, String aimlFile) {
-        String pattern, that, template;
-    }
-    
-    
-    private static void categoryProcessor(Node n, ArrayList<Category> categories, String topic, String aimlFile, String language) throws Exception {
+    private static void processCategory(Node n, ArrayList<Category> categories, String topic, String aimlFile) throws Exception {
         String pattern, grammar, that, template;
-
         NodeList children = n.getChildNodes();
         pattern = "*"; grammar = null; that = "*";  template="";
         for (int j = 0; j < children.getLength(); j++) {
@@ -59,14 +53,14 @@ public class AIMLProcessor
                 } else if (kids.getLength() == 0) {
                     pattern = DomUtils.nodeToString(m);
                 } else {
-                    throw new IOException("Invalid aiml format");
+                    throw new IOException("Invalid aiml format near the pattern tag");
                 }
             } else if (mName.equals("that")) that = DomUtils.nodeToString(m);
             else if (mName.equals("topic")) topic = DomUtils.nodeToString(m);
             else if (mName.equals("template")) template = DomUtils.nodeToString(m);
-            else System.out.println("categoryProcessor: unexpected "+mName+" in "+DomUtils.nodeToString(m));
+            else throw new IOException("categoryProcessor: unexpected " + mName + " in " + DomUtils.nodeToString(m));
         }
-        //System.out.println("categoryProcessor: pattern="+pattern);
+        //
         pattern = trimTag(pattern, "pattern");
         that = trimTag(that, "that");
         topic = trimTag(topic, "topic");
@@ -88,10 +82,10 @@ public class AIMLProcessor
         if (template.length()==0) System.out.println("Template is zero length");*/
         if (template == null || template.length() == 0) {
             System.out.println("Category "+c.inputThatTopic()+" discarded due to blank or missing <template>.");
-;
         }
         else categories.add(c);
     }
+    
 
     public static String cleanPattern(String pattern) {
         pattern = pattern.replaceAll("(\r\n|\n\r|\r|\n)", " ");
