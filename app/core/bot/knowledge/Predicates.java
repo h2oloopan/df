@@ -13,7 +13,7 @@ import java.util.HashMap;
  *@author Shengying Pan (s5pan@uwaterloo.ca) 
  *@date Jan 8, 2015
  */
-public class Predicates
+public class Predicates extends HashMap<String, String>
 {
     /**
      * save a predicate value

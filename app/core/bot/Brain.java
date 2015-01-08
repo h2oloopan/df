@@ -22,8 +22,8 @@ public class Brain
     public Properties properties;
     public PreProcessor preProcessor;
     public Graphmaster graph;
-    public HashMap<String, AIMLSet> setMap;
-    public HashMap<String, AIMLMap> mapMap;
+    //public HashMap<String, AIMLSet> setMap;
+    //public HashMap<String, AIMLMap> mapMap;
     
     //public String root_path;// = "c:/ab";
     public String bot_path;// = root_path+"/bots";

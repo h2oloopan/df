@@ -180,7 +180,7 @@ public class AIMLProcessor
         sraiCount = srCnt;
         response = MagicStrings.default_bot_response;
          try {
-            Nodemapper leaf = chatSession.bot.brain.match(input, that, topic);
+            Nodemapper leaf = chatSession.brain.match(input, that, topic);
             if (leaf == null) {return(response);}
             ParseState ps = new ParseState(0, chatSession, input, that, topic, leaf);
             //chatSession.matchTrace += leaf.category.getTemplate()+"\n";

@@ -6,6 +6,7 @@
  */
 package core.bot.knowledge;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.*;
 

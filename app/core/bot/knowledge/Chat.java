@@ -8,6 +8,8 @@ package core.bot.knowledge;
 
 import java.io.*;
 
+import core.bot.Brain;
+
 /**
  *@author Shengying Pan (s5pan@uwaterloo.ca) 
  *@date Jan 8, 2015
