@@ -71,9 +71,7 @@ public class Brain
                 if (listOfFile.isFile()) {
                     file = listOfFile.getName();
                     if (file.endsWith(".txt") || file.endsWith(".TXT")) {
-                        if (MagicBooleans.trace_mode) System.out.println(file);
                         String setName = file.substring(0, file.length()-".txt".length());
-                        if (MagicBooleans.trace_mode) System.out.println("Read AIML Set "+setName);
                         AIMLSet aimlSet = new AIMLSet(setName, this);
                         cnt += aimlSet.readAIMLSet(this);
                         setMap.put(setName, aimlSet);
@@ -85,6 +83,26 @@ public class Brain
     }
     
     private int addAIMLMaps(String path) throws Exception {
-        
+        int cnt = 0;
+        String file;
+        File folder = new File(maps_path);
+        if (folder.exists()) {
+            File[] listOfFiles = IOUtils.listFiles(folder);
+            if (MagicBooleans.trace_mode) System.out.println("Loading AIML Map files from "+maps_path);
+            for (File listOfFile : listOfFiles) {
+                if (listOfFile.isFile()) {
+                    file = listOfFile.getName();
+                    if (file.endsWith(".txt") || file.endsWith(".TXT")) {
+                        if (MagicBooleans.trace_mode) System.out.println(file);
+                        String mapName = file.substring(0, file.length()-".txt".length());
+                        if (MagicBooleans.trace_mode) System.out.println("Read AIML Map "+mapName);
+                        AIMLMap aimlMap = new AIMLMap(mapName, this);
+                        cnt += aimlMap.readAIMLMap(this);
+                        mapMap.put(mapName, aimlMap);
+                    }
+                }
+            }
+        }
+        return cnt;
     }
 }

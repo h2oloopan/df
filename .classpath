@@ -75,6 +75,7 @@
 	<classpathentry kind="lib" path="/home/s5pan/.ivy2/cache/oauth.signpost/signpost-core/jars/signpost-core-1.2.1.2.jar"/>
 	<classpathentry kind="lib" path="/home/s5pan/.ivy2/cache/oauth.signpost/signpost-commonshttp4/jars/signpost-commonshttp4-1.2.1.2.jar"/>
 	<classpathentry kind="lib" path="/home/s5pan/.ivy2/cache/com.typesafe.play.plugins/play-plugins-redis_2.11/jars/play-plugins-redis_2.11-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/sanmoku-0.0.5.jar"/>
 	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
 	<classpathentry kind="lib" path="/home/s5pan/.ivy2/cache/biz.source_code/base64coder/bundles/base64coder-2010-12-19.jar"/>
 	<classpathentry kind="lib" path="/home/s5pan/.ivy2/cache/com.typesafe.play.plugins/play-plugins-util_2.11/jars/play-plugins-util_2.11-2.3.0.jar"/>

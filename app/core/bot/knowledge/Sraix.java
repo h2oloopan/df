@@ -6,9 +6,14 @@
  */
 package core.bot.knowledge;
 
-import java.io.*;
-import java.util.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 /**
  *@author Shengying Pan (s5pan@uwaterloo.ca) 
  *@date Jan 7, 2015
