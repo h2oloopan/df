@@ -14,7 +14,7 @@ import java.io.*;
  */
 public class Chat
 {
-    public Bot bot;
+    public Brain brain;
     public boolean doWrites;
     public String customerId = MagicStrings.default_Customer_id;
     public History<History> thatHistory= new History<History>("that");
