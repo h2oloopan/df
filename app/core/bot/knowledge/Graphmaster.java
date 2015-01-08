@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import play.Logger;
 import core.bot.Brain;
 
 /**
@@ -29,7 +30,6 @@ public class Graphmaster
     public HashSet<String> vocabulary;
     public String resultNote = "";
     public int categoryCnt = 0;
-    public static boolean enableShortCuts = false;
 
     /**
      * Constructor
@@ -81,16 +81,13 @@ public class Graphmaster
     }
     
     void addSets (String type, Brain brain, Nodemapper node, String filename) {
-        //System.out.println("adding Set "+type+" from "+bot.setMap);
         String setName = Utilities.tagTrim(type, "SET").toLowerCase();
-        //AIMLSet aimlSet;
         if (brain.setMap.containsKey(setName)) {
             if (node.sets == null) node.sets = new ArrayList<String>();
             if (!node.sets.contains(setName)) node.sets.add(setName);
-            //System.out.println("sets = "+node.sets);
         }
         else {
-            System.out.println("No AIML Set found for <set>"+setName+"</set> in "+brain.name+" "+filename);
+            Logger.info("No AIML Set found for <set>"+setName+"</set> in "+brain.name+" "+filename);
         }
     }
     
@@ -114,15 +111,9 @@ public class Graphmaster
      * @param category    AIML Category
      */
     void addPath(Nodemapper node, Path path, Category category) {
-        //if (path != null) System.out.println("Enable shortcuts = "+enableShortCuts+" path="+Path.pathToSentence(path)+" "+thatStarTopicStar(path));
         if (path == null) {
             node.category = category;
             node.height = 0;
-        }
-        else if (enableShortCuts && thatStarTopicStar(path)) {
-            node.category = category;
-            node.height = Math.min(4, node.height);
-            node.shortCut = true;
         }
         else if (NodemapperOperator.containsKey(node, path.word)) {
             if (path.word.startsWith("<SET>")) addSets(path.word, brain, node, category.getFilename());
