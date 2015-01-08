@@ -94,43 +94,7 @@ public class Utilities
         }
         return copyright;
     }
-    public static String getCopyright (Brain brain, String AIMLFilename) {
-        String copyright = "";
-        String year = CalendarUtils.year();
-        String date = CalendarUtils.date();
-        try {
-                copyright = getFile(brain.config_path+"/copyright.txt") ;
-                String[] splitCopyright = copyright.split("\n");
-                copyright = "";
-                for (int i = 0; i < splitCopyright.length; i++) {
-                    copyright += "<!-- "+splitCopyright[i]+" -->\n";
-                }
-                copyright = copyright.replace("[url]", brain.properties.get("url"));
-                copyright = copyright.replace("[date]", date);
-                copyright = copyright.replace("[YYYY]", year);
-                copyright = copyright.replace("[version]", brain.properties.get("version"));
-                copyright = copyright.replace("[botname]", brain.name.toUpperCase());
-                copyright = copyright.replace("[filename]", AIMLFilename);
-                copyright = copyright.replace("[botmaster]", brain.properties.get("botmaster"));
-                copyright = copyright.replace("[organization]", brain.properties.get("organization"));
-        } catch (Exception e){//Catch exception if any
-            System.err.println("Error: " + e.getMessage());
-        }
-        copyright += "<!--  -->\n";
-        //System.out.println("Copyright: "+copyright);
-        return copyright;
-    }
-
-    public static String getPannousAPIKey (Brain brain) {
-       String apiKey = getFile(brain.config_path+"/pannous-apikey.txt");
-       if (apiKey.equals("")) apiKey = MagicStrings.pannous_api_key;
-       return apiKey;
-    }
-    public static String getPannousLogin (Brain brain) {
-        String login = getFile(brain.config_path+"/pannous-login.txt");
-        if (login.equals("")) login = MagicStrings.pannous_login;
-        return login;
-    }
+    
     /**
      * Returns if a character is one of Chinese-Japanese-Korean characters.
      *
