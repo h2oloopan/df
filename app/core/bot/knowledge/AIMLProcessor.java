@@ -6,6 +6,7 @@
  */
 package core.bot.knowledge;
 
+import java.io.*;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -31,6 +32,13 @@ public class AIMLProcessor
      * @param aimlFile                        name of AIML file being parsed.
      */
     public static AIMLProcessorExtension extension;
+    
+    //Actually analyze and load a category from parsed xml node
+    private static void processCategory(Node n, ArrayList<Category> categories, String topic, String aimlFile) {
+        
+    }
+    
+    
     private static void categoryProcessor(Node n, ArrayList<Category> categories, String topic, String aimlFile, String language) {
         String pattern, that, template;
 
@@ -96,45 +104,31 @@ public class AIMLProcessor
      * @param aimlFile      AIML file name.
      * @return              list of categories.
      */
-    public static ArrayList<Category> AIMLToCategories (String directory, String aimlFile) {
-        try {
-            ArrayList categories = new ArrayList<Category>();
-            Node root = DomUtils.parseFile(directory+"/"+aimlFile);      // <aiml> tag
-            String language = MagicStrings.default_language;
-            if (root.hasAttributes()) {
-                NamedNodeMap XMLAttributes = root.getAttributes();
-                for(int i=0; i < XMLAttributes.getLength(); i++)
-                {
-                    if (XMLAttributes.item(i).getNodeName().equals("language")) language = XMLAttributes.item(i).getNodeValue();
-                }
+    public static ArrayList<Category> AIMLToCategories (String directory, String aimlFile) throws Exception {
+        ArrayList<Category> categories = new ArrayList<Category>();
+        String filePath = (new File(new File(directory), aimlFile)).getCanonicalPath();
+        Node root = DomUtils.parseFile(filePath); //This starts parsing xml
+        NodeList nodelist = root.getChildNodes();
+        for (int i = 0; i < nodelist.getLength(); i++)   {
+            Node n = nodelist.item(i);
+            if (n.getNodeName().equals("category")) {
+                //categoryProcessor(n, categories, "*", aimlFile, language);
+                processCategory(n, categories, "*", aimlFile);
             }
-            NodeList nodelist = root.getChildNodes();
-            for (int i = 0; i < nodelist.getLength(); i++)   {
-                Node n = nodelist.item(i);
-                //System.out.println("AIML child: " +n.getNodeName());
-                if (n.getNodeName().equals("category")) {
-                    categoryProcessor(n, categories, "*", aimlFile, language);
-                }
-                else if (n.getNodeName().equals("topic")) {
-                    String topic = n.getAttributes().getNamedItem("name").getTextContent();
-                    //System.out.println("topic: " + topic);
-                    NodeList children = n.getChildNodes();
-                    for (int j = 0; j < children.getLength(); j++) {
-                        Node m = children.item(j);
-                        //System.out.println("Topic child: " + m.getNodeName());
-                        if (m.getNodeName().equals("category")) {
-                            categoryProcessor(m, categories, topic, aimlFile, language);
-                        }
+            else if (n.getNodeName().equals("topic")) {
+                String topic = n.getAttributes().getNamedItem("name").getTextContent();
+                NodeList children = n.getChildNodes();
+                for (int j = 0; j < children.getLength(); j++) {
+                    Node m = children.item(j);
+                    //System.out.println("Topic child: " + m.getNodeName());
+                    if (m.getNodeName().equals("category")) {
+                        //categoryProcessor(m, categories, topic, aimlFile, language);
+                        processCategory(m, categories, topic, aimlFile);
                     }
                 }
             }
-            return categories;
         }
-        catch (Exception ex) {
-            System.out.println("AIMLToCategories: "+ex);
-            ex.printStackTrace();
-            return null;
-        }
+        return categories;
     }
 
     public static int sraiCount = 0;

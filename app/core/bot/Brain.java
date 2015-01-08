@@ -6,6 +6,7 @@
  */
 package core.bot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.*;
 
@@ -25,13 +26,8 @@ public class Brain
     //public HashMap<String, AIMLSet> setMap;
     //public HashMap<String, AIMLMap> mapMap;
     
-    //public String root_path;// = "c:/ab";
     public String bot_path;// = root_path+"/bots";
-    //public String bot_name_path;// = bot_path+"/super";
-    //public String aimlif_path;// = bot_path+"/aimlif";
     public String aiml_path;// = bot_path+"/aiml";
-    //public String config_path;// = bot_path+"/config";
-    //public String log_path;// = bot_path+"/log";
     public String sets_path;// = bot_path+"/sets";
     public String maps_path;// = bot_path+"/maps";
     
@@ -43,10 +39,13 @@ public class Brain
         this.preProcessor = new PreProcessor(this);
         File propertiesFile = new File(new File(path), "properties.txt");
         addProperties(propertiesFile.getCanonicalPath());
+        addCategoriesFromAIML(aiml_path);
+        /*
         File setsFolder = new File(new File(path), "sets");
         File mapsFolder = new File(new File(path), "maps");
         addAIMLSets(setsFolder.getCanonicalPath());
         addAIMLMaps(mapsFolder.getCanonicalPath());
+        */
     }
     
     private void setPath(String path) throws Exception {
@@ -60,6 +59,34 @@ public class Brain
         properties.getProperties(path);
     }
     
+    private int addCategoriesFromAIML(String path) throws Exception {
+        int cnt = 0;
+        String file;
+        File folder = new File(path);
+        if (folder.exists()) {
+            File[] listOfFiles = IOUtils.listFiles(folder);
+            for (File listOfFile :listOfFiles) {
+                if (listOfFile.isFile()) {
+                    file = listOfFile.getName();
+                    if (file.toLowerCase().endsWith(".aiml")) {
+                        ArrayList<Category> categories = AIMLProcessor.AIMLToCategories(path, file);
+                        addMoreCategories(file, categories);
+                        cnt += categories.size();
+                    }
+                }
+            }
+        }
+        
+        return cnt;
+    }
+    
+    private void addMoreCategories(String file, ArrayList<Category> moreCategories) {
+        for (Category c : moreCategories) {
+            graph.addCategory(c);
+        }
+    }
+    
+    /*
     private int addAIMLSets(String path) throws Exception {
         int cnt = 0;
         // Directory path here
@@ -105,4 +132,5 @@ public class Brain
         }
         return cnt;
     }
+    */
 }
