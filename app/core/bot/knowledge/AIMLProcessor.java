@@ -67,16 +67,16 @@ public class AIMLProcessor
         pattern = cleanPattern(pattern);
         that = cleanPattern(that);
         topic = cleanPattern(topic);
-
-        template = trimTag(template, "template");
-        if (MagicBooleans.jp_tokenize) {
-            String morphPattern = JapaneseUtils.tokenizeSentence(pattern);
-            pattern = morphPattern;
-            String morphThatPattern = JapaneseUtils.tokenizeSentence(that);
-            that = morphThatPattern;
-            String morphTopicPattern = JapaneseUtils.tokenizeSentence(topic);
-            topic = morphTopicPattern;
+        
+        if (grammar != null) { 
+            grammar = trimTag(grammar, "grammar");
+            grammar = cleanPattern(grammar);
         }
+
+        
+        template = trimTag(template, "template");
+        
+        
         Category c = new Category(0, pattern, that, topic, template, aimlFile);
         /*if (template == null) System.out.println("Template is null");
         if (template.length()==0) System.out.println("Template is zero length");*/

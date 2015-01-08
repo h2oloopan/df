@@ -247,12 +247,13 @@ public class Category
      * @param IF     Category in AIMLIF format
      * @return       Category object
      */
+    /*
     public static Category IFToCategory(String IF) {
         String[] split = IF.split(MagicStrings.aimlif_split_char);
         //System.out.println("Read: "+split);
         return new Category(Integer.parseInt(split[0]), split[1], split[2], split[3], lineToTemplate(split[4]), split[5]);
      }
-
+    */
     /**
      * convert a Category object to AIMLIF format
      * @param category   Category object
@@ -347,15 +348,17 @@ public class Category
      * @param filename             AIML file name
      */
 
-    public Category (int activationCnt, String pattern, String that, String topic, String template, String filename){
+    public Category (int activationCnt, String pattern, String grammar, String that, String topic, String template, String filename){
         if (MagicBooleans.fix_excel_csv)   {
         pattern = Utilities.fixCSV(pattern);
+        grammar = Utilities.fixCSV(grammar);
         that = Utilities.fixCSV(that);
         topic = Utilities.fixCSV(topic);
         template = Utilities.fixCSV(template);
         filename = Utilities.fixCSV(filename);
         }
         this.pattern = pattern.trim().toUpperCase();
+        this.grammar = grammar.trim();
         this.that = that.trim().toUpperCase();
         this.topic = topic.trim().toUpperCase();
         this.template = template.replace("& ", " and "); // XML parser treats & badly
@@ -374,13 +377,14 @@ public class Category
      * @param template              AIML template
      * @param filename              AIML category
      */
+    /*
     public Category(int activationCnt, String patternThatTopic, String template, String filename){
         this(activationCnt,
                 patternThatTopic.substring(0, patternThatTopic.indexOf("<THAT>")),
                 patternThatTopic.substring(patternThatTopic.indexOf("<THAT>")+"<THAT>".length(), patternThatTopic.indexOf("<TOPIC>")),
                 patternThatTopic.substring(patternThatTopic.indexOf("<TOPIC>")+"<TOPIC>".length(), patternThatTopic.length()), template, filename);
     }
-
+    */
     /**
      * compare two categories for sorting purposes based on activation count
      */
