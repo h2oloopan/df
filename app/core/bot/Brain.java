@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.*;
 
+import play.Logger;
 import core.bot.knowledge.*;
 
 /**
@@ -45,6 +46,10 @@ public class Brain
         this.preProcessor = new PreProcessor(this);
         File propertiesFile = new File(new File(path), "properties.txt");
         addProperties(propertiesFile.getCanonicalPath());
+        
+        addAIMLSets(sets_path);
+        addAIMLMaps(maps_path);
+        
         addCategoriesFromAIML(aiml_path);
     }
     
@@ -84,5 +89,53 @@ public class Brain
         for (Category c : moreCategories) {
             graph.addCategory(c);
         }
+    }
+    
+    private int addAIMLSets(String path) throws Exception {
+        int cnt = 0;
+        // Directory path here
+        String file;
+        File folder = new File(path);
+        if (folder.exists()) {
+            File[] listOfFiles = IOUtils.listFiles(folder);
+            for (File listOfFile : listOfFiles) {
+                if (listOfFile.isFile()) {
+                    file = listOfFile.getName();
+                    if (file.endsWith(".txt") || file.endsWith(".TXT")) {
+                        String setName = file.substring(0, file.length()-".txt".length());
+                        AIMLSet aimlSet = new AIMLSet(setName, this);
+                        cnt += aimlSet.readAIMLSet(this);
+                        setMap.put(setName, aimlSet);
+                    }
+                }
+            }
+        }
+        else Logger.info("addAIMLSets: "+sets_path+" does not exist.");
+        
+        return cnt;
+    }
+    
+    private int addAIMLMaps(String path) throws Exception {
+        int cnt=0;
+        // Directory path here
+        String file;
+        File folder = new File(path);
+        if (folder.exists()) {
+            File[] listOfFiles = IOUtils.listFiles(folder);
+            for (File listOfFile : listOfFiles) {
+                if (listOfFile.isFile()) {
+                    file = listOfFile.getName();
+                    if (file.endsWith(".txt") || file.endsWith(".TXT")) {
+                        String mapName = file.substring(0, file.length()-".txt".length());
+                        AIMLMap aimlMap = new AIMLMap(mapName, this);
+                        cnt += aimlMap.readAIMLMap(this);
+                        mapMap.put(mapName, aimlMap);
+                    }
+                }
+            }
+        }
+        else Logger.info("addAIMLMaps: "+maps_path+" does not exist.");
+    
+        return cnt;
     }
 }
