@@ -41,12 +41,50 @@ public class Brain
         //load everything
         this.graph = new Graphmaster(this);
         this.preProcessor = new PreProcessor(this);
+        File propertiesFile = new File(new File(path), "properties.txt");
+        addProperties(propertiesFile.getCanonicalPath());
+        File setsFolder = new File(new File(path), "sets");
+        File mapsFolder = new File(new File(path), "maps");
+        addAIMLSets(setsFolder.getCanonicalPath());
+        addAIMLMaps(mapsFolder.getCanonicalPath());
     }
     
-    public void setPath(String path) throws Exception {
+    private void setPath(String path) throws Exception {
         this.bot_path = path;
         this.aiml_path = (new File(new File(path), "confs")).getCanonicalPath();
         this.sets_path = (new File(new File(path), "sets")).getCanonicalPath();
         this.maps_path = (new File(new File(path), "maps")).getCanonicalPath();
+    }
+    
+    private void addProperties(String path) throws Exception {
+        properties.getProperties(path);
+    }
+    
+    private int addAIMLSets(String path) throws Exception {
+        int cnt = 0;
+        // Directory path here
+        String file;
+        File folder = new File(sets_path);
+        if (folder.exists()) {
+            File[] listOfFiles = IOUtils.listFiles(folder);
+            for (File listOfFile : listOfFiles) {
+                if (listOfFile.isFile()) {
+                    file = listOfFile.getName();
+                    if (file.endsWith(".txt") || file.endsWith(".TXT")) {
+                        if (MagicBooleans.trace_mode) System.out.println(file);
+                        String setName = file.substring(0, file.length()-".txt".length());
+                        if (MagicBooleans.trace_mode) System.out.println("Read AIML Set "+setName);
+                        AIMLSet aimlSet = new AIMLSet(setName, this);
+                        cnt += aimlSet.readAIMLSet(this);
+                        setMap.put(setName, aimlSet);
+                    }
+                }
+            }
+        }
+        return cnt;
+    }
+    
+    private int addAIMLMaps(String path) throws Exception {
+        
     }
 }
