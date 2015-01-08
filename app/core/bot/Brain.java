@@ -29,9 +29,17 @@ public class Brain
     public String sets_path;// = bot_path+"/sets";
     public String maps_path;// = bot_path+"/maps";
     
+    public HashMap<String, AIMLSet> setMap;
+    public HashMap<String, AIMLMap> mapMap;
+    
+    
     public Brain(String name, String path) throws Exception {
         this.name = name;
         setPath(path);
+        
+        setMap = new HashMap<String, AIMLSet>();
+        mapMap = new HashMap<String, AIMLMap>();
+        
         //load everything
         this.graph = new Graphmaster(this);
         this.preProcessor = new PreProcessor(this);

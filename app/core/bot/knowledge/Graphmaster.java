@@ -66,39 +66,9 @@ public class Graphmaster
      *
      * @param category            AIML Category
      */
-    String botPropRegex = "<bot name=\"(.*?)\"/>";
-    Pattern botPropPattern = Pattern.compile(botPropRegex, Pattern.CASE_INSENSITIVE);
-
-    public String replaceBotProperties(String pattern) {
-        if (pattern.contains("<B")) {
-            Matcher matcher = botPropPattern.matcher(pattern);
-            while (matcher.find()) {
-                String propname = matcher.group(1).toLowerCase();
-                //System.out.println(matcher.group(1));
-                String property = brain.properties.get(propname).toUpperCase();
-                pattern = pattern.replaceFirst("(?i)"+botPropRegex, property);
-                //System.out.println("addCategory: Replaced pattern with: "+inputThatTopic);
-            }
-
-        }
-        return pattern;
-    }
     //Add a category into the graph
     public void addCategory (Category category) {
         String inputThatTopic = inputThatTopic(category.getPattern(), category.getThat(), category.getTopic());
-        //System.out.println("addCategory: "+inputThatTopic);
-        inputThatTopic = replaceBotProperties(inputThatTopic);
-        /*if (inputThatTopic.contains("<B")) {
-        Matcher matcher = botPropPattern.matcher(inputThatTopic);
-        while (matcher.find()) {
-            String propname = matcher.group(1).toLowerCase();
-            //System.out.println(matcher.group(1));
-            String property = bot.properties.get(propname).toUpperCase();
-            inputThatTopic = inputThatTopic.replaceFirst("(?i)"+botPropRegex, property);
-            //System.out.println("addCategory: Replaced pattern with: "+inputThatTopic);
-        }
-        }*/
-        //
         Path p = Path.sentenceToPath(inputThatTopic);
         addPath(p, category);
         categoryCnt++;
