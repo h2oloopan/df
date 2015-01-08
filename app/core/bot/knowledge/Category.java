@@ -17,6 +17,7 @@ import core.bot.Brain;
 public class Category
 {
     private String pattern;
+    private String grammar;
     private String that;
     private String topic;
     private String template;
@@ -26,6 +27,20 @@ public class Category
     public static int categoryCnt = 0;
     private AIMLSet matches;
 
+    
+    /*
+     * Return if the pattern is in fact grammar
+     * 
+     * @return true if it is a grammar
+     */
+    public boolean isGrammar() {
+        if (grammar != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     /**
      * Return a set of inputs matching the category
      *
@@ -64,6 +79,17 @@ public class Category
         if (pattern == null) return "*";
         else return pattern;
     }
+    
+    /**
+     * get category grammar
+     * 
+     * @return grammar
+     */
+    public String getGrammar() {
+        return grammar;
+    }
+    
+    
     /**
      * get category that pattern
      *
@@ -142,6 +168,16 @@ public class Category
         this.pattern = pattern;
     }
 
+    /*
+     * set category grammar
+     * 
+     * @param grammar category grammar
+     */
+    public void setGrammar(String grammar) {
+        this.grammar = grammar;
+    }
+    
+    
     /**
      * set category that pattern
      *

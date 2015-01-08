@@ -35,23 +35,33 @@ public class AIMLProcessor
     
     //Actually analyze and load a category from parsed xml node
     private static void processCategory(Node n, ArrayList<Category> categories, String topic, String aimlFile) {
-        
+        String pattern, that, template;
     }
     
     
-    private static void categoryProcessor(Node n, ArrayList<Category> categories, String topic, String aimlFile, String language) {
-        String pattern, that, template;
+    private static void categoryProcessor(Node n, ArrayList<Category> categories, String topic, String aimlFile, String language) throws Exception {
+        String pattern, grammar, that, template;
 
         NodeList children = n.getChildNodes();
-        pattern = "*"; that = "*";  template="";
+        pattern = "*"; grammar = null; that = "*";  template="";
         for (int j = 0; j < children.getLength(); j++) {
             //System.out.println("CHILD: " + children.item(j).getNodeName());
             Node m = children.item(j);
             String mName = m.getNodeName();
             //System.out.println("mName: " + mName);
             if (mName.equals("#text")) {/*skip*/}
-            else if (mName.equals("pattern")) pattern = DomUtils.nodeToString(m);
-            else if (mName.equals("that")) that = DomUtils.nodeToString(m);
+            else if (mName.equals("pattern")) {
+                //check if the pattern is indeed a grammar node
+                //if not then fall back to old pattern
+                NodeList kids = m.getChildNodes();
+                if (kids.getLength() > 0 && kids.item(0).getNodeName().equals("grammar")) {
+                    grammar = DomUtils.nodeToString(kids.item(0));
+                } else if (kids.getLength() == 0) {
+                    pattern = DomUtils.nodeToString(m);
+                } else {
+                    throw new IOException("Invalid aiml format");
+                }
+            } else if (mName.equals("that")) that = DomUtils.nodeToString(m);
             else if (mName.equals("topic")) topic = DomUtils.nodeToString(m);
             else if (mName.equals("template")) template = DomUtils.nodeToString(m);
             else System.out.println("categoryProcessor: unexpected "+mName+" in "+DomUtils.nodeToString(m));
