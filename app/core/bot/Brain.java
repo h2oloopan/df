@@ -23,8 +23,6 @@ public class Brain
     public Properties properties;
     public PreProcessor preProcessor;
     public Graphmaster graph;
-    //public HashMap<String, AIMLSet> setMap;
-    //public HashMap<String, AIMLMap> mapMap;
     
     public String bot_path;// = root_path+"/bots";
     public String aiml_path;// = bot_path+"/aiml";
@@ -40,12 +38,6 @@ public class Brain
         File propertiesFile = new File(new File(path), "properties.txt");
         addProperties(propertiesFile.getCanonicalPath());
         addCategoriesFromAIML(aiml_path);
-        /*
-        File setsFolder = new File(new File(path), "sets");
-        File mapsFolder = new File(new File(path), "maps");
-        addAIMLSets(setsFolder.getCanonicalPath());
-        addAIMLMaps(mapsFolder.getCanonicalPath());
-        */
     }
     
     private void setPath(String path) throws Exception {
@@ -85,52 +77,4 @@ public class Brain
             graph.addCategory(c);
         }
     }
-    
-    /*
-    private int addAIMLSets(String path) throws Exception {
-        int cnt = 0;
-        // Directory path here
-        String file;
-        File folder = new File(sets_path);
-        if (folder.exists()) {
-            File[] listOfFiles = IOUtils.listFiles(folder);
-            for (File listOfFile : listOfFiles) {
-                if (listOfFile.isFile()) {
-                    file = listOfFile.getName();
-                    if (file.endsWith(".txt") || file.endsWith(".TXT")) {
-                        String setName = file.substring(0, file.length()-".txt".length());
-                        AIMLSet aimlSet = new AIMLSet(setName, this);
-                        cnt += aimlSet.readAIMLSet(this);
-                        setMap.put(setName, aimlSet);
-                    }
-                }
-            }
-        }
-        return cnt;
-    }
-    
-    private int addAIMLMaps(String path) throws Exception {
-        int cnt = 0;
-        String file;
-        File folder = new File(maps_path);
-        if (folder.exists()) {
-            File[] listOfFiles = IOUtils.listFiles(folder);
-            if (MagicBooleans.trace_mode) System.out.println("Loading AIML Map files from "+maps_path);
-            for (File listOfFile : listOfFiles) {
-                if (listOfFile.isFile()) {
-                    file = listOfFile.getName();
-                    if (file.endsWith(".txt") || file.endsWith(".TXT")) {
-                        if (MagicBooleans.trace_mode) System.out.println(file);
-                        String mapName = file.substring(0, file.length()-".txt".length());
-                        if (MagicBooleans.trace_mode) System.out.println("Read AIML Map "+mapName);
-                        AIMLMap aimlMap = new AIMLMap(mapName, this);
-                        cnt += aimlMap.readAIMLMap(this);
-                        mapMap.put(mapName, aimlMap);
-                    }
-                }
-            }
-        }
-        return cnt;
-    }
-    */
 }

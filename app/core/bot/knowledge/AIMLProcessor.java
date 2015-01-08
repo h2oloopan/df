@@ -7,9 +7,12 @@
 package core.bot.knowledge;
 
 import java.io.*;
+
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import play.Logger;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -21,8 +24,6 @@ import java.util.Set;
  */
 public class AIMLProcessor
 {
-    static private boolean DEBUG = false;
-
     /**
      * when parsing an AIML file, process a category element.
      *
@@ -72,18 +73,16 @@ public class AIMLProcessor
             grammar = trimTag(grammar, "grammar");
             grammar = cleanPattern(grammar);
         }
-
         
-        template = trimTag(template, "template");
+        template = trimTag(template, "template");        
         
-        
-        Category c = new Category(0, pattern, that, topic, template, aimlFile);
-        /*if (template == null) System.out.println("Template is null");
-        if (template.length()==0) System.out.println("Template is zero length");*/
-        if (template == null || template.length() == 0) {
-            System.out.println("Category "+c.inputThatTopic()+" discarded due to blank or missing <template>.");
+        Category c = new Category(0, pattern, grammar, that, topic, template, aimlFile);
+        if (template != null && template.length() > 0) {
+            categories.add(c);
         }
-        else categories.add(c);
+        else {
+            Logger.info("Category "+c.inputThatTopic()+" discarded due to blank or missing <template>.");
+        }
     }
     
 
