@@ -24,6 +24,8 @@ import core.bot.ab.utils.IOUtils;
 import java.io.*;
 import java.util.*;
 
+import core.context.*;
+
 /**
  *@author Shengying Pan (s5pan@uwaterloo.ca) 
  *@date Jan 9, 2015
@@ -126,6 +128,16 @@ public class Bot
         learnfGraph.nodeStats();
 
     }
+    
+    /*
+     * THE TALK INTERFACE
+     */
+    public String respond(String input, String that, String topic, Context context, Profile profile) {
+        return null;
+    }
+    
+    
+    
     HashSet<String> getPronouns() {
         HashSet<String> pronounSet = new HashSet<String>();
         String pronouns = Utilities.getFile(config_path+"/pronouns.txt");

@@ -172,12 +172,11 @@ public class AIMLProcessor {
      * @param chatSession     current client session.
      * @return              bot's response.
      */
+/*
     public static String respond(String input, String that, String topic, Chat chatSession) {
-        if (false /*checkForRepeat(input, chatSession) > 0*/) return "Repeat!";
-        else {
-            return respond(input, that, topic, chatSession, 0);
-        }
+        return respond(input, that, topic, chatSession, 0);
     }
+*/
 
     /**
      * generate a bot response to a single sentence input.
@@ -189,6 +188,7 @@ public class AIMLProcessor {
      * @param srCnt         number of <srai> activations.
      * @return              bot's reply.
      */
+    /*
  public static String respond(String input, String that, String topic, Chat chatSession, int srCnt) {
 	 MagicBooleans.trace("input: " + input + ", that: " + that + ", topic: " + topic + ", chatSession: " + chatSession + ", srCnt: " + srCnt);
         String response;
@@ -209,6 +209,7 @@ public class AIMLProcessor {
         }
         return response;
     }
+    */
 
     /** capitalizeString:
      * from http://stackoverflow.com/questions/1892765/capitalize-first-char-of-each-word-in-a-string-java

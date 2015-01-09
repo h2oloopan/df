@@ -48,12 +48,8 @@ public class BotActor extends UntypedActor {
 			        grammarCompiler.compile(path);
 			        break;
 			    case RESPOND:
-			        String text = query.getText();
+			        String input = query.getText();
 		            String topic = query.getTopic();
-		            //String pattern = matcher.match(text);
-		            //Logger.info("Query: " + text);
-		            //Logger.info("Match: " + pattern);
-		            
 		            Response response = null;
 		            Context context = null;
 		            Profile profile = null;
@@ -62,20 +58,13 @@ public class BotActor extends UntypedActor {
 		                //Need to use context provider to get context here
 		                context = contextProvider.getContext(query.getUid(), query.getSid());
 		                profile = profileProvider.getProfile(query.getUid());
-		                String lastResponse = context.getThat();
-		                
-		                //Then generate response from the matching category, context, and profile
-		                //Category match = finder.find(topics, topic, pattern, that);
-		                //Construct a response message
-		                //Not sure, but maybe it's the dialog developer's responsibility to provide a default match
-		                /*
-		                if (match == null) {
-		                    Logger.warn("There is no rule to handle given request" + query.toString());
-		                    response = new Response(500, "There is no rule to handle given request");
+		                String that = context.getThat();
+		                String output = bot.respond(input, that, topic, context, profile);
+		                if (output != null) {
+		                    response = new Response(200, output);
 		                } else {
-		                    response = new Response(200, match.getTemplate().toString());
+		                    response = new Response(500, "Cannot respond to the query for some reason");
 		                }
-		                */
 		            } catch (Exception e) {
 		                Logger.error(e.getMessage(), e);
 		                response = new Response(500, e.getMessage());
