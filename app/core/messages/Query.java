@@ -13,13 +13,16 @@ public class Query {
 	private final String topic;
 	private final Date timestamp;
 	
-	public Query(String uid, String sid, String text) {
-		this(uid, sid, text, null);
+	private final CommandType command;
+	
+	public Query(CommandType command, String uid, String sid, String text) {
+		this(command, uid, sid, text, null);
 	}
-	public Query(String uid, String sid, String text, String topic) {
-		this(uid, sid, text, topic, new Date());
+	public Query(CommandType command, String uid, String sid, String text, String topic) {
+		this(command, uid, sid, text, topic, new Date());
 	}
-	public Query(String uid, String sid, String text, String topic, Date timestamp) {
+	public Query(CommandType command, String uid, String sid, String text, String topic, Date timestamp) {
+	    this.command = command;
 		this.uid = uid;
 		this.sid = sid;
 		this.text = text;
@@ -45,6 +48,10 @@ public class Query {
 	
 	public Date getTimestamp() {
 		return this.timestamp;
+	}
+	
+	public CommandType getCommand() {
+	    return this.command;
 	}
 	
 	@Override

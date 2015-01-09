@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.exec.*;
+import org.apache.commons.lang3.SystemUtils;
 
-import com.jgoodies.common.base.SystemUtils;
 
 public class LaoMaGrammarCompiler implements GrammarCompiler {
 	@Override
