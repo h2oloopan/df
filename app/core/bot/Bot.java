@@ -44,8 +44,8 @@ public class Bot
     public HashMap<String, AIMLMap> mapMap = new HashMap<String, AIMLMap>();
     public HashSet<String> pronounSet = new HashSet<String>();
     public String root_path = "c:/ab";
-    public String bot_path = root_path+"/bots";
-    public String bot_name_path = bot_path+"/super";
+    //public String bot_path = root_path+"/bots";
+    //public String bot_name_path = bot_path+"/super";
     public String aimlif_path = bot_path+"/aimlif";
     public String aiml_path = bot_path+"/aiml";
     public String config_path = bot_path+"/config";
@@ -59,9 +59,9 @@ public class Bot
      * @param name        name of bot
      */
     public void setAllPaths (String path, String name) {
-        bot_path = root+"/bots";
-        bot_name_path = bot_path+"/"+name;
-        if (MagicBooleans.trace_mode) System.out.println("Name = "+name+" Path = "+bot_name_path);
+        //bot_path = root+"/bots";
+        //bot_name_path = bot_path+"/"+name;
+        //if (MagicBooleans.trace_mode) System.out.println("Name = "+name+" Path = "+bot_name_path);
         aiml_path = bot_name_path+"/aiml";
         aimlif_path = bot_name_path+"/aimlif";
         config_path = bot_name_path+"/config";

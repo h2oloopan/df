@@ -4,7 +4,7 @@
 	<property name="maxmemory" value="-Xmx1024M" />
 	<property name="root" location="${basedir}/../.." />
 	<property name="libdir" location="${root}/lib/" />
-	<property name="source" location="${basedir}/confs/" />
+	<property name="source" location="${basedir}/definition/grammar" />
 	<property name="temp" location="${basedir}/temp" />
 	<property name="temp_jar" location="${temp}/grams.jar" />
 	<property name="release" location="${basedir}/execs" />
