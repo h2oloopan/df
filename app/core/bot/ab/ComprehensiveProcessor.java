@@ -54,8 +54,13 @@ public class ComprehensiveProcessor
             return "";
         } else {
             TagHandler handler = handlers.getHandler(nodeName);
+            if (handler.hasRecursion()) {
+                String result = evalTagContent(node, ps, handler.getIgnoredAttributes());
+                return handler.handle(node, ps, result);
+            } else {
+                return handler.handle(node, ps, null);
+            }
         }
-        else return (genericXML(node, ps));
         /*
         else if (nodeName.equals("template"))
             return evalTagContent(node, ps, null);

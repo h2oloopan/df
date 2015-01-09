@@ -6,6 +6,8 @@
  */
 package core.bot.ab.handlers;
 
+import java.util.Set;
+
 import org.w3c.dom.Node;
 
 import core.bot.ab.ParseState;
@@ -16,5 +18,7 @@ import core.bot.ab.ParseState;
  */
 public abstract class TagHandler
 {
-    public abstract void handle(Node node, ParseState ps);
+    public abstract String handle(Node node, ParseState ps, String previousResult);
+    public abstract boolean hasRecursion();
+    public abstract Set<String> getIgnoredAttributes();
 }
