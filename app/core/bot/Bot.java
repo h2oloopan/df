@@ -58,7 +58,7 @@ public class Bot
      * @param root        root directory of Program AB
      * @param name        name of bot
      */
-    public void setAllPaths (String root, String name) {
+    public void setAllPaths (String path, String name) {
         bot_path = root+"/bots";
         bot_name_path = bot_path+"/"+name;
         if (MagicBooleans.trace_mode) System.out.println("Name = "+name+" Path = "+bot_name_path);
@@ -123,13 +123,7 @@ public class Bot
         //readUnfinishedIFCategories();
         MagicStrings.pannous_api_key = Utilities.getPannousAPIKey(this);
         MagicStrings.pannous_login = Utilities.getPannousLogin(this);
-        if (action.equals("aiml2csv")) addCategoriesFromAIML();
-        else if (action.equals("csv2aiml")) addCategoriesFromAIMLIF();
-        else if (action.equals("chat-app")) {
-            if (MagicBooleans.trace_mode) System.out.println("Loading only AIMLIF files");
-            cnt = addCategoriesFromAIMLIF();
-        }
-        else if (aimlDate.after(aimlIFDate)) {
+        if (aimlDate.after(aimlIFDate)) {
             if (MagicBooleans.trace_mode) System.out.println("AIML modified after AIMLIF");
             cnt = addCategoriesFromAIML();
             writeAIMLIFFiles();
