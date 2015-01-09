@@ -9,6 +9,7 @@ import com.google.inject.Inject;
 
 import core.ActorFarm;
 import core.SessionTable;
+import core.messages.CommandType;
 import core.messages.Query;
 import core.messages.Response;
 import play.Logger;
@@ -42,7 +43,7 @@ public class Bot extends Controller {
 				sid = table.getSid(uid);
 			}
 			
-			Query q = new Query(uid, sid, query);
+			Query q = new Query(CommandType.RESPOND, uid, sid, query);
 			ActorRef actor = farm.getActor(bot);
 			return Promise.wrap(ask(actor, q, 5000)).map(
 				new Function<Object, Result>() {

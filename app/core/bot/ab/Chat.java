@@ -124,7 +124,7 @@ public class Chat {
      */
     public void chat () {
         BufferedWriter bw = null;
-        String logFile = bot.log_path+"/log_"+customerId+".txt";
+        //String logFile = bot.log_path+"/log_"+customerId+".txt";
         try {
             //Construct the bw object
             bw = new BufferedWriter(new FileWriter(logFile, true)) ;
