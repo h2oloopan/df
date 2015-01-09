@@ -27,6 +27,7 @@ import java.io.*;
 import java.util.*;
 
 import core.context.*;
+import core.messages.SpecialText;
 
 /**
  *@author Shengying Pan (s5pan@uwaterloo.ca) 
@@ -143,7 +144,7 @@ public class Bot
                 repetition = false;
         }
         if (input == null) repetition = false;
-        if (repetition) {input = MagicStrings.repetition_detected;}
+        if (repetition) {input = SpecialText.REPETITION; }
         return ComprehensiveProcessor.respond(this, context, profile, input, that, topic);
     }
     

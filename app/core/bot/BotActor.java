@@ -10,6 +10,7 @@ import java.util.Map;
 import core.messages.CommandType;
 import core.messages.Query;
 import core.messages.Response;
+import core.messages.SpecialText;
 import play.Logger;
 import core.storage.*;
 import akka.actor.UntypedActor;
@@ -71,8 +72,10 @@ public class BotActor extends UntypedActor {
 		            }
 		            getSender().tell(response, getContext().parent());
 		            //update context and profile
-		            if (response != null && context != null) {
-		                context.insert(query.getText(), response.getText());
+		            if (context != null) {
+		                String lastQuery = query != null && query.getText() != null ? query.getText() : SpecialText.NULL;
+		                String lastResponse = response != null && response.getText() != null ? response.getText() : SpecialText.NULL;
+		                context.insert(lastQuery, lastResponse);
 		                contextProvider.saveContext(query.getUid(), query.getSid(), context);
 		            }
 		            profileProvider.saveProfile(query.getUid(), profile);
