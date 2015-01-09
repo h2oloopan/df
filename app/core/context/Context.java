@@ -30,26 +30,22 @@ public class Context {
 	}
 	
 	public String getThat() {
-		if (responses.size() > 0) {
-			return responses.get(responses.size() - 1);
-		} else {
-			return null;
-		}
+	    return getLastResponse(0);
 	}
 	
 	public String getLastResponse(int index) {
-		if (index > responses.size()) {
+		if (index >= responses.size()) {
 			return null;
 		} else {
-			return responses.get(responses.size() - index);
+			return responses.get(responses.size() - index - 1);
 		}
 	}
 	
 	public String getLastQuery(int index) {
-		if (index > queries.size()) {
+		if (index >= queries.size()) {
 			return null;
 		} else {
-			return queries.get(queries.size() - index);
+			return queries.get(queries.size() - index - 1);
 		}
 	}
 }

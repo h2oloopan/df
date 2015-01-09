@@ -12,6 +12,7 @@ import core.bot.ab.AIMLSet;
 import core.bot.ab.Category;
 import core.bot.ab.Graphmaster;
 import core.bot.ab.MagicBooleans;
+import core.bot.ab.MagicNumbers;
 import core.bot.ab.MagicStrings;
 import core.bot.ab.Nodemapper;
 import core.bot.ab.NodemapperOperator;
@@ -133,7 +134,34 @@ public class Bot
      * THE TALK INTERFACE
      */
     public String respond(String input, String that, String topic, Context context, Profile profile) {
-        return null;
+        boolean repetition = true;
+        //inputHistory.printHistory();
+        for (int i = 0; i < MagicNumbers.repetition_count; i++) {
+            //System.out.println(request.toUpperCase()+"=="+inputHistory.get(i)+"? "+request.toUpperCase().equals(inputHistory.get(i)));
+            if (context.getLastQuery(i) == null || !input.toUpperCase().equals(inputHistory.get(i).toUpperCase()))
+                repetition = false;
+        }
+        if (input.equals(MagicStrings.null_input)) repetition = false;
+        inputHistory.add(input);
+        if (repetition) {input = MagicStrings.repetition_detected;}
+
+        String response;
+
+        response = AIMLProcessor.respond(input, that, topic, this);
+        //MagicBooleans.trace("in chat.respond(), response: " + response);
+        String normResponse = bot.preProcessor.normalize(response);
+        //MagicBooleans.trace("in chat.respond(), normResponse: " + normResponse);
+        if (MagicBooleans.jp_tokenize) normResponse = JapaneseUtils.tokenizeSentence(normResponse);
+        String sentences[] = bot.preProcessor.sentenceSplit(normResponse);
+        for (int i = 0; i < sentences.length; i++) {
+          that = sentences[i];
+          //System.out.println("That "+i+" '"+that+"'");
+          if (that.trim().equals("")) that = MagicStrings.default_that;
+          contextThatHistory.add(that);
+        }
+        String result = response.trim()+"  ";
+        //MagicBooleans.trace("in chat.respond(), returning: " + result);
+        return result;
     }
     
     
