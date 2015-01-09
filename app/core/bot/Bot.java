@@ -12,5 +12,11 @@ package core.bot;
  */
 public class Bot
 {
-
+    private String name;
+    private String path;
+    
+    public Bot(String name, String path) {
+        this.name = name;
+        this.path = path;
+    }
 }
