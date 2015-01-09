@@ -21,6 +21,8 @@ package core.bot.ab;
 import java.io.*;
 import java.util.HashMap;
 
+import core.bot.Bot;
+
    /**
     * implements AIML Map
     *

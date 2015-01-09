@@ -13,6 +13,8 @@ package core.bot.ab;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
+import core.bot.Bot;
+
 public class EnglishNumberToWords
 {
     private static final String[] tensNames = {

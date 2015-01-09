@@ -1,7 +1,10 @@
 package core.bot.ab;
 
 import junit.framework.Assert;
+
 import org.junit.Test;
+
+import core.bot.Bot;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 

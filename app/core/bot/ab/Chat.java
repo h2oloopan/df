@@ -1,5 +1,6 @@
 package core.bot.ab;
 
+import core.bot.Bot;
 import core.bot.ab.utils.IOUtils;
 import core.bot.ab.utils.JapaneseUtils;
 

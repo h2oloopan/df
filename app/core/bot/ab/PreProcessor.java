@@ -24,6 +24,8 @@ import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import core.bot.Bot;
+
 /**
  * AIML Preprocessor and substitutions
  */

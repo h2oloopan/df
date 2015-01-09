@@ -20,6 +20,8 @@ package core.bot.ab;
 */
 import java.util.Comparator;
 
+import core.bot.Bot;
+
 /**
  * structure representing an AIML category and operations on Category
  */

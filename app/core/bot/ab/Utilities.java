@@ -18,6 +18,7 @@ package core.bot.ab;
         Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
         Boston, MA  02110-1301, USA.
 */
+import core.bot.Bot;
 import core.bot.ab.utils.CalendarUtils;
 
 import java.io.*;

@@ -24,6 +24,8 @@ import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import core.bot.Bot;
+
 /**
  * The AIML Pattern matching algorithm and data structure.
  *

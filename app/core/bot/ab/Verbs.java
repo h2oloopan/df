@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import core.bot.Bot;
+
 public class Verbs {
     static Set<String> es = Utilities.stringSet("sh","ch","th","ss","x");
     static Set<String> ies = Utilities.stringSet("ly","ry","ny","fy","dy","py");

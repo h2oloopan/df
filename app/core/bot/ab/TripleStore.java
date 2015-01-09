@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import core.bot.Bot;
+
 public class TripleStore {
     public int idCnt = 0;
     public String name = "unknown";
