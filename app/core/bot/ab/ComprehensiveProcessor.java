@@ -99,7 +99,9 @@ public class ComprehensiveProcessor
             String mName = m.getNodeName();
             //System.out.println("mName: " + mName);
             if (mName.equals("#text")) {/*skip*/}
-            else if (mName.equals("pattern")) pattern = DomUtils.nodeToString(m);
+            else if (mName.equals("pattern")) { 
+                pattern = DomUtils.nodeToString(m);
+            }
             else if (mName.equals("that")) that = DomUtils.nodeToString(m);
             else if (mName.equals("topic")) topic = DomUtils.nodeToString(m);
             else if (mName.equals("template")) template = DomUtils.nodeToString(m);

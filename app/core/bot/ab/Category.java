@@ -27,6 +27,7 @@ import core.bot.Bot;
  */
 public class Category {
     private String pattern;
+    private String grammar;
     private String that;
     private String topic;
     private String template;
@@ -36,6 +37,21 @@ public class Category {
     public static int categoryCnt = 0;
     private AIMLSet matches;
 
+    
+    @Override
+    public String toString() {
+        String result = "";
+        
+        result += "Pattern: " + (pattern == null ? "" : pattern);
+        result += "Grammar: " + (grammar == null ? "" : grammar);
+        result += "That: " + (that == null ? "" : that);
+        result += "Topic: " + (topic == null ? "" : topic);
+        result += "Template: " + (template == null ? "" : template);
+        result += "Filename: " + (filename == null ? "" : filename);
+         
+        return result;
+    }
+    
     /**
      * Return a set of inputs matching the category
      *

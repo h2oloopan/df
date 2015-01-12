@@ -278,6 +278,7 @@ public class Graphmaster {
     public final Nodemapper match(String inputOriginal, String inputParsed, String that, String topic) {
         Nodemapper n = null;
         try {
+            //try to match grammar first
             
         } catch (Exception e) {
             n = null;
