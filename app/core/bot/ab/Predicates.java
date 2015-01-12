@@ -70,7 +70,6 @@ public class Predicates extends HashMap<String, String> {
         String strLine;
         //Read File Line By Line
         while ((strLine = br.readLine()) != null)   {
-            Logger.info(strLine);
             if (strLine.contains(":")) {
                 String property = strLine.substring(0, strLine.indexOf(":"));
                 String value = strLine.substring(strLine.indexOf(":")+1);

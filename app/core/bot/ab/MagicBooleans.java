@@ -23,7 +23,7 @@ package core.bot.ab;
  * Global boolean values that control various actions in Program AB
  */
 public class MagicBooleans {
-    public static boolean trace_mode = true;
+    public static boolean trace_mode = false;
     public static boolean enable_external_sets = true;
     public static boolean enable_external_maps = true;
     public static boolean jp_tokenize = false;

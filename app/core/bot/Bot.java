@@ -21,6 +21,7 @@ import core.bot.ab.Predicates;
 import core.bot.ab.Properties;
 import core.bot.ab.Timer;
 import core.bot.ab.Utilities;
+import core.bot.ab.handlers.TagHandlerCollection;
 import core.bot.ab.utils.IOUtils;
 
 import java.io.*;
@@ -56,6 +57,9 @@ public class Bot
     //public String bot_name_path = bot_path+"/super";
     //public String aimlif_path = bot_path+"/aimlif";
     public String aiml_path, aimlif_path, config_path, sets_path, maps_path;
+    
+    
+    public TagHandlerCollection handlers = new TagHandlerCollection();
     
     /**
      * Set all directory path variables for this bot
@@ -252,7 +256,7 @@ public class Bot
         } catch (Exception ex)  {
             ex.printStackTrace();
         }
-        if (MagicBooleans.trace_mode) System.out.println("Loaded " + cnt + " categories in " + timer.elapsedTimeSecs() + " sec");
+        Logger.info("Loaded " + cnt + " categories in " + timer.elapsedTimeSecs() + " sec");
         return cnt;
     }
 

@@ -19,9 +19,7 @@ import core.bot.ab.ParseState;
  *@date Jan 9, 2015
  */
 public class DefaultHandler extends TagHandler
-{
-    private TagHandlerCollection handlers = new TagHandlerCollection();
-    
+{   
     @Override
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
@@ -32,7 +30,7 @@ public class DefaultHandler extends TagHandler
         } else if (nodeName.equals("#comment")) {
             return "";
         } else {
-            TagHandler handler = handlers.get(nodeName.toLowerCase());
+            TagHandler handler = ps.bot.handlers.get(nodeName.toLowerCase());
             if (!(handler instanceof DefaultHandler)) {
                 return handler.handle(node, ps, previousResult, ignoreAttributes);
             } else {
