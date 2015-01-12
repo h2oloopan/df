@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import core.bot.ab.ParseState;
 
@@ -21,37 +22,24 @@ public class DefaultHandler extends TagHandler
 {
 
     @Override
-    public String handle(Node node, ParseState ps, String previousResult)
+    public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
-        return unevaluatedXML(previousResult, node, ps);
-    }
-
-    @Override
-    public boolean hasRecursion()
-    {
-        return true;
-    }
-
-    @Override
-    public Set<String> getIgnoredAttributes()
-    {
-        return null;
-    }
-    
-    private String unevaluatedXML(String resultIn, Node node, ParseState ps) {
         String nodeName = node.getNodeName();
-        String attributes = "";
-        if (node.hasAttributes()) {
-            NamedNodeMap XMLAttributes = node.getAttributes();
-            for(int i=0; i < XMLAttributes.getLength(); i++)
-            {
-                attributes += " "+XMLAttributes.item(i).getNodeName()+"=\""+XMLAttributes.item(i).getNodeValue()+"\"";
+        
+        if (nodeName.equals("#text")) {
+            return node.getNodeValue();
+        } else if (nodeName.equals("#comment")) {
+            return "";
+        } else {
+            String result = "";
+            NodeList childList = node.getChildNodes();
+            for (int i = 0; i < childList.getLength(); i++) {
+                Node child = childList.item(i);
+                if (ignoreAttributes == null || !ignoreAttributes.contains(child.getNodeName()) {
+                    result += this.handle(child, ps, previousResult, ignoreAttributes)
+                })
             }
         }
-        String result = "<"+nodeName+attributes+"/>";
-        if (! resultIn.equals(""))
-            result = "<"+nodeName+attributes+">"+resultIn+"</"+nodeName+">";
-        return result;
     }
 
 }

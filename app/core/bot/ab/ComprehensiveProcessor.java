@@ -41,9 +41,10 @@ public class ComprehensiveProcessor
     public static String evalTemplate(String template, ParseState ps) throws Exception {
         template = "<template>" + template + "</template>";
         Node root = DomUtils.parseString(template);
-        return recursEval(root, ps);
+        return handlers.get("default").handle(root, ps);
     }
     
+    /*
     public static String recursEval(Node node, ParseState ps) throws Exception {
         String nodeName = node.getNodeName();
         //MagicBooleans.trace("in AIMLProcessor.recursEval(), nodeName: " + nodeName);
@@ -61,7 +62,7 @@ public class ComprehensiveProcessor
                 return handler.handle(node, ps, null);
             }
         }
-        /*
+        
         else if (nodeName.equals("template"))
             return evalTagContent(node, ps, null);
         else if (nodeName.equals("random"))
@@ -242,7 +243,8 @@ public class ComprehensiveProcessor
         return result;
     }
     */
-    public static int trace_count = 0;
+    
+    //public static int trace_count = 0;
 
     /**
      * implements AIML <srai> tag

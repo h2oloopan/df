@@ -9,6 +9,7 @@ package core.bot.ab.handlers;
 import java.util.Set;
 
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import core.bot.ab.ParseState;
 
@@ -19,10 +20,16 @@ import core.bot.ab.ParseState;
 public class TagContentHandler extends TagHandler
 {
     @Override
-    public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoredAttributes)
+    public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
-        // TODO Auto-generated method stub
-        return null;
+        String result = "";
+        NodeList childList = node.getChildNodes();
+        for (int i = 0; i < childList.getLength(); i++) {
+            Node child = childList.item(i);
+            if (ignoreAttributes == null || !ignoreAttributes.contains(child.getNodeName())) {
+                
+            }
+        }
     }
 
 }

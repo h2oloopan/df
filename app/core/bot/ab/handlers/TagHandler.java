@@ -18,5 +18,8 @@ import core.bot.ab.ParseState;
  */
 public abstract class TagHandler
 {
-    public abstract String handle(Node node, ParseState ps, String previousResult, Set<String> ignoredAttributes);
+    public String handle(Node node, ParseState ps) throws Exception {
+        return this.handle(node, ps, "", null);
+    }
+    public abstract String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception;
 }
