@@ -7,7 +7,6 @@
 package core.bot;
 
 import core.bot.ab.AIMLMap;
-import core.bot.ab.AIMLProcessor;
 import core.bot.ab.AIMLSet;
 import core.bot.ab.Category;
 import core.bot.ab.ComprehensiveProcessor;
@@ -675,7 +674,7 @@ public void shadowChecker () {
         pattern = "";
         for (String x : splitPattern) {
           if (x.startsWith("<SET>")) {
-              String setName = AIMLProcessor.trimTag(x, "SET");
+              String setName = ComprehensiveProcessor.trimTag(x, "SET");
               AIMLSet set = setMap.get(setName);
               if (set != null) x = "FOUNDITEM";
               else x = "NOTFOUND";
