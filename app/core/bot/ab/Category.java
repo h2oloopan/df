@@ -81,6 +81,10 @@ public class Category {
         return categoryNumber;
     }
 
+    
+    public String getGrammar() {
+        return grammar;
+    }
     /**
      * get category pattern
      *
@@ -144,6 +148,10 @@ public class Category {
         activationCnt = cnt;
     }
 
+    public void setGrammar(String grammar) {
+        this.grammar = grammar;
+    }
+    
     /**
      * set category filename
      * @param filename     name of AIML file
@@ -337,15 +345,17 @@ public class Category {
      * @param filename             AIML file name
      */
 
-    public Category (int activationCnt, String pattern, String that, String topic, String template, String filename){
+    public Category (int activationCnt, String pattern, String grammar, String that, String topic, String template, String filename){
         if (MagicBooleans.fix_excel_csv)   {
         pattern = Utilities.fixCSV(pattern);
+        grammar = Utilities.fixCSV(grammar);
         that = Utilities.fixCSV(that);
         topic = Utilities.fixCSV(topic);
         template = Utilities.fixCSV(template);
         filename = Utilities.fixCSV(filename);
         }
         this.pattern = pattern.trim().toUpperCase();
+        this.grammar = pattern.trim().toUpperCase();
         this.that = that.trim().toUpperCase();
         this.topic = topic.trim().toUpperCase();
         this.template = template.replace("& ", " and "); // XML parser treats & badly
@@ -364,13 +374,14 @@ public class Category {
      * @param template              AIML template
      * @param filename              AIML category
      */
+    /*
     public Category(int activationCnt, String patternThatTopic, String template, String filename){
         this(activationCnt,
                 patternThatTopic.substring(0, patternThatTopic.indexOf("<THAT>")),
                 patternThatTopic.substring(patternThatTopic.indexOf("<THAT>")+"<THAT>".length(), patternThatTopic.indexOf("<TOPIC>")),
                 patternThatTopic.substring(patternThatTopic.indexOf("<TOPIC>")+"<TOPIC>".length(), patternThatTopic.length()), template, filename);
     }
-
+    */
     /**
      * compare two categories for sorting purposes based on activation count
      */

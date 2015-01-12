@@ -98,6 +98,7 @@ public class ComprehensiveProcessor
             Node m = children.item(j);
             String mName = m.getNodeName();
             //System.out.println("mName: " + mName);
+            //TODO: need to fix this to support grammar in pattern
             if (mName.equals("#text")) {/*skip*/}
             else if (mName.equals("pattern")) { 
                 pattern = DomUtils.nodeToString(m);
@@ -109,6 +110,7 @@ public class ComprehensiveProcessor
         }
         //System.out.println("categoryProcessor: pattern="+pattern);
         pattern = trimTag(pattern, "pattern");
+        grammar
         that = trimTag(that, "that");
         topic = trimTag(topic, "topic");
         pattern = cleanPattern(pattern);
