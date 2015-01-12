@@ -148,8 +148,8 @@ public class Bot
                 cnt = addCategoriesFromAIML();
             }
         }
-        Category b = new Category(0, "PROGRAM VERSION", "*", "*", MagicStrings.program_name_version, "update.aiml");
-        brain.addCategory(b);
+        //Category b = new Category(0, "PROGRAM VERSION", "*", "*", MagicStrings.program_name_version, "update.aiml");
+        //brain.addCategory(b);
         brain.nodeStats();
         learnfGraph.nodeStats();
 

@@ -248,7 +248,7 @@ public class Category {
     public static Category IFToCategory(String IF) {
         String[] split = IF.split(MagicStrings.aimlif_split_char);
         //System.out.println("Read: "+split);
-        return new Category(Integer.parseInt(split[0]), split[1], split[2], split[3], lineToTemplate(split[4]), split[5]);
+        return new Category(Integer.parseInt(split[0]), split[1], "", split[2], split[3], lineToTemplate(split[4]), split[5]);
      }
 
     /**

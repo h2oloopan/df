@@ -7,6 +7,7 @@
 package core.bot.ab;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -88,10 +89,11 @@ public class ComprehensiveProcessor
         }
     }
     
-    private static void categoryProcessor(Node n, ArrayList<Category> categories, String topic, String aimlFile) {
-        String pattern, that, template;
+    private static void categoryProcessor(Node n, ArrayList<Category> categories, String topic, String aimlFile) throws Exception {
+        String pattern, grammar, that, template;
 
         NodeList children = n.getChildNodes();
+        grammar = null;
         pattern = "*"; that = "*";  template="";
         for (int j = 0; j < children.getLength(); j++) {
             //System.out.println("CHILD: " + children.item(j).getNodeName());
@@ -101,16 +103,26 @@ public class ComprehensiveProcessor
             //TODO: need to fix this to support grammar in pattern
             if (mName.equals("#text")) {/*skip*/}
             else if (mName.equals("pattern")) { 
-                pattern = DomUtils.nodeToString(m);
+                //pattern = DomUtils.nodeToString(m);
+                NodeList kids = m.getChildNodes();
+                if (kids.getLength() > 1) {
+                    Node x = kids.item(0);
+                    if (x.getNodeName().toLowerCase().equals("grammar")) {
+                        grammar = DomUtils.nodeToString(x);
+                    } else {
+                        throw new IOException("Invalid format, the only possible sub item inside pattern is grammar");
+                    }
+                } else {
+                    pattern = DomUtils.nodeToString(m);
+                }
             }
             else if (mName.equals("that")) that = DomUtils.nodeToString(m);
             else if (mName.equals("topic")) topic = DomUtils.nodeToString(m);
             else if (mName.equals("template")) template = DomUtils.nodeToString(m);
-            else System.out.println("categoryProcessor: unexpected "+mName+" in "+DomUtils.nodeToString(m));
+            else throw new IOException("categoryProcessor: unexpected "+mName+" in "+DomUtils.nodeToString(m));
         }
         //System.out.println("categoryProcessor: pattern="+pattern);
         pattern = trimTag(pattern, "pattern");
-        grammar
         that = trimTag(that, "that");
         topic = trimTag(topic, "topic");
         pattern = cleanPattern(pattern);
@@ -119,7 +131,7 @@ public class ComprehensiveProcessor
 
         template = trimTag(template, "template");
 
-        Category c = new Category(0, pattern, that, topic, template, aimlFile);
+        Category c = new Category(0, pattern, grammar, that, topic, template, aimlFile);
         /*if (template == null) System.out.println("Template is null");
         if (template.length()==0) System.out.println("Template is zero length");*/
         if (template == null || template.length() == 0) {
