@@ -170,6 +170,7 @@ public class ComprehensiveProcessor
      * @param ignoreAttributes   tag names to ignore when evaluating the tag.
      * @return            the result of evaluating the tag contents.
      */
+    /*
     public static String evalTagContent(Node node, ParseState ps, Set<String> ignoreAttributes) {
         //MagicBooleans.trace("AIMLProcessor.evalTagContent(node: " + node + ", ps: " + ps + ", ignoreAttributes: " + ignoreAttributes);
         //MagicBooleans.trace("in AIMLProcessor.evalTagContent, node string: " + DomUtils.nodeToString(node));
@@ -190,7 +191,7 @@ public class ComprehensiveProcessor
         //MagicBooleans.trace("AIMLProcessor.evalTagContent() returning: " + result);
         return result;
     }
-
+    */
     /**
      * pass thru generic XML (non-AIML tags, such as HTML) as unevaluated XML
      *

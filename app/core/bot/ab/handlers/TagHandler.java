@@ -18,7 +18,5 @@ import core.bot.ab.ParseState;
  */
 public abstract class TagHandler
 {
-    public abstract String handle(Node node, ParseState ps, String previousResult);
-    public abstract boolean hasRecursion();
-    public abstract Set<String> getIgnoredAttributes();
+    public abstract String handle(Node node, ParseState ps, String previousResult, Set<String> ignoredAttributes);
 }
