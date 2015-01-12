@@ -198,6 +198,7 @@ public class ComprehensiveProcessor
      * @param ps         current parse state
      * @return           unevaluated generic XML string
      */
+    /*
     public static String genericXML(Node node, ParseState ps) {
         //MagicBooleans.trace("AIMLProcessor.genericXML(node: " + node + ", ps: " + ps);
         String evalResult = evalTagContent(node, ps, null);
@@ -205,7 +206,7 @@ public class ComprehensiveProcessor
         //MagicBooleans.trace("in AIMLProcessor.genericXML(), returning: " + result);
         return result;
     }
-
+    */
     /**
      * return a string of unevaluated XML.      When the AIML parser
      * encounters an unrecognized XML tag, it simply passes through the
@@ -218,6 +219,7 @@ public class ComprehensiveProcessor
      * @param ps             current parse state.
      * @return               the unevaluated XML string
      */
+    /*
     private static String unevaluatedXML(String resultIn, Node node, ParseState ps) {
         //MagicBooleans.trace("AIMLProcessor.unevaluatedXML(resultIn: " + resultIn + ", node: " + node + ", ps: " + ps);
         String nodeName = node.getNodeName();
@@ -238,6 +240,7 @@ public class ComprehensiveProcessor
         //MagicBooleans.trace("in AIMLProcessor.unevaluatedXML() returning: " + result);
         return result;
     }
+    */
     public static int trace_count = 0;
 
     /**
@@ -248,6 +251,7 @@ public class ComprehensiveProcessor
      * @return           the result of processing the <srai>
      *
      */
+    /*
     private static String srai(Node node, ParseState ps) {
         String response = MagicStrings.default_bot_response;
         try {
@@ -267,7 +271,7 @@ public class ComprehensiveProcessor
         //MagicBooleans.trace("in AIMLProcessor.srai(), returning: " + result);
         return result;
     }
-
+    */
     /**
      * in AIML 2.0, an attribute value can be specified by either an XML attribute value
      * or a subtag of the same name.  This function tries to read the value from the XML attribute first,
@@ -279,6 +283,7 @@ public class ComprehensiveProcessor
      * @return             the attribute value.
      */
     // value can be specified by either attribute or tag
+    /*
     private static String getAttributeOrTagValue (Node node, ParseState ps, String attributeName) {        // AIML 2.0
         //MagicBooleans.trace("AIMLProcessor.getAttributeOrTagValue (node: " + node + ", attributeName: " + attributeName + ")");
         String result = "";
@@ -301,6 +306,7 @@ public class ComprehensiveProcessor
         //MagicBooleans.trace("in AIMLProcessor.getAttributeOrTagValue (), returning: " + result);
         return result;
     }
+    */
 
     /**
      * access external web service for response
@@ -311,6 +317,7 @@ public class ComprehensiveProcessor
      * @param ps     AIML parse state
      * @return       response from remote service or string indicating failure.
      */
+    /*
     private static String sraix(Node node, ParseState ps) {
         HashSet<String> attributeNames = Utilities.stringSet("botid", "host");
         String host = getAttributeOrTagValue(node, ps, "host");
@@ -323,6 +330,7 @@ public class ComprehensiveProcessor
         return result;
 
     }
+    */
 
     /**
      * map an element of one string set to an element of another
@@ -332,6 +340,7 @@ public class ComprehensiveProcessor
      * @param ps         current AIML parse state
      * @return           the map result or a string indicating the key was not found
      */
+    /*
     private static String map(Node node, ParseState ps) {
         String result = MagicStrings.default_map;
         HashSet<String> attributeNames = Utilities.stringSet("name");
@@ -348,7 +357,7 @@ public class ComprehensiveProcessor
         }
         return result;
     }
-
+*/
     /**
      * set the value of an AIML predicate.
      * Implements <set name="predicate"></set> and <set var="varname"></set>
@@ -357,6 +366,7 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         the result of the <set> operation
      */
+    /*
     private static String set(Node node, ParseState ps) {                    // add pronoun check
         //MagicBooleans.trace("AIMLProcessor.set(node: " + node + ", ps: " + ps + ")");
         HashSet<String> attributeNames = Utilities.stringSet("name", "var");
@@ -379,7 +389,7 @@ public class ComprehensiveProcessor
         //MagicBooleans.trace("in AIMLProcessor.set, returning: " + result);
         return result;
     }
-
+    */
     /** get the value of an AIML predicate.
      * implements <get name="predicate"></get>  and <get var="varname"></get>
      *
@@ -387,6 +397,7 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         the result of the <get> operation
      */
+    /*
     private static String get(Node node, ParseState ps) {
         //MagicBooleans.trace("AIMLProcessor.get(node: " + node + ", ps: " + ps + ")");
         String result = MagicStrings.default_get;
@@ -405,7 +416,8 @@ public class ComprehensiveProcessor
         //MagicBooleans.trace("in AIMLProcessor.get, returning: " + result);
         return result;
     }
-
+    */
+    /*
     public static String tupleGet (String tupleName, String varName) {
         String result = MagicStrings.default_get;
         Tuple tuple = Tuple.tupleMap.get(tupleName);
@@ -415,7 +427,7 @@ public class ComprehensiveProcessor
         else result = tuple.getValue(varName);
         return result;
     }
-
+    */
     /**
      * return the value of a bot property.
      * implements {{{@code <bot name="property"/>}}}
@@ -424,6 +436,7 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         the bot property or a string indicating the property was not found.
      */
+    /*
     private static String bot(Node node, ParseState ps) {
         String result = MagicStrings.default_property;
         //HashSet<String> attributeNames = Utilities.stringSet("name");
@@ -433,7 +446,7 @@ public class ComprehensiveProcessor
         //System.out.println("BOT: "+m.getNodeValue()+"="+result);
         return result;
     }
-
+    */
     /**
      * implements formatted date tag <date jformat="format"/> and <date format="format"/>
      *
@@ -441,6 +454,7 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         the formatted date
      */
+    /*
     private static String date(Node node, ParseState ps)  {
         //HashSet<String> attributeNames = Utilities.stringSet("jformat","format","locale","timezone");
         String jformat = getAttributeOrTagValue(node, ps, "jformat");      // AIML 2.0
@@ -451,11 +465,11 @@ public class ComprehensiveProcessor
         //System.out.println(dateAsString);
         return dateAsString;
     }
-
+    */
     /**
      *    <interval><style>years</style></style><jformat>MMMMMMMMM dd, yyyy</jformat><from>August 2, 1960</from><to><date><jformat>MMMMMMMMM dd, yyyy</jformat></date></to></interval>
      */
-
+    /*
     private static String interval(Node node, ParseState ps)  {
         //HashSet<String> attributeNames = Utilities.stringSet("style","jformat","from","to");
         String style = getAttributeOrTagValue(node, ps, "style");      // AIML 2.0
@@ -475,7 +489,7 @@ public class ComprehensiveProcessor
         if (style.equals("hours")) result = ""+IntervalUtils.getHoursBetween(from, to, jformat);
         return result;
     }
-
+    */
     /**
      * get the value of an index attribute and return it as an integer.
      * if it is not recognized as an integer, return 0
@@ -484,13 +498,14 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         the the integer intex value
      */
+    /*
     private static int getIndexValue(Node node, ParseState ps) {
         int index=0;
         String value = getAttributeOrTagValue(node, ps, "index");
         if (value != null) try {index = Integer.parseInt(value)-1;} catch (Exception ex) {ex.printStackTrace();}
         return index;
     }
-
+    */
     /**
      * implements {@code <star index="N"/>}
      * returns the value of input words matching the Nth wildcard (or AIML Set).
@@ -499,6 +514,7 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         the word sequence matching a wildcard
      */
+    /*
     private static String inputStar(Node node, ParseState ps) {
         String result="";
         int index=getIndexValue(node, ps);
@@ -507,6 +523,7 @@ public class ComprehensiveProcessor
         //System.out.println("inputStar: ps depth="+ps.depth+" index="+index+" star="+result);
         return result;
     }
+    */
     /**
      * implements {@code <thatstar index="N"/>}
      * returns the value of input words matching the Nth wildcard (or AIML Set) in <that></that>.
@@ -515,11 +532,13 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         the word sequence matching a wildcard
      */
+    /*
     private static String thatStar(Node node, ParseState ps) {
         int index=getIndexValue(node, ps);
         if (ps.starBindings.thatStars.star(index)==null) return "";
         else return ps.starBindings.thatStars.star(index).trim();
     }
+    */
     /**
      * implements <topicstar/> and <topicstar index="N"/>
      * returns the value of input words matching the Nth wildcard (or AIML Set) in a topic pattern.
@@ -528,12 +547,13 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         the word sequence matching a wildcard
      */
+    /*
     private static String topicStar(Node node, ParseState ps) {
         int index=getIndexValue(node, ps);
         if (ps.starBindings.topicStars.star(index)==null) return "";
         else return ps.starBindings.topicStars.star(index).trim();
     }
-
+    */
     /**
      * return the client ID.
      * implements {@code <id/>}
@@ -543,10 +563,11 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         client ID
      */
-
+    /*
     private static String id(Node node, ParseState ps) {
         return ps.chatSession.customerId;
     }
+    */
     /**
      * return the size of the robot brain (number of AIML categories loaded).
      * implements {@code <size/>}
@@ -556,10 +577,12 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         bot brain size
      */
+    /*
     private static String size(Node node, ParseState ps) {
         int size = ps.chatSession.bot.brain.getCategories().size();
         return String.valueOf(size);
     }
+    */
     /**
      * return the size of the robot vocabulary (number of words the bot can recognize).
      * implements {@code <vocabulary/>}
@@ -569,10 +592,12 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         bot vocabulary size
      */
+    /*
     private static String vocabulary(Node node, ParseState ps) {
         int size = ps.chatSession.bot.brain.getVocabulary().size();
         return String.valueOf(size);
     }
+    */
     /**
      * return a string indicating the name and version of the AIML program.
      * implements {@code <program/>}
@@ -582,10 +607,11 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         AIML program name and version.
      */
+    /*
     private static String program(Node node, ParseState ps) {
         return MagicStrings.program_name_version;
     }
-
+    */
     /**
      * implements the (template-side) {@code <that index="M,N"/>}    tag.
      * returns a normalized sentence.
@@ -594,6 +620,7 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         the nth last sentence of the bot's mth last reply.
      */
+    /*
     private static String that(Node node, ParseState ps) {
         int index=0;
         int jndex=0;
@@ -611,7 +638,7 @@ public class ComprehensiveProcessor
         if (hist != null) that = (String)hist.get(jndex);
         return that.trim();
     }
-
+    */
     /**
      * implements {@code <input index="N"/>} tag
      *
@@ -619,11 +646,12 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         the nth last sentence input to the bot
      */
-
+    /*
     private static String input(Node node, ParseState ps) {
         int index=getIndexValue(node, ps);
         return ps.chatSession.inputHistory.getString(index);
     }
+    */
     /**
      * implements {@code <request index="N"/>} tag
      *
@@ -631,10 +659,12 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         the nth last multi-sentence request to the bot.
      */
+    /*
     private static String request(Node node, ParseState ps) {             // AIML 2.0
         int index=getIndexValue(node, ps);
         return ps.chatSession.requestHistory.getString(index).trim();
     }
+    */
     /**
      * implements {@code <response index="N"/>} tag
      *
@@ -642,10 +672,12 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         the bot's Nth last multi-sentence response.
      */
+    /*
     private static String response(Node node, ParseState ps) {            // AIML 2.0
         int index=getIndexValue(node, ps);
         return ps.chatSession.responseHistory.getString(index).trim();
     }
+    */
     /**
      * implements {@code <system>} tag.
      * Evaluate the contents, and try to execute the result as
@@ -659,6 +691,7 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         the result of executing the system command or a string indicating the command failed.
      */
+    /*
     private static String system(Node node, ParseState ps) {
         HashSet<String> attributeNames = Utilities.stringSet("timeout");
         //String stimeout = getAttributeOrTagValue(node, ps, "timeout");
@@ -666,6 +699,7 @@ public class ComprehensiveProcessor
         String result = IOUtils.system(evaluatedContents, MagicStrings.system_failed);
         return result;
     }
+    */
     /**
      * implements {@code <think>} tag
      *
@@ -676,10 +710,12 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return        a blank empty string
      */
+    /*
     private static String think(Node node, ParseState ps) {
         evalTagContent(node, ps, null);
         return "";
     }
+    */
 
     /**
      * Transform a string of words (separtaed by spaces) into
@@ -690,10 +726,12 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         exploded string
      */
+    /*
     private static String explode(Node node, ParseState ps) {              // AIML 2.0
         String result = evalTagContent(node, ps, null);
         return explode(result);
     }
+    */
     /**
      * apply the AIML normalization pre-processor to the evaluated tag contenst.
      * implements {@code <normalize>} tag.
@@ -702,6 +740,7 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         normalized string
      */
+    /*
     private static String normalize(Node node, ParseState ps) {            // AIML 2.0
         //MagicBooleans.trace("AIMLPreprocessor.normalize(node: " + node + ", ps: " + ")");
         String result = evalTagContent(node, ps, null);
@@ -710,6 +749,7 @@ public class ComprehensiveProcessor
         //MagicBooleans.trace("in AIMLPreprocessor.normalize(), returning: " + returning);
         return returning;
     }
+    */
     /**
      * apply the AIML denormalization pre-processor to the evaluated tag contenst.
      * implements {@code <normalize>} tag.
@@ -718,10 +758,12 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         denormalized string
      */
+    /*
     private static String denormalize(Node node, ParseState ps) {            // AIML 2.0
         String result = evalTagContent(node, ps, null);
         return ps.chatSession.bot.preProcessor.denormalize(result);
     }
+    */
     /**
      * evaluate tag contents and return result in upper case
      * implements {@code <uppercase>} tag
@@ -730,10 +772,12 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         uppercase string
      */
+    /*
     private static String uppercase(Node node, ParseState ps) {
         String result = evalTagContent(node, ps, null);
         return result.toUpperCase();
     }
+    */
     /**
      * evaluate tag contents and return result in lower case
      * implements {@code <lowercase>} tag
@@ -742,10 +786,12 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         lowercase string
      */
+    /*
     private static String lowercase(Node node, ParseState ps) {
         String result = evalTagContent(node, ps, null);
         return result.toLowerCase();
     }
+    */
     /**
      * evaluate tag contents and capitalize each word.
      * implements {@code <formal>} tag
@@ -754,10 +800,12 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         capitalized string
      */
+    /*
      private static String formal(Node node, ParseState ps) {
         String result = evalTagContent(node, ps, null);
         return capitalizeString(result);
     }
+    */
     /**
      * evaluate tag contents and capitalize the first word.
      * implements {@code <sentence>} tag
@@ -766,11 +814,13 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         string with first word capitalized
      */
+    /*
     private static String sentence(Node node, ParseState ps) {
         String result = evalTagContent(node, ps, null);
         if (result.length() > 1) return result.substring(0, 1).toUpperCase()+result.substring(1, result.length());
         else return "";
     }
+    */
     /**
      * evaluate tag contents and swap 1st and 2nd person pronouns
      * implements {@code <person>} tag
@@ -779,6 +829,7 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         sentence with pronouns swapped
      */
+    /*
     private static String person(Node node, ParseState ps) {
         String result;
         if (node.hasChildNodes())
@@ -788,6 +839,7 @@ public class ComprehensiveProcessor
         result = ps.chatSession.bot.preProcessor.person(result);
         return result.trim();
     }
+    */
     /**
      * evaluate tag contents and swap 1st and 3rd person pronouns
      * implements {@code <person2>} tag
@@ -796,6 +848,7 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         sentence with pronouns swapped
      */
+    /*
     private static String person2(Node node, ParseState ps) {
         String result;
         if (node.hasChildNodes())
@@ -805,6 +858,7 @@ public class ComprehensiveProcessor
         result = ps.chatSession.bot.preProcessor.person2(result);
         return result.trim();
     }
+    */
     /**
      * implements {@code <gender>} tag
      * swaps gender pronouns
@@ -813,19 +867,21 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         sentence with gender ronouns swapped
      */
+    /*
     private static String gender(Node node, ParseState ps) {
         String result = evalTagContent(node, ps, null);
         result = " "+result+" ";
         result = ps.chatSession.bot.preProcessor.gender(result);
         return result.trim();
     }
-
+    */
     /**
      * implements {@code <random>} tag
      * @param node     current XML parse node
      * @param ps       AIML parse state
      * @return         response randomly selected from the list
      */
+    /*
     private static String random(Node node, ParseState ps) {
         NodeList childList = node.getChildNodes();
         ArrayList<Node> liList = new ArrayList<Node>();
@@ -837,11 +893,16 @@ public class ComprehensiveProcessor
         if (MagicBooleans.qa_test_mode) index = 0;
         return evalTagContent(liList.get(index), ps, null);
     }
+    */
+    
+    /*
     private static String unevaluatedAIML(Node node, ParseState ps) {
         String result = learnEvalTagContent(node, ps);
         return unevaluatedXML(result, node, ps);
     }
+    */
 
+    /*
     private static String recursLearn(Node node, ParseState ps) {
         String nodeName = node.getNodeName();
         if (nodeName.equals("#text")) return node.getNodeValue();
@@ -857,7 +918,7 @@ public class ComprehensiveProcessor
         }
         return result;
     }
-
+    
     private static String learn(Node node, ParseState ps)   {                 // learn, learnf AIML 2.0
         NodeList childList = node.getChildNodes();
         String pattern = "";
@@ -909,7 +970,7 @@ public class ComprehensiveProcessor
         }
         return "";
     }
-
+    */
     /**
      * implements {@code <condition> with <loop/>}
      * re-evaluate the conditional statement until the response does not contain {@code <loop/>}
@@ -918,6 +979,7 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         result of conditional expression
      */
+    /*
     private static String loopCondition(Node node, ParseState ps) {
         boolean loop = true;
         String result="";
@@ -935,7 +997,7 @@ public class ComprehensiveProcessor
         if (loopCnt >= MagicNumbers.max_loops) result = MagicStrings.too_much_looping;
         return result;
     }
-
+    */
     /**
      * implements all 3 forms of the {@code <condition> tag}
      * In AIML 2.0 the conditional may return a {@code <loop/>}
@@ -944,6 +1006,7 @@ public class ComprehensiveProcessor
      * @param ps       AIML parse state
      * @return         result of conditional expression
      */
+    /*
     private static String condition(Node node, ParseState ps) {
         String result="";
         //boolean loop = true;
@@ -993,13 +1056,14 @@ public class ComprehensiveProcessor
         return "";
 
     }
-
+    */
     /**
      * check to see if a result contains a {@code <loop/>} tag.
      *
      * @param node     current XML parse node
      * @return         true or false
      */
+    /*
     public static boolean evalTagForLoop(Node node) {
         NodeList childList = node.getChildNodes();
         for (int i = 0; i < childList.getLength(); i++)
@@ -1019,7 +1083,7 @@ public class ComprehensiveProcessor
         String object = getAttributeOrTagValue(node, ps, "obj");
         return ps.chatSession.tripleStore.addTriple(subject, predicate, object);
     }
-
+    */
    /* private static String qnotq(Node node, ParseState ps, Boolean affirm) {
         String subject = getAttributeOrTagValue(node, ps, "subj");
         String predicate = getAttributeOrTagValue(node, ps, "pred");
@@ -1040,6 +1104,7 @@ public class ComprehensiveProcessor
         return qnotq(node, ps, false);
     }
 */
+    /*
     public static String uniq(Node node, ParseState ps) {
         HashSet<String> vars = new HashSet<String>();
         HashSet<String> visibleVars = new HashSet<String>();
@@ -1202,4 +1267,5 @@ public class ComprehensiveProcessor
         return "Deleted Learn Categories";
 
     }
+    */
 }

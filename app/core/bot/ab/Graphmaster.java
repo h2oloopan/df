@@ -263,27 +263,12 @@ public class Graphmaster {
          Path p = Path.sentenceToPath(inputThatTopic);
          //p.print();
          n = match(p, inputThatTopic);
-         if (MagicBooleans.trace_mode) {
-             if (n != null) {
-				 //MagicBooleans.trace("in graphmaster.match(), matched "+n.category.inputThatTopic()+" "+n.category.getFilename());
-				 if (MagicBooleans.trace_mode) System.out.println ("Matched: "+n.category.inputThatTopic()+" "+n.category.getFilename());
-             } else {
-				 //MagicBooleans.trace("in graphmaster.match(), no match.");
-				 if (MagicBooleans.trace_mode) System.out.println("No match.");
-			 }
-				 
-         }
         } catch (Exception ex) {
             //System.out.println("Match: "+input);
             ex.printStackTrace();
             n = null;
         }
-        if (MagicBooleans.trace_mode && Chat.matchTrace.length() < MagicNumbers.max_trace_length) {
-            if (n != null) {
-				Chat.setMatchTrace(Chat.matchTrace + n.category.inputThatTopic()+"\n");
-			}
-        }
-		//MagicBooleans.trace("in graphmaster.match(), returning: " + n);
+        
         return n;
     }
 
