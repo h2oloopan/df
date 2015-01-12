@@ -304,7 +304,7 @@ public class Category {
         if (!validPatternForm(pattern)) {validationMessage += "Badly formatted <pattern>"; return false;}
         if (!validPatternForm(that)) {validationMessage += "Badly formatted <that>"; return false;}
         if (!validPatternForm(topic)) {validationMessage += "Badly formatted <topic>"; return false;}
-        if (!AIMLProcessor.validTemplate(template)) {validationMessage += "Badly formatted <template>"; return false;}
+        if (!ComprehensiveProcessor.validTemplate(template)) {validationMessage += "Badly formatted <template>"; return false;}
         if (!filename.endsWith(".aiml")) {validationMessage += "Filename suffix should be .aiml"; return false;}
         return true;
 

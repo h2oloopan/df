@@ -10,7 +10,6 @@ import core.bot.Bot;
 public class TripleStore {
     public int idCnt = 0;
     public String name = "unknown";
-    public Chat chatSession;
     public Bot bot;
     public HashMap<String, Triple> idTriple = new HashMap<String, Triple>();
     public HashMap<String, String> tripleStringId = new HashMap<String, String>();
@@ -18,10 +17,9 @@ public class TripleStore {
     public HashMap<String, HashSet<String>> predicateTriples = new HashMap<String, HashSet<String>>();
     public HashMap<String, HashSet<String>> objectTriples = new HashMap<String, HashSet<String>>();
 
-    public TripleStore(String name, Chat chatSession) {
+    public TripleStore(String name, Bot bot) {
         this.name = name;
-        this.chatSession = chatSession;
-        this.bot = chatSession.bot;
+        this.bot = bot;
     }
     public class Triple {
         public String id;

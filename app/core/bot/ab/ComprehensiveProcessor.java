@@ -44,6 +44,16 @@ public class ComprehensiveProcessor
         return handlers.get("default").handle(root, ps);
     }
     
+    public static boolean validTemplate(String template){
+        try {
+            template ="<template>" + template + "</template>";
+            DomUtils.parseString(template);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
     /*
     public static String recursEval(Node node, ParseState ps) throws Exception {
         String nodeName = node.getNodeName();
@@ -156,10 +166,10 @@ public class ComprehensiveProcessor
         else if (nodeName.equals("resetlearn"))
             return resetlearn(node, ps);
         else if (extension != null && extension.extensionTagSet().contains(nodeName)) return extension.recursEval(node, ps) ;
-        */
+        
         
     }
-    
+    */
  // Parsing and evaluation functions:
 
     /**

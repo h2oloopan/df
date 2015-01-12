@@ -79,6 +79,7 @@ public class AIMLMap extends HashMap<String, String> {
         else if (mapName.equals("plural")) {
             return inflector.pluralize(key).toLowerCase();
         }
+        /*
         else if (isExternal && MagicBooleans.enable_external_sets) {
             //String[] split = key.split(" ");
             String query = mapName.toUpperCase()+" "+key;
@@ -86,6 +87,7 @@ public class AIMLMap extends HashMap<String, String> {
             System.out.println("External "+mapName+"("+key+")="+response);
             value = response;
         }
+        */
         else value = super.get(key);
         if (value == null) value = MagicStrings.default_map;
         //System.out.println("AIMLMap get "+key+"="+value);

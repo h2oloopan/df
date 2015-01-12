@@ -20,7 +20,8 @@ import core.bot.ab.ParseState;
  */
 public class DefaultHandler extends TagHandler
 {
-
+    private TagHandlerCollection handlers = new TagHandlerCollection();
+    
     @Override
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
@@ -31,13 +32,19 @@ public class DefaultHandler extends TagHandler
         } else if (nodeName.equals("#comment")) {
             return "";
         } else {
-            String result = "";
-            NodeList childList = node.getChildNodes();
-            for (int i = 0; i < childList.getLength(); i++) {
-                Node child = childList.item(i);
-                if (ignoreAttributes == null || !ignoreAttributes.contains(child.getNodeName()) {
-                    result += this.handle(child, ps, previousResult, ignoreAttributes)
-                })
+            TagHandler handler = handlers.get(nodeName.toLowerCase());
+            if (!(handler instanceof DefaultHandler)) {
+                return handler.handle(node, ps, previousResult, ignoreAttributes);
+            } else {
+                String result = "";
+                NodeList childList = node.getChildNodes();
+                for (int i = 0; i < childList.getLength(); i++) {
+                    Node child = childList.item(i);
+                    if (ignoreAttributes == null || !ignoreAttributes.contains(child.getNodeName())) {
+                        result += this.handle(child, ps, previousResult, ignoreAttributes);
+                    }
+                }
+                return result;
             }
         }
     }

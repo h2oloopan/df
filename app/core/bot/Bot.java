@@ -18,6 +18,7 @@ import core.bot.ab.MagicStrings;
 import core.bot.ab.Nodemapper;
 import core.bot.ab.NodemapperOperator;
 import core.bot.ab.PreProcessor;
+import core.bot.ab.Predicates;
 import core.bot.ab.Properties;
 import core.bot.ab.Timer;
 import core.bot.ab.Utilities;
@@ -40,6 +41,8 @@ public class Bot
     public final Graphmaster brain;
     public Graphmaster learnfGraph;
     public Graphmaster learnGraph;
+    
+    public Predicates predicates;
 
     // public Graphmaster unfinishedGraph;
     //  public final ArrayList<Category> categories;
@@ -77,6 +80,15 @@ public class Bot
      * @param name     name of bot
      * @param path     bot path
      */
+    private void addPredicates() {
+        try {
+            String predicates_path = (new File(new File(config_path), "predicates.txt")).getCanonicalPath();
+            predicates.getPredicateDefaults(predicates_path) ;
+        } catch (Exception ex)  {
+            ex.printStackTrace();
+        }
+    }
+    
     public Bot(String name, String path) throws Exception {
         int cnt=0;
         int elementCnt=0;
@@ -89,6 +101,10 @@ public class Bot
   //      this.unfinishedGraph = new Graphmaster(this);
       //  this.categories = new ArrayList<Category>();
 
+        addPredicates();
+        predicates.put("topic", MagicStrings.default_topic);
+        predicates.put("jsenabled", MagicStrings.js_enabled);
+        
         preProcessor = new PreProcessor(this);
         addProperties();
         cnt = addAIMLSets();
@@ -135,7 +151,7 @@ public class Bot
     /*
      * THE TALK INTERFACE
      */
-    public String respond(String input, String that, String topic, Context context, Profile profile) {
+    public String respond(String input, String that, String topic, Context context, Profile profile) throws Exception {
         boolean repetition = true;
         //inputHistory.printHistory();
         for (int i = 0; i < MagicNumbers.repetition_count; i++) {
