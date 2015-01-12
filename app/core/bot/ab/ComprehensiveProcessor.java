@@ -6,6 +6,7 @@
  */
 package core.bot.ab;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -54,6 +55,83 @@ public class ComprehensiveProcessor
         }
     }
     
+    public static ArrayList<Category> AIMLToCategories (String directory, String aimlFile) {
+        try {
+            ArrayList categories = new ArrayList<Category>();
+            Node root = DomUtils.parseFile((new File(new File(directory), aimlFile).getCanonicalPath()));
+            NodeList nodelist = root.getChildNodes();
+            for (int i = 0; i < nodelist.getLength(); i++) {
+                Node n = nodelist.item(i);
+                if (n.getNodeName().toLowerCase().equals("category")) {
+                    categoryProcessor(n, categories, "*", aimlFile);
+                } else if (n.getNodeName().equals("topic")) {
+                    String topic = n.getAttributes().getNamedItem("name").getTextContent();
+                    NodeList children = n.getChildNodes();
+                    for (int j = 0; j < children.getLength(); j++) {
+                        Node m = children.item(j);
+                        if (m.getNodeName().toLowerCase().equals("category")) {
+                            categoryProcessor(m, categories, topic, aimlFile);
+                        }
+                    }
+                }
+            }
+            return categories;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    private static void categoryProcessor(Node n, ArrayList<Category> categories, String topic, String aimlFile) {
+        String pattern, that, template;
+
+        NodeList children = n.getChildNodes();
+        pattern = "*"; that = "*";  template="";
+        for (int j = 0; j < children.getLength(); j++) {
+            //System.out.println("CHILD: " + children.item(j).getNodeName());
+            Node m = children.item(j);
+            String mName = m.getNodeName();
+            //System.out.println("mName: " + mName);
+            if (mName.equals("#text")) {/*skip*/}
+            else if (mName.equals("pattern")) pattern = DomUtils.nodeToString(m);
+            else if (mName.equals("that")) that = DomUtils.nodeToString(m);
+            else if (mName.equals("topic")) topic = DomUtils.nodeToString(m);
+            else if (mName.equals("template")) template = DomUtils.nodeToString(m);
+            else System.out.println("categoryProcessor: unexpected "+mName+" in "+DomUtils.nodeToString(m));
+        }
+        //System.out.println("categoryProcessor: pattern="+pattern);
+        pattern = trimTag(pattern, "pattern");
+        that = trimTag(that, "that");
+        topic = trimTag(topic, "topic");
+        pattern = cleanPattern(pattern);
+        that = cleanPattern(that);
+        topic = cleanPattern(topic);
+
+        template = trimTag(template, "template");
+
+        Category c = new Category(0, pattern, that, topic, template, aimlFile);
+        /*if (template == null) System.out.println("Template is null");
+        if (template.length()==0) System.out.println("Template is zero length");*/
+        if (template == null || template.length() == 0) {
+            System.out.println("Category "+c.inputThatTopic()+" discarded due to blank or missing <template>.");
+        }
+        else categories.add(c);
+    }
+    
+    public static String trimTag(String s, String tagName) {
+        String stag = "<" + tagName + ">";
+        String etag = "</" + tagName + ">";
+        if (s.startsWith(stag) && s.endsWith(etag)) {
+            s = s.substring(stag.length());
+            s = s.substring(0, s.length() - etag.length());
+        }
+        return s.trim();
+    }
+    
+    public static String cleanPattern(String pattern) {
+        pattern = pattern.replaceAll("(\r\n|\n\r|\r|\n)", " ");
+        pattern = pattern.replaceAll("  "," ");
+        return pattern.trim();
+    }
     /*
     public static String recursEval(Node node, ParseState ps) throws Exception {
         String nodeName = node.getNodeName();

@@ -230,7 +230,7 @@ public class Bot
                         if (file.endsWith(".aiml") || file.endsWith(".AIML")) {
                             if (MagicBooleans.trace_mode) System.out.println(file);
                             try {
-                                ArrayList<Category> moreCategories = AIMLProcessor.AIMLToCategories(aiml_path, file);
+                                ArrayList<Category> moreCategories = ComprehensiveProcessor.AIMLToCategories(aiml_path, file);
                                 addMoreCategories(file, moreCategories);
                                 cnt += moreCategories.size();
                             } catch (Exception iex) {
