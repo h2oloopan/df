@@ -23,6 +23,8 @@ package core.bot.ab;
 import java.io.*;
 import java.util.HashMap;
 
+import play.Logger;
+
 /**
  * Manage client predicates
  *
@@ -63,20 +65,17 @@ public class Predicates extends HashMap<String, String> {
      *
      * @param in input stream
      */
-    public void getPredicateDefaultsFromInputStream (InputStream in)  {
+    public void getPredicateDefaultsFromInputStream (InputStream in) throws Exception  {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         String strLine;
-        try {
-            //Read File Line By Line
-            while ((strLine = br.readLine()) != null)   {
-                if (strLine.contains(":")) {
-                    String property = strLine.substring(0, strLine.indexOf(":"));
-                    String value = strLine.substring(strLine.indexOf(":")+1);
-                    put(property, value);
-                }
+        //Read File Line By Line
+        while ((strLine = br.readLine()) != null)   {
+            Logger.info(strLine);
+            if (strLine.contains(":")) {
+                String property = strLine.substring(0, strLine.indexOf(":"));
+                String value = strLine.substring(strLine.indexOf(":")+1);
+                put(property, value);
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
     }
 
@@ -84,19 +83,13 @@ public class Predicates extends HashMap<String, String> {
      *
      * @param filename        name of file
      */
-    public void getPredicateDefaults (String filename) {
-        try{
-            // Open the file that is the first
-            // command line parameter
-            File file = new File(filename);
-            if (file.exists()) {
-                FileInputStream fstream = new FileInputStream(filename);
-                // Get the object
-                getPredicateDefaultsFromInputStream(fstream);
-                fstream.close();
-            }
-        }catch (Exception e){//Catch exception if any
-            System.err.println("Error: " + e.getMessage());
+    public void getPredicateDefaults (String filename) throws Exception {
+        File file = new File(filename);
+        if (file.exists()) {
+            FileInputStream fstream = new FileInputStream(filename);
+            // Get the object
+            getPredicateDefaultsFromInputStream(fstream);
+            fstream.close();
         }
     }
 }

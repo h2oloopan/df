@@ -26,6 +26,7 @@ import core.bot.ab.utils.IOUtils;
 import java.io.*;
 import java.util.*;
 
+import play.Logger;
 import core.context.*;
 import core.messages.SpecialText;
 
@@ -81,10 +82,12 @@ public class Bot
      */
     private void addPredicates() {
         try {
+            Logger.info(config_path);
             String predicates_path = (new File(new File(config_path), "predicates.txt")).getCanonicalPath();
+            Logger.info(predicates_path);
             predicates.getPredicateDefaults(predicates_path) ;
         } catch (Exception ex)  {
-            ex.printStackTrace();
+            Logger.error(ex.getMessage(), ex);
         }
     }
     
@@ -100,6 +103,7 @@ public class Bot
   //      this.unfinishedGraph = new Graphmaster(this);
       //  this.categories = new ArrayList<Category>();
 
+        predicates = new Predicates();
         addPredicates();
         predicates.put("topic", MagicStrings.default_topic);
         predicates.put("jsenabled", MagicStrings.js_enabled);
@@ -151,6 +155,9 @@ public class Bot
      * THE TALK INTERFACE
      */
     public String respond(String input, String that, String topic, Context context, Profile profile) throws Exception {
+        return "THERE IS NOTHING I CAN SAY";
+        
+        /*
         boolean repetition = true;
         //inputHistory.printHistory();
         for (int i = 0; i < MagicNumbers.repetition_count; i++) {
@@ -161,6 +168,7 @@ public class Bot
         if (input == null) repetition = false;
         if (repetition) {input = SpecialText.REPETITION; }
         return ComprehensiveProcessor.respond(this, context, profile, input, that, topic);
+        */
     }
     
     
