@@ -19,7 +19,6 @@ package core.bot.ab;
         Boston, MA  02110-1301, USA.
 */
 
-import core.bot.ab.utils.JapaneseUtils;
 
 import java.io.*;
 import java.util.HashMap;
@@ -37,10 +36,6 @@ public class Predicates extends HashMap<String, String> {
      * @return            predicate value
      */
     public String put(String key, String value) {
-		//MagicBooleans.trace("predicates.put(key: " + key + ", value: " + value + ")");
-        if (MagicBooleans.jp_tokenize) {
-            if (key.equals("topic")) value = JapaneseUtils.tokenizeSentence(value);
-        }
         if (key.equals("topic") && value.length()==0) value = MagicStrings.default_get;
         if (value.equals(MagicStrings.too_much_recursion)) value = MagicStrings.default_list_item;
         // MagicBooleans.trace("Setting predicate key: " + key + " to value: " + value);

@@ -21,9 +21,6 @@ public class Global extends GlobalSettings {
 			protected void configure() {
 				bind(SessionStorage.class).to(RedisSessionStorage.class);
 				bind(Matcher.class).to(LaoMaMatcher.class);
-				bind(Parser.class).to(BasicParser.class);
-				bind(Finder.class).to(RandomizedFinder.class);
-				bind(Processor.class).to(BasicProcessor.class);
 				bind(ContextProvider.class).to(DefaultContextProvider.class);
 				bind(ProfileProvider.class).to(MySqlProfileProvider.class);
 				
