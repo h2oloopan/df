@@ -71,6 +71,9 @@ public class Graphmaster {
      * @return
      */
     public static String inputThatTopic (String input, String that, String topic)  {
+        input = input == null ? "" : input;
+        that = that == null ? "" : that;
+        topic = topic == null ? "" : topic;
         return input.trim()+" <THAT> "+that.trim()+" <TOPIC> "+topic.trim();
     }
 

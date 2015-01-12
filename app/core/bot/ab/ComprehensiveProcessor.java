@@ -30,6 +30,8 @@ public class ComprehensiveProcessor
     
     public static String respond(Bot bot, Context context, Profile profile, String input, String that, String topic) throws Exception {
         Nodemapper leaf = bot.brain.match(input, that, topic);
+        return "THIS IS MAKING SOME PROGRESS";
+        /*
         if (leaf == null) {
             return null;
         } else {
@@ -37,6 +39,7 @@ public class ComprehensiveProcessor
             String template = leaf.category.getTemplate();
             return evalTemplate(template, ps);
         }
+        */
     }
     
     public static String evalTemplate(String template, ParseState ps) throws Exception {

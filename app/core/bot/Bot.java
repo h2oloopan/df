@@ -159,7 +159,7 @@ public class Bot
      * THE TALK INTERFACE
      */
     public String respond(String input, String that, String topic, Context context, Profile profile) throws Exception {
-        return "THERE IS NOTHING I CAN SAY";
+        return ComprehensiveProcessor.respond(this, context, profile, input, that, topic);
         
         /*
         boolean repetition = true;
