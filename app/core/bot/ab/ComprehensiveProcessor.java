@@ -18,6 +18,8 @@ import core.bot.ab.utils.DomUtils;
 import core.context.*;
 
 import org.w3c.dom.*;
+
+import play.Logger;
 /**
  *@author Shengying Pan (s5pan@uwaterloo.ca) 
  *@date Jan 9, 2015
@@ -29,6 +31,7 @@ public class ComprehensiveProcessor
     public static TagHandlerCollection handlers = new TagHandlerCollection();
     
     public static String respond(Bot bot, Context context, Profile profile, String inputOriginal, String inputParsed, String that, String topic) throws Exception {
+        Logger.info("INPUT: " + inputOriginal + " | PARSED: " + inputParsed);
         //Nodemapper leaf = bot.brain.match(input, that, topic);
         return "THIS IS MAKING SOME PROGRESS";
         /*

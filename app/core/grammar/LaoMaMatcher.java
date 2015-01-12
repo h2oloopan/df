@@ -13,25 +13,28 @@ public class LaoMaMatcher implements GrammarMatcher {
 	private GMatcher matcher;
 
 	@Override
-	public void initialize(String path) throws Exception {
+	public GrammarMatcher initialize(String path) throws Exception {
 		File grams = new File(new File(path), "execs/grams.bin");
 		Logger.info(grams.getAbsolutePath());
 		if (!grams.exists()) {
-			matcher = null;
+			return null;
 		} else {
 			GPrecursor precursor;
 			try {
 				precursor = GPrecursor.loadPrecursor(grams);
 				matcher = precursor.newMatcher(SpaceType.chinese);
+				return this;
 			} catch (Exception e) {
-				e.printStackTrace();
-				throw e;
+				return null;
 			}
 		}
 	}
 
 	@Override
 	public String match(String query) throws Exception {
+	    if (query == null) {
+	        return null;
+	    }
 		if (matcher == null) {
 			throw new Exception("No matcher exists");
 		} else {
