@@ -275,6 +275,16 @@ public class Graphmaster {
         return n;
     }
 
+    public final Nodemapper match(String inputOriginal, String inputParsed, String that, String topic) {
+        Nodemapper n = null;
+        try {
+            
+        } catch (Exception e) {
+            n = null;
+        }
+        return n;
+    }
+    
     /**
      * Find the matching leaf node given a path of the form "{@code input <THAT> that <TOPIC> topic}"
      * @param path

@@ -32,6 +32,7 @@ public class ComprehensiveProcessor
     
     public static String respond(Bot bot, Context context, Profile profile, String inputOriginal, String inputParsed, String that, String topic) throws Exception {
         Logger.info("INPUT: " + inputOriginal + " | PARSED: " + inputParsed);
+        Nodemapper leaf = bot.brain.match(inputOriginal, inputParsed, that, topic);
         //Nodemapper leaf = bot.brain.match(input, that, topic);
         return "THIS IS MAKING SOME PROGRESS";
         /*
