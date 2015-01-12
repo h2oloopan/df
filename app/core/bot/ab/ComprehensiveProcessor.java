@@ -85,6 +85,7 @@ public class ComprehensiveProcessor
             }
             return categories;
         } catch (Exception e) {
+            Logger.error(e.getMessage(), e);
             return null;
         }
     }
@@ -105,11 +106,13 @@ public class ComprehensiveProcessor
             else if (mName.equals("pattern")) { 
                 //pattern = DomUtils.nodeToString(m);
                 NodeList kids = m.getChildNodes();
+                Logger.info((new Integer(kids.getLength())).toString());
                 if (kids.getLength() > 1) {
                     Node x = kids.item(0);
                     if (x.getNodeName().toLowerCase().equals("grammar")) {
                         grammar = DomUtils.nodeToString(x);
                     } else {
+                        Logger.info(DomUtils.nodeToString(m));
                         throw new IOException("Invalid format, the only possible sub item inside pattern is grammar");
                     }
                 } else {

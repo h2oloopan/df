@@ -348,14 +348,13 @@ public class Category {
     public Category (int activationCnt, String pattern, String grammar, String that, String topic, String template, String filename){
         if (MagicBooleans.fix_excel_csv)   {
         pattern = Utilities.fixCSV(pattern);
-        grammar = Utilities.fixCSV(grammar);
         that = Utilities.fixCSV(that);
         topic = Utilities.fixCSV(topic);
         template = Utilities.fixCSV(template);
         filename = Utilities.fixCSV(filename);
         }
         this.pattern = pattern.trim().toUpperCase();
-        this.grammar = pattern.trim().toUpperCase();
+        this.grammar = grammar;
         this.that = that.trim().toUpperCase();
         this.topic = topic.trim().toUpperCase();
         this.template = template.replace("& ", " and "); // XML parser treats & badly
