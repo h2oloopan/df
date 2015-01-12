@@ -3,13 +3,13 @@ package core.grammar;
 import java.io.File;
 import java.util.Map;
 
-import core.grammar.Matcher;
+import core.grammar.GrammarMatcher;
 import play.Logger;
 import gram.gravy.GMatcher;
 import gram.gravy.GPrecursor;
 import gram.util.SpaceType;
 
-public class LaoMaMatcher implements Matcher {
+public class LaoMaMatcher implements GrammarMatcher {
 	private GMatcher matcher;
 
 	@Override

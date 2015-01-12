@@ -158,8 +158,8 @@ public class Bot
     /*
      * THE TALK INTERFACE
      */
-    public String respond(String input, String that, String topic, Context context, Profile profile) throws Exception {
-        return ComprehensiveProcessor.respond(this, context, profile, input, that, topic);
+    public String respond(String inputOriginal, String inputParsed, String that, String topic, Context context, Profile profile) throws Exception {
+        return ComprehensiveProcessor.respond(this, context, profile, inputOriginal, inputParsed, that, topic);
         
         /*
         boolean repetition = true;

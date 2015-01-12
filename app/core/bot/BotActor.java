@@ -3,7 +3,7 @@ package core.bot;
 import core.context.Context;
 import core.context.Profile;
 import core.grammar.GrammarCompiler;
-import core.grammar.Matcher;
+import core.grammar.GrammarMatcher;
 
 import java.util.Map;
 
@@ -24,15 +24,17 @@ public class BotActor extends UntypedActor {
 	private ContextProvider contextProvider;
 	private ProfileProvider profileProvider;
 	private GrammarCompiler grammarCompiler;
+	private GrammarMatcher matcher;
 	
 	//constructor
-	public BotActor(ContextProvider contextProvider, ProfileProvider profileProvider, GrammarCompiler grammarCompiler, 
+	public BotActor(ContextProvider contextProvider, ProfileProvider profileProvider, GrammarCompiler grammarCompiler, GrammarMatcher matcher,
 	        String name, String path) throws Exception {
 		Logger.info("Initializing bot " + name + " at " + path);
 		this.bot = new Bot(name, path);
 		this.contextProvider = contextProvider;
 		this.profileProvider = profileProvider;
 		this.grammarCompiler = grammarCompiler;
+		this.matcher = matcher;
 		this.name = name;
 		this.path = path;
 	}
@@ -49,7 +51,7 @@ public class BotActor extends UntypedActor {
 			        grammarCompiler.compile(path);
 			        break;
 			    case RESPOND:
-			        String input = query.getText();
+			        String inputOriginal = query.getText();
 		            String topic = query.getTopic();
 		            Response response = null;
 		            Context context = null;
@@ -60,7 +62,8 @@ public class BotActor extends UntypedActor {
 		                context = contextProvider.getContext(query.getUid(), query.getSid());
 		                profile = profileProvider.getProfile(query.getUid());
 		                String that = context.getThat();
-		                String output = bot.respond(input, that, topic, context, profile);
+		                String inputParsed = matcher.match(inputOriginal);
+		                String output = bot.respond(inputOriginal, inputParsed, that, topic, context, profile);
 		                if (output != null) {
 		                    response = new Response(200, output);
 		                } else {

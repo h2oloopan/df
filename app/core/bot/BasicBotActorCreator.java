@@ -3,7 +3,7 @@ package core.bot;
 import com.google.inject.Inject;
 
 import core.grammar.GrammarCompiler;
-import core.grammar.Matcher;
+import core.grammar.GrammarMatcher;
 import core.storage.*;
 import akka.japi.Creator;
 
@@ -15,17 +15,19 @@ public class BasicBotActorCreator extends BotActorCreator {
 	private ContextProvider contextProvider;
 	private ProfileProvider profileProvider;
 	private GrammarCompiler grammarCompiler;
+	private GrammarMatcher matcher;
 	
 	@Inject
-	public BasicBotActorCreator(ContextProvider contextProvider, ProfileProvider profileProvider, GrammarCompiler grammarCompiler) {
+	public BasicBotActorCreator(ContextProvider contextProvider, ProfileProvider profileProvider, GrammarCompiler grammarCompiler, GrammarMatcher matcher) {
 		this.contextProvider = contextProvider;
 		this.profileProvider = profileProvider;
 		this.grammarCompiler = grammarCompiler;
+		this.matcher = matcher;
 	}
 	
 	@Override
 	public BotActor create() throws Exception {
-		return new BotActor(contextProvider, profileProvider, grammarCompiler, name, path);
+		return new BotActor(contextProvider, profileProvider, grammarCompiler, matcher, name, path);
 	}
 
 	@Override

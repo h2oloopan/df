@@ -28,8 +28,8 @@ public class ComprehensiveProcessor
     public static AIMLProcessorExtension extension;
     public static TagHandlerCollection handlers = new TagHandlerCollection();
     
-    public static String respond(Bot bot, Context context, Profile profile, String input, String that, String topic) throws Exception {
-        Nodemapper leaf = bot.brain.match(input, that, topic);
+    public static String respond(Bot bot, Context context, Profile profile, String inputOriginal, String inputParsed, String that, String topic) throws Exception {
+        //Nodemapper leaf = bot.brain.match(input, that, topic);
         return "THIS IS MAKING SOME PROGRESS";
         /*
         if (leaf == null) {
