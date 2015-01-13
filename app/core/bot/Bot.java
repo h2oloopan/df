@@ -411,7 +411,7 @@ public class Bot
     public void writeAIMLIFFiles () {
         if (MagicBooleans.trace_mode) System.out.println("writeAIMLIFFiles");
         HashMap<String, BufferedWriter> fileMap = new HashMap<String, BufferedWriter>();
-        Category b = new Category(0, "BRAIN BUILD", null, "*", "*", new Date().toString(), "update.aiml");
+        Category b = new Category(0, "BRAIN BUILD", "*", "*", "*", new Date().toString(), "update.aiml");
         brain.addCategory(b);
         ArrayList<Category> brainCategories = brain.getCategories();
         Collections.sort(brainCategories, Category.CATEGORY_NUMBER_COMPARATOR);
@@ -456,7 +456,7 @@ public class Bot
     public void writeAIMLFiles () {
         if (MagicBooleans.trace_mode) System.out.println("writeAIMLFiles");
         HashMap<String, BufferedWriter> fileMap = new HashMap<String, BufferedWriter>();
-        Category b = new Category(0, "BRAIN BUILD", null, "*", "*", new Date().toString(), "update.aiml");
+        Category b = new Category(0, "BRAIN BUILD", "*", "*", "*", new Date().toString(), "update.aiml");
         brain.addCategory(b);
         //b = new Category(0, "PROGRAM VERSION", "*", "*", MagicStrings.program_name_version, "update.aiml");
         //brain.addCategory(b);

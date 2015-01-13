@@ -72,10 +72,6 @@ public class Graphmaster {
      * @return
      */
     public static String inputThatTopic (String pattern, String grammar, String that, String topic)  {
-        Logger.info(pattern);
-        Logger.info(grammar);
-        Logger.info(that);
-        Logger.info(topic);
         return pattern.trim() + " <GRAMMAR> " + grammar.trim() + " <THAT> " + that.trim() + " <TOPIC> " + topic.trim();
     }
 
@@ -300,7 +296,10 @@ public class Graphmaster {
                 n.starBindings = sb;
             }
             //if (!n.category.getPattern().contains("*")) System.out.println("adding match "+inputThatTopic);
-            if (n != null) n.category.addMatch(inputThatTopic, bot);
+            if (n != null) { 
+                n.category.addMatch(inputThatTopic, bot);
+                Logger.info("NOT NULL " + n.category.toString());
+            }
             return n;
         } catch (Exception ex) {
             ex.printStackTrace();
