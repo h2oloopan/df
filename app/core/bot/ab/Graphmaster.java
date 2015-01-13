@@ -266,14 +266,11 @@ public class Graphmaster {
     public final Nodemapper match(String inputOriginal, String inputParsed, String that, String topic) {
         Nodemapper n = null;
         try {
-         String inputThatTopic = inputThatTopic(inputOriginal, inputParsed, that, topic);
-         //System.out.println("Matching: "+inputThatTopic);
-         Path p = Path.sentenceToPath(inputThatTopic);
-         //p.print();
-         n = match(p, inputThatTopic);
-        } catch (Exception ex) {
-            //System.out.println("Match: "+input);
-            ex.printStackTrace();
+            String inputThatTopic = inputThatTopic(inputOriginal, inputParsed, that, topic);
+            Path p = Path.sentenceToPath(inputThatTopic);
+            n = match(p, inputThatTopic);
+        } catch (Exception e) {
+            Logger.warn(e.getMessage(), e);
             n = null;
         }
         
@@ -288,22 +285,23 @@ public class Graphmaster {
      */
     final Nodemapper match(Path path, String inputThatTopic) {
         try {
-        String[] inputStars = new String[MagicNumbers.max_stars];
-        String[] thatStars = new String[MagicNumbers.max_stars];
-        String[] topicStars = new String[MagicNumbers.max_stars];
-        String starState = "inputStar";
-        String matchTrace = "";
-        Nodemapper n = match(path, root, inputThatTopic, starState, 0, inputStars, thatStars, topicStars, matchTrace);
-        if (n != null) {
-            StarBindings sb = new StarBindings();
-            for (int i=0; inputStars[i] != null && i < MagicNumbers.max_stars; i++) sb.inputStars.add(inputStars[i]);
-            for (int i=0; thatStars[i] != null && i < MagicNumbers.max_stars; i++) sb.thatStars.add(thatStars[i]);
-            for (int i=0; topicStars[i] != null && i < MagicNumbers.max_stars; i++) sb.topicStars.add(topicStars[i]);
-            n.starBindings = sb;
-        }
-        //if (!n.category.getPattern().contains("*")) System.out.println("adding match "+inputThatTopic);
-        if (n != null) n.category.addMatch(inputThatTopic, bot);
-        return n;
+            String[] inputStars = new String[MagicNumbers.max_stars];
+            String[] grammarStars = new String[MagicNumbers.max_stars];
+            String[] thatStars = new String[MagicNumbers.max_stars];
+            String[] topicStars = new String[MagicNumbers.max_stars];
+            String starState = "inputStar";
+            String matchTrace = "";
+            Nodemapper n = match(path, root, inputThatTopic, starState, 0, inputStars, thatStars, topicStars, matchTrace);
+            if (n != null) {
+                StarBindings sb = new StarBindings();
+                for (int i=0; inputStars[i] != null && i < MagicNumbers.max_stars; i++) sb.inputStars.add(inputStars[i]);
+                for (int i=0; thatStars[i] != null && i < MagicNumbers.max_stars; i++) sb.thatStars.add(thatStars[i]);
+                for (int i=0; topicStars[i] != null && i < MagicNumbers.max_stars; i++) sb.topicStars.add(topicStars[i]);
+                n.starBindings = sb;
+            }
+            //if (!n.category.getPattern().contains("*")) System.out.println("adding match "+inputThatTopic);
+            if (n != null) n.category.addMatch(inputThatTopic, bot);
+            return n;
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;

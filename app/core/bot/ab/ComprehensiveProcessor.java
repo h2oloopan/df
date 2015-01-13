@@ -34,17 +34,16 @@ public class ComprehensiveProcessor
     public static String respond(Bot bot, Context context, Profile profile, String inputOriginal, String inputParsed, String that, String topic) throws Exception {
         Logger.info("INPUT: " + inputOriginal + " | PARSED: " + inputParsed);
         Nodemapper leaf = bot.brain.match(inputOriginal, inputParsed, that, topic);
-        //Nodemapper leaf = bot.brain.match(input, that, topic);
-        return "THIS IS MAKING SOME PROGRESS";
-        /*
+        
         if (leaf == null) {
             return null;
         } else {
-            ParseState ps = new ParseState(0, input, that, topic, leaf, bot, context, profile);
+            ParseState ps = new ParseState(0, inputOriginal, that, topic, leaf, bot, context, profile);
             String template = leaf.category.getTemplate();
+            Logger.info(leaf.category.toString());
             return evalTemplate(template, ps);
         }
-        */
+        
     }
     
     public static String evalTemplate(String template, ParseState ps) throws Exception {
