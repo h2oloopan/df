@@ -335,7 +335,7 @@ public class Graphmaster {
     final Nodemapper match(Path path, Nodemapper node, String inputThatTopic, String starState, int starIndex, String[] inputStars, String[] grammarStars, 
             String[] thatStars, String[] topicStars, String matchTrace) {
         Nodemapper matchedNode;
-        //System.out.println("Match: Height="+node.height+" Length="+path.length+" Path="+Path.pathToSentence(path));
+        Logger.info("Match: Height="+node.height+" Length="+path.length+" Path="+Path.pathToSentence(path));
         matchCount++;
         if ((matchedNode = nullMatch(path, node, matchTrace)) != null) return matchedNode;
         else if (path.length < node.height) {
@@ -426,6 +426,7 @@ public class Graphmaster {
     final Nodemapper dollarMatch(Path path, Nodemapper node, String inputThatTopic, String starState, int starIndex, 
             String[] inputStars, String[] grammarStars, String[] thatStars, String[] topicStars, String matchTrace) {
         String uword = "$"+path.word.toUpperCase();
+        Logger.info("$MATCH: " + uword);
         Nodemapper matchedNode;
         if (path != null && NodemapperOperator.containsKey(node, uword) && (matchedNode = match(path.next, NodemapperOperator.get(node, uword), inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null)  {
             return matchedNode;
