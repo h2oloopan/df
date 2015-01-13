@@ -112,8 +112,7 @@ public class ComprehensiveProcessor
                     if (x.getNodeName().toLowerCase().equals("grammar")) {
                         grammar = DomUtils.nodeToString(x);
                     } else {
-                        Logger.info(DomUtils.nodeToString(m));
-                        throw new IOException("Invalid format, the only possible sub item inside pattern is grammar");
+                        pattern = DomUtils.nodeToString(m);
                     }
                 } else {
                     pattern = DomUtils.nodeToString(m);
