@@ -107,7 +107,7 @@ public class ComprehensiveProcessor
                 //pattern = DomUtils.nodeToString(m);
                 NodeList kids = m.getChildNodes();
                 if (kids.getLength() > 1) {
-                    Node x = kids.item(0);
+                    Node x = kids.item(1);
                     if (x.getNodeName().toLowerCase().equals("grammar")) {
                         grammar = DomUtils.nodeToString(x);
                     } else {
@@ -122,7 +122,6 @@ public class ComprehensiveProcessor
             else if (mName.equals("template")) template = DomUtils.nodeToString(m);
             else throw new IOException("categoryProcessor: unexpected "+mName+" in "+DomUtils.nodeToString(m));
         }
-        Logger.info("GRAMMAR: " + grammar);
         //System.out.println("categoryProcessor: pattern="+pattern);
         pattern = trimTag(pattern, "pattern");
         grammar = trimTag(grammar, "grammar");

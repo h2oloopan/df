@@ -202,7 +202,7 @@ public class Bot
             }*/
 
         } else if (file.contains(MagicStrings.learnf_aiml_file) ) {
-            if (MagicBooleans.trace_mode) System.out.println("Reading Learnf file");
+            Logger.info("Reading Learnf file");
             for (Category c : moreCategories) {
                 brain.addCategory(c);
                 learnfGraph.addCategory(c);
