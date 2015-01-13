@@ -225,7 +225,6 @@ public class Bot
      * Load all brain categories from AIML directory
      */
     int addCategoriesFromAIML() {
-        Logger.info("WHAT");
         Timer timer = new Timer();
         timer.start();
         int cnt=0;
@@ -265,7 +264,6 @@ public class Bot
      * load all brain categories from AIMLIF directory
      */
     public int addCategoriesFromAIMLIF() {
-        Logger.info("Err");
         Timer timer = new Timer();
         timer.start();
         int cnt=0;
