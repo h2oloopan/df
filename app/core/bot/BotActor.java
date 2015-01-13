@@ -53,6 +53,7 @@ public class BotActor extends UntypedActor {
 			    case RESPOND:
 			        String inputOriginal = query.getText();
 		            String topic = query.getTopic();
+		            topic = topic == null ? SpecialText.NULL : topic;
 		            Response response = null;
 		            Context context = null;
 		            Profile profile = null;

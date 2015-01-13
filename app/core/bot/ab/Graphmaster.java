@@ -71,11 +71,11 @@ public class Graphmaster {
      * @param topic  topic (or topic pattern)
      * @return
      */
-    public static String inputThatTopic (String pattern, String grammar,  String that, String topic)  {
-        pattern = pattern == null ? "" : pattern;
-        grammar = grammar == null ? "" : grammar;
-        that = that == null ? "" : that;
-        topic = topic == null ? "" : topic;
+    public static String inputThatTopic (String pattern, String grammar, String that, String topic)  {
+        Logger.info(pattern);
+        Logger.info(grammar);
+        Logger.info(that);
+        Logger.info(topic);
         return pattern.trim() + " <GRAMMAR> " + grammar.trim() + " <THAT> " + that.trim() + " <TOPIC> " + topic.trim();
     }
 

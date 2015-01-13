@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import core.messages.SpecialText;
+
 public class Context {
 	public String uid;
 	public String sid;
@@ -35,7 +37,7 @@ public class Context {
 	
 	public String getLastResponse(int index) {
 		if (index >= responses.size()) {
-			return null;
+			return SpecialText.NULL;
 		} else {
 			return responses.get(responses.size() - index - 1);
 		}
@@ -43,7 +45,7 @@ public class Context {
 	
 	public String getLastQuery(int index) {
 		if (index >= queries.size()) {
-			return null;
+			return SpecialText.NULL;
 		} else {
 			return queries.get(queries.size() - index - 1);
 		}
