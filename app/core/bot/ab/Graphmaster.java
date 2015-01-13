@@ -100,7 +100,6 @@ public class Graphmaster {
     public void addCategory (Category category) {
         //TODO: need to somehow fix this
         String inputThatTopic = inputThatTopic(category.getPattern(), category.getGrammar(), category.getThat(), category.getTopic());
-        Logger.info(inputThatTopic);
         //System.out.println("addCategory: "+inputThatTopic);
         inputThatTopic = replaceBotProperties(inputThatTopic);
         /*if (inputThatTopic.contains("<B")) {
@@ -161,11 +160,6 @@ public class Graphmaster {
         if (path == null) {
             node.category = category;
             node.height = 0;
-        }
-        else if (enableShortCuts && thatStarTopicStar(path)) {
-            node.category = category;
-            node.height = Math.min(4, node.height);
-            node.shortCut = true;
         }
         else if (NodemapperOperator.containsKey(node, path.word)) {
             if (path.word.startsWith("<SET>")) addSets(path.word, bot, node, category.getFilename());
@@ -426,6 +420,7 @@ public class Graphmaster {
             String[] inputStars, String[] grammarStars, String[] thatStars, String[] topicStars, String matchTrace) {
         String uword = "$"+path.word.toUpperCase();
         Logger.info("$MATCH: " + uword);
+        Logger.info(node.toString());
         Nodemapper matchedNode;
         if (path != null && NodemapperOperator.containsKey(node, uword) && (matchedNode = match(path.next, NodemapperOperator.get(node, uword), inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null)  {
             return matchedNode;

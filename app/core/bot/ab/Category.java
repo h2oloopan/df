@@ -43,11 +43,11 @@ public class Category {
         String result = "";
         
         result += "Pattern: " + (pattern == null ? "" : pattern);
-        result += "Grammar: " + (grammar == null ? "" : grammar);
-        result += "That: " + (that == null ? "" : that);
-        result += "Topic: " + (topic == null ? "" : topic);
-        result += "Template: " + (template == null ? "" : template);
-        result += "Filename: " + (filename == null ? "" : filename);
+        result += " Grammar: " + (grammar == null ? "" : grammar);
+        result += " That: " + (that == null ? "" : that);
+        result += " Topic: " + (topic == null ? "" : topic);
+        result += " Template: " + (template == null ? "" : template);
+        result += " Filename: " + (filename == null ? "" : filename);
          
         return result;
     }
@@ -354,7 +354,7 @@ public class Category {
         filename = Utilities.fixCSV(filename);
         }
         this.pattern = pattern.trim().toUpperCase();
-        this.grammar = grammar;
+        this.grammar = grammar.trim().toUpperCase();
         this.that = that.trim().toUpperCase();
         this.topic = topic.trim().toUpperCase();
         this.template = template.replace("& ", " and "); // XML parser treats & badly

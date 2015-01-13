@@ -136,6 +136,8 @@ public class Bot
         //readUnfinishedIFCategories();
         MagicStrings.pannous_api_key = Utilities.getPannousAPIKey(this);
         MagicStrings.pannous_login = Utilities.getPannousLogin(this);
+        
+        /*
         if (aimlDate.after(aimlIFDate)) {
             if (MagicBooleans.trace_mode) System.out.println("AIML modified after AIMLIF");
             cnt = addCategoriesFromAIML();
@@ -148,11 +150,14 @@ public class Bot
                 cnt = addCategoriesFromAIML();
             }
         }
+        */
+        
+        cnt = addCategoriesFromAIML();
+        
         //Category b = new Category(0, "PROGRAM VERSION", "*", "*", MagicStrings.program_name_version, "update.aiml");
         //brain.addCategory(b);
         brain.nodeStats();
         learnfGraph.nodeStats();
-
     }
     
     /*

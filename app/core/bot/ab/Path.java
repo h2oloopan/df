@@ -115,5 +115,15 @@ public class Path extends ArrayList<String>{
         if (result.endsWith(",")) result = result.substring(0, result.length()-1);
         System.out.println(result);
     }
+    
+    @Override
+    public String toString() {
+        String result = "";
+        for (Path p = this; p != null; p = p.next) {
+            result += p.word+",";
+        }
+        if (result.endsWith(",")) result = result.substring(0, result.length()-1);
+        return result;
+    }
 
 }

@@ -44,7 +44,19 @@ public class Nodemapper {
     public String toString() {
         String result = "";
         
+        if (category != null) {
+            result += "CATEGORY: " + category.toString();
+        }
         
+        result += " HEIGHT: " + (new Integer(height)).toString();
+        
+        if (key != null) {
+            result += " KEY: " + key;
+        }
+        
+        if (value != null) {
+            result += " VALUE: " + value.toString();
+        }
         
         return result;
     }
