@@ -94,7 +94,7 @@ public class ComprehensiveProcessor
         String pattern, grammar, that, template;
 
         NodeList children = n.getChildNodes();
-        grammar = null;
+        grammar = "*";
         pattern = "*"; that = "*";  template="";
         for (int j = 0; j < children.getLength(); j++) {
             //System.out.println("CHILD: " + children.item(j).getNodeName());
@@ -106,7 +106,6 @@ public class ComprehensiveProcessor
             else if (mName.equals("pattern")) { 
                 //pattern = DomUtils.nodeToString(m);
                 NodeList kids = m.getChildNodes();
-                Logger.info((new Integer(kids.getLength())).toString());
                 if (kids.getLength() > 1) {
                     Node x = kids.item(0);
                     if (x.getNodeName().toLowerCase().equals("grammar")) {
@@ -125,9 +124,11 @@ public class ComprehensiveProcessor
         }
         //System.out.println("categoryProcessor: pattern="+pattern);
         pattern = trimTag(pattern, "pattern");
+        grammar = trimTag(grammar, "grammar");
         that = trimTag(that, "that");
         topic = trimTag(topic, "topic");
         pattern = cleanPattern(pattern);
+        grammar = cleanPattern(grammar);
         that = cleanPattern(that);
         topic = cleanPattern(topic);
 

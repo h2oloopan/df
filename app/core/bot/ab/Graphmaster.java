@@ -24,6 +24,7 @@ import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import play.Logger;
 import core.bot.Bot;
 
 /**
@@ -101,6 +102,7 @@ public class Graphmaster {
     }
     public void addCategory (Category category) {
         String inputThatTopic = inputThatTopic(category.getPattern(), category.getThat(), category.getTopic());
+        Logger.info(inputThatTopic);
         //System.out.println("addCategory: "+inputThatTopic);
         inputThatTopic = replaceBotProperties(inputThatTopic);
         /*if (inputThatTopic.contains("<B")) {

@@ -15,7 +15,6 @@ public class LaoMaMatcher implements GrammarMatcher {
 	@Override
 	public GrammarMatcher initialize(String path) throws Exception {
 		File grams = new File(new File(path), "execs/grams.bin");
-		Logger.info(grams.getAbsolutePath());
 		if (!grams.exists()) {
 			return null;
 		} else {
