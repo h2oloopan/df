@@ -661,15 +661,14 @@ public void shadowChecker () {
         if (NodemapperOperator.isLeaf(node)) {
             String input = node.category.getPattern();
             input = brain.replaceBotProperties(input);
-            input =
-                    input.replace("*", "XXX").replace("_", "XXX").replace("^","").replace("#","");
+            input = input.replace("*", "XXX").replace("_", "XXX").replace("^","").replace("#","");
+            String grammar = node.category.getGrammar();
             String that = node.category.getThat().replace("*", "XXX").replace("_", "XXX").replace("^","").replace("#","");
             String topic = node.category.getTopic().replace("*", "XXX").replace("_", "XXX").replace("^","").replace("#","");
             input = instantiateSets(input);
             System.out.println("shadowChecker: input="+input);
-            Nodemapper match = brain.match(input, that, topic);
+            Nodemapper match = brain.match(input, grammar, that, topic);
             if (match != node) {
-                System.out.println("" + Graphmaster.inputThatTopic(input, that, topic));
                 System.out.println("MATCHED:     "+match.category.inputThatTopic());
                 System.out.println("SHOULD MATCH:"+node.category.inputThatTopic());
             }

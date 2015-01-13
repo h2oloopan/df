@@ -71,11 +71,12 @@ public class Graphmaster {
      * @param topic  topic (or topic pattern)
      * @return
      */
-    public static String inputThatTopic (String input, String that, String topic)  {
-        input = input == null ? "" : input;
+    public static String inputThatTopic (String pattern, String grammar,  String that, String topic)  {
+        pattern = pattern == null ? "" : pattern;
+        grammar = grammar == null ? "" : grammar;
         that = that == null ? "" : that;
         topic = topic == null ? "" : topic;
-        return input.trim()+" <THAT> "+that.trim()+" <TOPIC> "+topic.trim();
+        return pattern.trim() + " <GRAMMAR> " + grammar.trim() + " <THAT> " + that.trim() + " <TOPIC> " + topic.trim();
     }
 
     /**
@@ -101,7 +102,7 @@ public class Graphmaster {
         return pattern;
     }
     public void addCategory (Category category) {
-        String inputThatTopic = inputThatTopic(category.getPattern(), category.getThat(), category.getTopic());
+        String inputThatTopic = inputThatTopic(category.getPattern(), category.getGrammar(), category.getThat(), category.getTopic());
         Logger.info(inputThatTopic);
         //System.out.println("addCategory: "+inputThatTopic);
         inputThatTopic = replaceBotProperties(inputThatTopic);
@@ -207,7 +208,7 @@ public class Graphmaster {
      *   @return true or false
      */
     public Nodemapper findNode(Category c) {
-        return findNode(c.getPattern(), c.getThat(), c.getTopic());
+        return findNode(c.getPattern(), c.getGrammar(), c.getThat(), c.getTopic());
     }
 
     /** Given an input pattern, that pattern and topic pattern, find the leaf node associated with this path.
@@ -217,11 +218,12 @@ public class Graphmaster {
      * @param topic    topic pattern
      * @return         leaf node or null if no matching node is found
      */
-    public Nodemapper findNode(String input, String that, String topic) {
-        Nodemapper result = findNode(root, Path.sentenceToPath(inputThatTopic(input, that, topic)));
-        if (verbose) System.out.println("findNode "+inputThatTopic(input, that, topic)+" "+result);
+    
+    public Nodemapper findNode(String pattern, String grammar, String that, String topic) {
+        Nodemapper result = findNode(root, Path.sentenceToPath(inputThatTopic(pattern, grammar, that, topic)));
         return result;
     }
+    
     public static boolean verbose = false;
 
     /**
@@ -260,10 +262,10 @@ public class Graphmaster {
      * @param topic              current topic
      * @return                   matching leaf node or null if no match is found
      */
-    public final Nodemapper match(String input, String that, String topic) {
+    public final Nodemapper match(String inputOriginal, String inputParsed, String that, String topic) {
         Nodemapper n = null;
         try {
-         String inputThatTopic = inputThatTopic(input, that, topic);
+         String inputThatTopic = inputThatTopic(inputOriginal, inputParsed, that, topic);
          //System.out.println("Matching: "+inputThatTopic);
          Path p = Path.sentenceToPath(inputThatTopic);
          //p.print();
@@ -274,17 +276,6 @@ public class Graphmaster {
             n = null;
         }
         
-        return n;
-    }
-
-    public final Nodemapper match(String inputOriginal, String inputParsed, String that, String topic) {
-        Nodemapper n = null;
-        try {
-            //try to match grammar first
-            
-        } catch (Exception e) {
-            n = null;
-        }
         return n;
     }
     

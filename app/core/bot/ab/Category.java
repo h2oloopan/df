@@ -199,7 +199,7 @@ public class Category {
      * @return
      */
     public String inputThatTopic() {
-        return Graphmaster.inputThatTopic(pattern, that, topic);
+        return Graphmaster.inputThatTopic(pattern, grammar, that, topic);
     }
 
     /**
