@@ -40,7 +40,14 @@ public class Nodemapper {
 /*    public Nodemapper () {
         id = idCnt++;
     }*/
-
+    @Override
+    public String toString() {
+        String result = "";
+        
+        
+        
+        return result;
+    }
  }
 
 
