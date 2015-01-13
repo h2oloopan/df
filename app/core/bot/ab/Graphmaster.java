@@ -102,8 +102,8 @@ public class Graphmaster {
         return pattern;
     }
     public void addCategory (Category category) {
+        //TODO: need to somehow fix this
         String inputThatTopic = inputThatTopic(category.getPattern(), category.getGrammar(), category.getThat(), category.getTopic());
-        Logger.info(inputThatTopic);
         //System.out.println("addCategory: "+inputThatTopic);
         inputThatTopic = replaceBotProperties(inputThatTopic);
         /*if (inputThatTopic.contains("<B")) {

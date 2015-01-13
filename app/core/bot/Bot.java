@@ -225,6 +225,7 @@ public class Bot
      * Load all brain categories from AIML directory
      */
     int addCategoriesFromAIML() {
+        Logger.info("WHAT");
         Timer timer = new Timer();
         timer.start();
         int cnt=0;
@@ -234,7 +235,7 @@ public class Bot
             File folder = new File(aiml_path);
             if (folder.exists()) {
                 File[] listOfFiles = IOUtils.listFiles(folder);
-                if (MagicBooleans.trace_mode) System.out.println("Loading AIML files from "+aiml_path);
+                Logger.info("Loading AIML files from "+aiml_path);
                 for (File listOfFile : listOfFiles) {
                     if (listOfFile.isFile()) {
                         file = listOfFile.getName();
@@ -254,7 +255,7 @@ public class Bot
             }
             else System.out.println("addCategoriesFromAIML: "+aiml_path+" does not exist.");
         } catch (Exception ex)  {
-            ex.printStackTrace();
+            Logger.error(ex.getMessage(), ex);
         }
         Logger.info("Loaded " + cnt + " categories in " + timer.elapsedTimeSecs() + " sec");
         return cnt;
@@ -264,6 +265,7 @@ public class Bot
      * load all brain categories from AIMLIF directory
      */
     public int addCategoriesFromAIMLIF() {
+        Logger.info("Err");
         Timer timer = new Timer();
         timer.start();
         int cnt=0;
@@ -273,12 +275,12 @@ public class Bot
             File folder = new File(aimlif_path);
             if (folder.exists()) {
                 File[] listOfFiles = IOUtils.listFiles(folder);
-                if (MagicBooleans.trace_mode)  System.out.println("Loading AIML files from "+aimlif_path);
+                Logger.info("Loading AIML files from "+aimlif_path);
                 for (File listOfFile : listOfFiles) {
                     if (listOfFile.isFile()) {
                         file = listOfFile.getName();
                         if (file.endsWith(MagicStrings.aimlif_file_suffix) || file.endsWith(MagicStrings.aimlif_file_suffix.toUpperCase())) {
-                            if (MagicBooleans.trace_mode) System.out.println(file);
+                            Logger.info(file);
                             try {
                                 ArrayList<Category> moreCategories = readIFCategories(aimlif_path + "/" + file);
                                 cnt += moreCategories.size();
@@ -292,11 +294,11 @@ public class Bot
                     }
                 }
             }
-            else System.out.println("addCategoriesFromAIMLIF: "+aimlif_path+" does not exist.");
+            else Logger.info("addCategoriesFromAIMLIF: "+aimlif_path+" does not exist.");
         } catch (Exception ex)  {
-            ex.printStackTrace();
+            Logger.error(ex.getMessage(), ex);
         }
-        if (MagicBooleans.trace_mode) System.out.println("Loaded " + cnt + " categories in " + timer.elapsedTimeSecs() + " sec");
+        Logger.info("Loaded " + cnt + " categories in " + timer.elapsedTimeSecs() + " sec");
         return cnt;
     }
 

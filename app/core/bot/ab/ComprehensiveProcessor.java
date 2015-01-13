@@ -91,6 +91,8 @@ public class ComprehensiveProcessor
     }
     
     private static void categoryProcessor(Node n, ArrayList<Category> categories, String topic, String aimlFile) throws Exception {
+        Logger.info("GETTING HERE");
+        
         String pattern, grammar, that, template;
 
         NodeList children = n.getChildNodes();
@@ -122,6 +124,8 @@ public class ComprehensiveProcessor
             else if (mName.equals("template")) template = DomUtils.nodeToString(m);
             else throw new IOException("categoryProcessor: unexpected "+mName+" in "+DomUtils.nodeToString(m));
         }
+        Logger.info("[GRAMMAR]" + grammar);
+        
         //System.out.println("categoryProcessor: pattern="+pattern);
         pattern = trimTag(pattern, "pattern");
         grammar = trimTag(grammar, "grammar");
@@ -146,7 +150,7 @@ public class ComprehensiveProcessor
     public static String trimTag(String s, String tagName) {
         String stag = "<" + tagName + ">";
         String etag = "</" + tagName + ">";
-        if (s.startsWith(stag) && s.endsWith(etag)) {
+        if (s.toLowerCase().startsWith(stag) && s.toLowerCase().endsWith(etag)) {
             s = s.substring(stag.length());
             s = s.substring(0, s.length() - etag.length());
         }
