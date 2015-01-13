@@ -161,7 +161,7 @@ public class Graphmaster {
      * @param category    AIML Category
      */
     void addPath(Nodemapper node, Path path, Category category) {
-        if (path != null) Logger.info("Enable shortcuts = "+enableShortCuts+" path="+Path.pathToSentence(path)+" "+thatStarTopicStar(path));
+        //if (path != null) Logger.info("Enable shortcuts = "+enableShortCuts+" path="+Path.pathToSentence(path)+" "+thatStarTopicStar(path));
         if (path == null) {
             node.category = category;
             node.height = 0;
@@ -326,6 +326,7 @@ public class Graphmaster {
      * @param starState       tells whether wildcards are in input pattern, that pattern or topic pattern
      * @param starIndex       index of wildcard
      * @param inputStars      array of input pattern wildcard matches
+     * @param grammarStars    array of input grammar pattern wildcard matches, it's not used for now
      * @param thatStars       array of that pattern wildcard matches
      * @param topicStars      array of topic pattern wildcard matches
      * @param matchTrace      trace of match path for debugging purposes
@@ -360,6 +361,7 @@ public class Graphmaster {
      * @param trace  Match trace info
      */
     void fail (String mode, String trace) {
+        Logger.warn("SEARCH FAILED: " + mode + " | " + trace);
        // System.out.println("Match failed ("+mode+") "+trace);
     }
 
@@ -420,6 +422,7 @@ public class Graphmaster {
             return null;
         }
     }
+    
     final Nodemapper dollarMatch(Path path, Nodemapper node, String inputThatTopic, String starState, int starIndex, 
             String[] inputStars, String[] grammarStars, String[] thatStars, String[] topicStars, String matchTrace) {
         String uword = "$"+path.word.toUpperCase();
@@ -431,6 +434,7 @@ public class Graphmaster {
             return null;
         }
     }
+    
     final Nodemapper starMatch(Path path, Nodemapper node, String input, String starState, int starIndex, 
             String[] inputStars, String[] grammarStars, String[] thatStars, String[] topicStars, String matchTrace) {
         return wildMatch(path, node, input, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, "*", matchTrace);
