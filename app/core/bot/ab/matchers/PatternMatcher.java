@@ -7,6 +7,7 @@
 package core.bot.ab.matchers;
 
 import core.bot.ab.*;
+import core.bot.ab.NodemapperOperator;
 
 /**
  *@author Shengying Pan (s5pan@uwaterloo.ca) 
