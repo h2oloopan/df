@@ -49,7 +49,10 @@ public class ComprehensiveProcessor
     public static String evalTemplate(String template, ParseState ps) throws Exception {
         template = "<template>" + template + "</template>";
         Node root = DomUtils.parseString(template);
-        return handlers.get("default").handle(root, ps);
+        
+        Logger.info("EVAL TEMPLATE: " + template);
+        return "THERE IS NO EVALUATION ATM";
+        //return handlers.get("default").handle(root, ps);
     }
     
     public static boolean validTemplate(String template){

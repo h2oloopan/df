@@ -12,6 +12,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import play.Logger;
 import core.bot.ab.ParseState;
 
 /**
@@ -30,6 +31,7 @@ public class DefaultHandler extends TagHandler
         } else if (nodeName.equals("#comment")) {
             return "";
         } else {
+            Logger.info("Looking for handler " + nodeName.toLowerCase());
             TagHandler handler = ps.bot.handlers.get(nodeName.toLowerCase());
             if (!(handler instanceof DefaultHandler)) {
                 return handler.handle(node, ps, previousResult, ignoreAttributes);
