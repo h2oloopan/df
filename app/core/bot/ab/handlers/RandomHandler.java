@@ -6,6 +6,7 @@
  */
 package core.bot.ab.handlers;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import org.w3c.dom.NamedNodeMap;
