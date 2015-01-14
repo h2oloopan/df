@@ -21,8 +21,7 @@ public class StarMatcher extends PatternMatcher
     public Nodemapper match(Path path, Nodemapper node, String inputThatTopic, String starState, int starIndex, String[] inputStars,
             String[] grammarStars, String[] thatStars, String[] topicStars, String matchTrace)
     {
-        // TODO Auto-generated method stub
-        return null;
+        return MatchHelper.wildMatch(path, node, inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, "*", matchTrace);
     }
 
 }
