@@ -13,6 +13,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import play.Logger;
+import core.bot.ab.MagicNumbers;
+import core.bot.ab.MagicStrings;
 import core.bot.ab.ParseState;
 
 /**
@@ -29,7 +31,7 @@ public class ConditionHandler extends TagHandler
         String result = "";
         int loopCnt = 0;
         while (loop && loopCnt < MagicNumbers.max_loops) {
-            String loopResult = condition(node, ps);
+            String loopResult = HandlingHelper.condition(node, ps);
             if (loopResult.trim().equals(MagicStrings.too_much_recursion)) {
                 return MagicStrings.too_much_recursion;
             }
@@ -43,6 +45,6 @@ public class ConditionHandler extends TagHandler
             result += loopResult;
         }
         if (loopCnt >= MagicNumbers.max_loops) result = MagicStrings.too_much_recursion;
+        return result;
     }
-
 }
