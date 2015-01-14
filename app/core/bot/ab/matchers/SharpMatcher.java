@@ -14,7 +14,7 @@ import core.bot.ab.Path;
  *@author Shengying Pan (s5pan@uwaterloo.ca) 
  *@date Jan 14, 2015
  */
-public class SharpMatcher extends ZeroMatcher
+public class SharpMatcher extends PatternMatcher
 {
 
     @Override
@@ -22,7 +22,7 @@ public class SharpMatcher extends ZeroMatcher
             String[] grammarStars, String[] thatStars, String[] topicStars, String matchTrace)
     {
         Nodemapper matchedNode;
-        
+        matchedNode = Z
     }
 
 }
