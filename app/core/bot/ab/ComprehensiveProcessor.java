@@ -51,8 +51,7 @@ public class ComprehensiveProcessor
         Node root = DomUtils.parseString(template);
         
         Logger.info("EVAL TEMPLATE: " + template);
-        return "THERE IS NO EVALUATION ATM";
-        //return handlers.get("default").handle(root, ps);
+        return handlers.get("default").handle(root, ps);
     }
     
     public static boolean validTemplate(String template){
