@@ -18,6 +18,7 @@ import core.bot.ab.ParseState;
 /**
  *@author Shengying Pan (s5pan@uwaterloo.ca) 
  *@date Jan 9, 2015
+ * This DefaultHandler actually does text and template node
  */
 public class DefaultHandler extends TagHandler
 {   
