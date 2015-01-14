@@ -22,7 +22,13 @@ public class SharpMatcher extends PatternMatcher
             String[] grammarStars, String[] thatStars, String[] topicStars, String matchTrace)
     {
         Nodemapper matchedNode;
-        matchedNode = Z
+        matchedNode = MatchHelper.zeroMatch(path, matchedNode, inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, "#", matchTrace);
+        if (matchedNode != null) {
+            return matchedNode;
+        } else {
+            return wildMat
+        }
+        
     }
 
 }
