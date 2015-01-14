@@ -43,7 +43,9 @@ public class DefaultMatcher
         	return matchedNode;
         } else if ((matchedNode = wordMatcher.match(path, node, inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null) {
         	return matchedNode;
-        } else if ((matchedNode = setMatcher.match(path, node, inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null) {
+        } 
+        /*
+        else if ((matchedNode = setMatcher.match(path, node, inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null) {
         	return matchedNode;
         } else if ((matchedNode = shortcutMatcher.match(path, node, inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null) {
         	return matchedNode;
@@ -51,7 +53,9 @@ public class DefaultMatcher
         	return matchedNode;
         } else if ((matchedNode = starMatcher.match(path, node, inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null) {
         	return matchedNode;
-        } else {
+        }
+        */
+        else {
         	return null;
         }
     }
