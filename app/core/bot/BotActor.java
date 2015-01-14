@@ -53,6 +53,7 @@ public class BotActor extends UntypedActor {
 			    case RESPOND:
 			        String inputOriginal = query.getText();
 		            String topic = query.getTopic();
+		            inputOriginal = inputOriginal == null ? SpecialText.NULL : inputOriginal;
 		            topic = topic == null ? SpecialText.NULL : topic;
 		            Response response = null;
 		            Context context = null;
@@ -64,6 +65,7 @@ public class BotActor extends UntypedActor {
 		                profile = profileProvider.getProfile(query.getUid());
 		                String that = context.getThat();
 		                String inputParsed = grammarMatcher.match(inputOriginal);
+		                inputParsed = inputParsed == null ? SpecialText.NULL : inputParsed;
 		                String output = bot.respond(inputOriginal, inputParsed, that, topic, context, profile);
 		                if (output != null) {
 		                    response = new Response(200, output);

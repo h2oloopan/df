@@ -165,7 +165,7 @@ public class Bot
      */
     public String respond(String inputOriginal, String inputParsed, String that, String topic, Context context, Profile profile) throws Exception {
         return ComprehensiveProcessor.respond(this, context, profile, inputOriginal, inputParsed, that, topic);
-        
+        //TODO: repetition handling goes here?
         /*
         boolean repetition = true;
         //inputHistory.printHistory();
