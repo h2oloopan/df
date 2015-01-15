@@ -48,14 +48,21 @@ public class BotActor extends UntypedActor {
 			CommandType command = query.getCommand();
 			switch (command) {
 			    case COMPILE:
-			        grammarCompiler.compile(path);
+			        Response response = null;
+			        try {
+			            grammarCompiler.compile(path);
+			            response = new Response(200, "");
+			        } catch (Exception e) {
+			            response = new Response(500, e.getMessage());
+			        } finally {
+			            getSender().tell(response, getContext().parent());
+			        }
 			        break;
 			    case RESPOND:
 			        String inputOriginal = query.getText();
 		            String topic = query.getTopic();
 		            inputOriginal = inputOriginal == null ? SpecialText.NULL : inputOriginal;
 		            topic = topic == null ? SpecialText.NULL : topic;
-		            Response response = null;
 		            Context context = null;
 		            Profile profile = null;
 		            

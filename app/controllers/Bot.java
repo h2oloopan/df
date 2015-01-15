@@ -42,6 +42,38 @@ public class Bot extends Controller {
 			});
 		}
 	}
+
+	//Compile grammar files for a bot
+	public Promise<Result> compile() {
+		try {
+			JsonNode json = request().body().asJson();
+			String bot = json.findPath("bot").textValue();
+			Logger.info("Compiling bot " + bot);
+			ActorRef actor = farm.getActor(bot);
+			Query q = new Query(CommandType.COMPILE);
+			return Promise.wrap(ask(actor, q, 5000)).map(
+			    new Function<Object, Result>() {
+			        public Result apply(Object message) {
+			            Response response = (Response)message;
+                        switch (response.getCode()) {
+                        case 200:
+                            return ok();
+                        case 500:
+                            return internalServerError(response.getText());
+                        default:
+                            return ok();
+                        }
+			        }
+			    }
+			);
+		} catch (final Exception e) {
+			return Promise.promise(new Function0<Result>() {
+				public Result apply() {
+					return badRequest(e.getMessage());
+				}
+			});
+		}
+	}
 	
 	public Promise<Result> talk() {
 		try {

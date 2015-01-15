@@ -15,6 +15,10 @@ public class Query {
 	
 	private final CommandType command;
 	
+	public Query(CommandType command) {
+	    this(command, null, null, null);
+	}
+	
 	public Query(CommandType command, String uid, String sid, String text) {
 		this(command, uid, sid, text, null);
 	}

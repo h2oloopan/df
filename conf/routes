@@ -7,7 +7,9 @@ GET     /                           @controllers.Application.index()
 
 # Bot
 POST    /bot/talk                   @controllers.Bot.talk()
-GET     /bot/bots                @controllers.Bot.bots()
+POST    /bot/compile               	@controllers.Bot.compile()
+GET     /bot/bots                   @controllers.Bot.bots()
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

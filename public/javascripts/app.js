@@ -29,6 +29,15 @@ define(['routes/testRoute', 'ehbs!templates/index'], function(TestRoute) {
       });
       return App.IndexController = Ember.ObjectController.extend({
         actions: {
+          update: function(message) {
+            var display;
+            display = this.get('display');
+            display += '[SYSTEM] ' + message + '\r\n';
+            this.set('display', display);
+            return setTimeout(function() {
+              return $('textarea').scrollTop($('textarea')[0].scrollHeight);
+            }, 300);
+          },
           talk: function() {
             var question, thiz, uid;
             thiz = this;
@@ -60,6 +69,22 @@ define(['routes/testRoute', 'ehbs!templates/index'], function(TestRoute) {
             return false;
           },
           compile: function() {
+            var bot, thiz;
+            thiz = this;
+            bot = this.get('bot');
+            $.ajax({
+              url: '/bot/compile',
+              type: 'POST',
+              data: JSON.stringify({
+                bot: bot
+              }),
+              dataType: 'json',
+              contentType: 'application/json; charset=utf-8'
+            }).done(function(result) {
+              return thiz.send('update', 'Grammar compilation done for bot ' + bot);
+            }).fail(function(response) {
+              return thiz.send('update', 'Grammar compilation failed for bot ' + response.responseText);
+            });
             return false;
           }
         }
