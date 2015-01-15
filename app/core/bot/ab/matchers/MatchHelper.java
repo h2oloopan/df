@@ -7,6 +7,7 @@
 package core.bot.ab.matchers;
 
 import play.Logger;
+import core.bot.ab.MagicNumbers;
 import core.bot.ab.Nodemapper;
 import core.bot.ab.NodemapperOperator;
 import core.bot.ab.Path;
@@ -17,6 +18,27 @@ import core.bot.ab.Path;
  */
 public class MatchHelper
 {
+    public static void setStars(String starWords, int starIndex, String starState,
+            String[] inputStars, String[] grammarStars, String[] thatStars, String[] topicStars) {
+        if (starIndex < MagicNumbers.max_stars) {
+            starWords = starWords.trim();
+            switch (starState.toLowerCase()) {
+                case "inputstar":
+                    inputStars[starIndex] = starWords;
+                    break;
+                case "grammarstar":
+                    grammarStars[starIndex] = starWords;
+                    break;
+                case "thatstar":
+                    thatStars[starIndex] = starWords;
+                    break;
+                case "topicstar":
+                    topicStars[starIndex] = starWords;
+                    break;
+            }
+        }
+    }
+    
     public static Nodemapper zeroMatch(Path path, Nodemapper node, String inputThatTopic, String starState, int starIndex, String[] inputStars,
         String[] grammarStars, String[] thatStars, String[] topicStars, String wildcard, String matchTrace)
     {
