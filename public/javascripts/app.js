@@ -32,39 +32,36 @@ define(['routes/testRoute', 'ehbs!templates/index'], function(TestRoute) {
           update: function(message) {
             var display;
             display = this.get('display');
-            display += '[SYSTEM] ' + message + '\r\n';
+            display += message + '\r\n';
             this.set('display', display);
             return setTimeout(function() {
               return $('textarea').scrollTop($('textarea')[0].scrollHeight);
             }, 300);
           },
           talk: function() {
-            var question, thiz, uid;
+            var bot, question, thiz, uid;
             thiz = this;
+            bot = this.get('bot');
             uid = this.get('uid');
             question = this.get('question');
             $.ajax({
               url: '/bot/talk',
               type: 'POST',
               data: JSON.stringify({
-                bot: 'dummy',
+                bot: bot,
                 uid: uid,
                 query: question
               }),
               dataType: 'json',
               contentType: 'application/json; charset=utf-8'
             }).done(function(result) {
-              var display;
-              display = thiz.get('display');
-              display += '[HUMAN] ' + thiz.get('question') + '\r\n';
-              display += '[BOT] ' + result.text + '\r\n';
-              thiz.set('display', display);
+              var message;
+              message = '[HUMAN] ' + question + '\r\n';
+              message += '[BOT] ' + result.text;
               thiz.set('question', null);
-              return setTimeout(function() {
-                return $('textarea').scrollTop($('textarea')[0].scrollHeight);
-              }, 300);
+              return thiz.send('update', message);
             }).fail(function(response) {
-              return console.log(response);
+              return thiz.send('update', '[SYSTEM] ' + response.responseText);
             });
             return false;
           },
@@ -81,9 +78,9 @@ define(['routes/testRoute', 'ehbs!templates/index'], function(TestRoute) {
               dataType: 'json',
               contentType: 'application/json; charset=utf-8'
             }).done(function(result) {
-              return thiz.send('update', 'Grammar compilation done for bot ' + bot);
+              return thiz.send('update', '[SYSTEM] Grammar compilation done for bot ' + bot);
             }).fail(function(response) {
-              return thiz.send('update', 'Grammar compilation failed for bot ' + response.responseText);
+              return thiz.send('update', '[SYSTEM] Grammar compilation failed for bot ' + response.responseText);
             });
             return false;
           }

@@ -24,37 +24,32 @@ define ['routes/testRoute', 'ehbs!templates/index'], (TestRoute) ->
 				actions:
 					update: (message) ->
 						display = @get 'display'
-						display += '[SYSTEM] ' + message + '\r\n'
+						display += message + '\r\n'
 						@set 'display', display
 						setTimeout ->
 							$('textarea').scrollTop $('textarea')[0].scrollHeight
 						, 300
 					talk: ->
 						thiz = @
+						bot = @get 'bot'
 						uid = @get 'uid'
 						question = @get 'question'
 						$.ajax
 							url: '/bot/talk'
 							type: 'POST'
 							data: JSON.stringify
-								bot: 'dummy'
+								bot: bot
 								uid: uid
 								query: question
 							dataType: 'json'
 							contentType: 'application/json; charset=utf-8'
 						.done (result) ->
-							display = thiz.get 'display'
-							display += '[HUMAN] ' + thiz.get('question') + '\r\n'
-							display += '[BOT] ' + result.text + '\r\n'
-							thiz.set 'display', display
+							message = '[HUMAN] ' + question + '\r\n'
+							message += '[BOT] ' + result.text
 							thiz.set 'question', null
-							#scroll
-							setTimeout ->
-								$('textarea').scrollTop $('textarea')[0].scrollHeight
-							, 300
+							thiz.send 'update', message
 						.fail (response) ->
-							console.log response
-
+							thiz.send 'update', '[SYSTEM] ' + response.responseText
 
 						return false
 					compile: ->
@@ -68,7 +63,7 @@ define ['routes/testRoute', 'ehbs!templates/index'], (TestRoute) ->
 							dataType: 'json'
 							contentType: 'application/json; charset=utf-8'
 						.done (result) ->
-							thiz.send 'update', 'Grammar compilation done for bot ' + bot
+							thiz.send 'update', '[SYSTEM] Grammar compilation done for bot ' + bot
 						.fail (response) ->
-							thiz.send 'update', 'Grammar compilation failed for bot ' + response.responseText
+							thiz.send 'update', '[SYSTEM] Grammar compilation failed for bot ' + response.responseText
 						return false
