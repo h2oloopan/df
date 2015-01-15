@@ -24,6 +24,7 @@ package core.bot.ab;
  */
 public class StarBindings {
     public Stars inputStars;
+    public Stars grammarStars;
     public Stars thatStars;
     public Stars topicStars;
     /** Constructor  -- this class has public members
@@ -31,6 +32,7 @@ public class StarBindings {
      */
     public StarBindings () {
         inputStars = new Stars();
+        grammarStars = new Stars();
         thatStars = new Stars();
         topicStars = new Stars();
     }

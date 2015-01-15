@@ -286,9 +286,18 @@ public class Graphmaster {
             Nodemapper n = match(path, root, inputThatTopic, starState, 0, inputStars, grammarStars, thatStars, topicStars, matchTrace);
             if (n != null) {
                 StarBindings sb = new StarBindings();
-                for (int i=0; inputStars[i] != null && i < MagicNumbers.max_stars; i++) sb.inputStars.add(inputStars[i]);
-                for (int i=0; thatStars[i] != null && i < MagicNumbers.max_stars; i++) sb.thatStars.add(thatStars[i]);
-                for (int i=0; topicStars[i] != null && i < MagicNumbers.max_stars; i++) sb.topicStars.add(topicStars[i]);
+                for (int i=0; inputStars[i] != null && i < MagicNumbers.max_stars; i++) {
+                    sb.inputStars.add(inputStars[i]);
+                }
+                for (int i = 0; grammarStars[i] != null && i < MagicNumbers.max_stars; i++ ) {
+                    sb.grammarStars.add(grammarStars[i]);
+                }
+                for (int i=0; thatStars[i] != null && i < MagicNumbers.max_stars; i++) {
+                    sb.thatStars.add(thatStars[i]);
+                }
+                for (int i=0; topicStars[i] != null && i < MagicNumbers.max_stars; i++) {
+                    sb.topicStars.add(topicStars[i]);
+                }
                 n.starBindings = sb;
             }
             //if (!n.category.getPattern().contains("*")) System.out.println("adding match "+inputThatTopic);

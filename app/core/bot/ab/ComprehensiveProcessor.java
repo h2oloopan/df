@@ -40,7 +40,6 @@ public class ComprehensiveProcessor
         } else {
             ParseState ps = new ParseState(0, inputOriginal, that, topic, leaf, bot, context, profile);
             String template = leaf.category.getTemplate();
-            Logger.info(leaf.category.toString());
             return evalTemplate(template, ps);
         }
         
