@@ -23,6 +23,19 @@ public class Bot extends Controller {
 	
 	@Inject
 	private SessionTable table;
+
+	//List all available bots
+	public Promise<Result> bots() {
+		try {
+
+		} catch (final Exception e) {
+			return Promise.promise(new Function0<Result>() {
+				public Result apply() {
+					return badRequest(e.getMessage());
+				}
+			});
+		}
+	}
 	
 	public Promise<Result> talk() {
 		try {

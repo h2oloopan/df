@@ -75,5 +75,10 @@ public class BotActorFarm implements ActorFarm {
 	public ActorRef getActor(String name) {
 		return this.routers.get(name);
 	}
+
+	@Override
+	public ArrayList<String> getBots() {
+		
+	}
 	
 }
