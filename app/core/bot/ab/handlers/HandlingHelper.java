@@ -12,7 +12,9 @@ import java.util.HashSet;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import core.bot.ab.MagicStrings;
 import core.bot.ab.ParseState;
+import core.bot.ab.Tuple;
 import core.bot.ab.Utilities;
 
 /**
@@ -21,6 +23,16 @@ import core.bot.ab.Utilities;
  */
 public class HandlingHelper
 {
+    public static String tupleGet(String tupleName, String varName) throws Exception {
+        String result = MagicStrings.default_get;
+        Tuple tuple = Tuple.tupleMap.get(tupleName);
+        //System.out.println("Tuple = "+tuple.printTuple());
+        //System.out.println("Value = "+tuple.getValue(varName));
+        if (tuple == null) result = MagicStrings.default_get;
+        else result = tuple.getValue(varName);
+        return result;
+    }
+    
     public static String getAttributeOrTagValue (Node node, ParseState ps, String attributeName) throws Exception {
         String result = "";
         Node m = node.getAttributes().getNamedItem(attributeName);
