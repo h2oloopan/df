@@ -11,11 +11,20 @@ define(['routes/testRoute', 'ehbs!templates/index'], function(TestRoute) {
       TestRoute.bind(App);
       App.IndexRoute = Ember.Route.extend({
         model: function() {
-          return {
-            question: null,
-            uid: null,
-            display: ''
-          };
+          return new Ember.RSVP.Promise(function(resolve, reject) {
+            return new Ember.RSVP.hash({
+              bots: Ember.$.getJSON('/bot/bots')
+            }).then(function(result) {
+              return resolve({
+                question: null,
+                uid: 'TEST-USER-001',
+                display: '',
+                bots: result.bots
+              });
+            }, function(errors) {
+              return reject(errors);
+            });
+          });
         }
       });
       return App.IndexController = Ember.ObjectController.extend({

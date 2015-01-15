@@ -8,7 +8,17 @@ define ['routes/testRoute', 'ehbs!templates/index'], (TestRoute) ->
 
 			App.IndexRoute = Ember.Route.extend
 				model: ->
-					return { question: null, uid: null, display: '' }
+					return new Ember.RSVP.Promise (resolve, reject) ->
+						new Ember.RSVP.hash
+							bots: Ember.$.getJSON('/bot/bots')
+						.then (result) ->
+							resolve
+								question: null
+								uid: 'TEST-USER-001'
+								display: ''
+								bots: result.bots
+						, (errors) ->
+							reject errors
 
 			App.IndexController = Ember.ObjectController.extend
 				actions:
