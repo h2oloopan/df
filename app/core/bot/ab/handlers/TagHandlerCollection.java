@@ -21,6 +21,7 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("condition", new ConditionHandler());
         this.put("set", new SetHandler());
         this.put("get", new GetHandler());
+        this.put("map", new MapHandler());
     }
     
     public TagHandler getHandler(String tag) {
