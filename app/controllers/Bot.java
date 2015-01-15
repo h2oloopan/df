@@ -1,4 +1,5 @@
 package controllers;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import akka.actor.ActorRef;
@@ -27,7 +28,12 @@ public class Bot extends Controller {
 	//List all available bots
 	public Promise<Result> bots() {
 		try {
-
+		    final ArrayList<String> bots = farm.getBots();
+		    return Promise.promise(new Function0<Result>() {
+		       public Result apply() {
+		           return ok(Json.toJson(bots));
+		       }
+		    });
 		} catch (final Exception e) {
 			return Promise.promise(new Function0<Result>() {
 				public Result apply() {

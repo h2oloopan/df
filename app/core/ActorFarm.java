@@ -1,5 +1,7 @@
 package core;
 
+import java.util.ArrayList;
+
 import akka.actor.ActorRef;
 
 public interface ActorFarm {

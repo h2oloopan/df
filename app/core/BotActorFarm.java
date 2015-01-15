@@ -3,6 +3,7 @@ package core;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -78,7 +79,9 @@ public class BotActorFarm implements ActorFarm {
 
 	@Override
 	public ArrayList<String> getBots() {
-		
+		ArrayList<String> result = new ArrayList<String>();
+		result.addAll(this.routers.keySet());
+		return result;
 	}
 	
 }
