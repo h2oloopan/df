@@ -58,6 +58,9 @@ define(['routes/testRoute', 'ehbs!templates/index'], function(TestRoute) {
               return console.log(response);
             });
             return false;
+          },
+          compile: function() {
+            return false;
           }
         }
       });

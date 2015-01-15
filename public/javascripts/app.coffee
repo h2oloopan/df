@@ -48,4 +48,8 @@ define ['routes/testRoute', 'ehbs!templates/index'], (TestRoute) ->
 						.fail (response) ->
 							console.log response
 
+
+						return false
+					compile: ->
+
 						return false

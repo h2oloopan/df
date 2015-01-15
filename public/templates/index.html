@@ -8,7 +8,7 @@
 						<label>Select Bot</label>
 						{{view Ember.Select classNames="form-control" content=bots selection=bot}}
 					</div>
-					<button class="btn btn-success">Compile Grammar</button>
+					<button class="btn btn-success" {{action "compile"}}>Compile Grammar</button>
 				</form>
 				<br />
 				<form class="form">
