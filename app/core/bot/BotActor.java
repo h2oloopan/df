@@ -91,7 +91,9 @@ public class BotActor extends UntypedActor {
 		                context.insert(lastQuery, lastResponse);
 		                contextProvider.saveContext(query.getUid(), query.getSid(), context);
 		            }
-		            profileProvider.saveProfile(query.getUid(), profile);
+		            if (profile != null) {
+		                profileProvider.saveProfile(query.getUid(), profile);
+		            }
 			        break;
 			}
 		} else {
