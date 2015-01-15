@@ -6,6 +6,8 @@
  */
 package core.bot;
 
+import core.grammar.GrammarMatcher;
+
 import core.bot.ab.AIMLMap;
 import core.bot.ab.AIMLSet;
 import core.bot.ab.Category;
@@ -44,6 +46,8 @@ public class Bot
     public Graphmaster learnGraph;
     
     public Predicates predicates;
+    
+    public GrammarMatcher grammarMatcher;
 
     // public Graphmaster unfinishedGraph;
     //  public final ArrayList<Category> categories;
@@ -95,9 +99,10 @@ public class Bot
         }
     }
     
-    public Bot(String name, String path) throws Exception {
+    public Bot(String name, String path, GrammarMatcher grammarMatcher) throws Exception {
         int cnt=0;
         int elementCnt=0;
+        this.grammarMatcher = grammarMatcher;
         this.name = name;
         setAllPaths(path, name);
         this.brain = new Graphmaster(this);

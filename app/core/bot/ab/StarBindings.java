@@ -1,4 +1,6 @@
 package core.bot.ab;
+
+import java.util.HashMap;
 /* Program AB Reference AIML 2.0 implementation
         Copyright (C) 2013 ALICE A.I. Foundation
         Contact: info@alicebot.org
@@ -19,6 +21,8 @@ package core.bot.ab;
         Boston, MA  02110-1301, USA.
 */
 
+import play.libs.Json;
+
 /**
  * structure to hold binding of wildcards in input pattern, that pattern and topicpattern
  */
@@ -27,13 +31,29 @@ public class StarBindings {
     public Stars grammarStars;
     public Stars thatStars;
     public Stars topicStars;
+    
+    
+    public HashMap<String, String> grammarMap;
+    
     /** Constructor  -- this class has public members
      *
      */
     public StarBindings () {
         inputStars = new Stars();
         grammarStars = new Stars();
+        grammarMap = new HashMap<String, String>();
         thatStars = new Stars();
         topicStars = new Stars();
+    }
+    
+    @Override
+    public String toString() {
+        String str = "";
+        str += "INPUT STARS: " + inputStars.toString() + "\r\n";
+        str += "GRAMMAR STARS: " + grammarStars.toString() + "\r\n";
+        str += "GRAMMAR MAP: " + Json.stringify(Json.toJson(grammarMap));
+        str += "THAT STARS: " + thatStars.toString() + "\r\n";
+        str += "TOPIC STARS: " + topicStars.toString() + "\r\n";
+        return str;
     }
 }

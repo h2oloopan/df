@@ -30,13 +30,13 @@ public class BotActor extends UntypedActor {
 	public BotActor(ContextProvider contextProvider, ProfileProvider profileProvider, GrammarCompiler grammarCompiler, GrammarMatcher grammarMatcher,
 	        String name, String path) throws Exception {
 		Logger.info("Initializing bot " + name + " at " + path);
-		this.bot = new Bot(name, path);
 		this.contextProvider = contextProvider;
 		this.profileProvider = profileProvider;
 		this.grammarCompiler = grammarCompiler;
 		this.grammarMatcher = grammarMatcher.initialize(path);
 		this.name = name;
 		this.path = path;
+		this.bot = new Bot(name, path, this.grammarMatcher);
 	}
 	
 	@Override

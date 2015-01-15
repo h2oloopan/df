@@ -31,4 +31,15 @@ public class Stars extends ArrayList<String> {
         else return null;
     }
 
+    @Override
+    public String toString() {
+        String str = "";
+        int index = 0;
+        while (this.star(index) != null) {
+            str += "[" + index + "] " + this.star(index) + " ";
+            index++;
+        }
+        
+        return str;
+    }
 }

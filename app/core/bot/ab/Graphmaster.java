@@ -304,6 +304,7 @@ public class Graphmaster {
             if (n != null) { 
                 n.category.addMatch(inputThatTopic, bot);
                 Logger.info("NOT NULL " + n.category.toString());
+                Logger.info(n.starBindings.toString());
             }
             else {
                 Logger.info("IS NULL");
