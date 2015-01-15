@@ -23,6 +23,7 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("get", new GetHandler());
         this.put("map", new MapHandler());
         this.put("bot", new BotHandler());
+        this.put("id", new IdHandler());
     }
     
     public TagHandler getHandler(String tag) {
