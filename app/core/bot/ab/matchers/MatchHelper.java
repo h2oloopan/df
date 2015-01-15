@@ -45,6 +45,7 @@ public class MatchHelper
         matchTrace += "[" + wildcard + ",]\r\n";
         if (path != null && NodemapperOperator.containsKey(node, wildcard)) {
             //TODO: set stars here
+            setStars(" ", starIndex, starState, inputStars, grammarStars, thatStars, topicStars);
             Nodemapper nextNode = NodemapperOperator.get(node, wildcard);
             return DefaultMatcher.match(path, nextNode, inputThatTopic, starState, starIndex + 1, inputStars, grammarStars, thatStars, topicStars, matchTrace);
         } else {
@@ -74,12 +75,13 @@ public class MatchHelper
                         matchedNode = nextNode;
                         starWords = Path.pathToSentence(path);
                         //TODO: set stars here
-                        //setStars(starWords, starIndex, starState, inputStars, grammarStars, thatStars, topicStars);
+                        setStars(starWords, starIndex, starState, inputStars, grammarStars, thatStars, topicStars);
                         return matchedNode;
                     } else {
                         for (path = pathStart; path != null && !currentWord.equals("<THAT>") && !currentWord.equals("<TOPIC>"); path = path.next) {
                             matchTrace += "[" + wildcard + "," + path.word + "]";
                             if ((matchedNode = DefaultMatcher.match(path, nextNode, inputThatTopic, starState, starIndex + 1, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null) {
+                                setStars(starWords, starIndex, starState, inputStars, grammarStars, thatStars, topicStars);
                                 return matchedNode;
                             } else {
                                 currentWord = path.word;
