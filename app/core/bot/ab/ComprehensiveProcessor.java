@@ -28,7 +28,6 @@ import play.Logger;
 public class ComprehensiveProcessor
 {
     public static int repeatCount = 0;
-    public static AIMLProcessorExtension extension;
     public static TagHandlerCollection handlers = new TagHandlerCollection();
     
     public static String respond(Bot bot, Context context, Profile profile, String inputOriginal, String inputParsed, String that, String topic) throws Exception {
