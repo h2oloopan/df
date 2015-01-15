@@ -38,7 +38,7 @@ public class ComprehensiveProcessor
         if (leaf == null) {
             return null;
         } else {
-            ParseState ps = new ParseState(0, inputOriginal, that, topic, leaf, bot, context, profile);
+            ParseState ps = new ParseState(0, inputOriginal, inputParsed, that, topic, leaf, bot, context, profile);
             String template = leaf.category.getTemplate();
             return evalTemplate(template, ps);
         }

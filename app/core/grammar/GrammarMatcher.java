@@ -1,5 +1,6 @@
 package core.grammar;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public interface GrammarMatcher {

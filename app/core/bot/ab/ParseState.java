@@ -27,7 +27,8 @@ ParseState is a helper class for AIMLProcessor
  */
 public class ParseState {
     public Nodemapper leaf;
-    public String input;
+    public String inputOriginal;
+    public String inputParsed;
     public String that;
     public String topic;
     public int depth;
@@ -41,13 +42,16 @@ public class ParseState {
       * Constructor - class has public members
       *
       * @param depth      depth in parse tree
-      * @param input         client input
+      * @param inputOriginal         client input
+      * @param inputParsed      client input parsed by grammar file
       * @param that          bot's last sentence
       * @param topic         current topic
       * @param leaf          node containing the category processed
       */
-    public ParseState(int depth, String input, String that, String topic, Nodemapper leaf, Bot bot, Context context, Profile profile) {
-        this.input = input;
+    public ParseState(int depth, String inputOriginal, String inputParsed, String that, String topic, Nodemapper leaf, Bot bot, Context context, Profile profile) {
+        this.inputOriginal = inputOriginal;
+        this.inputParsed = inputParsed;
+                
         this.that = that;
         this.topic = topic;
         this.leaf = leaf;

@@ -1,6 +1,7 @@
 package core.grammar;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 
 import core.grammar.GrammarMatcher;
@@ -9,7 +10,7 @@ import gram.gravy.GMatcher;
 import gram.gravy.GPrecursor;
 import gram.util.SpaceType;
 
-public class LaoMaMatcher implements GrammarMatcher {
+public class LaoMaGrammarMatcher implements GrammarMatcher {
 	private GMatcher matcher;
 
 	@Override
@@ -55,4 +56,12 @@ public class LaoMaMatcher implements GrammarMatcher {
 			}
 		}
 	}
+
+    @Override
+    public HashMap<String, String> getMap(String parsedQuery) throws Exception
+    {
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put(parsedQuery, parsedQuery);
+        return map;
+    }
 }

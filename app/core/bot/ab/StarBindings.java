@@ -51,7 +51,7 @@ public class StarBindings {
         String str = "";
         str += "INPUT STARS: " + inputStars.toString() + "\r\n";
         str += "GRAMMAR STARS: " + grammarStars.toString() + "\r\n";
-        str += "GRAMMAR MAP: " + Json.stringify(Json.toJson(grammarMap));
+        str += "GRAMMAR MAP: " + Json.stringify(Json.toJson(grammarMap)) + "\r\n";
         str += "THAT STARS: " + thatStars.toString() + "\r\n";
         str += "TOPIC STARS: " + topicStars.toString() + "\r\n";
         return str;

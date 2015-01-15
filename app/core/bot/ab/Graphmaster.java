@@ -289,8 +289,9 @@ public class Graphmaster {
                 for (int i=0; inputStars[i] != null && i < MagicNumbers.max_stars; i++) {
                     sb.inputStars.add(inputStars[i]);
                 }
-                for (int i = 0; grammarStars[i] != null && i < MagicNumbers.max_stars; i++ ) {
-                    sb.grammarStars.add(grammarStars[i]);
+                if (grammarStars[0] == null && inputStars[0] != null) {
+                    //This is in fact a grammar match instead of a regular pattern match
+                    sb.grammarMap = bot.grammarMatcher.getMap(inputStars[0]);
                 }
                 for (int i=0; thatStars[i] != null && i < MagicNumbers.max_stars; i++) {
                     sb.thatStars.add(thatStars[i]);
@@ -298,6 +299,7 @@ public class Graphmaster {
                 for (int i=0; topicStars[i] != null && i < MagicNumbers.max_stars; i++) {
                     sb.topicStars.add(topicStars[i]);
                 }
+                
                 n.starBindings = sb;
             }
             //if (!n.category.getPattern().contains("*")) System.out.println("adding match "+inputThatTopic);
