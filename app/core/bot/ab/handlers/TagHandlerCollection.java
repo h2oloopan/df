@@ -19,6 +19,7 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("default", new DefaultHandler());
         this.put("random", new RandomHandler());
         this.put("condition", new ConditionHandler());
+        this.put("set", new SetHandler());
     }
     
     public TagHandler getHandler(String tag) {
