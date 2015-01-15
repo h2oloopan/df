@@ -25,8 +25,12 @@ public class WordMatcher extends PatternMatcher
         Nodemapper matchedNode;
         try {
             String uword = path.word.toUpperCase();
-            if (uword.equals("<THAT>")) {
-                starIndex = 0; starState = "thatStar"; 
+            if (uword.equals("<GRAMMAR>")) {
+                starIndex = 0;
+                starState = "grammarStar";
+            } else if (uword.equals("<THAT>")) {
+                starIndex = 0; 
+                starState = "thatStar"; 
             } else if (uword.equals("<TOPIC>")) {
                 starIndex = 0;
                 starState = "topicStar";
