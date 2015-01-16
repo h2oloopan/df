@@ -51,6 +51,10 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("response", new ResponseHandler());
         this.put("addtriple", new AddTripleHandler());
         this.put("deletetriple", new DeleteTripleHandler());
+        this.put("select", new SelectHandler());
+        this.put("uniq", new UniqHandler());
+        this.put("first", new FirstHandler());
+        this.put("rest", new RestHandler());
     }
     
     public TagHandler getHandler(String tag) {
