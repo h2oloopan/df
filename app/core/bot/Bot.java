@@ -65,6 +65,7 @@ public class Bot
     
     public TagHandlerCollection handlers = new TagHandlerCollection();
     
+    
     /**
      * Set all directory path variables for this bot
      *
