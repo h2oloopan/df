@@ -70,10 +70,8 @@ public class PreProcessor {
      * @return         normalized client input
      */
     public String normalize (String request) {
-		if (DEBUG) System.out.println("PreProcessor.normalize(request: " + request + ")");
 		String result = substitute(request,  normalPatterns, normalSubs, normalCount);
         result = result.replaceAll("(\r\n|\n\r|\r|\n)", " ");
-		if (DEBUG) System.out.println("PreProcessor.normalize() returning: " + result);
         return result;
     }
     /**
