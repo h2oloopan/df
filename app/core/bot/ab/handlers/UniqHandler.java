@@ -12,7 +12,6 @@ import java.util.Set;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import core.bot.ab.Clause;
 import core.bot.ab.ParseState;
 import core.bot.ab.Tuple;
 

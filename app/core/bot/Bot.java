@@ -91,9 +91,7 @@ public class Bot
      */
     private void addPredicates() {
         try {
-            Logger.info(config_path);
             String predicates_path = (new File(new File(config_path), "predicates.txt")).getCanonicalPath();
-            Logger.info(predicates_path);
             predicates.getPredicateDefaults(predicates_path) ;
         } catch (Exception ex)  {
             Logger.error(ex.getMessage(), ex);
