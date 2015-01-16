@@ -69,6 +69,7 @@ public class BotActor extends UntypedActor {
 		            try {
 		                //Need to use context provider to get context here
 		                context = contextProvider.getContext(query.getUid(), query.getSid());
+		                Logger.info("CONTEXT: " + context.toString());
 		                profile = profileProvider.getProfile(query.getUid());
 		                String that = context.getThat();
 		                String inputParsed = grammarMatcher.match(inputOriginal);

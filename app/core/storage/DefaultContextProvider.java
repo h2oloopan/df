@@ -1,6 +1,8 @@
 package core.storage;
 
+import play.Logger;
 import play.libs.Json;
+
 import com.google.inject.Inject;
 
 import core.context.Context;
@@ -24,6 +26,7 @@ public class DefaultContextProvider implements ContextProvider {
 			sessionStorage.set(key, Json.stringify(Json.toJson(context)));
 			return context;
 		} else {
+		    Logger.info(value);
 			return Json.fromJson(Json.parse(value), Context.class);
 		}
 	}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import play.libs.Json;
 import core.messages.SpecialText;
 
 public class Context {
@@ -49,5 +50,10 @@ public class Context {
 		} else {
 			return queries.get(queries.size() - index - 1);
 		}
+	}
+	
+	@Override
+	public String toString() {
+	    return Json.stringify(Json.toJson(this));
 	}
 }

@@ -3,6 +3,8 @@ package core.context;
 import java.util.Date;
 import java.util.HashMap;
 
+import play.libs.Json;
+
 public class Profile {
 	public String uid;
 	public String name;
@@ -21,6 +23,11 @@ public class Profile {
 		this.name = name;
 		this.map = map;
 		this.createdDate = createdDate;
+	}
+	
+	@Override
+	public String toString() {
+	    return Json.stringify(Json.toJson(this));
 	}
 	
 }
