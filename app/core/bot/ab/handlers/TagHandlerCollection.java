@@ -34,6 +34,8 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("explode", new ExplodeHandler());
         this.put("normalize", new NormalizeHandler());
         this.put("denormalize", new DenormalizeHandler());
+        this.put("uppercase", new UppercaseHandler());
+        this.put("lowercase", new LowercaseHandler());
     }
     
     public TagHandler getHandler(String tag) {
