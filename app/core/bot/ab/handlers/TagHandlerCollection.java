@@ -30,6 +30,8 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("date", new DateHandler());
         this.put("interval", new IntervalHandler());
         this.put("think", new ThinkHandler());
+        this.put("system", new SystemHandler());
+        this.put("explode", new ExplodeHandler());
     }
     
     public TagHandler getHandler(String tag) {
