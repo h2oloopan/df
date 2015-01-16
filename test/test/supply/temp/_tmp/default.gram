@@ -1,0 +1,4 @@
+namespace default
+
+问好:=strings{你好吗,你好不好,你怎么样}
+public 你好吗  : 问好

@@ -5,6 +5,7 @@ import core.context.Profile;
 import core.grammar.GrammarCompiler;
 import core.grammar.GrammarMatcher;
 
+import java.io.File;
 import java.util.Map;
 
 import core.messages.CommandType;
@@ -33,7 +34,8 @@ public class BotActor extends UntypedActor {
 		this.contextProvider = contextProvider;
 		this.profileProvider = profileProvider;
 		this.grammarCompiler = grammarCompiler;
-		this.grammarMatcher = grammarMatcher.initialize(path);
+		String gramsPath = (new File(new File(path), "execs/grams.bin")).getCanonicalPath();
+		this.grammarMatcher = grammarMatcher.initialize(gramsPath);
 		this.name = name;
 		this.path = path;
 		this.bot = new Bot(name, path, this.grammarMatcher);
