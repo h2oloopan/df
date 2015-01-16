@@ -27,6 +27,9 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("size", new SizeHandler());
         this.put("vocabulary", new VocabularyHandler());
         this.put("program", new ProgramHandler());
+        this.put("date", new DateHandler());
+        this.put("interval", new IntervalHandler());
+        this.put("think", new ThinkHandler());
     }
     
     public TagHandler getHandler(String tag) {
