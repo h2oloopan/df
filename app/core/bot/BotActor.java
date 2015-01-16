@@ -62,14 +62,17 @@ public class BotActor extends UntypedActor {
 			        String inputOriginal = query.getText();
 		            String topic = query.getTopic();
 		            inputOriginal = inputOriginal == null ? SpecialText.NULL : inputOriginal;
+		            if (inputOriginal.trim().equals("")) {
+		                inputOriginal = SpecialText.NULL;
+		            }
 		            topic = topic == null ? SpecialText.NULL : topic;
 		            Context context = null;
 		            Profile profile = null;
+		            Logger.info("IO: " + inputOriginal);
 		            
 		            try {
 		                //Need to use context provider to get context here
 		                context = contextProvider.getContext(query.getUid(), query.getSid());
-		                Logger.info("CONTEXT: " + context.toString());
 		                profile = profileProvider.getProfile(query.getUid());
 		                String that = context.getThat();
 		                String inputParsed = grammarMatcher.match(inputOriginal);
@@ -87,8 +90,10 @@ public class BotActor extends UntypedActor {
 		            getSender().tell(response, getContext().parent());
 		            //update context and profile
 		            if (context != null) {
-		                String lastQuery = query != null && query.getText() != null ? query.getText() : SpecialText.NULL;
+		                String lastQuery = inputOriginal != null ? inputOriginal : SpecialText.NULL;
 		                String lastResponse = response != null && response.getText() != null ? response.getText() : SpecialText.NULL;
+		                Logger.info("LQ: " + lastQuery);
+		                Logger.info("LR: " + lastResponse);
 		                context.insert(lastQuery, lastResponse);
 		                contextProvider.saveContext(query.getUid(), query.getSid(), context);
 		            }

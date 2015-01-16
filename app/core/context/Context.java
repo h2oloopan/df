@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import play.libs.Json;
 import core.messages.SpecialText;
 
@@ -18,6 +20,10 @@ public class Context {
 	public Date dateCreated;
 	public Date dateExpired;
 	
+	public Context() {
+	    //Do not use this one
+	}
+	
 	public Context(String uid, String sid) {
 		this.uid = uid;
 		this.sid = sid;
@@ -27,11 +33,22 @@ public class Context {
 		this.dateCreated = new Date();
 	}
 	
+	public Context(String uid, String sid, ArrayList<String> queries, ArrayList<String> responses, HashMap<String, String> map, Date dateCreated, Date dateExpired) {
+	    this.uid = uid;
+	    this.sid = sid;
+	    this.queries = queries;
+	    this.responses = responses;
+	    this.map = map;
+	    this.dateCreated = dateCreated;
+	    this.dateExpired = dateExpired;
+	}
+	
 	public void insert(String query, String response) {
 		queries.add(query);
 		responses.add(response);
 	}
 	
+	@JsonIgnore
 	public String getThat() {
 	    return getLastResponse(0);
 	}

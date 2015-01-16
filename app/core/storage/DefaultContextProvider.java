@@ -26,7 +26,6 @@ public class DefaultContextProvider implements ContextProvider {
 			sessionStorage.set(key, Json.stringify(Json.toJson(context)));
 			return context;
 		} else {
-		    Logger.info(value);
 			return Json.fromJson(Json.parse(value), Context.class);
 		}
 	}
