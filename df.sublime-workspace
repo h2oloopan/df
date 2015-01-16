@@ -16,10 +16,18 @@
 	"buffers":
 	[
 		{
-			"file": "public/javascripts/app.coffee",
+			"file": "app/core/bot/ab/Graphmaster.java",
 			"settings":
 			{
-				"buffer_size": 1931,
+				"buffer_size": 31083,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/core/bot/ab/ComprehensiveProcessor.java",
+			"settings":
+			{
+				"buffer_size": 57897,
 				"line_ending": "Unix"
 			}
 		}
@@ -60,19 +68,18 @@
 		"/home/s5pan/Projects/df/app",
 		"/home/s5pan/Projects/df/app/controllers",
 		"/home/s5pan/Projects/df/app/core",
-		"/home/s5pan/Projects/df/app/core/bot/ab/handlers",
-		"/home/s5pan/Projects/df/conf",
-		"/home/s5pan/Projects/df/public",
+		"/home/s5pan/Projects/df/app/core/bot",
+		"/home/s5pan/Projects/df/app/core/bot/ab",
 		"/home/s5pan/Projects/df/public/javascripts",
 		"/home/s5pan/Projects/df/public/javascripts/routes",
 		"/home/s5pan/Projects/df/public/templates"
 	],
 	"file_history":
 	[
+		"/home/s5pan/Projects/df/public/javascripts/app.coffee",
 		"/home/s5pan/Projects/df/public/templates/index.html",
 		"/home/s5pan/Projects/df/conf/routes",
 		"/home/s5pan/Projects/df/app/controllers/Bot.java",
-		"/home/s5pan/Projects/df/public/javascripts/app.coffee",
 		"/home/s5pan/Projects/df/public/javascripts/routes/testRoute.coffee",
 		"/home/s5pan/Projects/df/app/core/BotActorFarm.java",
 		"/home/s5pan/Projects/df/app/core/bot/ab/ComprehensiveProcessor.java",
@@ -106,6 +113,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"capitalize",
+			"formal",
+			"lowercase",
+			"uppercase",
+			"denormalize",
+			"normalize",
+			"explode",
+			"system",
+			"think",
+			"interval",
+			"date",
+			"program",
 			"setStars",
 			"respond",
 			"match"
@@ -131,31 +150,62 @@
 			[
 				{
 					"buffer": 0,
-					"file": "public/javascripts/app.coffee",
+					"file": "app/core/bot/ab/Graphmaster.java",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1931,
+						"buffer_size": 31083,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								764,
-								764
+								7878,
+								7878
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Java/Java.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 306.0,
+						"translation.y": 3315.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/core/bot/ab/ComprehensiveProcessor.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 57897,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								37700,
+								37700
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 15038.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]

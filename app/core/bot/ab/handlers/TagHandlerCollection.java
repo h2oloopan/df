@@ -19,6 +19,7 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("default", new DefaultHandler());
         this.put("random", new RandomHandler());
         this.put("condition", new ConditionHandler());
+        this.put("srai", new SraiHandler());
         this.put("set", new SetHandler());
         this.put("get", new GetHandler());
         this.put("map", new MapHandler());
@@ -39,6 +40,7 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("formal", new FormalHandler());
         this.put("sentence", new SentenceHandler());
         this.put("person", new PersonHandler());
+        this.put("person2", new Person2Handler());
     }
     
     public TagHandler getHandler(String tag) {

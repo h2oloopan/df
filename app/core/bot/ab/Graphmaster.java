@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
 import play.Logger;
 import core.bot.Bot;
 import core.bot.ab.matchers.DefaultMatcher;
+import core.messages.SpecialText;
 
 /**
  * The AIML Pattern matching algorithm and data structure.
@@ -247,6 +248,16 @@ public class Graphmaster {
         }
     }
 
+    public final Nodemapper match(String inputOriginal, String that, String topic) throws Exception {
+        inputOriginal = inputOriginal == null ? SpecialText.NULL : inputOriginal;
+        if (inputOriginal.trim().length() == 0) {
+            inputOriginal = SpecialText.NULL;
+        }
+        String inputParsed = bot.grammarMatcher.match(inputOriginal);
+        inputParsed = inputParsed == null ? SpecialText.NULL : inputParsed;
+        return match(inputOriginal, inputParsed, that, topic);
+    }
+    
     /**
      * Find the matching leaf node given an input, that state and topic value
      *
