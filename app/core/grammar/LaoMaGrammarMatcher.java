@@ -15,7 +15,8 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
 
 	@Override
 	public GrammarMatcher initialize(String path) throws Exception {
-		File grams = new File(new File(path), "execs/grams.bin");
+		//File grams = new File(new File(path), "execs/grams.bin");
+	    File grams = new File(path);
 		if (!grams.exists()) {
 			return null;
 		} else {
