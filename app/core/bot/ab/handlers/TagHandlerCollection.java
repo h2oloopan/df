@@ -41,6 +41,10 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("sentence", new SentenceHandler());
         this.put("person", new PersonHandler());
         this.put("person2", new Person2Handler());
+        this.put("gender", new GenderHandler());
+        this.put("star", new InputStarHandler());
+        this.put("thatstar", new ThatStarHandler());
+        this.put("topicstar", new TopicStarHandler());
     }
     
     public TagHandler getHandler(String tag) {

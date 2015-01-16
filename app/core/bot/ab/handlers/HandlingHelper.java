@@ -37,6 +37,12 @@ public class HandlingHelper
         return String.valueOf(chars);
     }
     
+    public static int getIndexValue(Node node, ParseState ps) throws Exception {
+        int index=0;
+        String value = getAttributeOrTagValue(node, ps, "index");
+        if (value != null) try {index = Integer.parseInt(value)-1;} catch (Exception ex) {throw ex;}
+        return index;
+    }
     
     public static String tupleGet(String tupleName, String varName) throws Exception {
         String result = MagicStrings.default_get;
