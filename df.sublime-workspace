@@ -19,7 +19,7 @@
 			"file": "app/core/bot/ab/Graphmaster.java",
 			"settings":
 			{
-				"buffer_size": 31083,
+				"buffer_size": 31627,
 				"line_ending": "Windows"
 			}
 		},
@@ -69,10 +69,7 @@
 		"/home/s5pan/Projects/df/app/controllers",
 		"/home/s5pan/Projects/df/app/core",
 		"/home/s5pan/Projects/df/app/core/bot",
-		"/home/s5pan/Projects/df/app/core/bot/ab",
-		"/home/s5pan/Projects/df/public/javascripts",
-		"/home/s5pan/Projects/df/public/javascripts/routes",
-		"/home/s5pan/Projects/df/public/templates"
+		"/home/s5pan/Projects/df/app/core/bot/ab"
 	],
 	"file_history":
 	[
@@ -154,15 +151,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 31083,
+						"buffer_size": 31627,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7878,
-								7878
+								0,
+								0
 							]
 						],
 						"settings":

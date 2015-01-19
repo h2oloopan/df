@@ -36,11 +36,6 @@ public class LaoMaGrammarMatchTest
     }
     
     @Test
-    public void dummy() {
-        Assert.assertEquals(0, 0);
-    }
-    
-    @Test
     public void canMatch1() {
         String query = "你好吗";
         try {
@@ -57,6 +52,12 @@ public class LaoMaGrammarMatchTest
     
     @Test
     public void cannotMatch1() {
-        
+        String query = "你不好吗";
+        try {
+            String result = matcher.match(query);
+            Assert.assertEquals(null, result);
+        } catch (Exception e) {
+            Assert.fail("Should not get exception here, but " + e.getMessage());
+        }
     }
 }
