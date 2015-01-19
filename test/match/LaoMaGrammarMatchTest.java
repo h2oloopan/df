@@ -4,7 +4,9 @@
  * GrammarMatch.java
  *
  */
-package test.match;
+package match;
+
+import java.io.File;
 
 import org.junit.Test;
 
@@ -20,7 +22,7 @@ public class LaoMaGrammarMatchTest
     private GrammarMatcher matcher;
     
     public LaoMaGrammarMatchTest() throws Exception {
-        String path = "";
+        String path = new File("test/execs/grams.bin").getCanonicalPath();
         this.matcher = new LaoMaGrammarMatcher().initialize(path);
     }
     

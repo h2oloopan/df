@@ -2,7 +2,7 @@
 <project name="grams" default="compile" basedir=".">
 	<property name="encoding" value="GB18030" />
 	<property name="maxmemory" value="-Xmx1024M" />
-	<property name="root" location="${basedir}/../../.." />
+	<property name="root" location="${basedir}/../.." />
 	<property name="libdir" location="${root}/lib/" />
 	<property name="source" location="${basedir}/grams" />
 	<property name="temp" location="${basedir}/temp" />
