@@ -19,7 +19,6 @@ import core.bot.ab.MagicStrings;
 import core.bot.ab.Nodemapper;
 import core.bot.ab.NodemapperOperator;
 import core.bot.ab.PreProcessor;
-import core.bot.ab.Predicates;
 import core.bot.ab.Properties;
 import core.bot.ab.Timer;
 import core.bot.ab.Utilities;
@@ -44,8 +43,6 @@ public class Bot
     public final Graphmaster brain;
     public Graphmaster learnfGraph;
     public Graphmaster learnGraph;
-    
-    public Predicates predicates;
     
     public GrammarMatcher grammarMatcher;
 
@@ -89,14 +86,6 @@ public class Bot
      * @param name     name of bot
      * @param path     bot path
      */
-    private void addPredicates() {
-        try {
-            String predicates_path = (new File(new File(config_path), "predicates.txt")).getCanonicalPath();
-            predicates.getPredicateDefaults(predicates_path) ;
-        } catch (Exception ex)  {
-            Logger.error(ex.getMessage(), ex);
-        }
-    }
     
     public Bot(String name, String path, GrammarMatcher grammarMatcher) throws Exception {
         int cnt=0;
@@ -111,10 +100,6 @@ public class Bot
   //      this.unfinishedGraph = new Graphmaster(this);
       //  this.categories = new ArrayList<Category>();
 
-        predicates = new Predicates();
-        addPredicates();
-        predicates.put("topic", MagicStrings.default_topic);
-        predicates.put("jsenabled", MagicStrings.js_enabled);
         
         preProcessor = new PreProcessor(this);
         addProperties();
