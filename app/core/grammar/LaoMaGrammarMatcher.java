@@ -1,6 +1,7 @@
 package core.grammar;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +19,7 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
 		//File grams = new File(new File(path), "execs/grams.bin");
 	    File grams = new File(path);
 		if (!grams.exists()) {
-			return null;
+		    throw new IOException("Grammar file does not exist.");
 		} else {
 			GPrecursor precursor;
 			try {
@@ -26,7 +27,7 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
 				matcher = precursor.newMatcher(SpaceType.chinese);
 				return this;
 			} catch (Exception e) {
-				return null;
+				throw e;
 			}
 		}
 	}
