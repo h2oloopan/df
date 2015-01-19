@@ -30,7 +30,7 @@ public class SetHandler extends TagHandler
         String result = ps.bot.handlers.getHandler("default").handle(node, ps, "", attributeNames).trim();
         result = result.replaceAll("(\r\n|\n\r|\r|\n)", " ");
         if (predicateName != null) {
-            ps.bot.predicates.put(predicateName, result);
+            ps.context.addPredicate(predicateName, result);
         }
         if (varName != null) {
             ps.vars.put(varName, result);

@@ -89,7 +89,7 @@ public class HandlingHelper
         // if there are no <li> nodes, this is a one-shot condition.
         if (liList.size() == 0 && (value = getAttributeOrTagValue(node, ps, "value")) != null   &&
                    predicate != null  &&
-                   ps.bot.predicates.get(predicate).equalsIgnoreCase(value))  {
+                   ps.context.retrievePredicate(predicate).equalsIgnoreCase(value))  {
                    return ps.bot.handlers.getHandler("default").handle(node, ps, "", attributeNames);
         }
         else if (liList.size() == 0 && (value = getAttributeOrTagValue(node, ps, "value")) != null   &&
@@ -108,8 +108,8 @@ public class HandlingHelper
             //System.out.println("condition name="+liPredicate+" value="+value);
             if (value != null) {
                 // if the predicate equals the value, return the <li> item.
-                if (liPredicate != null && value != null && (ps.bot.predicates.get(liPredicate).equalsIgnoreCase(value) ||
-                        (ps.bot.predicates.containsKey(liPredicate) && value.equals("*"))))
+                if (liPredicate != null && value != null && (ps.context.retrievePredicate(liPredicate).equalsIgnoreCase(value) ||
+                        (ps.context.predicates.containsKey(liPredicate) && value.equals("*"))))
                     return ps.bot.handlers.getHandler("default").handle(n, ps, "", attributeNames);
                 else if (liVarName != null && value != null && (ps.vars.get(liVarName).equalsIgnoreCase(value) ||
                         (ps.vars.containsKey(liPredicate) && value.equals("*"))))

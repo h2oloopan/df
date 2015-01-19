@@ -28,7 +28,7 @@ public class GetHandler extends TagHandler
         String varName = HandlingHelper.getAttributeOrTagValue(node, ps, "var");
         String tupleName = HandlingHelper.getAttributeOrTagValue(node, ps, "tuple");
         if (predicateName != null)
-           result = ps.bot.predicates.get(predicateName).trim();
+           result = ps.context.retrievePredicate(predicateName).trim();
         else if (varName != null && tupleName != null) {
                result = HandlingHelper.tupleGet(tupleName, varName);
 

@@ -1,5 +1,7 @@
 package core.bot.ab;
 
+import java.util.HashMap;
+
 import core.bot.Bot;
 import core.context.*;
 
@@ -32,7 +34,7 @@ public class ParseState {
     public String that;
     public String topic;
     public int depth;
-    public Predicates vars;
+    public HashMap<String, String> vars;
     public StarBindings starBindings;
     public Bot bot;
     public Profile profile;
@@ -56,7 +58,7 @@ public class ParseState {
         this.topic = topic;
         this.leaf = leaf;
         this.depth = depth;  // to prevent runaway recursion
-        this.vars = new Predicates();
+        this.vars = new HashMap<String, String>();
         this.starBindings = leaf.starBindings;
         
         this.bot = bot;

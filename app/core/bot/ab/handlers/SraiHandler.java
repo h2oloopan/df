@@ -31,7 +31,7 @@ public class SraiHandler extends TagHandler
         result = result.trim();
         result = result.replaceAll("(\r\n|\n\r|\r|\n)", " ");
         result = ps.bot.preProcessor.normalize(result);
-        String topic = ps.bot.predicates.get("topic");     // the that stays the same, but the topic may have changed
+        String topic = ps.context.retrievePredicate("topic");     // the that stays the same, but the topic may have changed
         Nodemapper leaf = ps.bot.brain.match(result, ps.that, topic);
         if (leaf == null) {
             return(response);
