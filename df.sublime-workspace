@@ -15,22 +15,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/core/bot/ab/Graphmaster.java",
-			"settings":
-			{
-				"buffer_size": 31627,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/core/bot/ab/ComprehensiveProcessor.java",
-			"settings":
-			{
-				"buffer_size": 57897,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -73,17 +57,17 @@
 	],
 	"file_history":
 	[
+		"/home/s5pan/Projects/df/app/core/bot/ab/ComprehensiveProcessor.java",
+		"/home/s5pan/Projects/df/app/core/bot/ab/Graphmaster.java",
 		"/home/s5pan/Projects/df/public/javascripts/app.coffee",
 		"/home/s5pan/Projects/df/public/templates/index.html",
 		"/home/s5pan/Projects/df/conf/routes",
 		"/home/s5pan/Projects/df/app/controllers/Bot.java",
 		"/home/s5pan/Projects/df/public/javascripts/routes/testRoute.coffee",
 		"/home/s5pan/Projects/df/app/core/BotActorFarm.java",
-		"/home/s5pan/Projects/df/app/core/bot/ab/ComprehensiveProcessor.java",
 		"/home/s5pan/Projects/df/app/core/bot/ab/handlers/DefaultHandler.java",
 		"/home/s5pan/Projects/df/app/core/bot/ab/handlers/RandomHandler.java",
 		"/home/s5pan/Projects/df/app/core/bot/ab/handlers/ConditionHandler.java",
-		"/home/s5pan/Projects/df/app/core/bot/ab/Graphmaster.java",
 		"/home/s5pan/Projects/df/app/core/bot/ab/handlers/TagHandlerCollection.java",
 		"/home/s5pan/Projects/df/app/core/bot/ab/handlers/TemplateHandler.java",
 		"/home/s5pan/Projects/df/app/core/bot/Bot.java",
@@ -142,69 +126,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/core/bot/ab/Graphmaster.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 31627,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3315.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/core/bot/ab/ComprehensiveProcessor.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 57897,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								37700,
-								37700
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 15038.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
 			]
 		}
 	],
