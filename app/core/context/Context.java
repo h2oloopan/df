@@ -15,8 +15,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import play.libs.Json;
 import core.bot.Bot;
+import core.bot.ab.Clause;
 import core.bot.ab.MagicStrings;
 import core.bot.ab.Triple;
+import core.bot.ab.Tuple;
 import core.messages.SpecialText;
 
 public class Context {
@@ -178,6 +180,192 @@ public class Context {
         return id;
 	}
 	
+	public void printTriples() {
+        for (String x : idTriple.keySet()) {
+            Triple triple = idTriple.get(x);
+            System.out.println(x+":"+triple.subject+":"+triple.predicate+":"+triple.object);
+        }
+	}
+	
+	private HashSet<String> emptySet() {
+	    return new HashSet<String>();
+	}
+	
+	public HashSet<String> getTriples(String s, String p, String o) {
+	    Set<String> subjectSet;
+        Set<String> predicateSet;
+        Set<String> objectSet;
+        Set<String> resultSet;
+        //printAllTriples();
+        if (s == null || s.startsWith("?")) {
+            subjectSet = allTriples();
+        }
+            else {
+                s = s.toUpperCase();
+                if (subjectTriples.containsKey(s)) subjectSet = subjectTriples.get(s);
+                else subjectSet = emptySet();
+            }
+
+        if (p == null || p.startsWith("?")) {
+            predicateSet = allTriples();
+        }
+            else {
+                p = p.toUpperCase();
+                if (predicateTriples.containsKey(p)) predicateSet = predicateTriples.get(p);
+                else predicateSet = emptySet();
+            }
+
+        if (o == null || o.startsWith("?")) {
+            objectSet = allTriples();
+        }
+            else {
+                o = o.toUpperCase();
+                if (objectTriples.containsKey(o)) objectSet = objectTriples.get(o);
+                else objectSet = emptySet();
+            }
+
+        resultSet = new HashSet(subjectSet);
+        resultSet.retainAll(predicateSet);
+        resultSet.retainAll(objectSet);
+
+        HashSet<String> finalResultSet = new HashSet(resultSet);
+
+
+        return finalResultSet;
+	}
+	
+	public HashSet<String> getTripleSubjects(HashSet<String> triples) {
+	    HashSet<String> resultSet = new HashSet<String>();
+        for (String id : triples) {
+            Triple triple = idTriple.get(id);
+            resultSet.add(triple.subject);
+        }
+        return resultSet;
+	}
+	
+	public HashSet<String> getTriplePredicates(HashSet<String> triples) {
+	    HashSet<String> resultSet = new HashSet<String>();
+        for (String id : triples) {
+            Triple triple = idTriple.get(id);
+            resultSet.add(triple.predicate);
+        }
+        return resultSet;
+	}
+	
+	public HashSet<String> getTripleObjects(HashSet<String> triples) {
+        HashSet<String> resultSet = new HashSet<String>();
+        for (String id : triples) {
+            Triple triple = idTriple.get(id);
+            resultSet.add(triple.object);
+        }
+        return resultSet;
+	}
+	
+	public String formatAIMLTripleList(HashSet<String> triples) {
+        String result = MagicStrings.default_list_item;//"NIL"
+        for (String x : triples) {
+            result = x+" "+result;//"CONS "+x+" "+result;
+        }
+        return result.trim();
+	}
+	
+	public String getTripleSubject(String id) {
+        if (idTriple.containsKey(id)) return idTriple.get(id).subject;
+        else return "Unknown subject";
+    }
+    public String getTriplePredicate(String id) {
+        if (idTriple.containsKey(id)) return idTriple.get(id).predicate;
+        else return "Unknown predicate";
+    }
+    public String getTripleObject(String id) {
+        if (idTriple.containsKey(id)) return idTriple.get(id).object;
+        else return "Unknown object";
+    }
+    public String stringTriple(String id) {
+        Triple triple = idTriple.get(id);
+        return id+" "+triple.subject+" "+triple.predicate+" "+triple.object;
+    }
+    public void printAllTriples () {
+        for (String id : idTriple.keySet()) {
+            System.out.println(stringTriple(id));
+        }
+    }
+    
+    public HashSet<Tuple> selectTuple(HashSet<String> vars, HashSet<String> visibleVars, ArrayList<Clause> clauses) {
+        HashSet<Tuple> result = new HashSet<Tuple>();
+        try {
+
+            Tuple tuple = new Tuple(vars, visibleVars);
+            result = selectFromRemainingClauses(tuple, clauses);
+        }
+        catch (Exception ex) {
+            System.out.println("Something went wrong with select "+visibleVars);
+            ex.printStackTrace();
+
+        }
+        return result;
+    }
+	
+    public Clause adjustClause(Tuple tuple, Clause clause) {
+        Set vars = tuple.getVars();
+        String subj = clause.subj; String pred = clause.pred; String obj = clause.obj;
+        Clause newClause = new Clause(clause);
+        if (vars.contains(subj)) {
+            String value = tuple.getValue(subj);
+            if (!value.equals(MagicStrings.unbound_variable)) {/*System.out.println("adjusting "+subj+" "+value);*/ newClause.subj = value;}
+        }
+        if (vars.contains(pred)) {
+            String value = tuple.getValue(pred);
+            if (!value.equals(MagicStrings.unbound_variable)) {/*System.out.println("adjusting "+pred+" "+value);*/ newClause.pred= value;}
+        }
+        if (vars.contains(obj)) {
+            String value = tuple.getValue(obj);
+            if (!value.equals(MagicStrings.unbound_variable)) {/*System.out.println("adjusting "+obj+" "+value); */newClause.obj = value;}
+        }
+        return newClause;
+    }
+    
+    public Tuple bindTuple(Tuple partial, String triple, Clause clause) {
+        Tuple tuple = new Tuple(partial);
+        if (clause.subj.startsWith("?")) tuple.bind(clause.subj, getTripleSubject(triple));
+        if (clause.pred.startsWith("?")) tuple.bind(clause.pred, getTriplePredicate(triple));
+        if (clause.obj.startsWith("?")) tuple.bind(clause.obj, getTripleObject(triple));
+        return tuple;
+    }
+    
+    public HashSet<Tuple> selectFromSingleClause(Tuple partial, Clause clause, Boolean affirm) {
+        HashSet<Tuple> result = new HashSet<Tuple>();
+        HashSet<String> triples = getTriples(clause.subj, clause.pred, clause.obj);
+        //System.out.println("TripleStore: selected "+triples.size()+" from single clause "+clause.subj+" "+clause.pred+" "+clause.obj);
+        if (affirm) {
+            for (String triple : triples) {
+                Tuple tuple = bindTuple(partial, triple, clause);
+                result.add(tuple);
+            }
+        }
+        else {
+            if (triples.size()==0) result.add(partial);
+        }
+        return result;
+    }
+    
+    public HashSet<Tuple> selectFromRemainingClauses(Tuple partial, ArrayList<Clause> clauses) {
+        //System.out.println("TripleStore: partial = "+partial.printTuple()+" clauses.size()=="+clauses.size());
+        HashSet<Tuple> result = new HashSet<Tuple>();
+        Clause clause = clauses.get(0);
+        clause = adjustClause(partial, clause);
+        HashSet<Tuple> tuples = selectFromSingleClause(partial, clause, clause.affirm);
+        if (clauses.size() > 1) {
+          ArrayList<Clause> remainingClauses = new ArrayList<Clause>(clauses);
+          remainingClauses.remove(0);
+          for (Tuple tuple : tuples) {
+             result.addAll(selectFromRemainingClauses(tuple, remainingClauses));
+          }
+        }
+        else result = tuples;
+        return result;
+    }
+    
 	//PREDICATES related functions
 	public void addPredicates(String path) throws Exception {
 	    getPredicateDefaults(path);
