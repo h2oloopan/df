@@ -57,12 +57,16 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("rest", new RestHandler());
     }
     
+    public TagHandler getDefaultHandler() {
+        return this.get("default").initialize(this);
+    }
+    
     public TagHandler getHandler(String tag) {
         TagHandler handler = this.get(tag.trim().toLowerCase());
         if (handler == null) {
-            return this.get("default");
+            return this.get("default").initialize(this);
         } else {
-            return handler;
+            return handler.initialize(this);
         }
     }
 }

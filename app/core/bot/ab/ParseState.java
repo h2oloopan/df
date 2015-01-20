@@ -50,6 +50,10 @@ public class ParseState {
       * @param topic         current topic
       * @param leaf          node containing the category processed
       */
+    public ParseState() {
+        this.depth = 0;
+    }
+    
     public ParseState(int depth, String inputOriginal, String inputParsed, String that, String topic, Nodemapper leaf, Bot bot, Context context, Profile profile) {
         this.inputOriginal = inputOriginal;
         this.inputParsed = inputParsed;

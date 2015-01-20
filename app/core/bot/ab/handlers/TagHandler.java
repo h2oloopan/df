@@ -18,6 +18,13 @@ import core.bot.ab.ParseState;
  */
 public abstract class TagHandler
 {
+    protected TagHandlerCollection handlers;
+    
+    public TagHandler initialize(TagHandlerCollection handlers) {
+        this.handlers = handlers;
+        return this;
+    }
+    
     public String handle(Node node, ParseState ps) throws Exception {
         return this.handle(node, ps, "", null);
     }
