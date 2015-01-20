@@ -22,7 +22,7 @@ public class SentenceHandler extends TagHandler
     @Override
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
-        String result = ps.bot.handlers.getHandler("default").handle(node, ps, "", null);
+        String result = handlers.getDefaultHandler().handle(node, ps, "", null);
         if (result.length() > 1) return result.substring(0, 1).toUpperCase()+result.substring(1, result.length());
         else return "";
     }

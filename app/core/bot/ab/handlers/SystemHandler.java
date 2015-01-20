@@ -27,7 +27,7 @@ public class SystemHandler extends TagHandler
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
         HashSet<String> attributeNames = Utilities.stringSet("timeout");
-        String evaluatedContents = ps.bot.handlers.getHandler("default").handle(node, ps, "", attributeNames);
+        String evaluatedContents = handlers.getDefaultHandler().handle(node, ps, "", attributeNames);
         String result = IOUtils.system(evaluatedContents, MagicStrings.system_failed);
         return result;
     }

@@ -27,7 +27,7 @@ public class SraiHandler extends TagHandler
     {
         String response = MagicStrings.default_bot_response;
         
-        String result = ps.bot.handlers.getHandler("default").handle(node, ps, "", null);
+        String result = handlers.getDefaultHandler().handle(node, ps, "", null);
         result = result.trim();
         result = result.replaceAll("(\r\n|\n\r|\r|\n)", " ");
         result = ps.bot.preProcessor.normalize(result);

@@ -25,9 +25,9 @@ public class SetHandler extends TagHandler
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
         HashSet<String> attributeNames = Utilities.stringSet("name", "var");
-        String predicateName = HandlingHelper.getAttributeOrTagValue(node, ps, "name");
-        String varName = HandlingHelper.getAttributeOrTagValue(node, ps, "var");
-        String result = ps.bot.handlers.getHandler("default").handle(node, ps, "", attributeNames).trim();
+        String predicateName = HandlingHelper.getAttributeOrTagValue(node, ps, "name", handlers);
+        String varName = HandlingHelper.getAttributeOrTagValue(node, ps, "var", handlers);
+        String result = handlers.getDefaultHandler().handle(node, ps, "", attributeNames).trim();
         result = result.replaceAll("(\r\n|\n\r|\r|\n)", " ");
         if (predicateName != null) {
             ps.context.addPredicate(predicateName, result);

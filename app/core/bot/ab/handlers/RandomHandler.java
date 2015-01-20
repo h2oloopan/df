@@ -28,7 +28,7 @@ public class RandomHandler extends TagHandler
     {
         NodeList childList = node.getChildNodes();
         ArrayList<Node> liList = new ArrayList<Node>();
-        String setName = HandlingHelper.getAttributeOrTagValue(node, ps, "set");
+        String setName = HandlingHelper.getAttributeOrTagValue(node, ps, "set", handlers);
         for (int i = 0; i < childList.getLength(); i++) {
             if (childList.item(i).getNodeName().equals("li")) {
                 liList.add(childList.item(i));

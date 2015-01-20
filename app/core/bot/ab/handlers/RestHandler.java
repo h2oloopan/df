@@ -23,7 +23,7 @@ public class RestHandler extends TagHandler
     @Override
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
-        String content = ps.bot.handlers.getHandler("default").handle(node, ps, "", null);
+        String content = handlers.getDefaultHandler().handle(node, ps, "", null);
         content = ps.bot.preProcessor.normalize(content);
         return restWords(content);
     }

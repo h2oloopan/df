@@ -22,7 +22,7 @@ public class ThinkHandler extends TagHandler
     @Override
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
-        ps.bot.handlers.get("default").handle(node, ps, "", null);
+        handlers.getDefaultHandler().handle(node, ps, "", null);
         return "";
     }
 

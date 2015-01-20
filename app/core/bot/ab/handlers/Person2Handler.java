@@ -24,7 +24,7 @@ public class Person2Handler extends TagHandler
     {
         String result;
         if (node.hasChildNodes()) {
-            result = ps.bot.handlers.getHandler("default").handle(node, ps, "", null);
+            result = handlers.getDefaultHandler().handle(node, ps, "", null);
         } else {
             result = ps.starBindings.inputStars.star(0);   // for <person2/>
         }

@@ -28,8 +28,8 @@ public class MapHandler extends TagHandler
     {
         String result = MagicStrings.default_map;
         HashSet<String> attributeNames = Utilities.stringSet("name");
-        String mapName = HandlingHelper.getAttributeOrTagValue(node, ps, "name");
-        String contents = ps.bot.handlers.getHandler("default").handle(node, ps, "", attributeNames);
+        String mapName = HandlingHelper.getAttributeOrTagValue(node, ps, "name", handlers);
+        String contents = handlers.getDefaultHandler().handle(node, ps, "", attributeNames);
         contents = contents.trim();
         if (mapName == null) result = "<map>"+contents+"</map>"; // this is an OOB map tag (no attribute)
         else {

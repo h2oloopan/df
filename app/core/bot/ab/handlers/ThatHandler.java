@@ -25,7 +25,7 @@ public class ThatHandler extends TagHandler
     {
         int index=0;
         int jndex=0;
-        String value = HandlingHelper.getAttributeOrTagValue(node, ps, "index");
+        String value = HandlingHelper.getAttributeOrTagValue(node, ps, "index", handlers);
         if (value != null)
             try {
                 String pair = value;

@@ -22,7 +22,7 @@ public class RequestHandler extends TagHandler
     @Override
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
-        int index=HandlingHelper.getIndexValue(node, ps);
+        int index=HandlingHelper.getIndexValue(node, ps, handlers);
         //return ps.chatSession.requestHistory.getString(index).trim();
         return ps.context.getLastQuery(index).trim();
     }
