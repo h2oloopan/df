@@ -38,8 +38,7 @@ public class PlainTextTest
             ParseState ps = new ParseState();
             TagHandler defaultHandler = handlers.getDefaultHandler();
             String result = defaultHandler.handle(node, ps);
-            //String result = handlers.get("default").handle(n, ps);
-            //Assert.assertEquals("", result);
+            Assert.assertEquals("", result);
         } catch (Exception e) {
             Assert.fail("Should not get exception here, but " + e.getMessage());
         }

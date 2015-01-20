@@ -32,7 +32,7 @@ public class DefaultHandler extends TagHandler
         } else if (nodeName.equals("#comment")) {
             return "";
         } else {
-            TagHandler handler = ps.bot.handlers.getHandler(nodeName.toLowerCase());
+            TagHandler handler = handlers.getHandler(nodeName.toLowerCase());
             if (!(handler instanceof DefaultHandler)) {
                 return handler.handle(node, ps, previousResult, ignoreAttributes);
             } else {
