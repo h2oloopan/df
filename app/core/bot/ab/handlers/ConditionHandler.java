@@ -31,7 +31,7 @@ public class ConditionHandler extends TagHandler
         String result = "";
         int loopCnt = 0;
         while (loop && loopCnt < MagicNumbers.max_loops) {
-            String loopResult = HandlingHelper.condition(node, ps);
+            String loopResult = HandlingHelper.condition(node, ps, handlers);
             if (loopResult.trim().equals(MagicStrings.too_much_recursion)) {
                 return MagicStrings.too_much_recursion;
             }

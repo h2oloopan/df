@@ -1,15 +1,12 @@
 /**
  *
  * Copyright 2015 RSVP Technologies Inc. All rights reserved.
- * PlainTextTest.java
+ * RandomTagTest.java
  *
  */
 package template;
 
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.w3c.dom.Node;
 
 import core.bot.ab.ParseState;
@@ -21,47 +18,42 @@ import core.bot.ab.utils.DomUtils;
  *@author Shengying Pan (s5pan@uwaterloo.ca) 
  *@date Jan 20, 2015
  */
-public class PlainTextTest
+public class RandomTagTest
 {
     private TagHandlerCollection handlers;
     
     @Before
     public void setup() {
-        this.handlers = new TagHandlerCollection();
+        handlers = new TagHandlerCollection();
     }
     
     @Test
-    public void empty() {
+    public void oneOption() {
         try {
-            System.out.println("Testing empty template");
-            String template = "<template></template>";
+            System.out.println("Testing random tag with one option");
+            String template = "<template><random><li>唯一</li></random></template>";
             Node node = DomUtils.parseString(template);
             ParseState ps = new ParseState();
             TagHandler defaultHandler = handlers.getDefaultHandler();
             String result = defaultHandler.handle(node, ps);
-            Assert.assertEquals("", result);
+            Assert.assertEquals("唯一", result);
         } catch (Exception e) {
             Assert.fail("Should not get exception here, but " + e.getMessage());
         }
     }
     
     @Test
-    public void simple() {
+    public void twoOptions() {
         try {
-            //English
-            System.out.println("Testing one line (plain text) template");
-            String template = "<template>Hello World</template>";
+            System.out.println("Testing random tag with two options");
+            String template = "<template><random><li>唯一</li><li>唯二</li></random></template>";
             Node node = DomUtils.parseString(template);
             ParseState ps = new ParseState();
             TagHandler defaultHandler = handlers.getDefaultHandler();
             String result = defaultHandler.handle(node, ps);
-            Assert.assertEquals("Hello World", result);
-            //Chinese
-            template = "<template>大家好 我不好</template>";
-            node = DomUtils.parseString(template);
-            ps = new ParseState();
-            result = defaultHandler.handle(node, ps);
-            Assert.assertEquals("大家好 我不好", result);
+            if (!result.equals("唯一") && !result.equals("唯二")) {
+                Assert.fail("The result must be one of the two options");
+            }
         } catch (Exception e) {
             Assert.fail("Should not get exception here, but " + e.getMessage());
         }

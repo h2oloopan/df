@@ -37,9 +37,9 @@ public class HandlingHelper
         return String.valueOf(chars);
     }
     
-    public static int getIndexValue(Node node, ParseState ps) throws Exception {
+    public static int getIndexValue(Node node, ParseState ps, TagHandlerCollection handlers) throws Exception {
         int index=0;
-        String value = getAttributeOrTagValue(node, ps, "index");
+        String value = getAttributeOrTagValue(node, ps, "index", handlers);
         if (value != null) try {index = Integer.parseInt(value)-1;} catch (Exception ex) {throw ex;}
         return index;
     }
@@ -54,7 +54,7 @@ public class HandlingHelper
         return result;
     }
     
-    public static String getAttributeOrTagValue (Node node, ParseState ps, String attributeName) throws Exception {
+    public static String getAttributeOrTagValue (Node node, ParseState ps, String attributeName, TagHandlerCollection handlers) throws Exception {
         String result = "";
         Node m = node.getAttributes().getNamedItem(attributeName);
         if (m == null) {
@@ -63,7 +63,7 @@ public class HandlingHelper
             for (int i = 0; i < childList.getLength(); i++)   {
                 Node child = childList.item(i);
                 if (child.getNodeName().equals(attributeName)) {
-                    result = ps.bot.handlers.get("default").handle(child, ps, "",  null);
+                    result = handlers.getDefaultHandler().handle(child, ps, "",  null);
                 }
             }
         }
@@ -73,7 +73,7 @@ public class HandlingHelper
         return result;
     }
     
-    public static String condition(Node node, ParseState ps) throws Exception {
+    public static String condition(Node node, ParseState ps, TagHandlerCollection handlers) throws Exception {
         String result="";
         //boolean loop = true;
         NodeList childList = node.getChildNodes();
@@ -81,43 +81,43 @@ public class HandlingHelper
         String predicate=null, varName=null, value=null; //Node p=null, v=null;
         HashSet<String> attributeNames = Utilities.stringSet("name", "var", "value");
         // First check if the <condition> has an attribute "name".  If so, get the predicate name.
-        predicate = getAttributeOrTagValue(node, ps, "name");
-        varName = getAttributeOrTagValue(node, ps, "var");
+        predicate = getAttributeOrTagValue(node, ps, "name", handlers);
+        varName = getAttributeOrTagValue(node, ps, "var", handlers);
         // Make a list of all the <li> child nodes:
         for (int i = 0; i < childList.getLength(); i++)
             if (childList.item(i).getNodeName().equals("li")) liList.add(childList.item(i));
         // if there are no <li> nodes, this is a one-shot condition.
-        if (liList.size() == 0 && (value = getAttributeOrTagValue(node, ps, "value")) != null   &&
+        if (liList.size() == 0 && (value = getAttributeOrTagValue(node, ps, "value", handlers)) != null   &&
                    predicate != null  &&
                    ps.context.retrievePredicate(predicate).equalsIgnoreCase(value))  {
-                   return ps.bot.handlers.getHandler("default").handle(node, ps, "", attributeNames);
+                   return handlers.getHandler("default").handle(node, ps, "", attributeNames);
         }
-        else if (liList.size() == 0 && (value = getAttributeOrTagValue(node, ps, "value")) != null   &&
+        else if (liList.size() == 0 && (value = getAttributeOrTagValue(node, ps, "value", handlers)) != null   &&
                 varName != null  &&
                 ps.vars.get(varName).equalsIgnoreCase(value))  {
-            return ps.bot.handlers.getHandler("default").handle(node, ps, "", attributeNames);
+            return handlers.getHandler("default").handle(node, ps, "", attributeNames);
         }
         // otherwise this is a <condition> with <li> items:
         else for (int i = 0; i < liList.size() && result.equals(""); i++) {
             Node n = liList.get(i);
             String liPredicate = predicate;
             String liVarName = varName;
-            if (liPredicate == null) liPredicate = getAttributeOrTagValue(n, ps, "name");
-            if (liVarName == null) liVarName = getAttributeOrTagValue(n, ps, "var");
-            value = getAttributeOrTagValue(n, ps, "value");
+            if (liPredicate == null) liPredicate = getAttributeOrTagValue(n, ps, "name", handlers);
+            if (liVarName == null) liVarName = getAttributeOrTagValue(n, ps, "var", handlers);
+            value = getAttributeOrTagValue(n, ps, "value", handlers);
             //System.out.println("condition name="+liPredicate+" value="+value);
             if (value != null) {
                 // if the predicate equals the value, return the <li> item.
                 if (liPredicate != null && value != null && (ps.context.retrievePredicate(liPredicate).equalsIgnoreCase(value) ||
                         (ps.context.predicates.containsKey(liPredicate) && value.equals("*"))))
-                    return ps.bot.handlers.getHandler("default").handle(n, ps, "", attributeNames);
+                    return handlers.getHandler("default").handle(n, ps, "", attributeNames);
                 else if (liVarName != null && value != null && (ps.vars.get(liVarName).equalsIgnoreCase(value) ||
                         (ps.vars.containsKey(liPredicate) && value.equals("*"))))
-                    return ps.bot.handlers.getHandler("default").handle(n, ps, "", attributeNames);
+                    return handlers.getHandler("default").handle(n, ps, "", attributeNames);
 
            }
             else  // this is a terminal <li> with no predicate or value, i.e. the default condition.
-                return ps.bot.handlers.getHandler("default").handle(n, ps, "", attributeNames);
+                return handlers.getHandler("default").handle(n, ps, "", attributeNames);
         }
         return "";
     }

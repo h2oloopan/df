@@ -35,7 +35,7 @@ public class RandomHandler extends TagHandler
             }
         }
         int index = (int) (Math.random() * liList.size());
-        return ps.bot.handlers.getHandler("default").handle(liList.get(index), ps, "", null);
+        return handlers.getDefaultHandler().handle(liList.get(index), ps, "", null);
     }
 
 }

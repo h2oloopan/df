@@ -23,9 +23,9 @@ public class DateHandler extends TagHandler
     @Override
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
-        String jformat = HandlingHelper.getAttributeOrTagValue(node, ps, "jformat");      // AIML 2.0
-        String locale = HandlingHelper.getAttributeOrTagValue(node, ps, "locale");
-        String timezone = HandlingHelper.getAttributeOrTagValue(node, ps, "timezone");
+        String jformat = HandlingHelper.getAttributeOrTagValue(node, ps, "jformat", handlers);      // AIML 2.0
+        String locale = HandlingHelper.getAttributeOrTagValue(node, ps, "locale", handlers);
+        String timezone = HandlingHelper.getAttributeOrTagValue(node, ps, "timezone", handlers);
         String dateAsString = CalendarUtils.date(jformat, locale, timezone);
         return dateAsString;
     }

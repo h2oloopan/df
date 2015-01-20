@@ -23,7 +23,7 @@ public class InputStarHandler extends TagHandler
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
         String result= "" ;
-        int index= HandlingHelper.getIndexValue(node, ps);
+        int index= HandlingHelper.getIndexValue(node, ps, handlers);
         if (ps.starBindings.inputStars.star(index)==null) result = "";
         else result = ps.starBindings.inputStars.star(index).trim();
         return result;

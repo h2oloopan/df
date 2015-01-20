@@ -60,8 +60,6 @@ public class Bot
     public String aiml_path, aimlif_path, config_path, sets_path, maps_path;
     
     
-    public TagHandlerCollection handlers = new TagHandlerCollection();
-    
     
     /**
      * Set all directory path variables for this bot

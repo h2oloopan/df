@@ -22,7 +22,7 @@ public class GenderHandler extends TagHandler
     @Override
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
-        String result = ps.bot.handlers.getHandler("default").handle(node, ps, "", null);
+        String result = handlers.getDefaultHandler().handle(node, ps, "", null);
         result = " " + result + " ";
         result = ps.bot.preProcessor.gender(result);
         return result.trim();

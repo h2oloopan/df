@@ -24,9 +24,9 @@ public class GetHandler extends TagHandler
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
         String result = MagicStrings.default_get;
-        String predicateName = HandlingHelper.getAttributeOrTagValue(node, ps, "name");
-        String varName = HandlingHelper.getAttributeOrTagValue(node, ps, "var");
-        String tupleName = HandlingHelper.getAttributeOrTagValue(node, ps, "tuple");
+        String predicateName = HandlingHelper.getAttributeOrTagValue(node, ps, "name", handlers);
+        String varName = HandlingHelper.getAttributeOrTagValue(node, ps, "var", handlers);
+        String tupleName = HandlingHelper.getAttributeOrTagValue(node, ps, "tuple", handlers);
         if (predicateName != null)
            result = ps.context.retrievePredicate(predicateName).trim();
         else if (varName != null && tupleName != null) {

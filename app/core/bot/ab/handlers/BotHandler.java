@@ -25,7 +25,7 @@ public class BotHandler extends TagHandler
     {
         String result = MagicStrings.default_property;
         //HashSet<String> attributeNames = Utilities.stringSet("name");
-        String propertyName = HandlingHelper.getAttributeOrTagValue(node, ps, "name");
+        String propertyName = HandlingHelper.getAttributeOrTagValue(node, ps, "name", handlers);
         if (propertyName != null)
            result = ps.bot.properties.get(propertyName).trim();
         //System.out.println("BOT: "+m.getNodeValue()+"="+result);
