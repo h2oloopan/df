@@ -245,7 +245,7 @@ public class Bot
                     }
                 }
             }
-            else System.out.println("addCategoriesFromAIML: "+aiml_path+" does not exist.");
+            //else System.out.println("addCategoriesFromAIML: "+aiml_path+" does not exist.");
         } catch (Exception ex)  {
             Logger.error(ex.getMessage(), ex);
         }
@@ -579,7 +579,7 @@ public class Bot
                     }
                 }
             }
-            else System.out.println("addAIMLSets: "+sets_path+" does not exist.");
+            //else System.out.println("addAIMLSets: "+sets_path+" does not exist.");
         } catch (Exception ex)  {
             ex.printStackTrace();
         }
@@ -614,7 +614,7 @@ public class Bot
                     }
                 }
             }
-            else System.out.println("addAIMLMaps: "+maps_path+" does not exist.");
+            //else System.out.println("addAIMLMaps: "+maps_path+" does not exist.");
         } catch (Exception ex)  {
             ex.printStackTrace();
         }
