@@ -26,6 +26,7 @@ public class DefaultHandler extends TagHandler
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
         String nodeName = node.getNodeName();
+        //System.out.println("Evaluating Node: " + nodeName);
         
         if (nodeName.equals("#text")) {
             return node.getNodeValue();

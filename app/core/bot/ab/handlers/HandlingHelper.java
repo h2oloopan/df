@@ -84,20 +84,22 @@ public class HandlingHelper
         predicate = getAttributeOrTagValue(node, ps, "name", handlers);
         varName = getAttributeOrTagValue(node, ps, "var", handlers);
         // Make a list of all the <li> child nodes:
-        for (int i = 0; i < childList.getLength(); i++)
-            if (childList.item(i).getNodeName().equals("li")) liList.add(childList.item(i));
+        for (int i = 0; i < childList.getLength(); i++) {
+            if (childList.item(i).getNodeName().equals("li")) {
+                liList.add(childList.item(i));
+            }
+        }
         // if there are no <li> nodes, this is a one-shot condition.
         if (liList.size() == 0 && (value = getAttributeOrTagValue(node, ps, "value", handlers)) != null   &&
                    predicate != null  &&
                    ps.context.retrievePredicate(predicate).equalsIgnoreCase(value))  {
-                   return handlers.getHandler("default").handle(node, ps, "", attributeNames);
+                   return handlers.getDefaultHandler().handle(node.getFirstChild(), ps, "", attributeNames);
         }
         else if (liList.size() == 0 && (value = getAttributeOrTagValue(node, ps, "value", handlers)) != null   &&
                 varName != null  &&
                 ps.vars.get(varName).equalsIgnoreCase(value))  {
-            return handlers.getHandler("default").handle(node, ps, "", attributeNames);
+            return handlers.getDefaultHandler().handle(node.getFirstChild(), ps, "", attributeNames);
         }
-        // otherwise this is a <condition> with <li> items:
         else for (int i = 0; i < liList.size() && result.equals(""); i++) {
             Node n = liList.get(i);
             String liPredicate = predicate;
