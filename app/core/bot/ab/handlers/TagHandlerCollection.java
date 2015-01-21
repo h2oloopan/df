@@ -26,9 +26,9 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("bot", new BotHandler());
         this.put("id", new IdHandler());
         this.put("size", new SizeHandler());
-        this.put("vocabulary", new VocabularyHandler());
-        this.put("program", new ProgramHandler());
-        this.put("date", new DateHandler());
+        this.put("vocabulary", new VocabularyHandler()); //no need to unit test this
+        this.put("program", new ProgramHandler()); //no need to unit test this
+        this.put("date", new DateHandler()); //no need to unit test this for now
         this.put("interval", new IntervalHandler());
         this.put("think", new ThinkHandler());
         this.put("system", new SystemHandler());

@@ -23,7 +23,7 @@ import core.context.Context;
  */
 public class SizeTagTest
 {
-private TagHandlerCollection handlers;
+    private TagHandlerCollection handlers;
     
     @Before
     public void setup() throws Exception {

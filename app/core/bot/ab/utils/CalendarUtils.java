@@ -48,9 +48,8 @@ public class CalendarUtils {
         //System.out.println("Format = "+format+" Locale = "+locale+" Timezone = "+timezone);
         String dateAsString = new Date().toString();
         try {
-        SimpleDateFormat simpleDateFormat =
-                new SimpleDateFormat(jformat);
-          dateAsString = simpleDateFormat.format(new Date());
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(jformat);
+            dateAsString = simpleDateFormat.format(new Date());
         }
         catch (Exception ex) {
             System.out.println("CalendarUtils.date Bad date: Format = "+jformat+" Locale = "+locale+" Timezone = "+timezone);
