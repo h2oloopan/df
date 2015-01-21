@@ -88,6 +88,61 @@ private TagHandlerCollection handlers;
     
     @Test
     public void singleNameListConditionTags() {
-        
+        try {
+            System.out.println("Testing single name list condition tags");
+            String template = "<template>你猜怎么着，"
+                    + "<condition name=\"gender\">" 
+                    + "<li value=\"female\">美女</li>"
+                    + "<li value=\"male\">帅哥</li>"
+                    + "</condition>" 
+                    + "</template>";
+            Node node = DomUtils.parseString(template);
+            ParseState ps = new ParseState();
+            
+            Context context = new Context("dummy user", "dummy session");
+            context.addPredicate("gender", "male");
+            ps.context = context;
+            
+            TagHandler defaultHandler = handlers.getDefaultHandler();
+            String result = defaultHandler.handle(node, ps);
+            Assert.assertEquals("你猜怎么着，帅哥", result);
+            
+            context.addPredicate("gender", "female");
+            result = defaultHandler.handle(node, ps);
+            Assert.assertEquals("你猜怎么着，美女", result);
+            
+        } catch (Exception e) {
+            Assert.fail("Should not get exception here, but " + e.getMessage());
+        }
+    }
+    
+    @Test
+    public void defaultListConditionTags() {
+        try {
+            System.out.println("Testing default list condition tags");
+            String template = "<template>你猜怎么着，"
+                    + "<condition>" 
+                    + "<li name=\"gender\" value=\"female\">美女</li>"
+                    + "<li>帅哥</li>"
+                    + "</condition>" 
+                    + "</template>";
+            Node node = DomUtils.parseString(template);
+            ParseState ps = new ParseState();
+            
+            Context context = new Context("dummy user", "dummy session");
+            context.addPredicate("gender", "xxx");
+            ps.context = context;
+            
+            TagHandler defaultHandler = handlers.getDefaultHandler();
+            String result = defaultHandler.handle(node, ps);
+            Assert.assertEquals("你猜怎么着，帅哥", result);
+            
+            context.addPredicate("gender", "female");
+            result = defaultHandler.handle(node, ps);
+            Assert.assertEquals("你猜怎么着，美女", result);
+            
+        } catch (Exception e) {
+            Assert.fail("Should not get exception here, but " + e.getMessage());
+        }
     }
 }
