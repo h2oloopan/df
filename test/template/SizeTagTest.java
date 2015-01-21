@@ -10,6 +10,7 @@ import org.junit.*;
 import org.w3c.dom.Node;
 
 import supply.dummies.BotFactory;
+import core.bot.ab.Category;
 import core.bot.ab.ParseState;
 import core.bot.ab.handlers.TagHandler;
 import core.bot.ab.handlers.TagHandlerCollection;
@@ -40,6 +41,28 @@ private TagHandlerCollection handlers;
             TagHandler defaultHandler = handlers.getDefaultHandler();
             String result = defaultHandler.handle(node, ps);
             Assert.assertEquals("我的脑容量是0", result);
+        } catch (Exception e) {
+            Assert.fail("Should not get exception here, but " + e.getMessage());
+        }
+    }
+    
+    @Test
+    public void someSize() {
+        try {
+            System.out.println("Testing size of brain with some categories");
+            String template = "<template>我的脑容量是<size/></template>";
+            Node node = DomUtils.parseString(template);
+            ParseState ps = new ParseState();
+            ps.bot = BotFactory.getDummyBot();
+            
+            Category b = new Category(0, "B", "B", "B", "B", "B", "B");
+            ps.bot.brain.addCategory(b);;
+            Category c = new Category(0, "C", "C", "C", "C", "C", "C");
+            ps.bot.brain.addCategory(c);
+            
+            TagHandler defaultHandler = handlers.getDefaultHandler();
+            String result = defaultHandler.handle(node, ps);
+            Assert.assertEquals("我的脑容量是2", result);
         } catch (Exception e) {
             Assert.fail("Should not get exception here, but " + e.getMessage());
         }
