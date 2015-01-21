@@ -42,4 +42,10 @@ public class BotFactory
         bot.mapMap.put(name, aimlMap);
         return bot;
     }
+    
+    public static Bot getDummyBotWithProperties(String path) throws Exception {
+        Bot bot = getDummyBot();
+        bot.properties.getProperties(path);
+        return bot;
+    }
 }
