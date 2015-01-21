@@ -27,7 +27,7 @@ public class SetHandler extends TagHandler
         HashSet<String> attributeNames = Utilities.stringSet("name", "var");
         String predicateName = HandlingHelper.getAttributeOrTagValue(node, ps, "name", handlers);
         String varName = HandlingHelper.getAttributeOrTagValue(node, ps, "var", handlers);
-        String result = handlers.getDefaultHandler().handle(node, ps, "", attributeNames).trim();
+        String result = handlers.getDefaultHandler().handle(node.getFirstChild(), ps, "", attributeNames).trim();
         result = result.replaceAll("(\r\n|\n\r|\r|\n)", " ");
         if (predicateName != null) {
             ps.context.addPredicate(predicateName, result);

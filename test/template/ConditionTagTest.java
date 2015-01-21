@@ -21,7 +21,7 @@ import core.context.Context;
  */
 public class ConditionTagTest
 {
-private TagHandlerCollection handlers;
+    private TagHandlerCollection handlers;
     
     @Before
     public void setup() {
