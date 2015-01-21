@@ -34,9 +34,12 @@ public class MapHandler extends TagHandler
         if (mapName == null) result = "<map>"+contents+"</map>"; // this is an OOB map tag (no attribute)
         else {
             AIMLMap map = ps.bot.mapMap.get(mapName);
-            if (map != null) result = map.get(contents.toUpperCase());
-            //System.out.println("AIMLProcessor map "+contents+" "+result);
-            if (result == null) result = MagicStrings.default_map;
+            if (map != null) {
+                result = map.get(contents.toUpperCase());
+            }
+            if (result == null) {
+                result = MagicStrings.default_map;
+            }
             result = result.trim();
         }
         return result;
