@@ -22,7 +22,7 @@ public class LowercaseHandler extends TagHandler
     @Override
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
-        String result = handlers.getDefaultHandler().handle(node, ps, "", null);
+        String result = HandlingHelper.handleChilderen(node, ps, previousResult, ignoreAttributes, handlers);
         return result.toLowerCase();
     }
 

@@ -33,8 +33,8 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("think", new ThinkHandler());
         //this.put("system", new SystemHandler()); //should not implement this for now as it could lead to security reasons
         this.put("explode", new ExplodeHandler());
-        this.put("normalize", new NormalizeHandler());
-        this.put("denormalize", new DenormalizeHandler());
+        //this.put("normalize", new NormalizeHandler()); //This need to be tweaked
+        //this.put("denormalize", new DenormalizeHandler()); //We are not supporting normalization and denormalization for now
         this.put("uppercase", new UppercaseHandler());
         this.put("lowercase", new LowercaseHandler());
         this.put("formal", new FormalHandler());
