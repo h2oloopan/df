@@ -35,16 +35,13 @@ public class DefaultMatcher
         	return matchedNode;
         } else if (path.length < node.height) {
         	return null;
-        }
-        /*
-        else if ((matchedNode = dollarMatcher.match(path, node, inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null ) {
+        } else if ((matchedNode = dollarMatcher.match(path, node, inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null ) {
         	return matchedNode;
         } else if ((matchedNode = sharpMatcher.match(path, node, inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null) {
         	return matchedNode;
         } else if ((matchedNode = underMatcher.match(path, node, inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null) {
         	return matchedNode;
-        }
-        */ 
+        } 
         else if ((matchedNode = wordMatcher.match(path, node, inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null) {
         	return matchedNode;
         } 
