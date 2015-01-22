@@ -65,11 +65,11 @@ public class UpperLowerCaseTagTest
     public void uppercaseComplex() {
         try {
             System.out.println("Testing uppercase complex text");
-            String template = "<template>What, <uppercase>"
-                    + "Hello, "
+            String template = "<template>What, <formal>"
+                    + "hello, "
                     + "<condition name=\"gender\" value=\"female\">美女</condition>"
                     + "<condition name=\"gender\" value=\"male\">帅哥</condition>"
-                    + "</uppercase></template>";
+                    + "</formal></template>";
             Node node = DomUtils.parseString(template);
             ParseState ps = new ParseState();
             ps.bot = BotFactory.getDummyBot();
@@ -78,7 +78,7 @@ public class UpperLowerCaseTagTest
             ps.context = context;
             TagHandler defaultHandler = handlers.getDefaultHandler();
             String result = defaultHandler.handle(node, ps);
-            Assert.assertEquals("What, HELLO, 帅哥", result);
+            Assert.assertEquals("What, Hello, 帅哥", result);
         } catch (Exception e) {
             Assert.fail("Should not get exception here, but " + e.getMessage());
         }
