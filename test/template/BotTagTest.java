@@ -44,7 +44,7 @@ public class BotTagTest
             ParseState ps = new ParseState();
             ps.bot = bot;
             TagHandler defaultHandler = handlers.getDefaultHandler();
-            String result = defaultHandler.handle(node, ps);
+            String result = defaultHandler.handle(node, ps, "", null);
             Assert.assertEquals("老秦是帅哥", result);
         } catch (Exception e) {
             Assert.fail("Should not get exception here, but " + e.getMessage());
@@ -61,7 +61,7 @@ public class BotTagTest
             ParseState ps = new ParseState();
             ps.bot = bot;
             TagHandler defaultHandler = handlers.getDefaultHandler();
-            String result = defaultHandler.handle(node, ps);
+            String result = defaultHandler.handle(node, ps, "", null);
             Assert.assertEquals(MagicStrings.default_property + "是帅哥", result);
         } catch (Exception e) {
             Assert.fail("Should not get exception here, but " + e.getMessage());

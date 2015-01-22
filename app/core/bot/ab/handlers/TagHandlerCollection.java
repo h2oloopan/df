@@ -41,7 +41,7 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("sentence", new SentenceHandler());
         //this.put("person", new PersonHandler()); //Alright, we are not using person or person2 at the moment (they are not useful for Chinese either).
         //this.put("person2", new Person2Handler());
-        this.put("gender", new GenderHandler());
+        //this.put("gender", new GenderHandler());
         this.put("star", new InputStarHandler());
         this.put("thatstar", new ThatStarHandler());
         this.put("topicstar", new TopicStarHandler());

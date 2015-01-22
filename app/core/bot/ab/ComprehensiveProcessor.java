@@ -31,7 +31,7 @@ public class ComprehensiveProcessor
     public static TagHandlerCollection handlers = new TagHandlerCollection();
     
     public static String respond(Bot bot, Context context, Profile profile, String inputOriginal, String inputParsed, String that, String topic) throws Exception {
-        Logger.info("INPUT: " + inputOriginal + " | PARSED: " + inputParsed + " | THAT: " + that + " | TOPIC: " + topic);
+        System.out.println("INPUT: " + inputOriginal + " | PARSED: " + inputParsed + " | THAT: " + that + " | TOPIC: " + topic);
         Nodemapper leaf = bot.brain.match(inputOriginal, inputParsed, that, topic);
         
         if (leaf == null) {
@@ -48,8 +48,8 @@ public class ComprehensiveProcessor
         template = "<template>" + template + "</template>";
         Node root = DomUtils.parseString(template);
         
-        Logger.info("EVAL TEMPLATE: " + template);
-        return handlers.get("default").handle(root, ps);
+        System.out.println("EVAL TEMPLATE: " + template);
+        return handlers.getDefaultHandler().handle(root, ps, "", null);
     }
     
     public static boolean validTemplate(String template){

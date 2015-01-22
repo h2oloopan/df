@@ -44,11 +44,11 @@ public class ConditionTagTest
             ps.context = context;
             
             TagHandler defaultHandler = handlers.getDefaultHandler();
-            String result = defaultHandler.handle(node, ps);
+            String result = defaultHandler.handle(node, ps, "", null);
             Assert.assertEquals("帅哥", result);
             
             context.addPredicate("gender", "female");
-            result = defaultHandler.handle(node, ps);
+            result = defaultHandler.handle(node, ps, "", null);
             Assert.assertEquals("美女", result);
             
         } catch (Exception e) {
@@ -74,11 +74,11 @@ public class ConditionTagTest
             ps.context = context;
             
             TagHandler defaultHandler = handlers.getDefaultHandler();
-            String result = defaultHandler.handle(node, ps);
+            String result = defaultHandler.handle(node, ps, "", null);
             Assert.assertEquals("你猜怎么着，帅哥", result);
             
             context.addPredicate("gender", "female");
-            result = defaultHandler.handle(node, ps);
+            result = defaultHandler.handle(node, ps, "", null);
             Assert.assertEquals("你猜怎么着，美女", result);
             
         } catch (Exception e) {
@@ -104,11 +104,11 @@ public class ConditionTagTest
             ps.context = context;
             
             TagHandler defaultHandler = handlers.getDefaultHandler();
-            String result = defaultHandler.handle(node, ps);
+            String result = defaultHandler.handle(node, ps, "", null);
             Assert.assertEquals("你猜怎么着，帅哥", result);
             
             context.addPredicate("gender", "female");
-            result = defaultHandler.handle(node, ps);
+            result = defaultHandler.handle(node, ps, "", null);
             Assert.assertEquals("你猜怎么着，美女", result);
             
         } catch (Exception e) {
