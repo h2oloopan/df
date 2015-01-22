@@ -25,7 +25,7 @@ import core.bot.ab.Utilities;
 public class HandlingHelper
 {
     
-    public static String handleChilderen(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes, TagHandlerCollection handlers) throws Exception {
+    public static String handleChildren(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes, TagHandlerCollection handlers) throws Exception {
         String result = "";
         NodeList childList = node.getChildNodes();
         for (int i = 0; i < childList.getLength(); i++) {

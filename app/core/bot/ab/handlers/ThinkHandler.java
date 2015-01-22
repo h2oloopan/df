@@ -23,7 +23,7 @@ public class ThinkHandler extends TagHandler
     @Override
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
-        HandlingHelper.handleChilderen(node, ps, previousResult, ignoreAttributes, handlers);
+        HandlingHelper.handleChildren(node, ps, previousResult, ignoreAttributes, handlers);
         return "";
     }
 

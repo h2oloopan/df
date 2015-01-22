@@ -22,7 +22,7 @@ public class FormalHandler extends TagHandler
     @Override
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
-        String result = HandlingHelper.handleChilderen(node, ps, previousResult, ignoreAttributes, handlers);
+        String result = HandlingHelper.handleChildren(node, ps, previousResult, ignoreAttributes, handlers);
         return HandlingHelper.capitalizeString(result);
     }
     
