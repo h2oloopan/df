@@ -87,18 +87,21 @@ public class UpperLowerCaseTagTest
     @Test
     public void lowercaseComplex() {
         try {
-            System.out.println("Testing lowercase complex text");
-            String template = "<template>What, <uppercase>"
+            System.out.println("Testing uppercase complex text");
+            String template = "<template>What, <lowercase>"
                     + "Hello, "
                     + "<condition name=\"gender\" value=\"female\">美女</condition>"
                     + "<condition name=\"gender\" value=\"male\">帅哥</condition>"
-                    + "</uppercase></template>";
+                    + "</lowercase></template>";
             Node node = DomUtils.parseString(template);
             ParseState ps = new ParseState();
             ps.bot = BotFactory.getDummyBot();
+            Context context = new Context("u", "s");
+            context.addPredicate("gender", "male");
+            ps.context = context;
             TagHandler defaultHandler = handlers.getDefaultHandler();
             String result = defaultHandler.handle(node, ps);
-            Assert.assertEquals("What, HELLO KITTY", result);
+            Assert.assertEquals("What, hello, 帅哥", result);
         } catch (Exception e) {
             Assert.fail("Should not get exception here, but " + e.getMessage());
         }
