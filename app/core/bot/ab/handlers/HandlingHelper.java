@@ -8,6 +8,7 @@ package core.bot.ab.handlers;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -23,6 +24,19 @@ import core.bot.ab.Utilities;
  */
 public class HandlingHelper
 {
+    
+    public static String handleChilderen(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes, TagHandlerCollection handlers) throws Exception {
+        String result = "";
+        NodeList childList = node.getChildNodes();
+        for (int i = 0; i < childList.getLength(); i++) {
+            Node child = childList.item(i);
+            if (ignoreAttributes == null || !ignoreAttributes.contains(child.getNodeName())) {
+                result += handlers.getDefaultHandler().handle(child, ps, previousResult, ignoreAttributes);
+            }
+        }
+        return result;
+    }
+    
     public static String capitalizeString(String str) {
         char[] chars = str.toLowerCase().toCharArray();
         boolean found = false;
