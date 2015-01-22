@@ -31,7 +31,7 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("date", new DateHandler()); //no need to unit test this for now
         this.put("interval", new IntervalHandler());
         this.put("think", new ThinkHandler());
-        this.put("system", new SystemHandler());
+        //this.put("system", new SystemHandler()); //should not implement this for now as it could lead to security reasons
         this.put("explode", new ExplodeHandler());
         this.put("normalize", new NormalizeHandler());
         this.put("denormalize", new DenormalizeHandler());
