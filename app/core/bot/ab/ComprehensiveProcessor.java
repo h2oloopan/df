@@ -31,7 +31,7 @@ public class ComprehensiveProcessor
     public static TagHandlerCollection handlers = new TagHandlerCollection();
     
     public static String respond(Bot bot, Context context, Profile profile, String inputOriginal, String inputParsed, String that, String topic) throws Exception {
-        System.out.println("INPUT: " + inputOriginal + " | PARSED: " + inputParsed + " | THAT: " + that + " | TOPIC: " + topic);
+        //System.out.println("INPUT: " + inputOriginal + " | PARSED: " + inputParsed + " | THAT: " + that + " | TOPIC: " + topic);
         Nodemapper leaf = bot.brain.match(inputOriginal, inputParsed, that, topic);
         
         if (leaf == null) {
