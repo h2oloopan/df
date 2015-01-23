@@ -23,8 +23,11 @@ public class ThatStarHandler extends TagHandler
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
         int index = HandlingHelper.getIndexValue(node, ps, handlers);
-        if (ps.starBindings.thatStars.star(index)==null) return "";
-        else return ps.starBindings.thatStars.star(index).trim();
+        if (ps.starBindings.thatStars.star(index)==null) {
+            return "";
+        } else {
+            return ps.starBindings.thatStars.star(index).trim();
+        }
     }
 
 }
