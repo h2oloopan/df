@@ -270,6 +270,7 @@ public class Graphmaster {
         Nodemapper n = null;
         try {
             String inputThatTopic = inputThatTopic(inputOriginal, inputParsed, that, topic);
+            //System.out.println(inputThatTopic);
             Path p = Path.sentenceToPath(inputThatTopic);
             n = match(p, inputThatTopic);
         } catch (Exception e) {
@@ -295,6 +296,7 @@ public class Graphmaster {
             String starState = "inputStar";
             String matchTrace = "";
             Nodemapper n = match(path, root, inputThatTopic, starState, 0, inputStars, grammarStars, thatStars, topicStars, matchTrace);
+            //System.out.println(matchTrace);
             if (n != null) {
                 StarBindings sb = new StarBindings();
                 for (int i=0; inputStars[i] != null && i < MagicNumbers.max_stars; i++) {
@@ -321,6 +323,7 @@ public class Graphmaster {
             }
             else {
                 Logger.info("IS NULL");
+                
             }
             return n;
         } catch (Exception ex) {

@@ -48,7 +48,7 @@ public class ComprehensiveProcessor
         template = "<template>" + template + "</template>";
         Node root = DomUtils.parseString(template);
         
-        System.out.println("EVAL TEMPLATE: " + template);
+        //System.out.println("EVAL TEMPLATE: " + template);
         return handlers.getDefaultHandler().handle(root, ps, "", null);
     }
     

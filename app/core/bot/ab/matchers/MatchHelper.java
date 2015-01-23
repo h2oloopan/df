@@ -57,8 +57,11 @@ public class MatchHelper
     public static Nodemapper wildMatch(Path path, Nodemapper node, String inputThatTopic, String starState, int starIndex, String[] inputStars,
         String[] grammarStars, String[] thatStars, String[] topicStars, String wildcard, String matchTrace) {
         Nodemapper matchedNode;
+        //System.out.println("PATHWORD: " + path.word);
+        //System.out.println("NODE: " + node.toString());
         if (path.word.equals("<THAT>") || path.word.equals("<TOPIC>")) {
             matchTrace += "WILDMATCH FAILED: | WILDCARD: " + wildcard + " | PATH: " + path.toString() + " | NODE: " + node.toString() + "\r\n";
+            //System.out.println(matchTrace);
             return null;
         } else {
             try {
@@ -89,16 +92,19 @@ public class MatchHelper
                             }
                         }
                         matchTrace += "WILDMATCH FAILED: | WILDCARD: " + wildcard + " | PATH: " + path.toString() + " | NODE: " + node.toString() + "\r\n";
+                        //System.out.println(matchTrace);
                         return null;
                     }
                     
                 } else {
                     matchTrace += "WILDMATCH FAILED: | WILDCARD: " + wildcard + " | PATH: " + path.toString() + " | NODE: " + node.toString() + "\r\n";
+                    //System.out.println(matchTrace);
                     return null;
                 }
             } catch (Exception e) {
                 Logger.error(e.getMessage(), e);
                 matchTrace += "WILDMATCH FAILED: | WILDCARD: " + wildcard + " | PATH: " + path.toString() + " | NODE: " + node.toString() + "\r\n";
+                //System.out.println(matchTrace);
                 return null;
             }
         }

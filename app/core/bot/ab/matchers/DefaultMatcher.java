@@ -30,7 +30,7 @@ public class DefaultMatcher
             String[] grammarStars, String[] thatStars, String[] topicStars, String matchTrace)
     {
         Nodemapper matchedNode;
-        Logger.info("Match: Height="+node.height+" Length="+path.length+" Path="+Path.pathToSentence(path));
+        //System.out.println("Match: Height="+node.height+" Length="+path.length+" Path="+Path.pathToSentence(path));
         if ((matchedNode = nullMatcher.match(path, node, inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null) {
         	return matchedNode;
         } else if (path.length < node.height) {
@@ -41,8 +41,7 @@ public class DefaultMatcher
         	return matchedNode;
         } else if ((matchedNode = underMatcher.match(path, node, inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null) {
         	return matchedNode;
-        } 
-        else if ((matchedNode = wordMatcher.match(path, node, inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null) {
+        } else if ((matchedNode = wordMatcher.match(path, node, inputThatTopic, starState, starIndex, inputStars, grammarStars, thatStars, topicStars, matchTrace)) != null) {
         	return matchedNode;
         } 
         /*

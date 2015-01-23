@@ -24,8 +24,12 @@ public class InputStarHandler extends TagHandler
     {
         String result= "" ;
         int index= HandlingHelper.getIndexValue(node, ps, handlers);
-        if (ps.starBindings.inputStars.star(index)==null) result = "";
-        else result = ps.starBindings.inputStars.star(index).trim();
+        System.out.println(result + index);
+        if (ps.starBindings.inputStars.star(index)==null) {
+            result = "";
+        } else {
+            result = ps.starBindings.inputStars.star(index).trim();
+        }
         return result;
     }
 

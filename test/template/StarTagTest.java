@@ -79,14 +79,14 @@ public class StarTagTest
             System.out.println("Testing input star with two stars");
             
             Bot bot = BotFactory.getDummyBot();
-            Category c = new Category(0, "你好", "*", "*", "*", "我不好<star/>", "dummy.aiml");
+            Category c = new Category(0, "* 你好 *", "*", "*", "*", "<star index=\"2\"/> 我不好, <star index=\"1\"/>", "dummy.aiml");
             bot.brain.addCategory(c);
             
             Context context = new Context("uid", "sid");
             Profile profile = new Profile("uid");
-            String result = bot.respond("你好", SpecialText.NULL, SpecialText.NULL, SpecialText.NULL, context, profile);
+            String result = bot.respond("琨叔 你好 老秦", SpecialText.NULL, SpecialText.NULL, SpecialText.NULL, context, profile);
             
-            Assert.assertEquals("我不好", result);
+            Assert.assertEquals("老秦 我不好, 琨叔", result);
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail("Should not get exception here, but " + e.getMessage());
