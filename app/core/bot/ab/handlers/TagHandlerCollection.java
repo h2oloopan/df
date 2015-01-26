@@ -54,8 +54,8 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         //this.put("deletetriple", new DeleteTripleHandler());
         //this.put("select", new SelectHandler());
         //this.put("uniq", new UniqHandler());
-        this.put("first", new FirstHandler());
-        this.put("rest", new RestHandler());
+        //this.put("first", new FirstHandler()); //these are mostly only useful for English words
+        //this.put("rest", new RestHandler()); //same as above
     }
     
     public TagHandler getDefaultHandler() {
