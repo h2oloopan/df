@@ -9,6 +9,7 @@ import core.grammar.GrammarMatcher;
 import play.Logger;
 import gram.gravy.GMatcher;
 import gram.gravy.GPrecursor;
+import gram.gravy.GResult;
 import gram.util.SpaceType;
 
 public class LaoMaGrammarMatcher implements GrammarMatcher {
@@ -69,7 +70,8 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
     }
     
     @Override
-    public void doSomething() throws Exception {
-        
+    public void doSomething(String input) throws Exception {
+        GResult result = matcher.parse(input);
+        System.out.println(result.toString());
     }
 }

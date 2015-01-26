@@ -41,10 +41,7 @@ public class LaoMaGrammarMatchTest
         String query = "你好吗";
         try {
             String result = matcher.match(query);
-            Assert.assertEquals("default.你好吗", result);
-            query = "你好不好";
-            Assert.assertEquals("default.你好吗", result);
-            query = "你怎么样";
+            matcher.doSomething(query);
             Assert.assertEquals("default.你好吗", result);
         } catch (Exception e) {
             Assert.fail("Should not get exception here, but " + e.getMessage());
