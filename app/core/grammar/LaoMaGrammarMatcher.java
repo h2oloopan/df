@@ -59,6 +59,7 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
 		}
 	}
 
+	
     @Override
     public HashMap<String, String> getMap(String parsedQuery) throws Exception
     {

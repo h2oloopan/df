@@ -32,12 +32,12 @@ public class ThatHandler extends TagHandler
                 String[] spair = pair.split(",");
                 index = Integer.parseInt(spair[0])-1;
                 jndex = Integer.parseInt(spair[1])-1;
-                System.out.println("That index="+index+","+jndex);
             } catch (Exception ex) { ex.printStackTrace(); }
         String that = MagicStrings.unknown_history_item;
         //History hist = ps.chatSession.thatHistory.get(index);
         //if (hist != null) that = (String)hist.get(jndex);
-        that = ps.context.getLastResponse(jndex);
+        that = ps.context.getLastResponse(index);
+        //that = ps.context.getLastResponse(jndex);
         return that.trim();
     }
 

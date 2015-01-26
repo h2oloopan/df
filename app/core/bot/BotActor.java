@@ -91,14 +91,14 @@ public class BotActor extends UntypedActor {
 		            }
 		            getSender().tell(response, getContext().parent());
 		            //update context and profile
+		            
 		            if (context != null) {
 		                String lastQuery = inputOriginal != null ? inputOriginal : SpecialText.NULL;
 		                String lastResponse = response != null && response.getText() != null ? response.getText() : SpecialText.NULL;
-		                Logger.info("LQ: " + lastQuery);
-		                Logger.info("LR: " + lastResponse);
 		                context.insert(lastQuery, lastResponse);
 		                contextProvider.saveContext(query.getUid(), query.getSid(), context);
 		            }
+		            
 		            if (profile != null) {
 		                profileProvider.saveProfile(query.getUid(), profile);
 		            }
