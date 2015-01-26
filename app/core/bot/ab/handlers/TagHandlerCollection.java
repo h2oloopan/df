@@ -47,7 +47,7 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("topicstar", new TopicStarHandler());
         
         this.put("that", new ThatHandler());
-        this.put("input", new InputHandler());
+        //this.put("input", new InputHandler()); //don't break down into sentences at the moment
         this.put("request", new RequestHandler());
         this.put("response", new ResponseHandler());
         //this.put("addtriple", new AddTripleHandler());
