@@ -12,8 +12,8 @@ import gram.gravy.GPrecursor;
 import gram.util.SpaceType;
 
 public class LaoMaGrammarMatcher implements GrammarMatcher {
-	private GMatcher matcher;
-
+	private GMatcher matcher;	
+	
 	@Override
 	public GrammarMatcher initialize(String path) throws Exception {
 		//File grams = new File(new File(path), "execs/grams.bin");
@@ -66,5 +66,10 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
         HashMap<String, String> map = new HashMap<String, String>();
         map.put(parsedQuery, parsedQuery);
         return map;
+    }
+    
+    @Override
+    public void doSomething() throws Exception {
+        
     }
 }

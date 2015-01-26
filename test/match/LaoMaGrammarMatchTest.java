@@ -36,7 +36,24 @@ public class LaoMaGrammarMatchTest
     }
     
     @Test
+    public void play() {
+        System.out.println("FUN FUN FUN");
+        String query = "你好吗";
+        try {
+            String result = matcher.match(query);
+            Assert.assertEquals("default.你好吗", result);
+            query = "你好不好";
+            Assert.assertEquals("default.你好吗", result);
+            query = "你怎么样";
+            Assert.assertEquals("default.你好吗", result);
+        } catch (Exception e) {
+            Assert.fail("Should not get exception here, but " + e.getMessage());
+        }
+    }
+    
+    @Test
     public void canMatch1() {
+        System.out.println("Testing a possible match");
         String query = "你好吗";
         try {
             String result = matcher.match(query);
@@ -52,6 +69,7 @@ public class LaoMaGrammarMatchTest
     
     @Test
     public void cannotMatch1() {
+        System.out.println("Testing without a possible match");
         String query = "你不好吗";
         try {
             String result = matcher.match(query);
