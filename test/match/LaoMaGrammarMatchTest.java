@@ -44,6 +44,7 @@ public class LaoMaGrammarMatchTest
             matcher.doSomething(query);
             Assert.assertEquals("default.你好吗", result);
         } catch (Exception e) {
+            e.printStackTrace();
             Assert.fail("Should not get exception here, but " + e.getMessage());
         }
     }
