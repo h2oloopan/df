@@ -11,6 +11,7 @@ import java.util.Set;
 import org.w3c.dom.Node;
 
 import core.bot.ab.ParseState;
+import core.messages.SpecialText;
 
 /**
  *@author Shengying Pan (s5pan@uwaterloo.ca) 
@@ -26,7 +27,8 @@ public class GrammarValueHandler extends TagHandler
         String term = HandlingHelper.getAttributeOrTagValue(node, ps, "term", handlers);
         String key = HandlingHelper.getAttributeOrTagValue(node, ps, "key", handlers);
         
-        return ps.matcher.getValue(ps.inputOriginal, term, key);
+        String result = ps.matcher.getValue(ps.inputOriginal, term, key);
+        return result;
     }
 
 }

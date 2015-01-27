@@ -55,6 +55,25 @@ public class GValTagTest
     
     @Test
     public void nothing() {
-        
+        try {
+            System.out.println("Testing getting a grammar key with nothing");
+            
+            Bot bot = BotFactory.getDummyBot();
+            Category c = new Category(0, "*", "default.你好吗", "*", "*", "我不好<gval term=\"default.你好吗\" key=\"dart\"/>", "dummy.aiml");
+            bot.brain.addCategory(c);
+            
+            Context context = new Context("uid", "sid");
+            Profile profile = new Profile("uid");
+            
+            String inputOriginal = "你好吗";
+            String inputParsed = bot.grammarMatcher.match(inputOriginal);
+            
+            String result = bot.respond(inputOriginal, inputParsed, SpecialText.NULL, SpecialText.NULL, context, profile);
+            
+            Assert.assertEquals("我不好" + SpecialText.NULL, result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail("Should not get exception here, but " + e.getMessage());
+        }
     }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import core.grammar.GrammarMatcher;
+import core.messages.SpecialText;
 import play.Logger;
 import gram.gravy.GMatcher;
 import gram.gravy.GPrecursor;
@@ -83,7 +84,7 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
     private String formatValue(Object o) {
         StringBuffer s = new StringBuffer();
         if (o == null) {
-            s.append("null");
+            s.append(SpecialText.NULL);
         } else if (o instanceof Calendar) {
             s.append(String
                     .format("\"%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS\"", o));
