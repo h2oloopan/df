@@ -1,4 +1,5 @@
 namespace default
 
-问好:=strings{你好吗,你好不好,你怎么样}
-public 你好吗  : 问好
+人:=strings{你,我,他}
+问好:=strings{好吗,好不好,怎么样}
+public 你好吗  : 人 问好 {who = 人.key;}

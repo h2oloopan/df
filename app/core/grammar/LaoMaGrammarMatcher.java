@@ -85,10 +85,8 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
         
         GResult result = matcher.term("default.你好吗").parse();
         
-        //String wth = formatValue
-        
-        System.out.println(output);
-        
+        String hmm = formatValue(result.getProperty("who"));
+        System.out.println(hmm);
         
     }
     
