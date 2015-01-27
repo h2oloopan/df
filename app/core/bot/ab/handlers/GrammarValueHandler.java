@@ -26,9 +26,7 @@ public class GrammarValueHandler extends TagHandler
         String term = HandlingHelper.getAttributeOrTagValue(node, ps, "term", handlers);
         String key = HandlingHelper.getAttributeOrTagValue(node, ps, "key", handlers);
         
-        ps.matcher
-        
-        return null;
+        return ps.matcher.getValue(ps.inputOriginal, term, key);
     }
 
 }

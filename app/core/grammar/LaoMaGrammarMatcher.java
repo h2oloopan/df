@@ -74,56 +74,10 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
     }
     
     @Override
-    public void doSomething(String input) throws Exception {
-        //Map map = matcher.match(input);
-        //GTerm term = matcher.term(input);
-        //term.
-        //System.out.println(term.toString());
-        
-        String output = this.match("你好吗");
-        System.out.println(output);
-        
-        GResult result = matcher.term("default.你好吗").parse();
-        
-        String hmm = formatValue(result.getProperty("who"));
-        System.out.println(hmm);
-        
-    }
-    
-    private String value(GResult result, String variableName, boolean isAll) {
-        Object v = null;
-        try {
-            if (result == null) {
-                v = "null";
-            } else if(variableName == null){
-                v = "null";
-            } else {
-                if(isAll) {
-                    String[] term_vname = variableName.split("\\.", 2);
-                    if(term_vname.length == 2) {
-                        List<GResult> all = result.all0(term_vname[0]);
-                        List resultList = new ArrayList();
-                        for (GResult gresult : all) {
-                            resultList.add(gresult.getProperty(term_vname[1]));
-                        }
-                        v = resultList;                     
-                    } else { //not contain .
-                        List<GResult> all = result.all();
-                        List resultList = new ArrayList();
-                        for (GResult gresult : all) {
-                            resultList.add(gresult.getProperty(term_vname[0]));
-                        }
-                        v = resultList; 
-                    }
-                }else {
-                    v = result.getProperty(variableName);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "获取变量出错了！请赶紧在控制台检查错误！！";
-        }
-        return formatValue(v);
+    public String getValue(String input, String term, String key) throws Exception {
+        matcher.match(input);
+        GResult result = matcher.term(term).parse();
+        return formatValue(result.getProperty(key));
     }
     
     private String formatValue(Object o) {
