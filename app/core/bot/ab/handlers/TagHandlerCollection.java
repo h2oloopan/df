@@ -56,6 +56,9 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         //this.put("uniq", new UniqHandler());
         //this.put("first", new FirstHandler()); //these are mostly only useful for English words
         //this.put("rest", new RestHandler()); //same as above
+        
+        //GRAMMAR related tags <- custom tag = not in aiml specs
+        this.put("gval", new GrammarValueHandler());
     }
     
     public TagHandler getDefaultHandler() {
