@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import core.bot.Bot;
 import core.context.*;
+import core.grammar.GrammarMatcher;
 
 /* Program AB Reference AIML 2.0 implementation
         Copyright (C) 2013 ALICE A.I. Foundation
@@ -39,6 +40,7 @@ public class ParseState {
     public Bot bot;
     public Profile profile;
     public Context context;
+    public GrammarMatcher matcher;
 
      /**
       * Constructor - class has public members
@@ -54,7 +56,7 @@ public class ParseState {
         this.depth = 0;
     }
     
-    public ParseState(int depth, String inputOriginal, String inputParsed, String that, String topic, Nodemapper leaf, Bot bot, Context context, Profile profile) {
+    public ParseState(int depth, String inputOriginal, String inputParsed, String that, String topic, Nodemapper leaf, Bot bot, Context context, Profile profile, GrammarMatcher matcher) {
         this.inputOriginal = inputOriginal;
         this.inputParsed = inputParsed;
                 
@@ -68,5 +70,6 @@ public class ParseState {
         this.bot = bot;
         this.context = context;
         this.profile = profile;
+        this.matcher = matcher;
     }
 }

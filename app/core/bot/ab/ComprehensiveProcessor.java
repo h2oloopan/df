@@ -17,6 +17,7 @@ import core.bot.ab.handlers.TagHandler;
 import core.bot.ab.handlers.TagHandlerCollection;
 import core.bot.ab.utils.DomUtils;
 import core.context.*;
+import core.grammar.GrammarMatcher;
 
 import org.w3c.dom.*;
 
@@ -30,14 +31,14 @@ public class ComprehensiveProcessor
     public static int repeatCount = 0;
     public static TagHandlerCollection handlers = new TagHandlerCollection();
     
-    public static String respond(Bot bot, Context context, Profile profile, String inputOriginal, String inputParsed, String that, String topic) throws Exception {
+    public static String respond(Bot bot, Context context, Profile profile, GrammarMatcher matcher, String inputOriginal, String inputParsed, String that, String topic) throws Exception {
         //System.out.println("INPUT: " + inputOriginal + " | PARSED: " + inputParsed + " | THAT: " + that + " | TOPIC: " + topic);
         Nodemapper leaf = bot.brain.match(inputOriginal, inputParsed, that, topic);
         
         if (leaf == null) {
             return null;
         } else {
-            ParseState ps = new ParseState(0, inputOriginal, inputParsed, that, topic, leaf, bot, context, profile);
+            ParseState ps = new ParseState(0, inputOriginal, inputParsed, that, topic, leaf, bot, context, profile, matcher);
             String template = leaf.category.getTemplate();
             return evalTemplate(template, ps);
         }

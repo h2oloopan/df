@@ -37,7 +37,7 @@ public class SraiHandler extends TagHandler
             return(response);
         }
         response = ComprehensiveProcessor.evalTemplate(leaf.category.getTemplate(), 
-            new ParseState(ps.depth+1, ps.inputOriginal, ps.inputParsed, ps.that, topic, leaf, ps.bot, ps.context, ps.profile));
+            new ParseState(ps.depth+1, ps.inputOriginal, ps.inputParsed, ps.that, topic, leaf, ps.bot, ps.context, ps.profile, ps.matcher));
         
         result = response.trim();
         return result;

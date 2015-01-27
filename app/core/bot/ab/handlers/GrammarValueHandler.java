@@ -22,7 +22,12 @@ public class GrammarValueHandler extends TagHandler
     @Override
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
-        // TODO Auto-generated method stub
+        
+        String term = HandlingHelper.getAttributeOrTagValue(node, ps, "term", handlers);
+        String key = HandlingHelper.getAttributeOrTagValue(node, ps, "key", handlers);
+        
+        ps.matcher
+        
         return null;
     }
 
