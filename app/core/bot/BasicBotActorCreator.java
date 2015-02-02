@@ -16,18 +16,21 @@ public class BasicBotActorCreator extends BotActorCreator {
 	private ProfileProvider profileProvider;
 	private GrammarCompiler grammarCompiler;
 	private GrammarMatcher matcher;
+	private LogProvider logProvider;
 	
 	@Inject
-	public BasicBotActorCreator(ContextProvider contextProvider, ProfileProvider profileProvider, GrammarCompiler grammarCompiler, GrammarMatcher matcher) {
+	public BasicBotActorCreator(ContextProvider contextProvider, ProfileProvider profileProvider, 
+	        GrammarCompiler grammarCompiler, GrammarMatcher matcher, LogProvider logProvider) {
 		this.contextProvider = contextProvider;
 		this.profileProvider = profileProvider;
 		this.grammarCompiler = grammarCompiler;
 		this.matcher = matcher;
+		this.logProvider = logProvider;
 	}
 	
 	@Override
 	public BotActor create() throws Exception {
-		return new BotActor(contextProvider, profileProvider, grammarCompiler, matcher, name, path);
+		return new BotActor(contextProvider, profileProvider, grammarCompiler, matcher, logProvider, name, path);
 	}
 
 	@Override

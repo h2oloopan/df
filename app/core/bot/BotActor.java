@@ -26,16 +26,18 @@ public class BotActor extends UntypedActor {
 	private ProfileProvider profileProvider;
 	private GrammarCompiler grammarCompiler;
 	private GrammarMatcher grammarMatcher;
+	private LogProvider logProvider;
 	
 	//constructor
 	public BotActor(ContextProvider contextProvider, ProfileProvider profileProvider, GrammarCompiler grammarCompiler, GrammarMatcher grammarMatcher,
-	        String name, String path) throws Exception {
+	        LogProvider logProvider, String name, String path) throws Exception {
 		Logger.info("Initializing bot " + name + " at " + path);
 		this.contextProvider = contextProvider;
 		this.profileProvider = profileProvider;
 		this.grammarCompiler = grammarCompiler;
 		String gramsPath = (new File(new File(path), "execs/grams.bin")).getCanonicalPath();
 		this.grammarMatcher = grammarMatcher.initialize(gramsPath);
+		this.logProvider = logProvider;
 		this.name = name;
 		this.path = path;
 		this.bot = new Bot(name, path, this.grammarMatcher);
@@ -81,6 +83,8 @@ public class BotActor extends UntypedActor {
 		                inputParsed = inputParsed == null ? SpecialText.NULL : inputParsed;
 		                String output = bot.respond(inputOriginal, inputParsed, that, topic, context, profile);
 		                if (output != null) {
+		                    //log
+		                    logProvider.saveQuery(inputOriginal, inputParsed, output, query.getUid());
 		                    response = new Response(200, output);
 		                } else {
 		                    response = new Response(500, "Cannot respond to the query for some reason");
