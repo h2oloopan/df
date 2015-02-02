@@ -14,7 +14,9 @@ import core.messages.Response;
 import core.messages.SpecialText;
 import play.Logger;
 import core.storage.*;
+import akka.actor.Props;
 import akka.actor.UntypedActor;
+import akka.japi.Creator;
 
 public class BotActor extends UntypedActor {
 	private String name;
@@ -41,6 +43,21 @@ public class BotActor extends UntypedActor {
 		this.name = name;
 		this.path = path;
 		this.bot = new Bot(name, path, this.grammarMatcher);
+	}
+	
+	public static Props props(final ContextProvider contextProvider, final ProfileProvider profileProvider, 
+	        final GrammarCompiler grammarCompiler, final GrammarMatcher grammarMatcher, final LogProvider logProvider,
+	        final String name, final String path) {
+	    
+	    return Props.create(new Creator<BotActor>() {
+	       private static final long serialVersionUID = 1L;
+	       
+	       @Override
+	       public BotActor create() throws Exception {
+	           return new BotActor(contextProvider, profileProvider, grammarCompiler, grammarMatcher, logProvider, name, path);
+	       }
+	    });
+	    
 	}
 	
 	@Override

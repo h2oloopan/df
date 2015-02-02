@@ -1,0 +1,5 @@
+namespace basic
+
+问好语:={你好,你好吗}
+
+public 问好: 问好语

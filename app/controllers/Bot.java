@@ -21,7 +21,6 @@ import play.mvc.*;
 public class Bot extends Controller {
 	@Inject
 	private ActorFarm farm;
-	
 	@Inject
 	private SessionTable table;
 
