@@ -23,6 +23,7 @@ public class Global extends GlobalSettings {
 				bind(GrammarMatcher.class).to(LaoMaGrammarMatcher.class);
 				bind(ContextProvider.class).to(DefaultContextProvider.class);
 				bind(ProfileProvider.class).to(MySqlProfileProvider.class);
+				bind(LogProvider.class).to(MySqlLogProvider.class);
 				
 				bind(BotActorCreator.class).to(BasicBotActorCreator.class).in(Singleton.class);
 				bind(GrammarCompiler.class).to(LaoMaGrammarCompiler.class).in(Singleton.class);
