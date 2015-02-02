@@ -84,7 +84,7 @@ public class BotActor extends UntypedActor {
 		                String output = bot.respond(inputOriginal, inputParsed, that, topic, context, profile);
 		                if (output != null) {
 		                    //log
-		                    logProvider.saveQuery(inputOriginal, inputParsed, output, query.getUid());
+		                    logProvider.saveQuery(this.name, topic, inputOriginal, inputParsed, output, query.getUid());
 		                    response = new Response(200, output);
 		                } else {
 		                    response = new Response(500, "Cannot respond to the query for some reason");

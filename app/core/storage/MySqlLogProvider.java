@@ -29,18 +29,20 @@ public class MySqlLogProvider implements LogProvider
     
 
     @Override
-    public void saveQuery(String inputOriginal, String inputParsed, String output, String uid) throws Exception
+    public void saveQuery(String bot, String topic, String inputOriginal, String inputParsed, String output, String uid) throws Exception
     {
         Connection conn = null;
         PreparedStatement stmt = null;
         try {
             conn = ds.getConnection();
-            String sql = "INSERT INTO query_logs (input_original, input_parsed, output, uid, timestamp) VALUES (?, ?, ?, ?, NOW());";
+            String sql = "INSERT INTO query_logs (bot, topic, input_original, input_parsed, output, uid, timestamp) VALUES (?, ?, ?, ?, ?, ?, NOW());";
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, inputOriginal);
-            stmt.setString(2, inputParsed);
-            stmt.setString(3, output);
-            stmt.setString(4, uid);
+            stmt.setString(1, bot);
+            stmt.setString(2, topic);
+            stmt.setString(3, inputOriginal);
+            stmt.setString(4, inputParsed);
+            stmt.setString(5, output);
+            stmt.setString(6, uid);
             stmt.executeUpdate();
         } catch (Exception e) {
             throw e;
