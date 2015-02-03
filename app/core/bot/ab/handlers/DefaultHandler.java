@@ -31,6 +31,8 @@ public class DefaultHandler extends TagHandler
             return node.getNodeValue();
         } else if (nodeName.equals("#comment")) {
             return "";
+        } else if (ignoreAttributes != null && ignoreAttributes.contains(nodeName)) {
+            return "";
         } else {
             TagHandler handler = handlers.getHandler(nodeName.toLowerCase());
             if (!(handler instanceof DefaultHandler)) {

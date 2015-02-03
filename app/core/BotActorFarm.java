@@ -31,7 +31,7 @@ import akka.routing.RoundRobinPool;
 public class BotActorFarm implements ActorFarm {
 	private Map<String, ActorRef> routers;
 	private final String rootPath = "bots";
-	private final int instances = 2;
+	private final int instances = 4;
 	
 
 	private ContextProvider contextProvider;
@@ -80,6 +80,7 @@ public class BotActorFarm implements ActorFarm {
 			    new RoundRobinPool(instances).withSupervisorStrategy(strategy).props(
 			        BotActor.props(contextProvider, profileProvider, grammarCompiler, grammarMatcherProvider.getMatcher(gramsPath), logProvider, name, path)
 			        ), "router-" + name);
+			
 			
 			routers.put(name, router);
 			Logger.info("Added bot " + name);

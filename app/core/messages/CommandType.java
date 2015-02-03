@@ -12,5 +12,5 @@ package core.messages;
  */
 public enum CommandType
 {
-    COMPILE, RESPOND
+    COMPILE, RESPOND, RELOAD
 }

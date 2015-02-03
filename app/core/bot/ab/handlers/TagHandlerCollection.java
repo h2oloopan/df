@@ -59,6 +59,7 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         
         //GRAMMAR related tags <- custom tag = not in aiml specs
         this.put("gval", new GrammarValueHandler());
+        this.put("log", new LogHandler());
     }
     
     public TagHandler getDefaultHandler() {

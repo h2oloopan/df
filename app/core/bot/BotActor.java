@@ -41,7 +41,7 @@ public class BotActor extends UntypedActor {
 		this.logProvider = logProvider;
 		this.name = name;
 		this.path = path;
-		this.bot = new Bot(name, path, this.grammarMatcher);
+		this.bot = new Bot(name, path, this.grammarMatcher, this.logProvider);
 	}
 	
 	public static Props props(final ContextProvider contextProvider, final ProfileProvider profileProvider, 
@@ -71,6 +71,17 @@ public class BotActor extends UntypedActor {
 			        Response response = null;
 			        try {
 			            grammarCompiler.compile(path);
+			            response = new Response(200, "");
+			        } catch (Exception e) {
+			            response = new Response(500, e.getMessage());
+			        } finally {
+			            getSender().tell(response, getContext().parent());
+			        }
+			        break;
+			    case RELOAD:
+			        response = null;
+			        try {
+			            this.bot = new Bot(name, path, grammarMatcher, logProvider);
 			            response = new Response(200, "");
 			        } catch (Exception e) {
 			            response = new Response(500, e.getMessage());

@@ -65,5 +65,22 @@ define ['routes/testRoute', 'ehbs!templates/index'], (TestRoute) ->
 						.done (result) ->
 							thiz.send 'update', '[SYSTEM] Grammar compilation done for bot ' + bot
 						.fail (response) ->
-							thiz.send 'update', '[SYSTEM] Grammar compilation failed for bot ' + response.responseText
+							thiz.send 'update', '[SYSTEM] Grammar compilation failed for bot ' + bot + ' ' + response.responseText
+						return false
+					reload: ->
+						thiz = @
+						bot = @get 'bot'
+						$.ajax
+							url: '/bot/reload'
+							type: 'POST'
+							data: JSON.stringify
+								bot: bot
+							dataType: 'json'
+							contentType: 'application/json; charset=utf-8'
+						.done (result) ->
+							thiz.send 'update', '[SYSTEM] Bot reloaded successfully for ' + bot
+							return true
+						.fail (response) ->
+							#thiz.send 'update', '[SYSTEM] Bot reloading failed for bot ' + bot + ' ' + response.responseText
+							return false
 						return false

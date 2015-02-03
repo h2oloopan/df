@@ -7,7 +7,6 @@
 package core.bot;
 
 import core.grammar.GrammarMatcher;
-
 import core.bot.ab.AIMLMap;
 import core.bot.ab.AIMLSet;
 import core.bot.ab.Category;
@@ -31,6 +30,7 @@ import java.util.*;
 import play.Logger;
 import core.context.*;
 import core.messages.SpecialText;
+import core.storage.LogProvider;
 
 /**
  *@author Shengying Pan (s5pan@uwaterloo.ca) 
@@ -45,6 +45,7 @@ public class Bot
     public Graphmaster learnGraph;
     
     public GrammarMatcher grammarMatcher;
+    public LogProvider logProvider;
 
     // public Graphmaster unfinishedGraph;
     //  public final ArrayList<Category> categories;
@@ -85,10 +86,11 @@ public class Bot
      * @param path     bot path
      */
     
-    public Bot(String name, String path, GrammarMatcher grammarMatcher) throws Exception {
+    public Bot(String name, String path, GrammarMatcher grammarMatcher, LogProvider logProvider) throws Exception {
         int cnt=0;
         int elementCnt=0;
         this.grammarMatcher = grammarMatcher;
+        this.logProvider = logProvider;
         this.name = name;
         setAllPaths(path, name);
         this.brain = new Graphmaster(this);
@@ -152,7 +154,7 @@ public class Bot
      */
     public String respond(String inputOriginal, String inputParsed, String that, String topic, Context context, Profile profile) throws Exception {
         String result = ComprehensiveProcessor.respond(this, context, profile, grammarMatcher, inputOriginal, inputParsed, that, topic);
-        return result;
+        return result.trim();
         //TODO: repetition handling goes here?
         /*
         boolean repetition = true;

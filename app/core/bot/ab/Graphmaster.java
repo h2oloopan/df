@@ -115,7 +115,7 @@ public class Graphmaster {
         }
         }*/
         //
-        Logger.info(inputThatTopic);
+        //Logger.info(inputThatTopic);
         Path p = Path.sentenceToPath(inputThatTopic);
         addPath(p, category);
         categoryCnt++;
@@ -318,11 +318,11 @@ public class Graphmaster {
             //if (!n.category.getPattern().contains("*")) System.out.println("adding match "+inputThatTopic);
             if (n != null) { 
                 n.category.addMatch(inputThatTopic, bot);
-                Logger.info("NOT NULL " + n.category.toString());
-                Logger.info(n.starBindings.toString());
+                //Logger.info("NOT NULL " + n.category.toString());
+                //Logger.info(n.starBindings.toString());
             }
             else {
-                Logger.info("IS NULL");
+                //Logger.info("IS NULL");
                 
             }
             return n;

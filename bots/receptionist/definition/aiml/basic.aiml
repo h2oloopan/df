@@ -15,7 +15,13 @@
 			*
 		</pattern>
 		<template>
-			  抱歉，我跟你无话可说！
+			<think>
+			<log>
+				<type>Unhandled Query</type>
+				{input: "<star/>"}
+			</log>
+			</think>
+			哈哈哈哈哈哈哈，大神问的太深奥，小弱斗胆接不住。
 		</template>
 	</category>
 </aiml>

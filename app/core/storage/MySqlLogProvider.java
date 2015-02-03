@@ -63,4 +63,38 @@ public class MySqlLogProvider implements LogProvider
         }
     }
 
+
+    @Override
+    public void saveGeneral(String log, String note, String type) throws Exception
+    {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = ds.getConnection();
+            String sql = "INSERT INTO general_logs (timestamp, log, note, type) VALUES (NOW(), ?, ?, ?);";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, log);
+            stmt.setString(2, note);
+            stmt.setString(3, type);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            //try to close open statement and connection
+            try {
+                if (stmt != null) stmt.close();
+            } catch (Exception ex) {
+                //do nothing
+                throw ex;
+            }
+            try {
+                if (conn != null) conn.close();
+            } catch (Exception ex) {
+                //do nothing
+                throw ex;
+            }
+        }
+        
+    }
+
 }

@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import akka.actor.ActorRef;
+import akka.routing.Broadcast;
 import static akka.pattern.Patterns.ask;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -42,6 +43,37 @@ public class Bot extends Controller {
 		}
 	}
 
+	public Promise<Result> reload() {
+	    try {
+            JsonNode json = request().body().asJson();
+            String bot = json.findPath("bot").textValue();
+            Logger.info("Reloading bot " + bot);
+            ActorRef actor = farm.getActor(bot);
+            Query q = new Query(CommandType.RELOAD);
+            return Promise.wrap(ask(actor, new Broadcast(q), 5000)).map(
+                new Function<Object, Result>() {
+                    public Result apply(Object message) {
+                        Response response = (Response)message;
+                        switch (response.getCode()) {
+                        case 200:
+                            return ok();
+                        case 500:
+                            return internalServerError(response.getText());
+                        default:
+                            return ok();
+                        }
+                    }
+                }
+            );
+        } catch (final Exception e) {
+            return Promise.promise(new Function0<Result>() {
+                public Result apply() {
+                    return badRequest(e.getMessage());
+                }
+            });
+        }
+	}
+	
 	//Compile grammar files for a bot
 	public Promise<Result> compile() {
 		try {

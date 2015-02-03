@@ -13,4 +13,5 @@ package core.storage;
 public interface LogProvider
 {
     public void saveQuery(String bot, String topic, String inputOriginal, String inputParsed, String output, String uid) throws Exception;
+    public void saveGeneral(String log, String note, String type) throws Exception;
 }

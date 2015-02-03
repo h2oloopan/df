@@ -84,7 +84,11 @@ public class HandlingHelper
         else {
             result = m.getNodeValue();
         }
-        return result;
+        if (result == null) {
+            return result;
+        } else {
+            return result.trim();
+        }
     }
     
     public static String condition(Node node, ParseState ps, TagHandlerCollection handlers) throws Exception {

@@ -8,6 +8,7 @@ GET     /                           @controllers.Application.index()
 # Bot
 POST    /bot/talk                   @controllers.Bot.talk()
 POST    /bot/compile               	@controllers.Bot.compile()
+POST    /bot/reload                 @controllers.Bot.reload()
 GET     /bot/bots                   @controllers.Bot.bots()
 
 

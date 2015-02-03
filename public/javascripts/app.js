@@ -80,7 +80,27 @@ define(['routes/testRoute', 'ehbs!templates/index'], function(TestRoute) {
             }).done(function(result) {
               return thiz.send('update', '[SYSTEM] Grammar compilation done for bot ' + bot);
             }).fail(function(response) {
-              return thiz.send('update', '[SYSTEM] Grammar compilation failed for bot ' + response.responseText);
+              return thiz.send('update', '[SYSTEM] Grammar compilation failed for bot ' + bot + ' ' + response.responseText);
+            });
+            return false;
+          },
+          reload: function() {
+            var bot, thiz;
+            thiz = this;
+            bot = this.get('bot');
+            $.ajax({
+              url: '/bot/reload',
+              type: 'POST',
+              data: JSON.stringify({
+                bot: bot
+              }),
+              dataType: 'json',
+              contentType: 'application/json; charset=utf-8'
+            }).done(function(result) {
+              thiz.send('update', '[SYSTEM] Bot reloaded successfully for ' + bot);
+              return true;
+            }).fail(function(response) {
+              return false;
             });
             return false;
           }
