@@ -15,6 +15,7 @@ import core.bot.ab.AIMLMap;
 import core.bot.ab.MagicBooleans;
 import core.grammar.GrammarMatcher;
 import core.grammar.LaoMaGrammarMatcher;
+import core.grammar.LaoMaGrammarMatcherProvider;
 
 /**
  *@author Shengying Pan (s5pan@uwaterloo.ca) 
@@ -24,7 +25,7 @@ public class BotFactory
 {
     public static Bot getDummyBot() throws Exception {
         String gramsPath = new File("test/supply/execs/grams.bin").getCanonicalPath();
-        GrammarMatcher matcher = new LaoMaGrammarMatcher().initialize(gramsPath);
+        GrammarMatcher matcher = new LaoMaGrammarMatcherProvider().getMatcher(gramsPath);
         Bot bot = new Bot("dummy", new File("test/supply").getCanonicalPath(), matcher);
         return bot;
     }

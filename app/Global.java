@@ -20,7 +20,7 @@ public class Global extends GlobalSettings {
 			@Override
 			protected void configure() {
 				bind(SessionStorage.class).to(RedisSessionStorage.class);
-				bind(GrammarMatcher.class).to(LaoMaGrammarMatcher.class);
+				bind(GrammarMatcherProvider.class).to(LaoMaGrammarMatcherProvider.class);
 				bind(ContextProvider.class).to(DefaultContextProvider.class);
 				bind(ProfileProvider.class).to(MySqlProfileProvider.class);
 				bind(LogProvider.class).to(MySqlLogProvider.class);

@@ -13,6 +13,7 @@ import com.google.inject.Inject;
 import core.bot.BotActor;
 import core.grammar.GrammarCompiler;
 import core.grammar.GrammarMatcher;
+import core.grammar.GrammarMatcherProvider;
 import core.storage.ContextProvider;
 import core.storage.LogProvider;
 import core.storage.ProfileProvider;
@@ -36,16 +37,16 @@ public class BotActorFarm implements ActorFarm {
 	private ContextProvider contextProvider;
     private ProfileProvider profileProvider;
     private GrammarCompiler grammarCompiler;
-    private GrammarMatcher grammarMatcher;
+    private GrammarMatcherProvider grammarMatcherProvider;
     private LogProvider logProvider;
 	
 	@Inject
 	public BotActorFarm(ContextProvider contextProvider, ProfileProvider profileProvider, 
-            GrammarCompiler grammarCompiler, GrammarMatcher grammarMatcher, LogProvider logProvider) throws Exception {
+            GrammarCompiler grammarCompiler, GrammarMatcherProvider grammarMatcherProvider, LogProvider logProvider) throws Exception {
 	    this.contextProvider = contextProvider;
         this.profileProvider = profileProvider;
         this.grammarCompiler = grammarCompiler;
-        this.grammarMatcher = grammarMatcher;
+        this.grammarMatcherProvider = grammarMatcherProvider;
         this.logProvider = logProvider;
 		initialize();
 	}
@@ -72,10 +73,12 @@ public class BotActorFarm implements ActorFarm {
 					return SupervisorStrategy.escalate();
 				}
 			});
+			
+			String gramsPath = (new File(new File(path), "execs/grams.bin")).getCanonicalPath();
 		
 			ActorRef router = Akka.system().actorOf(
 			    new RoundRobinPool(instances).withSupervisorStrategy(strategy).props(
-			        BotActor.props(contextProvider, profileProvider, grammarCompiler, grammarMatcher, logProvider, name, path)
+			        BotActor.props(contextProvider, profileProvider, grammarCompiler, grammarMatcherProvider.getMatcher(gramsPath), logProvider, name, path)
 			        ), "router-" + name);
 			
 			routers.put(name, router);

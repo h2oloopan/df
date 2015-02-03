@@ -21,23 +21,20 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
 	private GPrecursor precursor;
     private GMatcher matcher;	
 	
-	@Override
-	public GrammarMatcher initialize(String path) throws Exception {
-		//File grams = new File(new File(path), "execs/grams.bin");
-	    File grams = new File(path);
-		if (!grams.exists()) {
-		    throw new IOException("Grammar file does not exist.");
-		} else {
-			try {
-				precursor = GPrecursor.loadPrecursor(grams);
-				matcher = precursor.newMatcher(SpaceType.chinese);
-				return this;
-			} catch (Exception e) {
-				throw e;
-			}
-		}
-	}
-
+    public LaoMaGrammarMatcher(String path) throws Exception{
+        File grams = new File(path);
+        if (!grams.exists()) {
+            throw new IOException("Grammar file does not exist.");
+        } else {
+            try {
+                precursor = GPrecursor.loadPrecursor(grams);
+                matcher = precursor.newMatcher(SpaceType.chinese);
+            } catch (Exception e) {
+                throw e;
+            }
+        }
+    }
+    
 	@Override
 	public String match(String query) throws Exception {
 	    if (query == null) {

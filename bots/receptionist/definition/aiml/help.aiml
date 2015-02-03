@@ -3,19 +3,11 @@
 	<category>
 		<pattern>
 			<grammar>
-				basic.greeting
+				help.acceptable_help_queries
 			</grammar>
 		</pattern>
 		<template>
-			你好
-		</template>
-	</category>
-	<category>
-		<pattern>
-			*
-		</pattern>
-		<template>
-			  抱歉，我跟你无话可说！
+			 我什么也不能做，其实我是废物！
 		</template>
 	</category>
 </aiml>

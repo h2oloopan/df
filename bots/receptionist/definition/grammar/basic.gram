@@ -1,4 +1,49 @@
 namespace basic
 
+
+section 人称
+public 你_basic:=strings{你,您,阁下}
+public 我_basic:= strings{我,俺,偶,咱}
+public 他_basic:=strings{他,她}
+public 它_basic:=strings{它}
+public 们_basic:=strings{们}
+public 俩_basic:=strings{俩}
+public 语气词_basic:=strings{吗,呢,啊,哈,呀,嘛,嗯}
+public 怎样_post_basic:=strings{怎么样,怎样}
+
+人称代词_alias
+: 你_basic
+: 我_basic
+: 他_basic
+: 它_basic
+: 们_basic
+: 俩_basic
+public C_人称代词 : 人称代词_alias *
+
+量词_alias:=strings{下,个,条,段,些,篇,首,句,出,只,支,张,章,片,本,部,套,集,位,点,股,手,块,元,家}
+public C_数量词 : ["每"]["几"]["几"]量词_alias["儿"]|"全部"|"所有"
+
+动词 := strings{问,想,给,帮,报,查,问,教,说,讲,来,介绍,解释,咨询,询问,求,推荐,展示,唱,看,查看,算,要,放,念,咏,吟,播,播放,听,查找,吃,导航,指路,带路,引路,
+找, 找到}
+
+其他疑问动词 := strings{跟,能,帮忙,告诉我,的,是,教我做,教我,教教我,知道,能,能不能,可不可以,行不行,重点
+好不好,进行,对,列出,排出,排列出,随便,任意,随意,帮我,替我,为我,可以,我想,了解,给我算算,跟我说说,给我说说,给我,大神}
+
+疑问动词
+: 动词
+: 其他疑问动词
+
+结尾祈使词 := strings{行,可不可以,行不行,好不好,好,可以,能,能不能}
+
+动作词组_量词: [疑问动词 *][C_数量词]
+动作词组 : [疑问动词 *]
+
+public C_人称动作前缀  : [C_人称代词][动作词组_量词][C_人称代词][动作词组_量词]
+public C_人称动作前缀_无量词  : [C_人称代词][动作词组][C_人称代词][动作词组]
+public C_结尾 : [结尾祈使词][语气词_basic +]
+
+关于_alias := strings{关于,有关,相关,有关于,相关于,有关系}
+public C_关于 := 关于_alias["的"]
+
 问好:=strings{你好吗,你好不好,你怎么样}
-public 问好话  : 问好
+public greeting  : 问好

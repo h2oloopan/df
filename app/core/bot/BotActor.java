@@ -37,8 +37,7 @@ public class BotActor extends UntypedActor {
 		this.contextProvider = contextProvider;
 		this.profileProvider = profileProvider;
 		this.grammarCompiler = grammarCompiler;
-		String gramsPath = (new File(new File(path), "execs/grams.bin")).getCanonicalPath();
-		this.grammarMatcher = grammarMatcher.initialize(gramsPath);
+		this.grammarMatcher = grammarMatcher;
 		this.logProvider = logProvider;
 		this.name = name;
 		this.path = path;

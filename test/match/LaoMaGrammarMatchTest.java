@@ -16,6 +16,7 @@ import org.junit.Test;
 import play.Logger;
 import core.grammar.GrammarMatcher;
 import core.grammar.LaoMaGrammarMatcher;
+import core.grammar.LaoMaGrammarMatcherProvider;
 
 /**
  *@author Shengying Pan (s5pan@uwaterloo.ca) 
@@ -29,7 +30,7 @@ public class LaoMaGrammarMatchTest
     public void setup() {
         try {
             String path = new File("test/supply/execs/grams.bin").getCanonicalPath();
-            this.matcher = new LaoMaGrammarMatcher().initialize(path);
+            this.matcher = new LaoMaGrammarMatcherProvider().getMatcher(path);
         } catch (Exception e) {
             Assert.fail("Setup: should not get exception here, but " + e.getMessage());
         }
