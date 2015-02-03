@@ -12,6 +12,14 @@
 	</category>
 	<category>
 		<pattern>
+			ST_NULL
+		</pattern>
+		<template>
+			你什么都不说让我回答什么啊
+		</template>
+	</category>
+	<category>
+		<pattern>
 			*
 		</pattern>
 		<template>
