@@ -11,6 +11,9 @@ POST    /bot/compile               	@controllers.Bot.compile()
 POST    /bot/reload                 @controllers.Bot.reload()
 GET     /bot/bots                   @controllers.Bot.bots()
 
+#Edit
+GET     /edit/bots                  @controllers.Edit.bots()
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

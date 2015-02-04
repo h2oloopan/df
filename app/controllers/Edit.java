@@ -6,7 +6,16 @@
  */
 package controllers;
 
+import java.util.ArrayList;
+
+import com.google.inject.Inject;
+
+import core.ActorFarm;
+import play.libs.Json;
+import play.libs.F.Function0;
+import play.libs.F.Promise;
 import play.mvc.Controller;
+import play.mvc.Result;
 
 /**
  *@author Shengying Pan (s5pan@uwaterloo.ca) 
@@ -14,5 +23,24 @@ import play.mvc.Controller;
  */
 public class Edit extends Controller
 {
+    @Inject
+    private ActorFarm farm;
     
+    
+    public Promise<Result> bots() {
+        try {
+            final ArrayList<String> bots = farm.getBots();
+            return Promise.promise(new Function0<Result>() {
+               public Result apply() {
+                   return ok(Json.toJson(bots));
+               }
+            });
+        } catch (final Exception e) {
+            return Promise.promise(new Function0<Result>() {
+                public Result apply() {
+                    return badRequest(e.getMessage());
+                }
+            });
+        }
+    }
 }
