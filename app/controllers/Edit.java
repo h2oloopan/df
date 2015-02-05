@@ -27,12 +27,12 @@ public class Edit extends Controller
     private ActorFarm farm;
     
     
-    public Promise<Result> bots() {
+    public Promise<Result> file() {
         try {
-            final ArrayList<String> bots = farm.getBots();
+            final String path = request().getQueryString("path");
             return Promise.promise(new Function0<Result>() {
                public Result apply() {
-                   return ok(Json.toJson(bots));
+                   return ok(farm.getFile(path));
                }
             });
         } catch (final Exception e) {

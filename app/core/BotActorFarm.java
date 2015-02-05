@@ -23,6 +23,7 @@ import core.storage.ContextProvider;
 import core.storage.LogProvider;
 import core.storage.ProfileProvider;
 import play.Logger;
+import play.api.libs.Files;
 import play.libs.Akka;
 import play.libs.F.Callback;
 import play.libs.F.Promise;
@@ -165,6 +166,14 @@ public class BotActorFarm implements ActorFarm {
                 }
             }
         );
+    }
+
+    @Override
+    public String getFile(String path)
+    {
+        File file = new File(path);
+        return Files.readFile(file);
+        
     }
 	
 }

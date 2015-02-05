@@ -14,7 +14,7 @@ GET     /bot/grammars               @controllers.Bot.grammars()
 GET     /bot/aimls                  @controllers.Bot.aimls()
 
 #Edit
-GET     /edit/bots                  @controllers.Edit.bots()
+GET     /edit/file                  @controllers.Edit.file()
 
 
 # Map static resources from the /public folder to the /assets URL path
