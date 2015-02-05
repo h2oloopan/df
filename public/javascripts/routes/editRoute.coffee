@@ -30,6 +30,7 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 								name: key
 								path: value
 						thiz.set 'grammars', a
+						if a.length > 0 then thiz.set 'grammar', a[0]
 					, (errors) ->
 						thiz.set 'grammars', []
 
@@ -42,15 +43,23 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 								name: key
 								path: value
 						thiz.set 'aimls', b
+						if b.length > 0 then thiz.set 'aiml', b[0]
 					, (errors) ->
 						thiz.set 'aimls', []
 
 				).observes 'bot'
 				grammarChanged: ( ->
-
-				).observes 'grammar'
+					thiz = @
+					path = @get 'grammar.path'
+					if !path? then return
+					#actually do stuff
+					Ember.$.getJSON('/edit/file?path=' + path).then (result) ->
+						thiz.set 'fileGrammar', result
+					, (errors) ->
+						thiz.set 'fileGrammar', ''
+				).observes('grammar')
 				aimlChanged: ( ->
-					
+
 				).observes 'aiml'
 				actions:
 					save: ->

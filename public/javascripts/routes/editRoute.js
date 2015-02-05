@@ -39,7 +39,10 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
                 path: value
               });
             }
-            return thiz.set('grammars', a);
+            thiz.set('grammars', a);
+            if (a.length > 0) {
+              return thiz.set('grammar', a[0]);
+            }
           }, function(errors) {
             return thiz.set('grammars', []);
           });
@@ -55,12 +58,27 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
                 path: value
               });
             }
-            return thiz.set('aimls', b);
+            thiz.set('aimls', b);
+            if (b.length > 0) {
+              return thiz.set('aiml', b[0]);
+            }
           }, function(errors) {
             return thiz.set('aimls', []);
           });
         }).observes('bot'),
-        grammarChanged: (function() {}).observes('grammar'),
+        grammarChanged: (function() {
+          var path, thiz;
+          thiz = this;
+          path = this.get('grammar.path');
+          if (path == null) {
+            return;
+          }
+          return Ember.$.getJSON('/edit/file?path=' + path).then(function(result) {
+            return thiz.set('fileGrammar', result);
+          }, function(errors) {
+            return thiz.set('fileGrammar', '');
+          });
+        }).observes('grammar'),
         aimlChanged: (function() {}).observes('aiml'),
         actions: {
           save: function() {
