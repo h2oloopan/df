@@ -9,6 +9,11 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import org.w3c.dom.Document;
+
+import play.libs.XPath;
+import play.libs.F.*;
+import play.libs.ws.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,6 +25,18 @@ import java.util.Enumeration;
 
 public class NetworkUtils {
 
+    public static Promise<String> cqa(String query) {
+        return WS.url("http://121.40.202.87:8080/ChineseCQAServer/cqa/answer").setQueryParameter("q", query).get().map(
+            new Function<WSResponse, String>() {
+                @Override
+                public String apply(WSResponse response) throws Throwable
+                {
+                    Document xml = response.asXml();
+                    return XPath.selectText("//rsvpServiceResponse//answer", xml);
+                }
+            }
+        );
+    }
 
     public static String localIPAddress() {
         try {

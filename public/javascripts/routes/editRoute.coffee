@@ -11,3 +11,6 @@ define ['ehbs!templates/edit'], () ->
 								bots: result.bots
 						, (errors) ->
 							reject errors
+
+			App.EditController = Ember.ObjectController.extend
+				

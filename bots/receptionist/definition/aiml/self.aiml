@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+	<category>
+		<pattern>
+			<grammar>
+				self.bot_info_queries
+			</grammar>
+		</pattern>
+		<template>
+			 我是RSVP前台机器人小白
+		</template>
+	</category>
+</aiml>

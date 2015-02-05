@@ -3,7 +3,7 @@ define(['ehbs!templates/edit'], function() {
   var EditRoute;
   return EditRoute = {
     bind: function(App) {
-      return App.EditRoute = Ember.Route.extend({
+      App.EditRoute = Ember.Route.extend({
         model: function() {
           return new Ember.RSVP.Promise(function(resolve, reject) {
             return new Ember.RSVP.hash({
@@ -18,6 +18,7 @@ define(['ehbs!templates/edit'], function() {
           });
         }
       });
+      return App.EditController = Ember.ObjectController.extend;
     }
   };
 });

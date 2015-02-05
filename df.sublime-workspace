@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"respo",
+				"responseText"
+			],
+			[
 				"scro",
 				"scrollTop"
 			],
@@ -15,6 +19,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "public/templates/edit.html",
+			"settings":
+			{
+				"buffer_size": 977,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/javascripts/routes/editRoute.coffee",
+			"settings":
+			{
+				"buffer_size": 416,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -49,17 +69,17 @@
 	"expanded_folders":
 	[
 		"/home/s5pan/Projects/df",
-		"/home/s5pan/Projects/df/app",
-		"/home/s5pan/Projects/df/app/controllers",
-		"/home/s5pan/Projects/df/app/core",
-		"/home/s5pan/Projects/df/app/core/bot",
-		"/home/s5pan/Projects/df/app/core/bot/ab"
+		"/home/s5pan/Projects/df/public",
+		"/home/s5pan/Projects/df/public/javascripts",
+		"/home/s5pan/Projects/df/public/javascripts/routes",
+		"/home/s5pan/Projects/df/public/templates"
 	],
 	"file_history":
 	[
+		"/home/s5pan/Projects/df/public/javascripts/routes/editRoute.coffee",
+		"/home/s5pan/Projects/df/public/javascripts/app.coffee",
 		"/home/s5pan/Projects/df/app/core/bot/ab/ComprehensiveProcessor.java",
 		"/home/s5pan/Projects/df/app/core/bot/ab/Graphmaster.java",
-		"/home/s5pan/Projects/df/public/javascripts/app.coffee",
 		"/home/s5pan/Projects/df/public/templates/index.html",
 		"/home/s5pan/Projects/df/conf/routes",
 		"/home/s5pan/Projects/df/app/controllers/Bot.java",
@@ -126,8 +146,67 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "public/templates/edit.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 977,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								401,
+								401
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "public/javascripts/routes/editRoute.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 416,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								416,
+								416
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],

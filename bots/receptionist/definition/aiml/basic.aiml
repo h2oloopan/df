@@ -7,7 +7,7 @@
 			</grammar>
 		</pattern>
 		<template>
-			你好
+			你好，我能为你做点什么
 		</template>
 	</category>
 	<category>
@@ -29,7 +29,7 @@
 				{input: "<star/>"}
 			</log>
 			</think>
-			哈哈哈哈哈哈哈，大神问的太深奥，小弱斗胆接不住。
+			<cqa default="大神问的太深奥，小弱斗胆接不住"><star/></cqa>
 		</template>
 	</category>
 </aiml>
