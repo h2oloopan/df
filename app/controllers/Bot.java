@@ -46,8 +46,7 @@ public class Bot extends Controller {
 	
 	public Promise<Result> grammars() {
 	    try {
-	        JsonNode json = request().body().asJson();
-            String bot = json.findPath("bot").textValue();
+            String bot = request().getQueryString("bot");
 	        final HashMap<String, String> grammars = farm.getGrammars(bot);
 	        return Promise.promise(new Function0<Result>() {
 	           public Result apply() {
@@ -65,8 +64,7 @@ public class Bot extends Controller {
 	
 	public Promise<Result> aimls() {
        try {
-            JsonNode json = request().body().asJson();
-            String bot = json.findPath("bot").textValue();
+            String bot = request().getQueryString("bot");
             final HashMap<String, String> grammars = farm.getAimls(bot);
             return Promise.promise(new Function0<Result>() {
                public Result apply() {

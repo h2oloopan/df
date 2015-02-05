@@ -15,11 +15,11 @@
 			</div>
 			<div class="form-group">
 				<label>Grammar</label>
-				{{view Ember.Select classNames="form-control" content=grammars selection=grammar}}
+				{{view Ember.Select classNames="form-control" optionLabelPath="content.name" content=grammars selection=grammar}}
 			</div>
 			<div class="form-group">
 				<label>AIML</label>
-				{{view Ember.Select classNames="form-control" content=aimls selection=aiml}}
+				{{view Ember.Select classNames="form-control" optionLabelPath="content.name" content=aimls selection=aiml}}
 			</div>
 		</div>
 		<div class="col-md-9">
