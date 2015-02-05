@@ -10,6 +10,8 @@ POST    /bot/talk                   @controllers.Bot.talk()
 POST    /bot/compile               	@controllers.Bot.compile()
 POST    /bot/reload                 @controllers.Bot.reload()
 GET     /bot/bots                   @controllers.Bot.bots()
+GET     /bot/grammars               @controllers.Bot.grammars()
+GET     /bot/aimls                  @controllers.Bot.aimls()
 
 #Edit
 GET     /edit/bots                  @controllers.Edit.bots()

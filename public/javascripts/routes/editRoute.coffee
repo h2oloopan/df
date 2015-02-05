@@ -13,4 +13,14 @@ define ['ehbs!templates/edit'], () ->
 							reject errors
 
 			App.EditController = Ember.ObjectController.extend
-				
+				bot: null
+				grammar: null
+				aiml: null
+				grammars: ( ->
+					if @get('bot')?
+						return Ember.$.getJSON('/bot/grammars?bot=' + @get('bot'))
+					else
+						return []
+				).property 'bot'
+				actions:
+					save: ->

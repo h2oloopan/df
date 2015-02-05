@@ -1,5 +1,6 @@
 package controllers;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 import akka.actor.ActorRef;
@@ -42,36 +43,60 @@ public class Bot extends Controller {
 			});
 		}
 	}
-
-	public Promise<Result> reload() {
+	
+	public Promise<Result> grammars() {
 	    try {
+	        JsonNode json = request().body().asJson();
+            String bot = json.findPath("bot").textValue();
+	        final HashMap<String, String> grammars = farm.getGrammars(bot);
+	        return Promise.promise(new Function0<Result>() {
+	           public Result apply() {
+	               return ok(Json.toJson(grammars));
+	           }
+	        });
+	    } catch (final Exception e) {
+	        return Promise.promise(new Function0<Result>() {
+	           public Result apply() {
+	               return badRequest(e.getMessage());
+	           }
+	        });
+	    }
+	}
+	
+	public Promise<Result> aimls() {
+       try {
             JsonNode json = request().body().asJson();
             String bot = json.findPath("bot").textValue();
-            Logger.info("Reloading bot " + bot);
-            ActorRef actor = farm.getActor(bot);
-            Query q = new Query(CommandType.RELOAD);
-            return Promise.wrap(ask(actor, new Broadcast(q), 5000)).map(
-                new Function<Object, Result>() {
-                    public Result apply(Object message) {
-                        Response response = (Response)message;
-                        switch (response.getCode()) {
-                        case 200:
-                            return ok();
-                        case 500:
-                            return internalServerError(response.getText());
-                        default:
-                            return ok();
-                        }
-                    }
-                }
-            );
+            final HashMap<String, String> grammars = farm.getAimls(bot);
+            return Promise.promise(new Function0<Result>() {
+               public Result apply() {
+                   return ok(Json.toJson(grammars));
+               }
+            });
         } catch (final Exception e) {
             return Promise.promise(new Function0<Result>() {
-                public Result apply() {
-                    return badRequest(e.getMessage());
-                }
+               public Result apply() {
+                   return badRequest(e.getMessage());
+               }
             });
         }
+	}
+
+	public Promise<Result> reload() {
+        JsonNode json = request().body().asJson();
+        String bot = json.findPath("bot").textValue();
+        Logger.info("Reloading bot " + bot);
+        return farm.reload(bot).map(
+            new Function<Exception, Result>() {
+                public Result apply(Exception e) {
+                    if (e == null) {
+                        return ok();
+                    } else {
+                        return internalServerError(e.getMessage());
+                    }
+                }
+            }
+        );            
 	}
 	
 	//Compile grammar files for a bot

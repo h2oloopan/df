@@ -18,7 +18,21 @@ define(['ehbs!templates/edit'], function() {
           });
         }
       });
-      return App.EditController = Ember.ObjectController.extend;
+      return App.EditController = Ember.ObjectController.extend({
+        bot: null,
+        grammar: null,
+        aiml: null,
+        grammars: (function() {
+          if (this.get('bot') != null) {
+            return Ember.$.getJSON('/bot/grammars?bot=' + this.get('bot'));
+          } else {
+            return [];
+          }
+        }).property('bot'),
+        actions: {
+          save: function() {}
+        }
+      });
     }
   };
 });
