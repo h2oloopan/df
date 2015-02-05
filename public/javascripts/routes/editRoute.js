@@ -93,7 +93,36 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
           });
         }).observes('aiml'),
         actions: {
-          save: function() {
+          saveGrammar: function(grammar, file) {
+            $.post({
+              url: '/edit/upload?encoding=GB18030&path=' + grammar.path,
+              type: 'POST',
+              data: JSON.stringify({
+                text: file
+              }),
+              dataType: 'json',
+              contentType: 'application/json; charset=gb18030'
+            }).done(function(result) {
+              return alert('Grammar saved to server successfully!');
+            }).fail(function(response) {
+              return alert(response.responseText);
+            });
+            return false;
+          },
+          saveAIML: function(aiml, file) {
+            $.post({
+              url: '/edit/upload?encoding=UTF-8&path=' + aiml.path,
+              type: 'POST',
+              data: JSON.stringify({
+                text: file
+              }),
+              dataType: 'json',
+              contentType: 'application/json; charset=utf-8'
+            }).done(function(result) {
+              return alert('AIML saved to server successfully!');
+            }).fail(function(response) {
+              return alert(response.responseText);
+            });
             return false;
           }
         }

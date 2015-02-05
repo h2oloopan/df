@@ -69,5 +69,29 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 						thiz.set 'fileAIML', errors.responseText
 				).observes 'aiml'
 				actions:
-					save: ->
+					saveGrammar: (grammar, file) ->
+						$.post
+							url: '/edit/upload?encoding=GB18030&path=' + grammar.path
+							type: 'POST'
+							data: JSON.stringify
+								text: file
+							dataType: 'json'
+							contentType: 'application/json; charset=gb18030'
+						.done (result) ->
+							alert 'Grammar saved to server successfully!'
+						.fail (response) ->
+							alert response.responseText
+						return false
+					saveAIML: (aiml, file) ->
+						$.post
+							url: '/edit/upload?encoding=UTF-8&path=' + aiml.path
+							type: 'POST'
+							data: JSON.stringify
+								text: file
+							dataType: 'json'
+							contentType: 'application/json; charset=utf-8'
+						.done (result) ->
+							alert 'AIML saved to server successfully!'
+						.fail (response) ->
+							alert response.responseText
 						return false
