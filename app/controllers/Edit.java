@@ -30,9 +30,18 @@ public class Edit extends Controller
     public Promise<Result> file() {
         try {
             final String path = request().getQueryString("path");
+            final String encoding = request().getQueryString("encoding");
             return Promise.promise(new Function0<Result>() {
                public Result apply() {
-                   return ok(farm.getFile(path));
+                   try {
+                       if (encoding != null) {
+                           return ok(farm.getFile(path, encoding));
+                       } else {
+                           return ok(farm.getFile(path));
+                       }
+                   } catch (Exception e) {
+                       return badRequest(e.getMessage());
+                   }
                }
             });
         } catch (final Exception e) {

@@ -53,13 +53,20 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 					path = @get 'grammar.path'
 					if !path? then return
 					#actually do stuff
-					Ember.$.getJSON('/edit/file?path=' + path).then (result) ->
+					Ember.$.getJSON('/edit/file?encoding=GB18030&path=' + path).then (result) ->
 						thiz.set 'fileGrammar', result
 					, (errors) ->
-						thiz.set 'fileGrammar', ''
+						thiz.set 'fileGrammar', errors.responseText
 				).observes('grammar')
 				aimlChanged: ( ->
-
+					thiz = @
+					path = @get 'aiml.path'
+					if !path? then return
+					#actually do stuff
+					Ember.$.getJSON('/edit/file?encoding=UTF-8&path=' + path).then (result) ->
+						thiz.set 'fileAIML', result
+					, (errors) ->
+						thiz.set 'fileAIML', errors.responseText
 				).observes 'aiml'
 				actions:
 					save: ->

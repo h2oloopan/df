@@ -73,13 +73,25 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
           if (path == null) {
             return;
           }
-          return Ember.$.getJSON('/edit/file?path=' + path).then(function(result) {
+          return Ember.$.getJSON('/edit/file?encoding=GB18030&path=' + path).then(function(result) {
             return thiz.set('fileGrammar', result);
           }, function(errors) {
-            return thiz.set('fileGrammar', '');
+            return thiz.set('fileGrammar', errors.responseText);
           });
         }).observes('grammar'),
-        aimlChanged: (function() {}).observes('aiml'),
+        aimlChanged: (function() {
+          var path, thiz;
+          thiz = this;
+          path = this.get('aiml.path');
+          if (path == null) {
+            return;
+          }
+          return Ember.$.getJSON('/edit/file?encoding=UTF-8&path=' + path).then(function(result) {
+            return thiz.set('fileAIML', result);
+          }, function(errors) {
+            return thiz.set('fileAIML', errors.responseText);
+          });
+        }).observes('aiml'),
         actions: {
           save: function() {
             return false;

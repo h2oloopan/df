@@ -12,5 +12,6 @@ public interface ActorFarm {
 	public HashMap<String, String> getGrammars(String name);
 	public HashMap<String, String> getAimls(String name);
 	public Promise<Exception> reload(String name);
-	public String getFile(String path);
+	public String getFile(String path) throws Exception;
+	public String getFile(String path, String encoding) throws Exception;
 }

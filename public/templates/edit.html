@@ -13,6 +13,8 @@
 				<label>Bot</label>
 				{{view Ember.Select classNames="form-control" content=bots selection=bot}}
 			</div>
+			<button class="btn btn-default" {{action "compile"}}>Compile Grammar</button>
+			<button class="btn btn-default" {{action "reload"}}>Reload Bot</button>
 		</div>
 	</div>
 	<div class="row">
