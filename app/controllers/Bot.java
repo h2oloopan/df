@@ -105,7 +105,7 @@ public class Bot extends Controller {
 			Logger.info("Compiling bot " + bot);
 			ActorRef actor = farm.getActor(bot);
 			Query q = new Query(CommandType.COMPILE);
-			return Promise.wrap(ask(actor, q, 5000)).map(
+			return Promise.wrap(ask(actor, q, 20000)).map(
 			    new Function<Object, Result>() {
 			        public Result apply(Object message) {
 			            Response response = (Response)message;

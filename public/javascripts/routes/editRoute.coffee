@@ -70,10 +70,12 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 				).observes 'aiml'
 				actions:
 					saveGrammar: (grammar, file) ->
-						$.post
-							url: '/edit/upload?encoding=GB18030&path=' + grammar.path
+						$.ajax
+							url: '/edit/upload'
 							type: 'POST'
 							data: JSON.stringify
+								path: grammar.path
+								encoding: 'GB18030'
 								text: file
 							dataType: 'json'
 							contentType: 'application/json; charset=gb18030'
@@ -83,10 +85,12 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 							alert response.responseText
 						return false
 					saveAIML: (aiml, file) ->
-						$.post
-							url: '/edit/upload?encoding=UTF-8&path=' + aiml.path
+						$.ajax
+							url: '/edit/upload'
 							type: 'POST'
 							data: JSON.stringify
+								path: aiml.path
+								encoding: 'UTF-8'
 								text: file
 							dataType: 'json'
 							contentType: 'application/json; charset=utf-8'
@@ -94,4 +98,34 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 							alert 'AIML saved to server successfully!'
 						.fail (response) ->
 							alert response.responseText
+						return false
+					compile: (bot) ->
+						thiz = @
+						$.ajax
+							url: '/bot/compile'
+							type: 'POST'
+							data: JSON.stringify
+								bot: bot
+							dataType: 'json'
+							contentType: 'application/json; charset=utf-8'
+						.done (result) ->
+							alert 'Grammar compilation done for bot ' + bot
+						.fail (response) ->
+							alert 'Grammar compilation failed for bot ' + bot + ' ' + response.responseText
+						return false
+					reload: (bot) ->
+						thiz = @
+						$.ajax
+							url: '/bot/reload'
+							type: 'POST'
+							data: JSON.stringify
+								bot: bot
+							dataType: 'json'
+							contentType: 'application/json; charset=utf-8'
+						.done (result) ->
+							alert 'Bot reloaded successfully for ' + bot
+							return true
+						.fail (response) ->
+							#thiz.send 'update', '[SYSTEM] Bot reloading failed for bot ' + bot + ' ' + response.responseText
+							return false
 						return false

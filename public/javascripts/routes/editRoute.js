@@ -94,10 +94,12 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
         }).observes('aiml'),
         actions: {
           saveGrammar: function(grammar, file) {
-            $.post({
-              url: '/edit/upload?encoding=GB18030&path=' + grammar.path,
+            $.ajax({
+              url: '/edit/upload',
               type: 'POST',
               data: JSON.stringify({
+                path: grammar.path,
+                encoding: 'GB18030',
                 text: file
               }),
               dataType: 'json',
@@ -110,10 +112,12 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
             return false;
           },
           saveAIML: function(aiml, file) {
-            $.post({
-              url: '/edit/upload?encoding=UTF-8&path=' + aiml.path,
+            $.ajax({
+              url: '/edit/upload',
               type: 'POST',
               data: JSON.stringify({
+                path: aiml.path,
+                encoding: 'UTF-8',
                 text: file
               }),
               dataType: 'json',
@@ -122,6 +126,43 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
               return alert('AIML saved to server successfully!');
             }).fail(function(response) {
               return alert(response.responseText);
+            });
+            return false;
+          },
+          compile: function(bot) {
+            var thiz;
+            thiz = this;
+            $.ajax({
+              url: '/bot/compile',
+              type: 'POST',
+              data: JSON.stringify({
+                bot: bot
+              }),
+              dataType: 'json',
+              contentType: 'application/json; charset=utf-8'
+            }).done(function(result) {
+              return alert('Grammar compilation done for bot ' + bot);
+            }).fail(function(response) {
+              return alert('Grammar compilation failed for bot ' + bot + ' ' + response.responseText);
+            });
+            return false;
+          },
+          reload: function(bot) {
+            var thiz;
+            thiz = this;
+            $.ajax({
+              url: '/bot/reload',
+              type: 'POST',
+              data: JSON.stringify({
+                bot: bot
+              }),
+              dataType: 'json',
+              contentType: 'application/json; charset=utf-8'
+            }).done(function(result) {
+              alert('Bot reloaded successfully for ' + bot);
+              return true;
+            }).fail(function(response) {
+              return false;
             });
             return false;
           }
