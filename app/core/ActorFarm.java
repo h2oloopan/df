@@ -16,4 +16,5 @@ public interface ActorFarm {
 	public String getFile(String path, String encoding) throws Exception;
 	public void updateFile(String path, String text) throws Exception;
 	public void updateFile(String path, String text, String encoding) throws Exception;
+	public void createFile(String bot, String name, String type, String text) throws Exception;
 }
