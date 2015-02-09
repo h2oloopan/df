@@ -15,6 +15,7 @@ GET     /bot/aimls                  @controllers.Bot.aimls()
 
 #Edit
 GET     /edit/file                  @controllers.Edit.file()
+POST    /edit/upload				@controllers.Edit.upload()
 
 
 # Map static resources from the /public folder to the /assets URL path

@@ -14,4 +14,6 @@ public interface ActorFarm {
 	public Promise<Exception> reload(String name);
 	public String getFile(String path) throws Exception;
 	public String getFile(String path, String encoding) throws Exception;
+	public void updateFile(String path, String text) throws Exception;
+	public void updateFile(String path, String text, String encoding) throws Exception;
 }

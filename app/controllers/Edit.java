@@ -8,6 +8,7 @@ package controllers;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 
 import core.ActorFarm;
@@ -52,4 +53,20 @@ public class Edit extends Controller
             });
         }
     }
+    
+    public Promise<Result> upload() {
+        try {
+            JsonNode json = request().body().asJson();
+            String encoding = json.findPath("encoding").textValue();
+            String text = json.findPath("text").textValue();
+        } catch (final Exception e) {
+            return Promise.promise(new Function0<Result>() {
+                public Result apply() {
+                    return badRequest(e.getMessage());
+                }
+            });
+        }
+    }
+    
+    
 }

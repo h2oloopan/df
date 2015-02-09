@@ -4,6 +4,7 @@ import static akka.pattern.Patterns.ask;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -12,6 +13,7 @@ import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
+import java.nio.charset.CharsetEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -191,10 +193,29 @@ public class BotActorFarm implements ActorFarm {
         long fileSize = inChannel.size();
         ByteBuffer buffer = ByteBuffer.allocate((int)fileSize);
         inChannel.read(buffer);
+        inChannel.close();
         buffer.flip();
         CharBuffer cbuf = decoder.decode(buffer);
         return cbuf.toString();
         
+    }
+
+    @Override
+    public void updateFile(String path, String text) throws Exception
+    {
+        updateFile(path, text, "UTF-8");
+    }
+
+    @Override //We assume the input is always in UTF-8
+    public void updateFile(String path, String text, String encoding) throws Exception
+    {
+        Charset charset = Charset.forName(encoding);
+        CharsetEncoder encoder = charset.newEncoder();
+        ByteBuffer bbuf = encoder.encode(CharBuffer.wrap(text));
+        File file = new File(path);
+        FileChannel channel = new FileOutputStream(file).getChannel();
+        channel.write(bbuf);
+        channel.close();
     }
 	
 }
