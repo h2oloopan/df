@@ -225,16 +225,25 @@ public class BotActorFarm implements ActorFarm {
         String path = (new File(root, bot)).getCanonicalPath();
         File folder = null;
         String extension = null;
+        String encoding = null;
         if (type.toLowerCase().equals("grammar")) {
             folder = new File(new File(path), "definition/grammar");
-            extension = "gram";
+            extension = ".gram";
+            encoding = "GB18030";
         } else if (type.toLowerCase().equals("aiml")) {
             folder = new File(new File(path), "definition/aiml");
-            extension = "aiml";
+            extension = ".aiml";
+            encoding = "UTF-8";
         } else {
             throw new Exception("Invalid file type");
         }
         //continue here
+        Charset charset = Charset.forName(encoding);
+        CharsetEncoder encoder = charset.newEncoder();
+        ByteBuffer bbuf = encoder.encode(CharBuffer.wrap(text));
+        File file = new File(folder, name + extension);
+        FileChannel channel = new FileOutputStream(file).getChannel();
+        channel.write(bbuf);
+        channel.close();
     }
-	
 }
