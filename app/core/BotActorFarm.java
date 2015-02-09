@@ -217,5 +217,24 @@ public class BotActorFarm implements ActorFarm {
         channel.write(bbuf);
         channel.close();
     }
+
+    @Override
+    public void createFile(String bot, String name, String type, String text) throws Exception
+    {
+        File root = new File(rootPath);
+        String path = (new File(root, bot)).getCanonicalPath();
+        File folder = null;
+        String extension = null;
+        if (type.toLowerCase().equals("grammar")) {
+            folder = new File(new File(path), "definition/grammar");
+            extension = "gram";
+        } else if (type.toLowerCase().equals("aiml")) {
+            folder = new File(new File(path), "definition/aiml");
+            extension = "aiml";
+        } else {
+            throw new Exception("Invalid file type");
+        }
+        //continue here
+    }
 	
 }
