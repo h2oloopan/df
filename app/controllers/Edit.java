@@ -57,8 +57,25 @@ public class Edit extends Controller
     public Promise<Result> upload() {
         try {
             JsonNode json = request().body().asJson();
-            String encoding = json.findPath("encoding").textValue();
-            String text = json.findPath("text").textValue();
+            final String encoding = json.findPath("encoding").textValue();
+            final String text = json.findPath("text").textValue();
+            final String path = json.findPath("path").textValue();
+            farm.updateFile(path, text, encoding);
+            return Promise.promise(new Function0<Result>() {
+                public Result apply() {
+                    try {
+                        if (encoding != null) {
+                            farm.updateFile(path, text, encoding);
+                            return ok();
+                        } else {
+                            farm.updateFile(path, text);
+                            return ok();
+                        }
+                    } catch (Exception e) {
+                        return badRequest(e.getMessage());
+                    }
+                }
+             });
         } catch (final Exception e) {
             return Promise.promise(new Function0<Result>() {
                 public Result apply() {
