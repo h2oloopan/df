@@ -165,6 +165,16 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
               return false;
             });
             return false;
+          },
+          addGrammar: function() {
+            var file;
+            file = prompt('Grammar File Name (No Extension)', 'filename');
+            return false;
+          },
+          addAIML: function() {
+            var file;
+            file = prompt('AIML File Name (No Extension)', 'filename');
+            return false;
           }
         }
       });

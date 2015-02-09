@@ -23,7 +23,7 @@
 			"file": "public/templates/edit.html",
 			"settings":
 			{
-				"buffer_size": 977,
+				"buffer_size": 1816,
 				"line_ending": "Unix"
 			}
 		},
@@ -31,7 +31,7 @@
 			"file": "public/javascripts/routes/editRoute.coffee",
 			"settings":
 			{
-				"buffer_size": 416,
+				"buffer_size": 3887,
 				"line_ending": "Unix"
 			}
 		}
@@ -70,17 +70,18 @@
 	[
 		"/home/s5pan/Projects/df",
 		"/home/s5pan/Projects/df/public",
-		"/home/s5pan/Projects/df/public/javascripts",
-		"/home/s5pan/Projects/df/public/javascripts/routes",
-		"/home/s5pan/Projects/df/public/templates"
+		"/home/s5pan/Projects/df/public/javascripts"
 	],
 	"file_history":
 	[
+		"/home/s5pan/Projects/df/bots/receptionist/definition/aiml/help.aiml",
+		"/home/s5pan/Projects/df/public/javascripts/lib/utils.coffee",
+		"/home/s5pan/Projects/df/public/javascripts/lib/utils.js",
+		"/home/s5pan/Projects/df/public/templates/index.html",
 		"/home/s5pan/Projects/df/public/javascripts/routes/editRoute.coffee",
 		"/home/s5pan/Projects/df/public/javascripts/app.coffee",
 		"/home/s5pan/Projects/df/app/core/bot/ab/ComprehensiveProcessor.java",
 		"/home/s5pan/Projects/df/app/core/bot/ab/Graphmaster.java",
-		"/home/s5pan/Projects/df/public/templates/index.html",
 		"/home/s5pan/Projects/df/conf/routes",
 		"/home/s5pan/Projects/df/app/controllers/Bot.java",
 		"/home/s5pan/Projects/df/public/javascripts/routes/testRoute.coffee",
@@ -146,7 +147,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -155,15 +156,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 977,
+						"buffer_size": 1816,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								401,
-								401
+								645,
+								645
 							]
 						],
 						"settings":
@@ -175,7 +176,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -184,15 +185,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 416,
+						"buffer_size": 3887,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								416,
-								416
+								3231,
+								3232
 							]
 						],
 						"settings":
@@ -201,10 +202,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1768.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

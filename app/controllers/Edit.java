@@ -85,5 +85,22 @@ public class Edit extends Controller
         }
     }
     
+    public Promise<Result> create() {
+        try {
+            JsonNode json = request().body().asJson();
+            final String encoding = json.findPath("encoding").textValue();
+            final String text = json.findPath("text").textValue();
+            final String path = json.findPath("file").textValue();
+            final String bot = json.findPath("bot").textValue();
+            final String type = json.findPath("type").textValue();
+            
+        } catch (final Exception e) {
+            return Promise.promise(new Function0<Result>() {
+                public Result apply() {
+                    return badRequest(e.getMessage());
+                }
+            });
+        }
+    }
     
 }

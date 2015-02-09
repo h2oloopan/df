@@ -28,6 +28,7 @@
 				{{textarea classNames="form-control" value=fileGrammar rows="20"}}
 			</div>
 			<button type="button" class="btn btn-primary" {{action "saveGrammar" grammar fileGrammar}}>Save Grammar</button>
+			<button type="button" class="btn btn-default" {{action "addGrammar"}}>Add New Grammar File</button>
 		</div>
 		<div class="col-md-6">
 			<div class="form-group">
@@ -39,6 +40,7 @@
 				{{textarea classNames="form-control" value=fileAIML rows="20"}}
 			</div>
 			<button type="button" class="btn btn-primary" {{action "saveAIML" aiml fileAIML}}>Save AIML</button>
+			<button type="button" class="btn btn-default" {{action "addAIML"}}>Add New AIML File</button>
 		</div>
 	</div>
 </div>

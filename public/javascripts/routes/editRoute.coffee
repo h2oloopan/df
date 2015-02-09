@@ -129,3 +129,9 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 							#thiz.send 'update', '[SYSTEM] Bot reloading failed for bot ' + bot + ' ' + response.responseText
 							return false
 						return false
+					addGrammar: ->
+						file = prompt 'Grammar File Name (No Extension)', 'filename'
+						return false
+					addAIML: ->
+						file = prompt 'AIML File Name (No Extension)', 'filename'
+						return false
