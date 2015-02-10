@@ -110,4 +110,27 @@ public class Edit extends Controller
         }
     }
     
+    public Promise<Result> remove() {
+        try {
+            JsonNode json = request().body().asJson();
+            final String path = json.findPath("path").textValue();
+            return Promise.promise(new Function0<Result>() {
+                public Result apply() {
+                    try {
+                        farm.removeFile(path);
+                        return ok();
+                    } catch (Exception e) {
+                        return badRequest(e.getMessage());
+                    }
+                }
+             });
+        } catch (final Exception e) {
+            return Promise.promise(new Function0<Result>() {
+                public Result apply() {
+                    return badRequest(e.getMessage());
+                }
+            });
+        }
+    }
+    
 }

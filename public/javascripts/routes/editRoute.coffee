@@ -194,5 +194,12 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 						.fail (response) ->
 							alert 'Adding new aiml file failed ' + response.responseText
 							return false
+						return false
+					deleteGrammar: (grammar) ->
+						path = grammar.path
+						
+						return false
 
+					deleteAIML: (aiml) ->
+						path = aiml.path
 						return false

@@ -242,6 +242,16 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
               return false;
             });
             return false;
+          },
+          deleteGrammar: function(grammar) {
+            var path;
+            path = grammar.path;
+            return false;
+          },
+          deleteAIML: function(aiml) {
+            var path;
+            path = aiml.path;
+            return false;
           }
         }
       });

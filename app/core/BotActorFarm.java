@@ -14,6 +14,8 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CharsetEncoder;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +34,6 @@ import core.storage.ContextProvider;
 import core.storage.LogProvider;
 import core.storage.ProfileProvider;
 import play.Logger;
-import play.api.libs.Files;
 import play.libs.Akka;
 import play.libs.F.Callback;
 import play.libs.F.Promise;
@@ -246,5 +247,12 @@ public class BotActorFarm implements ActorFarm {
         channel.write(bbuf);
         channel.close();
         return file.getCanonicalPath();
+    }
+
+    @Override
+    public void removeFile(String path) throws Exception
+    {
+        File file = new File(path);
+        file.delete();
     }
 }
