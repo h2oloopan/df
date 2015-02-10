@@ -130,8 +130,46 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 							return false
 						return false
 					addGrammar: ->
-						file = prompt 'Grammar File Name (No Extension)', 'filename'
+						name = prompt 'Grammar File Name (No Extension)', 'filename'
+						grammars = @get 'grammars'
+						for grammar in grammars
+							if grammar.name.toLowerCase() == (name + '.gram').toLowerCase()
+								return alert 'Duplicated filename is not allowed'
+						#now we can go
+						$.ajax
+							url: '/edit/create'
+							type: 'POST'
+							data: JSON.stringify
+								bot: bot
+								type: 'grammar'
+								name: name
+								text: ''
+							dataType: 'json'
+							contentType: 'application/json; charset=utf-8'
+						.done (result) ->
+							return true
+						.fail (response) ->
+							return false
 						return false
 					addAIML: ->
-						file = prompt 'AIML File Name (No Extension)', 'filename'
+						name = prompt 'AIML File Name (No Extension)', 'filename'
+						aimls = @get 'aimls'
+						for aiml in aimls
+							if aiml.name.toLowerCase() == (name + '.gram').toLowerCase()
+								return alert 'Duplicated filename is not allowed'
+						$.ajax
+							url: '/edit/create'
+							type: 'POST'
+							data: JSON.stringify
+								bot: bot
+								type: 'aiml'
+								name: name
+								text: ''
+							dataType: 'json'
+							contentType: 'application/json; charset=utf-8'
+						.done (result) ->
+							return true
+						.fail (response) ->
+							return false
+
 						return false

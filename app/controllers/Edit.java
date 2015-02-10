@@ -89,7 +89,7 @@ public class Edit extends Controller
         try {
             JsonNode json = request().body().asJson();
             final String text = json.findPath("text").textValue();
-            final String name = json.findPath("file").textValue();
+            final String name = json.findPath("name").textValue();
             final String bot = json.findPath("bot").textValue();
             final String type = json.findPath("type").textValue();
             return Promise.promise(new Function0<Result>() {

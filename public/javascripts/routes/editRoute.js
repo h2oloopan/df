@@ -167,13 +167,59 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
             return false;
           },
           addGrammar: function() {
-            var file;
-            file = prompt('Grammar File Name (No Extension)', 'filename');
+            var grammar, grammars, name, _i, _len;
+            name = prompt('Grammar File Name (No Extension)', 'filename');
+            grammars = this.get('grammars');
+            for (_i = 0, _len = grammars.length; _i < _len; _i++) {
+              grammar = grammars[_i];
+              if (grammar.name.toLowerCase() === (name + '.gram').toLowerCase()) {
+                return alert('Duplicated filename is not allowed');
+              }
+            }
+            $.ajax({
+              url: '/edit/create',
+              type: 'POST',
+              data: JSON.stringify({
+                bot: bot,
+                type: 'grammar',
+                name: name,
+                text: ''
+              }),
+              dataType: 'json',
+              contentType: 'application/json; charset=utf-8'
+            }).done(function(result) {
+              return true;
+            }).fail(function(response) {
+              return false;
+            });
             return false;
           },
           addAIML: function() {
-            var file;
-            file = prompt('AIML File Name (No Extension)', 'filename');
+            var aiml, aimls, name, _i, _len;
+            name = prompt('AIML File Name (No Extension)', 'filename');
+            aimls = this.get('aimls');
+            for (_i = 0, _len = aimls.length; _i < _len; _i++) {
+              aiml = aimls[_i];
+              if (aiml.name.toLowerCase() === (name + '.gram').toLowerCase()) {
+                return alert('Duplicated filename is not allowed');
+              }
+            }
+            $.ajax({
+              url: '/edit/create',
+              type: 'POST',
+              data: JSON.stringify({
+                bot: bot,
+                type: 'aiml',
+                name: name,
+                text: ''
+              }),
+              dataType: 'json',
+              contentType: 'application/json; charset=utf-8'
+            }).done(function(result) {
+              return true;
+            }).fail(function(response) {
+              return false;
+            });
             return false;
           }
         }
