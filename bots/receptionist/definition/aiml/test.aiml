@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+	<category>
+		<pattern>
+			<grammar>
+				help.acceptable_test_queries
+			</grammar>
+		</pattern>
+		<template>
+			 什么鬼
+		</template>
+	</category>
+</aiml>

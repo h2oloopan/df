@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//bots/dummy/definition/grammar/default.gram=GB18030
 encoding//bots/receptionist/definition/grammar/basic.gram=GB18030
+encoding//bots/receptionist/definition/grammar/filename.gram=GB18030
 encoding//bots/receptionist/definition/grammar/help.gram=GB18030
 encoding//bots/receptionist/definition/grammar/phone.gram=GB18030
 encoding//bots/receptionist/definition/grammar/self.gram=GB18030

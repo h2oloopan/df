@@ -219,7 +219,7 @@ public class BotActorFarm implements ActorFarm {
     }
 
     @Override
-    public void createFile(String bot, String name, String type, String text) throws Exception
+    public String createFile(String bot, String name, String type, String text) throws Exception
     {
         File root = new File(rootPath);
         String path = (new File(root, bot)).getCanonicalPath();
@@ -245,5 +245,6 @@ public class BotActorFarm implements ActorFarm {
         FileChannel channel = new FileOutputStream(file).getChannel();
         channel.write(bbuf);
         channel.close();
+        return file.getCanonicalPath();
     }
 }

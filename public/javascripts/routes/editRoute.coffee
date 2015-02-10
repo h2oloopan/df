@@ -77,12 +77,14 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 								path: grammar.path
 								encoding: 'GB18030'
 								text: file
-							dataType: 'json'
+							#dataType: 'json'
 							contentType: 'application/json; charset=gb18030'
 						.done (result) ->
 							alert 'Grammar saved to server successfully!'
+							return true
 						.fail (response) ->
 							alert response.responseText
+							return false
 						return false
 					saveAIML: (aiml, file) ->
 						$.ajax
@@ -92,12 +94,15 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 								path: aiml.path
 								encoding: 'UTF-8'
 								text: file
-							dataType: 'json'
+							#dataType: 'json'
 							contentType: 'application/json; charset=utf-8'
 						.done (result) ->
 							alert 'AIML saved to server successfully!'
+							return true
 						.fail (response) ->
+							
 							alert response.responseText
+							return false
 						return false
 					compile: (bot) ->
 						thiz = @
@@ -106,7 +111,7 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 							type: 'POST'
 							data: JSON.stringify
 								bot: bot
-							dataType: 'json'
+							#dataType: 'json'
 							contentType: 'application/json; charset=utf-8'
 						.done (result) ->
 							alert 'Grammar compilation done for bot ' + bot
@@ -120,16 +125,17 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 							type: 'POST'
 							data: JSON.stringify
 								bot: bot
-							dataType: 'json'
+							#dataType: 'json'
 							contentType: 'application/json; charset=utf-8'
 						.done (result) ->
 							alert 'Bot reloaded successfully for ' + bot
 							return true
 						.fail (response) ->
-							#thiz.send 'update', '[SYSTEM] Bot reloading failed for bot ' + bot + ' ' + response.responseText
+							alert 'Bot reloading failed for bot ' + bot + ' ' + response.responseText
 							return false
 						return false
-					addGrammar: ->
+					addGrammar: (bot) ->
+						thiz = @
 						name = prompt 'Grammar File Name (No Extension)', 'filename'
 						grammars = @get 'grammars'
 						for grammar in grammars
@@ -144,14 +150,23 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 								type: 'grammar'
 								name: name
 								text: ''
-							dataType: 'json'
+							#dataType: 'json'
 							contentType: 'application/json; charset=utf-8'
 						.done (result) ->
+							grammars = thiz.get 'grammars'
+							fresh =
+								name: name + '.gram'
+								path: result
+							grammars.pushObject fresh
+							thiz.set 'grammars', grammars
+							thiz.set 'grammar', fresh
 							return true
 						.fail (response) ->
+							alert 'Adding new grammar file failed ' + response.responseText
 							return false
 						return false
-					addAIML: ->
+					addAIML: (bot) ->
+						thiz = @
 						name = prompt 'AIML File Name (No Extension)', 'filename'
 						aimls = @get 'aimls'
 						for aiml in aimls
@@ -165,11 +180,19 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 								type: 'aiml'
 								name: name
 								text: ''
-							dataType: 'json'
+							#dataType: 'json'
 							contentType: 'application/json; charset=utf-8'
 						.done (result) ->
+							aimls = thiz.get 'aimls'
+							fresh =
+								name: name + '.aiml'
+								path: result
+							aimls.pushObject fresh
+							thiz.set 'aimls', aimls
+							thiz.set 'aiml', fresh
 							return true
 						.fail (response) ->
+							alert 'Adding new aiml file failed ' + response.responseText
 							return false
 
 						return false

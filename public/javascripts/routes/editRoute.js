@@ -102,12 +102,13 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
                 encoding: 'GB18030',
                 text: file
               }),
-              dataType: 'json',
               contentType: 'application/json; charset=gb18030'
             }).done(function(result) {
-              return alert('Grammar saved to server successfully!');
+              alert('Grammar saved to server successfully!');
+              return true;
             }).fail(function(response) {
-              return alert(response.responseText);
+              alert(response.responseText);
+              return false;
             });
             return false;
           },
@@ -120,12 +121,13 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
                 encoding: 'UTF-8',
                 text: file
               }),
-              dataType: 'json',
               contentType: 'application/json; charset=utf-8'
             }).done(function(result) {
-              return alert('AIML saved to server successfully!');
+              alert('AIML saved to server successfully!');
+              return true;
             }).fail(function(response) {
-              return alert(response.responseText);
+              alert(response.responseText);
+              return false;
             });
             return false;
           },
@@ -138,7 +140,6 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
               data: JSON.stringify({
                 bot: bot
               }),
-              dataType: 'json',
               contentType: 'application/json; charset=utf-8'
             }).done(function(result) {
               return alert('Grammar compilation done for bot ' + bot);
@@ -156,18 +157,19 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
               data: JSON.stringify({
                 bot: bot
               }),
-              dataType: 'json',
               contentType: 'application/json; charset=utf-8'
             }).done(function(result) {
               alert('Bot reloaded successfully for ' + bot);
               return true;
             }).fail(function(response) {
+              alert('Bot reloading failed for bot ' + bot + ' ' + response.responseText);
               return false;
             });
             return false;
           },
-          addGrammar: function() {
-            var grammar, grammars, name, _i, _len;
+          addGrammar: function(bot) {
+            var grammar, grammars, name, thiz, _i, _len;
+            thiz = this;
             name = prompt('Grammar File Name (No Extension)', 'filename');
             grammars = this.get('grammars');
             for (_i = 0, _len = grammars.length; _i < _len; _i++) {
@@ -185,17 +187,27 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
                 name: name,
                 text: ''
               }),
-              dataType: 'json',
               contentType: 'application/json; charset=utf-8'
             }).done(function(result) {
+              var fresh;
+              grammars = thiz.get('grammars');
+              fresh = {
+                name: name + '.gram',
+                path: result
+              };
+              grammars.pushObject(fresh);
+              thiz.set('grammars', grammars);
+              thiz.set('grammar', fresh);
               return true;
             }).fail(function(response) {
+              alert('Adding new grammar file failed ' + response.responseText);
               return false;
             });
             return false;
           },
-          addAIML: function() {
-            var aiml, aimls, name, _i, _len;
+          addAIML: function(bot) {
+            var aiml, aimls, name, thiz, _i, _len;
+            thiz = this;
             name = prompt('AIML File Name (No Extension)', 'filename');
             aimls = this.get('aimls');
             for (_i = 0, _len = aimls.length; _i < _len; _i++) {
@@ -213,11 +225,20 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
                 name: name,
                 text: ''
               }),
-              dataType: 'json',
               contentType: 'application/json; charset=utf-8'
             }).done(function(result) {
+              var fresh;
+              aimls = thiz.get('aimls');
+              fresh = {
+                name: name + '.aiml',
+                path: result
+              };
+              aimls.pushObject(fresh);
+              thiz.set('aimls', aimls);
+              thiz.set('aiml', fresh);
               return true;
             }).fail(function(response) {
+              alert('Adding new aiml file failed ' + response.responseText);
               return false;
             });
             return false;

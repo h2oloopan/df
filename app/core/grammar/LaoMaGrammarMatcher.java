@@ -35,6 +35,22 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
         }
     }
     
+    @Override
+    public void update(String path) throws Exception
+    {
+        File grams = new File(path);
+        if (!grams.exists()) {
+            throw new IOException("Grammar file does not exist.");
+        } else {
+            try {
+                precursor = GPrecursor.loadPrecursor(grams);
+                matcher = precursor.newMatcher(SpaceType.chinese);
+            } catch (Exception e) {
+                throw e;
+            }
+        }
+    }
+    
 	@Override
 	public String match(String query) throws Exception {
 	    if (query == null) {

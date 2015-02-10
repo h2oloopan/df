@@ -95,8 +95,7 @@ public class Edit extends Controller
             return Promise.promise(new Function0<Result>() {
                 public Result apply() {
                     try {
-                        farm.createFile(bot, name, type, text);
-                        return ok();
+                        return ok(farm.createFile(bot, name, type, text));
                     } catch (Exception e) {
                         return badRequest(e.getMessage());
                     }
