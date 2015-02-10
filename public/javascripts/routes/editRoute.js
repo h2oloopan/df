@@ -16,6 +16,12 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
               return reject(errors);
             });
           });
+        },
+        afterModel: function(model) {
+          if (model.bots.length > 0) {
+            this.controllerFor('edit').set('bot', null);
+            return this.controllerFor('edit').set('bot', model.bots[0]);
+          }
         }
       });
       return App.EditController = Ember.ObjectController.extend({
@@ -26,6 +32,9 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
         aimls: [],
         botChanged: (function() {
           var thiz;
+          if (this.get('bot') == null) {
+            return false;
+          }
           thiz = this;
           Ember.$.getJSON('/bot/grammars?bot=' + this.get('bot')).then(function(result) {
             var a, key, keys, value, _i, _len;

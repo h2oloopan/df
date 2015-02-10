@@ -11,6 +11,10 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 								bots: result.bots
 						, (errors) ->
 							reject errors
+				afterModel: (model) ->
+					if model.bots.length > 0
+						@controllerFor('edit').set 'bot', null
+						@controllerFor('edit').set 'bot', model.bots[0]
 
 			App.EditController = Ember.ObjectController.extend
 				bot: null
@@ -19,8 +23,8 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 				grammars: []
 				aimls: []
 				botChanged: ( -> 
+					if !@get('bot')? then return false
 					thiz = @
-					
 					Ember.$.getJSON('/bot/grammars?bot=' + @get('bot')).then (result) ->
 						a = []
 						keys = u.keys result
@@ -30,7 +34,9 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 								name: key
 								path: value
 						thiz.set 'grammars', a
-						if a.length > 0 then thiz.set 'grammar', a[0]
+						if a.length > 0
+							#thiz.set 'grammar', null
+							thiz.set 'grammar', a[0]
 					, (errors) ->
 						thiz.set 'grammars', []
 
@@ -43,7 +49,9 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 								name: key
 								path: value
 						thiz.set 'aimls', b
-						if b.length > 0 then thiz.set 'aiml', b[0]
+						if b.length > 0 
+							#thiz.set 'aiml', null
+							thiz.set 'aiml', b[0]
 					, (errors) ->
 						thiz.set 'aimls', []
 
@@ -57,7 +65,7 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 						thiz.set 'fileGrammar', result
 					, (errors) ->
 						thiz.set 'fileGrammar', errors.responseText
-				).observes('grammar')
+				).observes 'grammar'
 				aimlChanged: ( ->
 					thiz = @
 					path = @get 'aiml.path'
