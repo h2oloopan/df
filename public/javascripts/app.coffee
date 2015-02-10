@@ -46,13 +46,13 @@ define ['routes/testRoute', 'routes/editRoute', 'ehbs!templates/index'], (TestRo
 							dataType: 'json'
 							contentType: 'application/json; charset=utf-8'
 						.done (result) ->
-							message = '[HUMAN] ' + question + '\r\n'
-							message += '[BOT] ' + result.text
-							thiz.set 'question', null
+							message = '[BOT] ' + result.text
 							thiz.send 'update', message
 						.fail (response) ->
 							thiz.send 'update', '[SYSTEM] ' + response.responseText
-
+						thiz.set 'question', null
+						message = '[HUMAN] ' + question
+						@send 'update', message
 						return false
 					compile: ->
 						thiz = @

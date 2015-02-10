@@ -41,7 +41,7 @@ define(['routes/testRoute', 'routes/editRoute', 'ehbs!templates/index'], functio
             }, 300);
           },
           talk: function() {
-            var bot, question, thiz, uid;
+            var bot, message, question, thiz, uid;
             thiz = this;
             bot = this.get('bot');
             uid = this.get('uid');
@@ -58,13 +58,14 @@ define(['routes/testRoute', 'routes/editRoute', 'ehbs!templates/index'], functio
               contentType: 'application/json; charset=utf-8'
             }).done(function(result) {
               var message;
-              message = '[HUMAN] ' + question + '\r\n';
-              message += '[BOT] ' + result.text;
-              thiz.set('question', null);
+              message = '[BOT] ' + result.text;
               return thiz.send('update', message);
             }).fail(function(response) {
               return thiz.send('update', '[SYSTEM] ' + response.responseText);
             });
+            thiz.set('question', null);
+            message = '[HUMAN] ' + question;
+            this.send('update', message);
             return false;
           },
           compile: function() {

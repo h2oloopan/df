@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+	<category>
+		<pattern>
+			<grammar>
+				contact.find
+			</grammar>
+		</pattern>
+		<template>
+                    请问你想找谁
+		</template>
+	</category>
+</aiml>

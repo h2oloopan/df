@@ -150,7 +150,7 @@ public class Bot extends Controller {
 			
 			Query q = new Query(CommandType.RESPOND, uid, sid, query);
 			ActorRef actor = farm.getActor(bot);
-			return Promise.wrap(ask(actor, q, 5000)).map(
+			return Promise.wrap(ask(actor, q, 8000)).map(
 				new Function<Object, Result>() {
 					public Result apply(Object message) {
 						Response response = (Response)message;

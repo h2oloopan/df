@@ -1,10 +1,11 @@
 namespace self
 
 open basic
+open pss
 
 系动词:=strings{叫, 是}
 什么:=strings{什么, 哪些, 哪个, 啥, 神马, 谁, 哪位}
 名字:=strings{名, 名字, 名称, 姓名, 鬼}
-询问机器人信息 : [你_basic] [系动词] [量词_basic] 什么 [名字]  
+询问机器人信息 : [你_basic] [系动词] [量词_basic] 什么 [名字] pss_suffix*
 
 public bot_info_queries : 询问机器人信息 
