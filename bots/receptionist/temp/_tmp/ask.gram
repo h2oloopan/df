@@ -1,0 +1,6 @@
+namespace ask
+words := wildcard(1,10000)
+厕所:=strings{厕所}
+厕所在哪: [words] 厕所 [words]
+
+public ask_washroom: 厕所在哪
