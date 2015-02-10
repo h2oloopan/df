@@ -196,10 +196,37 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 							return false
 						return false
 					deleteGrammar: (grammar) ->
+						answer = confirm 'Do you want to delete grammar file ' + grammar.name + '?'
+						if !answer then return false
+						thiz = @
 						path = grammar.path
-						
+						$.ajax
+							url: '/edit/remove?path=' + path
+							type: 'DELETE'
+						.done (result) ->
+							grammars = thiz.get 'grammars'
+							grammars.removeObject grammar
+							if grammars.length > 0 then thiz.set 'grammar', grammars[0]
+							return true
+						.fail (response) ->
+							alert 'Deleting grammar failed ' + response.responseText
+							return false
 						return false
 
 					deleteAIML: (aiml) ->
+						answer = confirm 'Do you want to delete aiml file ' + aiml.name + '?'
+						if !answer then return false
+						thiz = @
 						path = aiml.path
+						$.ajax
+							url: '/edit/remove?path=' + path
+							type: 'DELETE'
+						.done (result) ->
+							aimls = thiz.get 'aimls'
+							aimls.removeObject aiml
+							if aimls.length > 0 then thiz.set 'aiml', aimls[0]
+							return true
+						.fail (response) ->
+							alert 'Deleting aiml failed ' + response.responseText
+							return false
 						return false

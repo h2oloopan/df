@@ -112,8 +112,7 @@ public class Edit extends Controller
     
     public Promise<Result> remove() {
         try {
-            JsonNode json = request().body().asJson();
-            final String path = json.findPath("path").textValue();
+            final String path = request().getQueryString("path");
             return Promise.promise(new Function0<Result>() {
                 public Result apply() {
                     try {

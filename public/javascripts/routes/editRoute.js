@@ -244,13 +244,53 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
             return false;
           },
           deleteGrammar: function(grammar) {
-            var path;
+            var answer, path, thiz;
+            answer = confirm('Do you want to delete grammar file ' + grammar.name + '?');
+            if (!answer) {
+              return false;
+            }
+            thiz = this;
             path = grammar.path;
+            $.ajax({
+              url: '/edit/remove?path=' + path,
+              type: 'DELETE'
+            }).done(function(result) {
+              var grammars;
+              grammars = thiz.get('grammars');
+              grammars.removeObject(grammar);
+              if (grammars.length > 0) {
+                thiz.set('grammar', grammars[0]);
+              }
+              return true;
+            }).fail(function(response) {
+              alert('Deleting grammar failed ' + response.responseText);
+              return false;
+            });
             return false;
           },
           deleteAIML: function(aiml) {
-            var path;
+            var answer, path, thiz;
+            answer = confirm('Do you want to delete aiml file ' + aiml.name + '?');
+            if (!answer) {
+              return false;
+            }
+            thiz = this;
             path = aiml.path;
+            $.ajax({
+              url: '/edit/remove?path=' + path,
+              type: 'DELETE'
+            }).done(function(result) {
+              var aimls;
+              aimls = thiz.get('aimls');
+              aimls.removeObject(aiml);
+              if (aimls.length > 0) {
+                thiz.set('aiml', aimls[0]);
+              }
+              return true;
+            }).fail(function(response) {
+              alert('Deleting aiml failed ' + response.responseText);
+              return false;
+            });
             return false;
           }
         }
