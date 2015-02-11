@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"resp",
+				"responseText"
+			],
+			[
+				"respon",
+				"responseText"
+			],
+			[
 				"respo",
 				"responseText"
 			],
@@ -23,7 +31,7 @@
 			"file": "public/templates/edit.html",
 			"settings":
 			{
-				"buffer_size": 1816,
+				"buffer_size": 2040,
 				"line_ending": "Unix"
 			}
 		},
@@ -31,7 +39,15 @@
 			"file": "public/javascripts/routes/editRoute.coffee",
 			"settings":
 			{
-				"buffer_size": 3887,
+				"buffer_size": 7028,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/javascripts/app.coffee",
+			"settings":
+			{
+				"buffer_size": 2555,
 				"line_ending": "Unix"
 			}
 		}
@@ -156,15 +172,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1816,
+						"buffer_size": 2040,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								645,
-								645
+								2002,
+								2002
 							]
 						],
 						"settings":
@@ -176,7 +192,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -185,15 +201,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3887,
+						"buffer_size": 7028,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3231,
-								3232
+								5124,
+								5124
 							]
 						],
 						"settings":
@@ -202,10 +218,39 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1768.0,
+						"translation.y": 2193.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "public/javascripts/app.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2555,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1495,
+								1495
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 51.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]

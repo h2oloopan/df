@@ -29,7 +29,12 @@
 				{input: "<star/>"}
 			</log>
 			</think>
-			<cqa default="大神问的太深奥，小弱斗胆接不住"><star/></cqa>
+			<cqa default="你猜怎么着"><star/></cqa>
 		</template>
 	</category>
+        <category>
+                   <pattern>*</pattern>
+                   <that>你猜怎么着</that>
+                   <template><cqa default="无可奉告"><star/></cqa></template>
+        </category>
 </aiml>

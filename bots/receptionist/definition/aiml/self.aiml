@@ -7,7 +7,7 @@
 			</grammar>
 		</pattern>
 		<template>
-			 我是RSVP前台机器人小白
+			 我是RSVP前台机器人<bot name="name"/>
 		</template>
 	</category>
 </aiml>

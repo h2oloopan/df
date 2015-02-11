@@ -180,6 +180,9 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
             var grammar, grammars, name, thiz, _i, _len;
             thiz = this;
             name = prompt('Grammar File Name (No Extension)', 'filename');
+            if (name == null) {
+              return false;
+            }
             grammars = this.get('grammars');
             for (_i = 0, _len = grammars.length; _i < _len; _i++) {
               grammar = grammars[_i];
@@ -218,6 +221,9 @@ define(['utils', 'ehbs!templates/edit'], function(u) {
             var aiml, aimls, name, thiz, _i, _len;
             thiz = this;
             name = prompt('AIML File Name (No Extension)', 'filename');
+            if (name == null) {
+              return false;
+            }
             aimls = this.get('aimls');
             for (_i = 0, _len = aimls.length; _i < _len; _i++) {
               aiml = aimls[_i];

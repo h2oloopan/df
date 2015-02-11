@@ -145,6 +145,7 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 					addGrammar: (bot) ->
 						thiz = @
 						name = prompt 'Grammar File Name (No Extension)', 'filename'
+						if !name? then return false
 						grammars = @get 'grammars'
 						for grammar in grammars
 							if grammar.name.toLowerCase() == (name + '.gram').toLowerCase()
@@ -176,6 +177,7 @@ define ['utils', 'ehbs!templates/edit'], (u) ->
 					addAIML: (bot) ->
 						thiz = @
 						name = prompt 'AIML File Name (No Extension)', 'filename'
+						if !name? then return false
 						aimls = @get 'aimls'
 						for aiml in aimls
 							if aiml.name.toLowerCase() == (name + '.gram').toLowerCase()
