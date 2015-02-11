@@ -20,4 +20,14 @@
 			 你想约我吗？
 		</template>
 	</category>
+	<category>
+		<pattern>
+			<grammar>
+				self.accept_谁贱
+			</grammar>
+		</pattern>
+		<template>
+                         不好意思，你是想问谁是Brendan么？
+		</template>
+	</category>
 </aiml>
