@@ -10,4 +10,24 @@
                     出门左转
 		</template>
 	</category>
+	<category>
+		<pattern>
+			<grammar>
+				ask.ask_吃喝
+			</grammar>
+		</pattern>
+		<template>
+                    厨房里有
+		</template>
+	</category>
+	<category>
+		<pattern>
+			<grammar>
+				products.watever
+			</grammar>
+		</pattern>
+		<template>
+                    除了问答我们什么都可以做
+		</template>
+	</category>
 </aiml>

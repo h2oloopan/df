@@ -26,7 +26,11 @@ import java.util.Enumeration;
 public class NetworkUtils {
 
     public static Promise<String> cqa(String query) {
-        return WS.url("http://121.40.202.87:8080/ChineseCQAServer/cqa/answer").setQueryParameter("q", query).get().map(
+        return WS.url("http://m160.cs.uwaterloo.ca:12345/cqa/answer").setQueryParameter("q", query)
+                .setQueryParameter("waitAllQuestion", "false")
+                .setQueryParameter("waitAllAnswer", "false")
+                .setQueryParameter("getAllAnswer", "false")
+                .get().map(
             new Function<WSResponse, String>() {
                 @Override
                 public String apply(WSResponse response) throws Throwable
