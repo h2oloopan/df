@@ -45,6 +45,3 @@ public C_结尾 : [结尾祈使词][语气词_basic +]
 
 关于_alias := strings{关于,有关,相关,有关于,相关于,有关系}
 public C_关于 := 关于_alias["的"]
-
-问好:=strings{你好,你好吗,你好不好,你怎么样}
-public greeting  : 问好

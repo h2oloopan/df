@@ -1,0 +1,7 @@
+namespace greeting
+open basic
+open pss
+
+问好:=strings{你好,你好不好,你怎么样,你怎样,你如何}
+完整问好: 问好 [pss_suffix]
+public query_greeting  : 完整问好

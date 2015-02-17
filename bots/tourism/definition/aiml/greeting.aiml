@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+	<category>
+		<pattern>
+			<grammar>
+				greeting.query_greeting
+			</grammar>
+		</pattern>
+		<template>
+			你好，我是旅游助手<bot name="name"/>
+		</template>
+	</category>
+</aiml>
