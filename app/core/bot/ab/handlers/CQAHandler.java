@@ -29,7 +29,17 @@ public class CQAHandler extends TagHandler
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
         String def = HandlingHelper.getAttributeOrTagValue(node, ps, "default", handlers);
-        HashSet<String> attributeNames = Utilities.stringSet("default");
+        String timeoutString = HandlingHelper.getAttributeOrTagValue(node, ps, "timeout", handlers);
+        HashSet<String> attributeNames = Utilities.stringSet("default", "timeout");
+        
+        long timeout = TIMEOUT;
+        try {
+            timeout = Integer.parseInt(timeoutString);
+        } catch (Exception e) {
+            //do nohting
+        }
+        
+        
         String query = "";
         NodeList children = node.getChildNodes();
         for (int i = 0; i < children.getLength(); i++) {
@@ -37,7 +47,7 @@ public class CQAHandler extends TagHandler
             query += handlers.getDefaultHandler().handle(child, ps, "", attributeNames);
         }
         try {
-            return NetworkUtils.cqa(query).get(TIMEOUT);
+            return NetworkUtils.cqa(query).get(timeout);
         } catch (Exception ex) {
             return def;
         }
