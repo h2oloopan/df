@@ -1,0 +1,26 @@
+namespace self
+
+open basic
+open pss
+
+系动词:=strings{叫, 是}
+什么:=strings{什么, 哪些, 哪个, 啥, 神马, 谁, 哪位, 几}
+
+
+名字:=strings{名, 名字, 名称, 姓名, 鬼}
+自己名字:=strings{小白}
+询问机器人信息:[你_basic] [系动词] [量词_basic] 什么 [名字] pss_suffix*
+
+
+
+public bot_info_queries : 询问机器人信息
+public 自己:自己名字
+
+时间:=strings{时间, 时候, 点}
+下班:=strings{下班, 忙完, 收工}
+下班信息:[pss_prefix] [你_basic] 什么 时间 下班 [语气词_basic]
+public accept_下班:下班信息
+
+比较副词:=strings{最, 比较, 相当}
+这里谁最贱: [pss_prefix] ["这里"] 什么 [比较副词] "贱" [pss_suffix]
+public accept_谁贱:这里谁最贱

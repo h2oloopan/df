@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+	<category>
+		<pattern>
+			<grammar>
+				help.acceptable_help_queries
+			</grammar>
+		</pattern>
+		<template>
+			 嘿嘿嘿，我什么也不能做，其实我是废物！
+		</template>
+	</category>
+</aiml>
