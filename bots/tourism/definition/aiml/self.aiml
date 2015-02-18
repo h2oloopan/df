@@ -7,7 +7,7 @@
 			</grammar>
 		</pattern>
 		<template>
-			 我是RSVP前台机器人<bot name="name"/>
+			 我是旅问旅答智能机器人<bot name="name"/>
 		</template>
 	</category>
 	<category>
@@ -18,16 +18,6 @@
 		</pattern>
 		<template>
 			 你想约我吗？
-		</template>
-	</category>
-	<category>
-		<pattern>
-			<grammar>
-				self.accept_谁贱
-			</grammar>
-		</pattern>
-		<template>
-                         不好意思，你是想问谁是Brendan么？
 		</template>
 	</category>
 </aiml>

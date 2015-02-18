@@ -7,7 +7,7 @@
 			</grammar>
 		</pattern>
 		<template>
-			你好，我是旅游助手<bot name="name"/>
+			你好，请我我有什么能帮到你的？
 		</template>
 	</category>
 </aiml>

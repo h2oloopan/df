@@ -7,7 +7,7 @@
 			</grammar>
 		</pattern>
 		<template>
-			 嘿嘿嘿，我什么也不能做，其实我是废物！
+			 我能回答您关于旅游的各种问题。
 		</template>
 	</category>
 </aiml>

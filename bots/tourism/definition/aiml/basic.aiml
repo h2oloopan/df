@@ -15,7 +15,7 @@
 			ST_NULL
 		</pattern>
 		<template>
-			你什么都不说让我回答什么啊
+			很抱歉，我不能理解你说了些什么，你可以试着换一种问法。
 		</template>
 	</category>
 	<category>
@@ -29,12 +29,7 @@
 				{input: "<star/>"}
 			</log>
 			</think>
-			<cqa default="你猜怎么着"><star/></cqa>
+			很抱歉，我不能理解你说了些什么，你可以试着换一种问法。
 		</template>
 	</category>
-        <category>
-                   <pattern>*</pattern>
-                   <that>你猜怎么着</that>
-                   <template><cqa default="无可奉告" timeout="10000"><star/></cqa></template>
-        </category>
 </aiml>
