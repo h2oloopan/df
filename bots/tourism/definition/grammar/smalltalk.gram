@@ -1,0 +1,5 @@
+namespace smalltalk
+open basic
+
+天气:=strings{今天天气不错}
+public smalltalk_weather: 天气

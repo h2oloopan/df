@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+	<category>
+		<pattern>
+			<grammar>
+				smalltalk.smalltalk_joke
+			</grammar>
+		</pattern>
+		<template>
+                    Brendan是白痴没下线！
+		</template>
+	</category>
+	<category>
+		<pattern>
+			<grammar>
+				smalltalk.smalltalk_weather
+			</grammar>
+		</pattern>
+		<template>
+                    挺风和日丽的。不如出去旅游吧！
+		</template>
+	</category>
+</aiml>
