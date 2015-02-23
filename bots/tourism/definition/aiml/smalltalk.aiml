@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aiml>
 	<category>
-		<pattern>
-			<grammar>
-				smalltalk.smalltalk_joke
-			</grammar>
-		</pattern>
+		<pattern>*</pattern>
 		<template>
-                    Brendan是白痴没下线！
-		</template>
-	</category>
-	<category>
-		<pattern>
-			<grammar>
-				smalltalk.smalltalk_weather
-			</grammar>
-		</pattern>
-		<template>
-                    挺风和日丽的。不如出去旅游吧！
+                    <think>
+			<log>
+				<type>Unhandled Query</type>
+				{input: "<star/>", pattern: "*", category: "smalltalk"}
+			</log>
+	              </think>
+                    让我们来一场说走就走的旅行吧，你可以问我跟旅行相关的各种问题。
 		</template>
 	</category>
 </aiml>
