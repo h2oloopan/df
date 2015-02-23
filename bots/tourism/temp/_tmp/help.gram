@@ -14,6 +14,7 @@ open basic
 列表:=strings{列表,范围,菜单}
 知道:=strings{知道,明白}
 东西:=strings{东西,事情}
+如何:=strings{如何,怎么}
 
 询问功能: 能 [帮我] [做] [量词] 什么 [功能]
 : [能] 做 [量词] 什么 [功能]
@@ -27,5 +28,6 @@ open basic
 : [C_人称动作前缀] [你_basic] 询问功能 [C_结尾]
 : [C_人称动作前缀] [展示] 功能 [列表] [C_结尾]
 : [C_人称动作前缀] [展示] 帮助 [列表] [C_结尾]
+: [你_basic] 如何 用
 
 public acceptable_help_queries : 询问功能问句
