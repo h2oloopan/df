@@ -154,7 +154,11 @@ public class Bot
      */
     public String respond(String inputOriginal, String inputParsed, String that, String topic, Context context, Profile profile) throws Exception {
         String result = ComprehensiveProcessor.respond(this, context, profile, grammarMatcher, inputOriginal, inputParsed, that, topic);
-        return result.trim();
+        if (result == null) {
+            return "";
+        } else {
+            return result.trim();
+        }
         //TODO: repetition handling goes here?
         /*
         boolean repetition = true;

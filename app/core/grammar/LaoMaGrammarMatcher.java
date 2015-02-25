@@ -71,6 +71,9 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
 				}
 			}
 			if (output != null) {
+			    //need to check if this actually matches something else
+			    //e.g. a wildcard word
+			    
 				return output.trim();
 			} else {
 				return output;

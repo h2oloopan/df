@@ -1,10 +1,10 @@
 namespace smalltalk
 open basic
 
-
+block{心情}
 任意词前:=wildcard(1,1000)
 任意词后:=wildcard(1,1000)
-
 心情: 任意词前 "心情" 任意词后
 
+block{*}
 public smalltalk_feeling: 心情 {start = 任意词前.key; end = 任意词后.key;}

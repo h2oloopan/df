@@ -18,6 +18,7 @@ import core.bot.ab.handlers.TagHandlerCollection;
 import core.bot.ab.utils.DomUtils;
 import core.context.*;
 import core.grammar.GrammarMatcher;
+import core.messages.SpecialText;
 
 import org.w3c.dom.*;
 
@@ -32,7 +33,7 @@ public class ComprehensiveProcessor
     public static TagHandlerCollection handlers = new TagHandlerCollection();
     
     public static String respond(Bot bot, Context context, Profile profile, GrammarMatcher matcher, String inputOriginal, String inputParsed, String that, String topic) throws Exception {
-        //System.out.println("INPUT: " + inputOriginal + " | PARSED: " + inputParsed + " | THAT: " + that + " | TOPIC: " + topic);
+        System.out.println("INPUT: " + inputOriginal + " | PARSED: " + inputParsed + " | THAT: " + that + " | TOPIC: " + topic);
         Nodemapper leaf = bot.brain.match(inputOriginal, inputParsed, that, topic);
         
         if (leaf == null) {
@@ -94,7 +95,7 @@ public class ComprehensiveProcessor
         String pattern, grammar, that, template;
 
         NodeList children = n.getChildNodes();
-        grammar = "*";
+        grammar = SpecialText.NULL;
         pattern = "*"; that = "*";  template="";
         for (int j = 0; j < children.getLength(); j++) {
             //System.out.println("CHILD: " + children.item(j).getNodeName());

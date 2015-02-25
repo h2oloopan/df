@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aiml>
 	<category>
+		<pattern><grammar>smalltalk.smalltalk_feeling</grammar></pattern>
+		<template>
+                    <think>
+			<log>
+				<type>Unhandled Query</type>
+				{bot: "tourism", input: "<star/>", grammar: "start 心情 end", category: "smalltalk", start: "<gval term="smalltalk.smalltalk_feeling" key="start"/>", end: "<gval term="smalltalk.smalltalk_feeling" key="end"/>"}
+			</log>
+	              </think>
+                    让我们来一场说走就走的旅行吧，你可以问我跟旅行相关的各种问题。
+		</template>
+	</category>
+        <category>
 		<pattern>*</pattern>
 		<template>
                     <think>
