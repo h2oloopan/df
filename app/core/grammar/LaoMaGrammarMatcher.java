@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import core.grammar.GrammarMatcher;
 import core.messages.SpecialText;
@@ -73,8 +74,13 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
 			if (output != null) {
 			    //need to check if this actually matches something else
 			    //e.g. a wildcard word
-			    
-				return output.trim();
+			    output = output.trim();
+			    boolean match = Pattern.matches(".+\\.@\\d+\\..+", output);
+			    if (match) {
+			        return null;
+			    } else {
+			        return output;
+			    }
 			} else {
 				return output;
 			}
