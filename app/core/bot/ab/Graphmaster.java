@@ -74,7 +74,7 @@ public class Graphmaster {
      * @return
      */
     public static String inputThatTopic (String pattern, String grammar, String that, String topic)  {
-        System.out.println(pattern.trim() + " <GRAMMAR> " + grammar.trim() + " <THAT> " + that.trim() + " <TOPIC> " + topic.trim());
+        //System.out.println(pattern.trim() + " <GRAMMAR> " + grammar.trim() + " <THAT> " + that.trim() + " <TOPIC> " + topic.trim());
         return pattern.trim() + " <GRAMMAR> " + grammar.trim() + " <THAT> " + that.trim() + " <TOPIC> " + topic.trim();
     }
 

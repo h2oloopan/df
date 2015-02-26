@@ -1,10 +1,11 @@
 namespace smalltalk
 open basic
 
-block{心情}
+block{心情整句}
 任意词前:=wildcard(1,1000)
 任意词后:=wildcard(1,1000)
-心情: 任意词前 "心情" 任意词后
+心情:=strings{心情, 情绪, 情感}
+心情整句: 任意词前 心情 任意词后
 
 block{*}
-public smalltalk_feeling: 心情 {start = 任意词前.key; end = 任意词后.key;}
+public smalltalk_feeling: 心情整句 {start = 任意词前.key; end = 任意词后.key;}

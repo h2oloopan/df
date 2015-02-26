@@ -7,7 +7,7 @@
 		<template>
                     <think>
 			<log>
-				<type>Unhandled Query</type>
+				<type>WILDCARD MATERIAL</type>
 				{bot: "tourism", input: "<star/>", grammar: "start 心情 end", category: "smalltalk", placeholders: { start: "<gval term="smalltalk.smalltalk_feeling" key="start"/>", end: "<gval term="smalltalk.smalltalk_feeling" key="end"/>" } }
 			</log>
 	              </think>
