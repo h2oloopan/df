@@ -33,5 +33,8 @@ public class Permission
     @Constraints.Required
     public boolean read;
     
+    @Constraints.Required
+    public boolean admin;
+    
     public static Finder<Integer, Permission> find = new Finder<Integer, Permission>(Integer.class, Permission.class);
 }
