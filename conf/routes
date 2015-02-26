@@ -19,5 +19,8 @@ POST    /edit/upload				@controllers.Edit.upload()
 POST    /edit/create                @controllers.Edit.create()
 DELETE  /edit/remove                @controllers.Edit.remove()
 
+#User
+GET     /users                      @controllers.Users.readAll()
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
