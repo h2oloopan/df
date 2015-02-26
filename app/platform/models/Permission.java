@@ -1,12 +1,13 @@
 /**
  *
  * Copyright 2015 RSVP Technologies Inc. All rights reserved.
- * User.java
+ * Permission.java
  *
  */
 package platform.models;
 
 import javax.persistence.*;
+
 import play.data.validation.*;
 import play.db.ebean.*;
 import play.db.ebean.Model.*;
@@ -17,22 +18,20 @@ import play.db.ebean.Model.*;
  */
 
 @Entity
-@Table(name="users")
-public class User extends Model
+@Table(name="permissions")
+public class Permission
 {
     @Id
     public int id;
     
     @Constraints.Required
-    public String username;
+    public String bot;
     
     @Constraints.Required
-    public String password;
+    public int user;
     
-    public String email;
+    @Constraints.Required
+    public boolean read;
     
-    public String key;
-    
-    public static Finder<Integer, User> find = new Finder<Integer, User>(Integer.class, User.class);
-    
+    public static Finder<Integer, Permission> find = new Finder<Integer, Permission>(Integer.class, Permission.class);
 }
