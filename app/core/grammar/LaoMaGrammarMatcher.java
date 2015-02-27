@@ -21,9 +21,10 @@ import gram.util.SpaceType;
 public class LaoMaGrammarMatcher implements GrammarMatcher {
 	private GPrecursor precursor;
     private GMatcher matcher;	
+    private ArrayList<String> terms;
 	
-    public LaoMaGrammarMatcher(String path) throws Exception{
-        File grams = new File(path);
+    public LaoMaGrammarMatcher(String gPath, String tPath) throws Exception{
+        File grams = new File(gPath);
         if (!grams.exists()) {
             throw new IOException("Grammar file does not exist.");
         } else {
@@ -37,9 +38,9 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
     }
     
     @Override
-    public void update(String path) throws Exception
+    public void update(String gPath, String tPath) throws Exception
     {
-        File grams = new File(path);
+        File grams = new File(gPath);
         if (!grams.exists()) {
             throw new IOException("Grammar file does not exist.");
         } else {

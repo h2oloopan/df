@@ -20,9 +20,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.exec.*;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.SystemUtils;
 
 import play.Logger;
+import play.libs.Json;
 
 
 public class LaoMaGrammarCompiler implements GrammarCompiler {
@@ -59,7 +61,7 @@ public class LaoMaGrammarCompiler implements GrammarCompiler {
 			            Matcher m = p.matcher(line);
 			            if (m.matches()) {
 			                String publicTerm = m.group(1);
-			                terms.add(publicTerm);
+			                terms.add(publicTerm.trim());
 			            }
 			        }
 			    }
@@ -67,6 +69,8 @@ public class LaoMaGrammarCompiler implements GrammarCompiler {
 			}
 			//now store all terms to file
 			File termsFile = new File(folder, "definition/terms.json");
+			termsFile.createNewFile();
+			FileUtils.write(termsFile, Json.stringify(Json.toJson(terms)));
 			
 		}
 		catch (IOException e) {
