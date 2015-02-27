@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import core.grammar.GrammarMatcher;
 import core.messages.SpecialText;
 import play.Logger;
+import play.libs.Json;
 import gram.gravy.GMatcher;
 import gram.gravy.GPrecursor;
 import gram.gravy.GResult;
@@ -24,16 +25,24 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
     private ArrayList<String> terms;
 	
     public LaoMaGrammarMatcher(String gPath, String tPath) throws Exception{
-        File grams = new File(gPath);
-        if (!grams.exists()) {
+        File gramsFile = new File(gPath);
+        File termsFile = new File(tPath);
+        if (!gramsFile.exists()) {
             throw new IOException("Grammar file does not exist.");
         } else {
             try {
-                precursor = GPrecursor.loadPrecursor(grams);
+                precursor = GPrecursor.loadPrecursor(gramsFile);
                 matcher = precursor.newMatcher(SpaceType.chinese);
             } catch (Exception e) {
                 throw e;
             }
+        }
+        if (!termsFile.exists()) {
+            // do nothing
+            terms = new ArrayList<String>();
+        } else {
+            // do something
+            
         }
     }
     
