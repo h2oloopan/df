@@ -93,10 +93,11 @@ public class BotActorFarm implements ActorFarm {
 			});
 			
 			String gramsPath = (new File(new File(path), "execs/grams.bin")).getCanonicalPath();
+			String termsPath = (new File(new File(path), "definition/terms.json")).getCanonicalPath();
 		
 			ActorRef router = Akka.system().actorOf(
 			    new RoundRobinPool(instances).withSupervisorStrategy(strategy).props(
-			        BotActor.props(contextProvider, profileProvider, grammarCompiler, grammarMatcherProvider.getMatcher(gramsPath), logProvider, name, path)
+			        BotActor.props(contextProvider, profileProvider, grammarCompiler, grammarMatcherProvider.getMatcher(gramsPath, termsPath), logProvider, name, path)
 			        ), "router-" + name);
 			
 			

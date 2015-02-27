@@ -25,7 +25,8 @@ public class BotFactory
 {
     public static Bot getDummyBot() throws Exception {
         String gramsPath = new File("test/supply/execs/grams.bin").getCanonicalPath();
-        GrammarMatcher matcher = new LaoMaGrammarMatcherProvider().getMatcher(gramsPath);
+        String termsPath = new File("test/supply/terms.json").getCanonicalPath();
+        GrammarMatcher matcher = new LaoMaGrammarMatcherProvider().getMatcher(gramsPath, termsPath);
         Bot bot = new Bot("dummy", new File("test/supply").getCanonicalPath(), matcher, null);
         return bot;
     }

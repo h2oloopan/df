@@ -29,8 +29,9 @@ public class LaoMaGrammarMatchTest
     @Before
     public void setup() {
         try {
-            String path = new File("test/supply/execs/grams.bin").getCanonicalPath();
-            this.matcher = new LaoMaGrammarMatcherProvider().getMatcher(path);
+            String grammarsPath = new File("test/supply/execs/grams.bin").getCanonicalPath();
+            String termsPath = new File("test/supply/terms.json").getCanonicalPath();
+            this.matcher = new LaoMaGrammarMatcherProvider().getMatcher(grammarsPath, termsPath);
         } catch (Exception e) {
             Assert.fail("Setup: should not get exception here, but " + e.getMessage());
         }

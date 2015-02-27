@@ -20,9 +20,9 @@ public class LaoMaGrammarMatcherProvider implements GrammarMatcherProvider
 {
 
     @Override
-    public GrammarMatcher getMatcher(String path) throws Exception
+    public GrammarMatcher getMatcher(String gPath, String tPath) throws Exception
     {
-        return new LaoMaGrammarMatcher(path);
+        return new LaoMaGrammarMatcher(gPath, tPath);
     }
 
 }

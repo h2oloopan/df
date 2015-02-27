@@ -12,5 +12,5 @@ package core.grammar;
  */
 public interface GrammarMatcherProvider
 {
-    public GrammarMatcher getMatcher(String path) throws Exception; 
+    public GrammarMatcher getMatcher(String gPath, String tPath) throws Exception; 
 }

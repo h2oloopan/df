@@ -82,7 +82,8 @@ public class BotActor extends UntypedActor {
 			        response = null;
 			        try {
 			            String gramsPath = (new File(new File(path), "execs/grams.bin")).getCanonicalPath();
-			            grammarMatcher.update(gramsPath);
+			            String termsPath = (new File(new File(path), "definition/terms.json")).getCanonicalPath();
+			            grammarMatcher.update(gramsPath, termsPath);
 			            this.bot = new Bot(name, path, grammarMatcher, logProvider);
 			            response = new Response(200, "");
 			        } catch (Exception e) {
