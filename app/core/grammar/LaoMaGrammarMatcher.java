@@ -66,6 +66,7 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
 			String output = null;
 			for (String key : result.keySet()) {
 				Float value = result.get(key);
+				Logger.info("TERM: " + key + " SCORE: " + value);
 				if (value >= largest) {
 					output = key;
 					largest = value;
@@ -77,6 +78,7 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
 			    output = output.trim();
 			    boolean match = Pattern.matches(".+\\.@\\d+\\..+", output);
 			    if (match) {
+			        Logger.info("UNNECESSARY WILDCARD MATCH: " + output);
 			        return null;
 			    } else {
 			        return output;

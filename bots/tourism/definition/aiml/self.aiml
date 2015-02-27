@@ -10,4 +10,14 @@
 			 我是旅问旅答智能机器人<bot name="name"/>
 		</template>
 	</category>
+	<category>
+		<pattern>
+			<grammar>
+				self.self_myname
+			</grammar>
+		</pattern>
+		<template>
+			 你好<gval name="name"/>，我是旅问旅答智能机器人<bot name="name"/>
+		</template>
+	</category>
 </aiml>

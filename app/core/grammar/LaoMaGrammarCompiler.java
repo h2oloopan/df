@@ -1,10 +1,28 @@
 package core.grammar;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
+import java.nio.charset.CharsetEncoder;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.exec.*;
 import org.apache.commons.lang3.SystemUtils;
+
+import play.Logger;
 
 
 public class LaoMaGrammarCompiler implements GrammarCompiler {
@@ -24,9 +42,35 @@ public class LaoMaGrammarCompiler implements GrammarCompiler {
 			executor.setExitValue(0);
 			ExecuteWatchdog watchdog = new ExecuteWatchdog(60000);
 			executor.setWatchdog(watchdog);
-			int exitValue = executor.execute(cmd);
+			executor.execute(cmd);
+			//compilation is done, now scan for public terms
+			ArrayList<String> terms = new ArrayList<String>();
+			File grammarFolder = new File(folder, "definition/grammar");
+			for (String name : grammarFolder.list()) {
+			    File grammar = new File(grammarFolder, name);
+			    FileInputStream fis = new FileInputStream(grammar);
+			    BufferedReader br = new BufferedReader(new InputStreamReader(fis, "GB18030"));
+			    String line;
+			    while ((line = br.readLine()) != null) {
+			        String pattern = "\\s*public\\s+([^:]+):.+";
+			        boolean result = line.matches(pattern);
+			        if (result) {
+			            Pattern p = Pattern.compile(pattern);
+			            Matcher m = p.matcher(line);
+			            if (m.matches()) {
+			                String publicTerm = m.group(1);
+			                terms.add(publicTerm);
+			            }
+			        }
+			    }
+			    br.close();
+			}
+			//now store all terms to file
+			File termsFile = new File(folder, "definition/terms.json");
+			
 		}
 		catch (IOException e) {
+		    Logger.error(e.getMessage(), e);
 			throw e;
 		}
 		
