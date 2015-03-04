@@ -42,8 +42,8 @@ public class RequestTagTest
             Category c2 = new Category(0, "你说了什么", "*", "*", "*", "没什么<request index=\"2\"/>", "dummy.aiml");
             bot.brain.addCategory(c2);
             
-            Context context = new Context("uid", "sid");
-            Profile profile = new Profile("uid");
+            Context context = new Context("uid", "sid", null);
+            Profile profile = new Profile("uid", null);
             String result = bot.respond("你好", SpecialText.NULL, SpecialText.NULL, SpecialText.NULL, context, profile);
             result = bot.respond("你说了什么", SpecialText.NULL, SpecialText.NULL, SpecialText.NULL, context, profile);
             
@@ -67,8 +67,8 @@ public class RequestTagTest
             Category c2 = new Category(0, "你说了什么", "*", "*", "*", "没什么<request index=\"1\"/>", "dummy.aiml");
             bot.brain.addCategory(c2);
             
-            Context context = new Context("uid", "sid");
-            Profile profile = new Profile("uid");
+            Context context = new Context("uid", "sid", null);
+            Profile profile = new Profile("uid", null);
             String result = bot.respond("你好", SpecialText.NULL, SpecialText.NULL, SpecialText.NULL, context, profile);
             context.insert("你好", result);
             result = bot.respond("你说了什么", SpecialText.NULL, SpecialText.NULL, SpecialText.NULL, context, profile);

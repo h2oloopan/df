@@ -41,7 +41,7 @@ public class IdTagTest
             Node node = DomUtils.parseString(template);
             ParseState ps = new ParseState();
             ps.bot = BotFactory.getDummyBot();
-            Context context = new Context("user-id", "session-id");
+            Context context = new Context("user-id", "session-id", null);
             ps.context = context;
             TagHandler defaultHandler = handlers.getDefaultHandler();
             String result = defaultHandler.handle(node, ps);

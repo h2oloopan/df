@@ -39,7 +39,7 @@ public class SetGetTagTest
             Node node = DomUtils.parseString(template);
             ParseState ps = new ParseState();
             
-            Context context = new Context("dummy user", "dummy session");
+            Context context = new Context("dummy user", "dummy session", null);
             ps.context = context;
             
             Bot bot = BotFactory.getDummyBot();

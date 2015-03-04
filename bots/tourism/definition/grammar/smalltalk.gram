@@ -7,4 +7,4 @@ block{心情整句}
 心情整句: (任意词前 : 要你命一千) 心情 (任意词后 : 要你命一千)  
 
 block{*}
-public smalltalk_feeling: 心情整句 
+public smalltalk_feeling: 心情整句 {start = 任意词前.key; end = 任意词后.key;}

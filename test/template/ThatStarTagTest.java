@@ -38,8 +38,8 @@ public class ThatStarTagTest
             Category c = new Category(0, "你好", "*", "什么", "*", "我不好<star/>", "dummy.aiml");
             bot.brain.addCategory(c);
             
-            Context context = new Context("uid", "sid");
-            Profile profile = new Profile("uid");
+            Context context = new Context("uid", "sid", null);
+            Profile profile = new Profile("uid", null);
             String result = bot.respond("你好", SpecialText.NULL, "什么", SpecialText.NULL, context, profile);
             
             Assert.assertEquals("我不好", result);
@@ -58,8 +58,8 @@ public class ThatStarTagTest
             Category c = new Category(0, "你好", "*", "* 什么", "*", "我不好, <thatstar/>", "dummy.aiml");
             bot.brain.addCategory(c);
             
-            Context context = new Context("uid", "sid");
-            Profile profile = new Profile("uid");
+            Context context = new Context("uid", "sid", null);
+            Profile profile = new Profile("uid", null);
             String result = bot.respond("你好", SpecialText.NULL, "为 什么", SpecialText.NULL, context, profile);
             
             Assert.assertEquals("我不好, 为", result);
@@ -78,8 +78,8 @@ public class ThatStarTagTest
             Category c = new Category(0, "你好", "*", "* 什么 *", "*", "<thatstar index=\"2\"/> 我不好, <thatstar index=\"1\"/>", "dummy.aiml");
             bot.brain.addCategory(c);
             
-            Context context = new Context("uid", "sid");
-            Profile profile = new Profile("uid");
+            Context context = new Context("uid", "sid", null);
+            Profile profile = new Profile("uid", null);
             String result = bot.respond("你好", SpecialText.NULL, "为 什么 阿", SpecialText.NULL, context, profile);
             
             Assert.assertEquals("阿 我不好, 为", result);

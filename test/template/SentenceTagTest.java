@@ -59,7 +59,7 @@ public class SentenceTagTest
             Node node = DomUtils.parseString(template);
             ParseState ps = new ParseState();
             ps.bot = BotFactory.getDummyBot();
-            Context context = new Context("u", "s");
+            Context context = new Context("u", "s", null);
             context.addPredicate("gender", "male");
             ps.context = context;
             TagHandler defaultHandler = handlers.getDefaultHandler();

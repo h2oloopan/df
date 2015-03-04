@@ -12,4 +12,4 @@ open pss
 public bot_info_queries : 询问机器人信息
 要你命一千:=wildcard(1, 1000)
 我是谁 : 我_basic 系动词 (人名 : 要你命一千)
-public self_myname: 我是谁
+public self_myname: 我是谁 {name = 人名.key;}

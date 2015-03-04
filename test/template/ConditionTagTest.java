@@ -39,7 +39,7 @@ public class ConditionTagTest
             Node node = DomUtils.parseString(template);
             ParseState ps = new ParseState();
             
-            Context context = new Context("dummy user", "dummy session");
+            Context context = new Context("dummy user", "dummy session", null);
             context.addPredicate("gender", "male");
             ps.context = context;
             
@@ -69,7 +69,7 @@ public class ConditionTagTest
             Node node = DomUtils.parseString(template);
             ParseState ps = new ParseState();
             
-            Context context = new Context("dummy user", "dummy session");
+            Context context = new Context("dummy user", "dummy session", null);
             context.addPredicate("gender", "male");
             ps.context = context;
             
@@ -99,7 +99,7 @@ public class ConditionTagTest
             Node node = DomUtils.parseString(template);
             ParseState ps = new ParseState();
             
-            Context context = new Context("dummy user", "dummy session");
+            Context context = new Context("dummy user", "dummy session", null);
             context.addPredicate("gender", "male");
             ps.context = context;
             
@@ -129,7 +129,7 @@ public class ConditionTagTest
             Node node = DomUtils.parseString(template);
             ParseState ps = new ParseState();
             
-            Context context = new Context("dummy user", "dummy session");
+            Context context = new Context("dummy user", "dummy session", null);
             context.addPredicate("gender", "xxx");
             ps.context = context;
             

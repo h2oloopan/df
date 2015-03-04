@@ -20,6 +20,7 @@ import core.bot.ab.MagicStrings;
 import core.bot.ab.Triple;
 import core.bot.ab.Tuple;
 import core.messages.SpecialText;
+import core.storage.ContextProvider;
 
 public class Context {
 	public String uid;
@@ -42,15 +43,18 @@ public class Context {
 	public Date dateCreated;
 	public Date dateExpired;
 	
+	private ContextProvider provider;
+	
 	
 	
 	public Context() {
 	    //Do not use this one
 	}
 	
-	public Context(String uid, String sid) {
+	public Context(String uid, String sid, ContextProvider provider) {
 		this.uid = uid;
 		this.sid = sid;
+		this.provider = provider;
 		this.queries = new ArrayList<String>();
 		this.responses = new ArrayList<String>();
 		this.predicates = new HashMap<String, String>();
@@ -65,6 +69,10 @@ public class Context {
 		this.subjectTriples = new HashMap<String, HashSet<String>>();
 		this.predicateTriples = new HashMap<String, HashSet<String>>();
 		this.objectTriples = new HashMap<String, HashSet<String>>();
+	}
+	
+	public void save() throws Exception {
+	    this.provider.saveContext(uid, sid, this);
 	}
 	
 	public void initialize(Bot bot) throws Exception {

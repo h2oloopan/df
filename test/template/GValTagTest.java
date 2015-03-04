@@ -38,8 +38,8 @@ public class GValTagTest
             Category c = new Category(0, "*", "default.你好吗", "*", "*", "我不好<gval term=\"default.你好吗\" key=\"who\"/>", "dummy.aiml");
             bot.brain.addCategory(c);
             
-            Context context = new Context("uid", "sid");
-            Profile profile = new Profile("uid");
+            Context context = new Context("uid", "sid", null);
+            Profile profile = new Profile("uid", null);
             
             String inputOriginal = "你好吗";
             String inputParsed = bot.grammarMatcher.match(inputOriginal);
@@ -62,8 +62,8 @@ public class GValTagTest
             Category c = new Category(0, "*", "default.你好吗", "*", "*", "我不好<gval term=\"default.你好吗\" key=\"dart\"/>", "dummy.aiml");
             bot.brain.addCategory(c);
             
-            Context context = new Context("uid", "sid");
-            Profile profile = new Profile("uid");
+            Context context = new Context("uid", "sid", null);
+            Profile profile = new Profile("uid", null);
             
             String inputOriginal = "你好吗";
             String inputParsed = bot.grammarMatcher.match(inputOriginal);

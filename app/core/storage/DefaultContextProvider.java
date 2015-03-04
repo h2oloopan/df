@@ -22,7 +22,7 @@ public class DefaultContextProvider implements ContextProvider {
 		String value = sessionStorage.get(key);
 		if (value == null) {
 			//create a new context
-			Context context = new Context(uid, sid);
+			Context context = new Context(uid, sid, this);
 			sessionStorage.set(key, Json.stringify(Json.toJson(context)));
 			return context;
 		} else {

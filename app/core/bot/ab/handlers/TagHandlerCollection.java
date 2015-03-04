@@ -61,6 +61,8 @@ public class TagHandlerCollection extends HashMap<String, TagHandler>
         this.put("gval", new GrammarValueHandler());
         this.put("log", new LogHandler());
         this.put("cqa", new CQAHandler());
+        
+        this.put("profile", new ProfileHandler());
     }
     
     public TagHandler getDefaultHandler() {

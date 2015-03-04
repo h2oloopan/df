@@ -33,10 +33,10 @@ public class MySqlProfileProvider implements ProfileProvider {
 				@SuppressWarnings("unchecked")
 				HashMap<String, String> map = Json.fromJson(Json.parse(result.getString("map")), HashMap.class);
 				Date createdDate = result.getDate("created_date");
-				return new Profile(uid, name, map, createdDate);
+				return new Profile(uid, map, createdDate, this);
 			} else {
 				//create a new profile
-			    return new Profile(uid);
+			    return new Profile(uid, this);
 			}
 		} catch (Exception e) {
 			throw e;
@@ -66,19 +66,12 @@ public class MySqlProfileProvider implements ProfileProvider {
 		PreparedStatement stmt = null;
 		try {
 			conn = ds.getConnection();
-			String sql = "INSERT INTO profiles (uid, name, map, created_date) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE name = ?, map = ?;";
+			String sql = "INSERT INTO profiles (uid, map, created_date) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE map = ?;";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, uid);
-			if (profile.name != null) {
-			    stmt.setString(2, profile.name);
-			    stmt.setString(5, profile.name);
-			} else {
-			    stmt.setNull(2, Types.NULL);
-			    stmt.setNull(5, Types.NULL);
-			}
-			stmt.setDate(4, new java.sql.Date(profile.createdDate.getTime()));
-			stmt.setString(3, Json.stringify(Json.toJson(profile.map)));
-            stmt.setString(6, Json.stringify(Json.toJson(profile.map)));
+			stmt.setDate(3, new java.sql.Date(profile.createdDate.getTime()));
+			stmt.setString(2, Json.stringify(Json.toJson(profile.map)));
+            stmt.setString(4, Json.stringify(Json.toJson(profile.map)));
             stmt.executeUpdate();
 		} catch (Exception e) {
 			throw e;

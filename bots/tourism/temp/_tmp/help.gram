@@ -31,3 +31,7 @@ open basic
 : [你_basic] 如何 用
 
 public acceptable_help_queries : 询问功能问句
+
+还:=strings{还,又,也}
+更多功能 : [你_basic] 还 (知道 | 做) 什么
+public help_more : 更多功能

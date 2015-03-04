@@ -42,8 +42,8 @@ public class StarTagTest
             Category c = new Category(0, "你好", "*", "*", "*", "我不好<star/>", "dummy.aiml");
             bot.brain.addCategory(c);
             
-            Context context = new Context("uid", "sid");
-            Profile profile = new Profile("uid");
+            Context context = new Context("uid", "sid", null);
+            Profile profile = new Profile("uid", null);
             String result = bot.respond("你好", SpecialText.NULL, SpecialText.NULL, SpecialText.NULL, context, profile);
             
             Assert.assertEquals("我不好", result);
@@ -62,8 +62,8 @@ public class StarTagTest
             Category c = new Category(0, "你好, *", "*", "*", "*", "我不好, <star/>", "dummy.aiml");
             bot.brain.addCategory(c);
             
-            Context context = new Context("uid", "sid");
-            Profile profile = new Profile("uid");
+            Context context = new Context("uid", "sid", null);
+            Profile profile = new Profile("uid", null);
             String result = bot.respond("你好, 老秦", SpecialText.NULL, SpecialText.NULL, SpecialText.NULL, context, profile);
             
             Assert.assertEquals("我不好, 老秦", result);
@@ -82,8 +82,8 @@ public class StarTagTest
             Category c = new Category(0, "* 你好 *", "*", "*", "*", "<star index=\"2\"/> 我不好, <star index=\"1\"/>", "dummy.aiml");
             bot.brain.addCategory(c);
             
-            Context context = new Context("uid", "sid");
-            Profile profile = new Profile("uid");
+            Context context = new Context("uid", "sid", null);
+            Profile profile = new Profile("uid", null);
             String result = bot.respond("琨叔 你好 老秦", SpecialText.NULL, SpecialText.NULL, SpecialText.NULL, context, profile);
             
             Assert.assertEquals("老秦 我不好, 琨叔", result);

@@ -10,4 +10,17 @@
 			 我能回答您关于旅游的各种问题。比如“泰山有多高”，“蓬莱阁怎么去”。
 		</template>
 	</category>
+	<category>
+		<pattern>
+			<grammar>
+				help.help_more
+			</grammar>
+		</pattern>
+		<template>
+                         <random>
+                             <li>上通天文地理, 下晓知识百科。但是我主要是您的伴游。陪您开心，给您信息。比如，济南六月份天气怎么样？</li>
+                             <li>我还做数据挖掘。比如你问“黄鹤楼有什么典故”，我会找到给你。你问我 “黄鹤楼有多高”，那也不在话下。除了旅游之外，别的问题我尽量回答。</li>
+                         </random>
+		</template>
+	</category>
 </aiml>
