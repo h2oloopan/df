@@ -10,7 +10,6 @@ import java.io.StringWriter;
 import java.util.UUID;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
 import akka.actor.ActorRef;
@@ -25,7 +24,6 @@ import core.messages.Response;
 import ca.rsvptech.qa.common.datatype.RsvpServiceResponse;
 import ca.rsvptech.qa.common.datatype.RsvpServiceResponse.ResponseStatus;
 import play.Logger;
-import play.libs.Json;
 import play.libs.F.*;
 import play.mvc.*;
 
@@ -59,17 +57,29 @@ public class Api extends Controller
             
             Query q = new Query(CommandType.RESPOND, uid, sid, query);
             ActorRef actor = farm.getActor(bot);
-            return Promise.wrap(ask(actor, q, 8000)).map(
+            if (actor == null) {
+                throw new Exception("There is no bot" + bot);
+            }
+            return Promise.wrap(akka.pattern.Patterns.ask(actor, q, 8000)).map(
                 new Function<Object, Result>() {
                     public Result apply(Object message) {
                         Response response = (Response)message;
+                        RsvpServiceResponse rsvpResponse = new RsvpServiceResponse();
                         switch (response.getCode()) {
-                        case 200:
-                            return ok(Json.toJson(response));
                         case 500:
-                            return internalServerError(response.getText());
+                            rsvpResponse.setStatus(ResponseStatus.Error);
+                            break;
                         default:
-                            return ok(Json.toJson(response));
+                            rsvpResponse.setStatus(ResponseStatus.Success);
+                            rsvpResponse.setAnswer(response.getText());
+                            rsvpResponse.setCertain(false);
+                            break;
+                        }
+                        String result = getXml(rsvpResponse);
+                        if (result == null) {
+                            return internalServerError();
+                        } else {
+                            return ok(result).as("text/xml");
                         }
                     }
                 }
@@ -82,19 +92,10 @@ public class Api extends Controller
                     {
                         RsvpServiceResponse response = new RsvpServiceResponse();
                         response.setStatus(ResponseStatus.Error);
-                        JAXBContext context = JAXBContext.newInstance(RsvpServiceResponse.class);
-                        Marshaller marshaller;
-                        marshaller = context.createMarshaller();
-                        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-                        StringWriter writer = new StringWriter();
-                        marshaller.marshal(response, writer);
-                        return ok(writer.toString());
+                        return ok(getXml(response));
                     }
                     catch (Exception ex)
                     {
-                        // TODO Auto-generated catch block
-                        ex.printStackTrace();
-                        Logger.error(ex.getMessage(), ex);
                         return internalServerError(ex.getMessage());
                     }
                }
@@ -102,7 +103,7 @@ public class Api extends Controller
         }
     }
     
-    private String getXml(RsvpServiceResponse response) throws Exception {
+    private String getXml(RsvpServiceResponse response) {
         try
         {
             JAXBContext context = JAXBContext.newInstance(RsvpServiceResponse.class);
@@ -118,7 +119,7 @@ public class Api extends Controller
             // TODO Auto-generated catch block
             ex.printStackTrace();
             Logger.error(ex.getMessage(), ex);
-            throw ex;
+            return null;
         }
     }
 }

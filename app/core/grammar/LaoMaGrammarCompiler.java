@@ -53,15 +53,24 @@ public class LaoMaGrammarCompiler implements GrammarCompiler {
 			    FileInputStream fis = new FileInputStream(grammar);
 			    BufferedReader br = new BufferedReader(new InputStreamReader(fis, "GB18030"));
 			    String line;
+			    String namespace = "default";
 			    while ((line = br.readLine()) != null) {
-			        String pattern = "\\s*public\\s+([^:]+):.+";
+			        //try to find namespace
+			        String pattern = "\\s*namespace\\s+([^\\s]+)\\s*";
+			        Pattern np = Pattern.compile(pattern);
+			        Matcher nm = np.matcher(line);
+			        if (nm.matches()) {
+			            namespace = nm.group(1).trim();
+			        }
+			        
+			        pattern = "\\s*public\\s+([^:]+):.+";
 			        boolean result = line.matches(pattern);
 			        if (result) {
 			            Pattern p = Pattern.compile(pattern);
 			            Matcher m = p.matcher(line);
 			            if (m.matches()) {
 			                String publicTerm = m.group(1);
-			                terms.add(publicTerm.trim());
+			                terms.add(namespace + "." + publicTerm.trim());
 			            }
 			        }
 			    }

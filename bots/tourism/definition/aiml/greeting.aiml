@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aiml>
+         <category>
+		<pattern>
+			<grammar>
+				greeting.query_greeting
+			</grammar>
+		</pattern>
+                <that>
+                        您好，我是小白。我回答您旅途上的问题。像对一个朋友，您随便问就行。比如：蓬莱阁有减价门票吗？
+                </that>
+		<template>
+			您好。有问题吗？随便说吧，我比较实诚，不太会调侃，但是知道的不少：全国旅游景点的门票，营业时间，电话，地址，介绍，攻略，语音导游。比如你说“介绍蓬莱阁主阁”，我就给你语音介绍。 我的原则是一句通。
+		</template>
+	</category>
 	<category>
 		<pattern>
 			<grammar>
@@ -7,7 +20,7 @@
 			</grammar>
 		</pattern>
 		<template>
-			你好，请我我有什么能帮到你的？
+			您好，我是小白。我回答您旅途上的问题。像对一个朋友，您随便问就行。比如：蓬莱阁有减价门票吗？
 		</template>
 	</category>
 </aiml>

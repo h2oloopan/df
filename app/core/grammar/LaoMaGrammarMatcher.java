@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.apache.commons.io.FileUtils;
+
 import core.grammar.GrammarMatcher;
 import core.messages.SpecialText;
 import play.Logger;
@@ -42,7 +44,8 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
             terms = new ArrayList<String>();
         } else {
             // do something
-            
+            String json = FileUtils.readFileToString(termsFile);
+            terms = Json.fromJson(Json.parse(json), ArrayList.class);
         }
     }
     
@@ -50,6 +53,7 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
     public void update(String gPath, String tPath) throws Exception
     {
         File grams = new File(gPath);
+        File termsFile = new File(tPath);
         if (!grams.exists()) {
             throw new IOException("Grammar file does not exist.");
         } else {
@@ -59,6 +63,14 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
             } catch (Exception e) {
                 throw e;
             }
+        }
+        if (!termsFile.exists()) {
+            // do nothing
+            terms = new ArrayList<String>();
+        } else {
+            // do something
+            String json = FileUtils.readFileToString(termsFile);
+            terms = Json.fromJson(Json.parse(json), ArrayList.class);
         }
     }
     
@@ -76,8 +88,7 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
 			String output = null;
 			for (String key : result.keySet()) {
 				Float value = result.get(key);
-				Logger.info("TERM: " + key + " SCORE: " + value);
-				if (value >= largest) {
+				if (value >= largest && terms.contains(key)) {
 					output = key;
 					largest = value;
 				}
@@ -88,7 +99,6 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
 			    output = output.trim();
 			    boolean match = Pattern.matches(".+\\.@\\d+\\..+", output);
 			    if (match) {
-			        Logger.info("UNNECESSARY WILDCARD MATCH: " + output);
 			        return null;
 			    } else {
 			        return output;
