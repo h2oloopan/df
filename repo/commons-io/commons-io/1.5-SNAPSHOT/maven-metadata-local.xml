@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>commons-io</groupId>
+  <artifactId>commons-io</artifactId>
+  <version>1.5-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <localCopy>true</localCopy>
+    </snapshot>
+    <lastUpdated>20100128041530</lastUpdated>
+  </versioning>
+</metadata>

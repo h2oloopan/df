@@ -1,0 +1,314 @@
+Index: extensions/servlet/test/com/google/inject/servlet/ServletDispatchIntegrationTest.java
+===================================================================
+--- extensions/servlet/test/com/google/inject/servlet/ServletDispatchIntegrationTest.java	(revision 1291)
++++ extensions/servlet/test/com/google/inject/servlet/ServletDispatchIntegrationTest.java	(working copy)
+@@ -83,7 +83,7 @@
+ 
+     expect(requestMock.getServletPath())
+         .andReturn("/index.html")
+-        .times(1);
++        .times(2);
+ 
+     //dispatch request
+     replay(requestMock);
+@@ -127,7 +127,7 @@
+ 
+     expect(requestMock.getServletPath())
+         .andReturn("/index.html")
+-        .times(2);
++        .times(4);
+ 
+     //dispatch request
+     replay(requestMock);
+@@ -253,4 +253,4 @@
+     assertEquals("Incorrect number of forwards", 1, ForwardedServlet.forwardedTo);
+     verify(requestMock, responseMock);
+   }
+-}
+\ No newline at end of file
++}
+Index: extensions/servlet/test/com/google/inject/servlet/ServletTest.java
+===================================================================
+--- extensions/servlet/test/com/google/inject/servlet/ServletTest.java	(revision 1291)
++++ extensions/servlet/test/com/google/inject/servlet/ServletTest.java	(working copy)
+@@ -51,6 +51,7 @@
+ import static org.easymock.EasyMock.isA;
+ import static org.easymock.EasyMock.replay;
+ import static org.easymock.EasyMock.verify;
++import java.util.Map;
+ 
+ /**
+  * @author crazybob@google.com (Bob Lee)
+@@ -66,7 +67,23 @@
+     //we need to clear the reference to the pipeline every test =(
+     GuiceFilter.reset();
+   }
+-
++  
++  public void testNamedPatternGroups() {
++     UriPatternMatcher m = UriPatternType.get(UriPatternType.REGEX, "/myrest/<name>(.*)/<id>(\\d)");
++     Map<String,Object> map = m.getPatternWithNamedGroups("/myrest/jhon/5");
++     assertEquals(map.get("name"),"jhon");
++     assertEquals(map.size(),2);
++     assertEquals(map.get("id"),"5");
++     m = UriPatternType.get(UriPatternType.REGEX, "/myrest/<name>(.*)/<id>(\\d)/<some>(\\w+)");
++     map = m.getPatternWithNamedGroups("/myrest/jhon/5/yeah");
++     assertEquals(map.size(),3);
++     assertEquals(map.get("name"),"jhon");
++     assertEquals(map.get("id"),"5");
++     assertEquals(map.get("some"),"yeah");
++     m = UriPatternType.get(UriPatternType.REGEX, "/myrest/<name>/<id>(\\d)/<some>(\\w+)");
++     map = m.getPatternWithNamedGroups("/myrest/jhon/5/yeah");
++     assertEquals(map,null);
++  }
+   public void testNewRequestObject()
+       throws CreationException, IOException, ServletException {
+     final Injector injector = createInjector();
+Index: extensions/servlet/test/com/google/inject/servlet/VarargsServletDispatchIntegrationTest.java
+===================================================================
+--- extensions/servlet/test/com/google/inject/servlet/VarargsServletDispatchIntegrationTest.java	(revision 1291)
++++ extensions/servlet/test/com/google/inject/servlet/VarargsServletDispatchIntegrationTest.java	(working copy)
+@@ -77,7 +77,7 @@
+ 
+     expect(requestMock.getServletPath())
+         .andReturn("/index.html")
+-        .times(1);
++        .times(2);
+ 
+     //dispatch request
+     replay(requestMock);
+@@ -114,7 +114,7 @@
+ 
+     expect(requestMock.getServletPath())
+         .andReturn("/index.html")
+-        .times(3);
++        .times(4);
+ 
+     //dispatch request
+     replay(requestMock);
+@@ -154,7 +154,7 @@
+ 
+     expect(requestMock.getServletPath())
+         .andReturn("/index.html")
+-        .times(2);
++        .times(4);
+ 
+     //dispatch request
+     replay(requestMock);
+@@ -218,4 +218,4 @@
+       destroys++;
+     }
+   }
+-}
+\ No newline at end of file
++}
+Index: extensions/servlet/test/com/google/inject/servlet/FilterDefinitionTest.java
+===================================================================
+--- extensions/servlet/test/com/google/inject/servlet/FilterDefinitionTest.java	(revision 1291)
++++ extensions/servlet/test/com/google/inject/servlet/FilterDefinitionTest.java	(working copy)
+@@ -106,7 +106,7 @@
+         .andReturn(mockFilter)
+         .anyTimes();
+ 
+-    expect(request.getServletPath()).andReturn("/index.html");
++    expect(request.getServletPath()).andReturn("/index.html").times(2);
+ 
+     replay(injector, binding, request);
+ 
+@@ -163,7 +163,7 @@
+         .andReturn(mockFilter)
+         .anyTimes();
+ 
+-    expect(request.getServletPath()).andReturn("/index.html");
++    expect(request.getServletPath()).andReturn("/index.html").times(2);
+ 
+     replay(injector, binding, request);
+ 
+Index: extensions/servlet/src/com/google/inject/servlet/ServletDefinition.java
+===================================================================
+--- extensions/servlet/src/com/google/inject/servlet/ServletDefinition.java	(revision 1291)
++++ extensions/servlet/src/com/google/inject/servlet/ServletDefinition.java	(working copy)
+@@ -172,6 +172,7 @@
+ 
+     //invocations of the chain end at the first matched servlet
+     if (serve) {
++      populatePattern((HttpServletRequest) servletRequest, patternMatcher);	    
+       doService(servletRequest, servletResponse);
+     }
+ 
+@@ -179,6 +180,20 @@
+     return serve;
+   }
+ 
++   /**
++   * helper to add captured named groups to the request
++   * @param request
++   * @param patternMatcher
++   */
++   public static void populatePattern (HttpServletRequest request, UriPatternMatcher patternMatcher){
++     Map<String,Object> map = patternMatcher.getPatternWithNamedGroups(request.getServletPath());
++     if ( map != null) {
++       for (Map.Entry<String,Object> entry: map.entrySet()) {
++         request.setAttribute(entry.getKey(),entry.getValue());
++       }
++     }
++   }
++
+   /**
+    * Utility that delegates to the actual service method of the servlet wrapped with a contextual
+    * request (i.e. with correctly computed path info).
+Index: extensions/servlet/src/com/google/inject/servlet/FilterDefinition.java
+===================================================================
+--- extensions/servlet/src/com/google/inject/servlet/FilterDefinition.java	(revision 1291)
++++ extensions/servlet/src/com/google/inject/servlet/FilterDefinition.java	(working copy)
+@@ -37,6 +37,7 @@
+ import javax.servlet.ServletRequest;
+ import javax.servlet.ServletResponse;
+ import javax.servlet.http.HttpServletRequest;
++import static com.google.inject.servlet.ServletDefinition.populatePattern;
+ 
+ /**
+  * An internal representation of a filter definition against a particular URI pattern.
+@@ -159,6 +160,7 @@
+     final String path = ((HttpServletRequest) servletRequest).getServletPath();
+ 
+     if (shouldFilter(path)) {
++      populatePattern(((HttpServletRequest) servletRequest),patternMatcher);	    
+       filter.get()
+             .doFilter(servletRequest, servletResponse, filterChainInvocation);
+ 
+Index: extensions/servlet/src/com/google/inject/servlet/UriPatternType.java
+===================================================================
+--- extensions/servlet/src/com/google/inject/servlet/UriPatternType.java	(revision 1291)
++++ extensions/servlet/src/com/google/inject/servlet/UriPatternType.java	(working copy)
+@@ -17,6 +17,8 @@
+ 
+ import java.util.regex.Matcher;
+ import java.util.regex.Pattern;
++import java.util.Map;
++import java.util.HashMap;
+ 
+ /**
+  * An enumeration of the available URI-pattern matching styles
+@@ -46,6 +48,15 @@
+ 
+     private static enum Kind { PREFIX, SUFFIX, LITERAL, }
+ 
++    public String getPattern() {
++	  return pattern.toString();
++    }
++ 
++    public Map<String,Object> getPatternWithNamedGroups(String path) {
++          // a rails-like pattern matching could be implemented later, for now only regexp is supported
++          return null;
++    }
++	
+     public ServletStyleUriPatternMatcher(String pattern) {
+       if (pattern.startsWith("*")) {
+         this.pattern = pattern.substring(1);
+@@ -104,11 +115,21 @@
+    */
+   private static class RegexUriPatternMatcher implements UriPatternMatcher {
+     private final Pattern pattern;
++    private final String patternWithNamedGroups;
++    // we can capture max 8 variables
++    private final String GROUP_PATTERN ="\\<.*?>";	
++    private final String NAMED_GROUP ="("+GROUP_PATTERN+").*";	
++    
++    public RegexUriPatternMatcher(String patternWithNamedGroups) {
++       this.patternWithNamedGroups = patternWithNamedGroups;
++       pattern = Pattern.compile(patternWithNamedGroups.replaceAll(GROUP_PATTERN,""));
++    }
+ 
+-    public RegexUriPatternMatcher(String pattern) {
+-      this.pattern = Pattern.compile(pattern);
++    public String getPattern() {
++      return pattern.toString();
+     }
+ 
++	
+     public boolean matches(String uri) {
+       return null != uri && this.pattern.matcher(uri).matches();
+     }
+@@ -128,7 +149,39 @@
+       }
+       return null;
+     }
+-    
++    public Map<String,Object>  getPatternWithNamedGroups(String uri) {
++       try {
++         Matcher matcher = pattern.matcher(uri);
++
++         //return null if there is not any group to capture
++         if (matcher.find() == false || matcher.groupCount() == 0) {
++            return null;
++         }
++         String key;
++         StringBuffer namedGroups = new StringBuffer();
++
++         for (int i = 0; i < matcher.groupCount(); i++) {
++             namedGroups.append(NAMED_GROUP);
++         }
++
++         Matcher groupsMatcher = Pattern.compile(namedGroups.toString()).matcher(patternWithNamedGroups);
++         Map<String,Object> map = new HashMap();
++         // if the number of captured groups does not match the number of group names then
++         // this uri+pattern combo will be bypassed
++         //
++         if (groupsMatcher.find()) {
++           for (int i=1; i<=matcher.groupCount(); i++) {
++             key = groupsMatcher.group(i).replace("<","").replace(">","");
++             map.put(key, matcher.group(i));
++           }
++         }
++         return map; 
++       } catch (Exception ex) {
++         ex.printStackTrace();
++         return null;
++       }
++     }
++ 	  
+     public UriPatternType getPatternType() {
+       return UriPatternType.REGEX;
+     }
+Index: extensions/servlet/src/com/google/inject/servlet/UriPatternMatcher.java
+===================================================================
+--- extensions/servlet/src/com/google/inject/servlet/UriPatternMatcher.java	(revision 1291)
++++ extensions/servlet/src/com/google/inject/servlet/UriPatternMatcher.java	(working copy)
+@@ -16,6 +16,8 @@
+ 
+ package com.google.inject.servlet;
+ 
++import java.util.Map;
++
+ /**
+  * A general interface for matching a URI against a URI pattern. Guice-servlet provides regex and
+  * servlet-style pattern matching out of the box.
+@@ -38,7 +40,14 @@
+    *         NOTE(dhanji): This method returns null for the regex pattern matcher.
+    */
+   String extractPath(String pattern);
+-  
++
++  /**
++   * @return Returns the pattern in order to expose this in target servlets/filters
++   */
++  String getPattern();
++
++  Map<String,Object> getPatternWithNamedGroups(String uri);
++
+   /** Returns the type of pattern this is. */
+   UriPatternType getPatternType();
+ }
+Index: extensions/servlet/build.xml
+===================================================================
+--- extensions/servlet/build.xml	(revision 1291)
++++ extensions/servlet/build.xml	(working copy)
+@@ -10,6 +10,7 @@
+   	<fileset dir="${ext.lib.dir}" includes="*.jar"/>
+     <fileset dir="${ext.lib.dir}/build" includes="*.jar"/>
+     <fileset dir="../../build/dist" includes="*.jar"/>
++    <pathelement path="../../build/test" />
+   </path>
+ 
+   <target name="jar" depends="jar.withdeps, manifest" description="Build jar.">

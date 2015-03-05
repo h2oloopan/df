@@ -15,4 +15,5 @@ libraryDependencies ++= Seq(
   "mysql" % "mysql-connector-java" % "5.1.28"
 )
 
-resolvers += "Sedis repository" at "http://pk11-scratch.googlecode.com/svn/trunk/"
+//resolvers += "Sedis repository" at "http://pk11-scratch.googlecode.com/svn/trunk/"
+resolvers += "local repo" at "file://" + baseDirectory.value / "repo"

@@ -1,0 +1,10 @@
+9,10d8
+< import play.jobs.Job;
+< import play.mvc.Mailer;
+15c13
+<      * For now, inject beans in controllers, jobs and mails
+---
+>      * For now, inject beans in controllers
+19,20d16
+<               classes.addAll(Play.classloader.getAssignableClasses(Job.class));
+<               classes.addAll(Play.classloader.getAssignableClasses(Mailer.class));

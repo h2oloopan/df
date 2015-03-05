@@ -1,0 +1,158 @@
+=== modified file 'framework/src/play/inject/Injector.java'
+--- framework/src/play/inject/Injector.java	2009-10-26 17:55:02 +0000
++++ framework/src/play/inject/Injector.java	2009-11-07 20:34:58 +0000
+@@ -6,14 +6,18 @@
+ import javax.inject.Inject;
+ import play.Play;
+ import play.mvc.Controller;
++import play.jobs.Job;
++import play.mvc.Mailer;
+ 
+ public class Injector {
+     
+     /**
+-     * For now, inject beans in controllers
++     * For now, inject beans in controllers, jobs and mails
+      */
+     public static void inject(BeanSource source) {
+         List<Class> classes = Play.classloader.getAssignableClasses(Controller.class);
++		classes.addAll(Play.classloader.getAssignableClasses(Job.class));
++		classes.addAll(Play.classloader.getAssignableClasses(Mailer.class));
+         for(Class clazz : classes) {
+             for(Field field : clazz.getDeclaredFields()) {
+                 if(Modifier.isStatic(field.getModifiers()) && field.isAnnotationPresent(Inject.class)) {
+
+=== modified file 'modules/scala/commands.py'
+--- modules/scala/commands.py	2009-10-22 22:14:10 +0000
++++ modules/scala/commands.py	2009-11-07 20:44:56 +0000
+@@ -1,6 +1,9 @@
+ # Scala
+-
++import sys
++if play_command == 'scala:console':
++    main_run(console=True)
++    sys.exit(0)
+ # ~~~~~~~~~~~~~~~~~~~~~~ New
+ if play_command == 'new':
+ 	os.remove(os.path.join(application_path, 'app/controllers/Application.java'))
+-	shutil.copyfile(os.path.join(play_base, 'modules/scala/resources/Application.scala'), os.path.join(application_path, 'app/controllers/Application.scala'))
+\ No newline at end of file
++	shutil.copyfile(os.path.join(play_base, 'modules/scala/resources/Application.scala'), os.path.join(application_path, 'app/controllers/Application.scala'))
+
+=== added directory 'modules/scala/src/play/console'
+=== added file 'modules/scala/src/play/console/Console.scala'
+--- modules/scala/src/play/console/Console.scala	1970-01-01 00:00:00 +0000
++++ modules/scala/src/play/console/Console.scala	2009-11-07 20:33:40 +0000
+@@ -0,0 +1,18 @@
++package play.console
++import scala.tools.nsc.MainGenericRunner
++import java.io.File
++import play.Logger
++import play.Play
++ 
++object Console {
++   def main(args : Array[String]) {
++     val root = new File(System.getProperty("application.path"));
++     Play.init(root, System.getProperty("play.id", ""));
++     Play.start()
++     //TODO: load the classes using the custom classloader
++     MainGenericRunner.main(args)
++     // Now run the MainGenericRunner to get your repl
++     // After the repl exits, then exit the scala script
++     exit(0)
++   }
++}
+
+=== modified file 'play'
+--- play	2009-11-06 11:09:09 +0000
++++ play	2009-11-07 20:46:37 +0000
+@@ -241,7 +241,7 @@
+ 			jpda_port = 0
+ 
+ 	# ~~~~~~~~~~~~~~~~~~~~~~~ Build java path
+-	def do_java():	
++	def do_java(console=False):	
+ 		global java_cmd
+ 		global java_path
+ 		global pid_path
+@@ -282,9 +282,13 @@
+ 
+ 		java_args.append('-Dcom.sun.management.jmxremote')
+ 
+-		# The Java stuff
+-		java_cmd = [java_path, '-javaagent:%s' % agent_path] + java_args + ['-classpath', cp_args, '-Dapplication.path=%s' % application_path, '-Dplay.id=%s' % play_id, 'play.server.Server']
+-
++                java_cmd = [java_path, '-javaagent:%s' % agent_path] + java_args + ['-classpath', cp_args, '-Dapplication.path=%s' % application_path, '-Dplay.id=%s' % play_id]
++ 		if console:
++                    # create console launcher
++			java_cmd +=['play.console.Console']
++                else:
++                    # create server launcher
++			java_cmd +=['play.server.Server']
+ 		if not os.environ.has_key('PLAY_PID_PATH'):
+ 			pid_path = os.path.join(application_path, 'server.pid');
+ 		else:
+@@ -525,27 +529,34 @@
+ 		
+ 		
+ 	# ~~~~~~~~~~~~~~~~~~~~~~ [run] Run the application
++    	def main_run(console=False):
++                check_application()
++                load_modules()
++                do_classpath()
++                disable_check_jpda = False
++                if remaining_args.count('-f') == 1:
++                        disable_check_jpda = True
++                        remaining_args.remove('-f')
++                do_java(console)
++                if console:
++                        print "~ Runnning console"
++                        print "~ Ctrl+D to stop"
++                        print "~ "
++                else:
++                        print "~ Ctrl+C to stop"
++                        print "~ "
++                if application_mode == 'dev':
++                        if not disable_check_jpda: check_jpda()
++                        java_cmd.insert(2, '-Xdebug')
++                        java_cmd.insert(2, '-Xrunjdwp:transport=dt_socket,address=%s,server=y,suspend=n' % jpda_port)
++                        java_cmd.insert(2, '-Dplay.debug=yes')
++                subprocess.call(java_cmd, env=os.environ)
++                print
++                sys.exit(0)
++
+ 	if play_command == 'run' or play_command == 'new,run' or play_command == 'clean,run':
+-		check_application()
+-		load_modules()
+-		do_classpath()
+-		disable_check_jpda = False
+-		if remaining_args.count('-f') == 1:
+-			disable_check_jpda = True
+-			remaining_args.remove('-f')
+-		do_java()
+-		print "~ Ctrl+C to stop"
+-		print "~ "
+-		if application_mode == 'dev':
+-			if not disable_check_jpda: check_jpda()
+-			java_cmd.insert(2, '-Xdebug')
+-			java_cmd.insert(2, '-Xrunjdwp:transport=dt_socket,address=%s,server=y,suspend=n' % jpda_port)
+-			java_cmd.insert(2, '-Dplay.debug=yes')
+-		subprocess.call(java_cmd, env=os.environ)
+-		print
+-		sys.exit(0)
++		main_run()
+ 
+-	
+ 	# ~~~~~~~~~~~~~~~~~~~~~~ [status] Get application status
+ 	if play_command == 'status' or play_command == 'st':
+ 		url = ''
+@@ -833,7 +844,7 @@
+ 		replaceAll(os.path.join(nbproject, 'project.xml'), r'%MODULES%', mr)
+ 		mr = ""
+ 		for dir in os.listdir(application_path):
+-			if os.path.isdir(os.path.join(application_path, dir)) and dir not in ['app', 'conf', 'test', 'test-result', 'public', 'tmp', 'logs', 'nbproject', 'lib']:
++			if os.path.isdir(os.path.join(application_path, dir)) and dir not in ['app', 'conf', 'test', 'public', 'tmp', 'logs', 'nbproject', 'lib']:
+ 				mr = '<source-folder style="tree"><label>%s</label><location>%s</location></source-folder>' % (dir, dir)
+ 		replaceAll(os.path.join(nbproject, 'project.xml'), r'%MORE%', mr)
+ 		print "~ OK, the application is ready for netbeans"
+

@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.pk11</groupId>
+    <artifactId>jax-rs_2.10</artifactId>
+    <packaging>jar</packaging>
+    <description>jax-rs</description>
+    <version>0.6</version>
+    <name>jax-rs</name>
+    <organization>
+        <name>org.pk11</name>
+    </organization>
+    <dependencies>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+        <dependency>
+            <groupId>play</groupId>
+            <artifactId>play_2.10</artifactId>
+            <version>2.1.2</version>
+             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>play</groupId>
+            <artifactId>play-test_2.10</artifactId>
+            <version>2.1.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>jsr311-api</artifactId>
+            <version>1.1-ea</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_2.10</artifactId>
+            <version>1.9.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>play</groupId>
+            <artifactId>play-java_2.10</artifactId>
+            <version>2.1.2</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    <repositories>
+        <repository>
+            <id>TypesafeReleasesRepository</id>
+            <name>Typesafe Releases Repository</name>
+            <url>http://repo.typesafe.com/typesafe/releases/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>TypesafeSnapshotsRepository</id>
+            <name>Typesafe Snapshots Repository</name>
+            <url>http://repo.typesafe.com/typesafe/snapshots/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+</project>

@@ -1,0 +1,126 @@
+# Bazaar merge directive format 2 (Bazaar 0.90)
+# revision_id: peter_kovac11@hotmail.com-20091113144502-\
+#   7j5ezgtu8tlk7gx9
+# target_branch: http://bazaar.launchpad.net/~play-\
+#   developers/play/1.1-unstable/
+# testament_sha1: f3ea2572efe61b11ad8d01c8de9af8c87d666a87
+# timestamp: 2009-11-13 09:46:03 -0500
+# base_revision_id: guillaume@macbook-pro-de-guillaume.local-\
+#   20091111171954-1z761dqr0aw93747
+# 
+# Begin patch
+=== modified file 'framework/src/play/inject/Injector.java'
+--- framework/src/play/inject/Injector.java	2009-11-09 16:38:26 +0000
++++ framework/src/play/inject/Injector.java	2009-11-13 14:45:02 +0000
+@@ -7,6 +7,7 @@
+ import play.Play;
+ import play.mvc.Controller;
+ import play.mvc.Mailer;
++import play.jobs.Job;
+ 
+ public class Injector {
+     
+@@ -16,6 +17,7 @@
+     public static void inject(BeanSource source) {
+         List<Class> classes = Play.classloader.getAssignableClasses(Controller.class);
+         classes.addAll(Play.classloader.getAssignableClasses(Mailer.class));
++	classes.addAll(Play.classloader.getAssignableClasses(Job.class));
+         for(Class clazz : classes) {
+             for(Field field : clazz.getDeclaredFields()) {
+                 if(Modifier.isStatic(field.getModifiers()) && field.isAnnotationPresent(Inject.class)) {
+
+=== modified file 'modules/scala/commands.py'
+--- modules/scala/commands.py	2009-10-22 22:14:10 +0000
++++ modules/scala/commands.py	2009-11-13 14:45:02 +0000
+@@ -1,6 +1,18 @@
+ # Scala
+-
++import sys
++if play_command == 'scala:console':
++	check_application()
++  	load_modules()
++       	do_classpath()
++	#add precompiled classes to classpath
++	cp_args += ":"+os.path.normpath(os.path.join(application_path,'tmp/classes'))
++     	do_java()
++	# replace last element with the console app
++	java_cmd[len(java_cmd)-1]="play.console.Console"
++  	subprocess.call(java_cmd, env=os.environ)
++     	print
++	sys.exit(0)
+ # ~~~~~~~~~~~~~~~~~~~~~~ New
+ if play_command == 'new':
+ 	os.remove(os.path.join(application_path, 'app/controllers/Application.java'))
+-	shutil.copyfile(os.path.join(play_base, 'modules/scala/resources/Application.scala'), os.path.join(application_path, 'app/controllers/Application.scala'))
+\ No newline at end of file
++	shutil.copyfile(os.path.join(play_base, 'modules/scala/resources/Application.scala'), os.path.join(application_path, 'app/controllers/Application.scala'))
+
+=== added directory 'modules/scala/src/play/console'
+=== added file 'modules/scala/src/play/console/Console.scala'
+--- modules/scala/src/play/console/Console.scala	1970-01-01 00:00:00 +0000
++++ modules/scala/src/play/console/Console.scala	2009-11-13 14:45:02 +0000
+@@ -0,0 +1,25 @@
++package play.console
++import scala.tools.nsc.MainGenericRunner
++import java.io.File
++import play.Play
++
++object Console {
++   def main(args : Array[String]) {
++     val root = new File(System.getProperty("application.path"));
++     Play.init(root, System.getProperty("play.id", ""));
++     println("~")
++     println("~ Starting up, please be patient")
++     println("~ Ctrl+C to stop")
++     println("~")
++     Play.start()
++     //TODO:fix readline support
++     //now that the app is ready, launch scala REPL  
++     try {	
++       MainGenericRunner.main(args)
++     } catch {
++	case e:Exception=>
++     }
++     // After the repl exits, kill the scala script
++     exit(0)
++   }
++}
+
+# Begin bundle
+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
+Y0A=

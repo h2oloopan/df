@@ -1,0 +1,112 @@
+Index: servlet/src/com/google/inject/servlet/UriPatternType.java
+===================================================================
+--- servlet/src/com/google/inject/servlet/UriPatternType.java	(revision 943)
++++ servlet/src/com/google/inject/servlet/UriPatternType.java	(working copy)
+@@ -45,6 +45,10 @@
+     private final Kind patternKind;
+ 
+     private static enum Kind { PREFIX, SUFFIX, LITERAL, }
++	
++	public String getPattern() {
++	  return pattern.toString();
++	}
+ 
+     public ServletStyleUriPatternMatcher(String pattern) {
+       if (pattern.startsWith("*")) {
+@@ -102,6 +106,9 @@
+   private static class RegexUriPatternMatcher implements UriPatternMatcher {
+     private final Pattern pattern;
+ 
++	public String getPattern() {
++	  return pattern.toString();
++	}
+     public RegexUriPatternMatcher(String pattern) {
+       this.pattern = Pattern.compile(pattern);
+     }
+Index: servlet/src/com/google/inject/servlet/UriPatternMatcher.java
+===================================================================
+--- servlet/src/com/google/inject/servlet/UriPatternMatcher.java	(revision 943)
++++ servlet/src/com/google/inject/servlet/UriPatternMatcher.java	(working copy)
+@@ -38,4 +38,8 @@
+    *         NOTE(dhanji): This method returns null for the regex pattern matcher.
+    */
+   String extractPath(String pattern);
++  /**
++   * @return Returns the pattern in order to expose this in target servlets/filters
++   */
++  String getPattern();
+ }
+Index: servlet/src/com/google/inject/servlet/ServletsModuleBuilder.java
+===================================================================
+--- servlet/src/com/google/inject/servlet/ServletsModuleBuilder.java	(revision 943)
++++ servlet/src/com/google/inject/servlet/ServletsModuleBuilder.java	(working copy)
+@@ -100,5 +100,28 @@
+                 contextParams));
+       }
+     }
++	//scala has a keyword called "with" so we need something else
++    public void by(Class<? extends HttpServlet> servletKey) {
++      by(Key.get(servletKey));
++    }
++
++    public void by(Key<? extends HttpServlet> servletKey) {
++      by(servletKey, new HashMap<String, String>());
++    }
++
++    public void by(Class<? extends HttpServlet> servletKey,
++        Map<String, String> contextParams) {
++      by(Key.get(servletKey), contextParams);
++    }
++
++    public void by(Key<? extends HttpServlet> servletKey,
++        Map<String, String> contextParams) {
++
++      for (String pattern : uriPatterns) {
++        servletDefinitions.add(
++            new ServletDefinition(pattern, servletKey, UriPatternType.get(uriPatternType, pattern),
++                contextParams));
++      }
++    }
+   }
+-}
+\ No newline at end of file
++}
+Index: servlet/src/com/google/inject/servlet/ServletModule.java
+===================================================================
+--- servlet/src/com/google/inject/servlet/ServletModule.java	(revision 943)
++++ servlet/src/com/google/inject/servlet/ServletModule.java	(working copy)
+@@ -273,5 +273,10 @@
+     void with(Key<? extends HttpServlet> servletKey);
+     void with(Class<? extends HttpServlet> servletKey, Map<String, String> contextParams);
+     void with(Key<? extends HttpServlet> servletKey, Map<String, String> contextParams);
++	//scala has a keyword "with", so we need something else
++    void by(Class<? extends HttpServlet> servletKey);
++    void by(Key<? extends HttpServlet> servletKey);
++    void by(Class<? extends HttpServlet> servletKey, Map<String, String> contextParams);
++    void by(Key<? extends HttpServlet> servletKey, Map<String, String> contextParams);
+   }
+ }
+Index: servlet/src/com/google/inject/servlet/ServletDefinition.java
+===================================================================
+--- servlet/src/com/google/inject/servlet/ServletDefinition.java	(revision 943)
++++ servlet/src/com/google/inject/servlet/ServletDefinition.java	(working copy)
+@@ -138,6 +138,7 @@
+ 
+     //invocations of the chain end at the first matched servlet
+     if (serve) {
++	  ((HttpServletRequest) servletRequest).setAttribute("dispatch_pattern",patternMatcher.getPattern());	
+       doService(servletRequest, servletResponse);
+     }
+ 
+Index: servlet/src/com/google/inject/servlet/FilterDefinition.java
+===================================================================
+--- servlet/src/com/google/inject/servlet/FilterDefinition.java	(revision 943)
++++ servlet/src/com/google/inject/servlet/FilterDefinition.java	(working copy)
+@@ -126,6 +126,7 @@
+     final String path = ((HttpServletRequest) servletRequest).getServletPath();
+ 
+     if (shouldFilter(path)) {
++	  ((HttpServletRequest) servletRequest).setAttribute("dispatch_pattern",patternMatcher.getPattern());
+       filter.get()
+             .doFilter(servletRequest, servletResponse, filterChainInvocation);
+ 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+  <groupId>com.thoughtworks.xstream</groupId>
+  <artifactId>xstream</artifactId>
+  <version>xstream-1.3.2-SNAPSHOT-GAE</version>
+  <versioning>
+    <versions>
+      <version>xstream-1.3.2-SNAPSHOT-GAE</version>
+    </versions>
+    <lastUpdated>20090415185841</lastUpdated>
+  </versioning>
+</metadata>
