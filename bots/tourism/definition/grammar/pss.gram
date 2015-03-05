@@ -1,5 +1,5 @@
 namespace pss
 
 public pss_subject := strings{动物,东西,东东,生物,物种,玩意,玩意儿,人,地方,鬼}
-public pss_suffix   := strings{啊,么,阿,吖,呵,呢,呐,么,麽,吗,嘛,呗}
+public pss_suffix   := strings{啊,么,阿,吖,呵,呢,呐,么,麽,吗,嘛,呗,了}
 public pss_prefix    := strings{请,请问,能不能,可不可以,请你,可否,知不知道,你知道,告诉我}

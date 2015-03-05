@@ -17,6 +17,13 @@
 			</grammar>
 		</pattern>
 		<template>
+                         <think>
+                             <profile>
+                                 <action>set</action>
+                                 <key>name</key>
+                                 <gval term="self.self_myname" key="name"/>
+                             </profile>
+                         </think>
 			 你好<gval term="self.self_myname" key="name"/>，我是旅问旅答智能机器人<bot name="name"/>
 		</template>
 	</category>

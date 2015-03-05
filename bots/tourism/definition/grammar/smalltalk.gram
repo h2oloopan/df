@@ -1,5 +1,6 @@
 namespace smalltalk
 open basic
+open pss
 
 block{心情整句}
 心情:=strings{心情, 情绪, 情感}
@@ -8,3 +9,10 @@ block{心情整句}
 
 block{*}
 public smalltalk_feeling: 心情整句 {start = 任意词前.key; end = 任意词后.key;}
+
+错误:=strings{错了,不对,差劲,差,出错}
+怎么:=strings{怎么,为何,为什么,为啥}
+回答:=strings{回答,答}
+又:=strings{又,也,总是}
+出错: [你_basic] [怎么] [又] 错误 [pss_suffix]
+public smalltalk_mistake: 出错
