@@ -1,5 +1,4 @@
 namespace help
-
 open basic
 
 能:=strings{能,可以,会,有,是,都能,还能,该,应该}
