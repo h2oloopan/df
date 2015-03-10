@@ -1,5 +1,39 @@
 namespace basic
 
+section wildcards
+
+word := wildcard(1,1)
+words := wildcard(1,10000)
+
+public X [-1]: word => key
+  [-1]: X word => key
+
+public XX [-1] : words => key
+
+section 通用词汇
+
+public 的 := strings{的,地, 得}
+
+public 方向 := strings{
+东
+西
+南
+北
+东南
+东北
+西南
+西北
+东偏南
+东偏北
+西偏南
+西偏北
+南偏东
+南偏西
+北偏东
+北偏西
+}
+
+
 biaodian_dict := strings{
 "？"
 "?"
@@ -25,182 +59,17 @@ biaodian_dict := strings{
 public biaodian : [问话词] biaodian_dict
                 : 问话词
 
-section 人称
-public 你_basic:=strings{你,您,阁下}
-public 我_basic:= strings{我,俺,偶,咱}
-public 他_basic:=strings{他,她}
-public 它_basic:=strings{它}
-public 们_basic:=strings{们}
-public 俩_basic:=strings{俩}
+public 分割标点 : biaodian
 
-人称代词_alias
-: 你_basic
-: 我_basic
-: 他_basic
-: 它_basic
-: 们_basic
-: 俩_basic
-public C_人称代词 : 人称代词_alias *
+block{汉字,标点}
+增补部首	:=regexp("[\\u2E80-\\u2EFF]")	//共128个(有效9个)
+扩展集A	:=regexp("[\\u3400-\\u4DBF]")	//共6592个字符(有效30个)
+统一汉字	:=regexp("[\\u4E00-\\u9FBF]")	//共20928个字符
+专用部分	:=regexp("[\\uE800-\\uE8FF]")	//共256个(部分组成元素)
+相容汉字	:=regexp("[\\uF900-\\uFAFF]")	//共512个(有效17个)
+public 汉字	: 统一汉字|专用部分|相容汉字|扩展集A|增补部首
 
-public 除_basic:=strings{除,除了,除去,除掉}
-public 之外_basic:=strings{以外,之外,外,不算}
-public 否定词_basic:=strings{不,非,否,不是}
-public 句子前缀:=strings{请问,查询,找,查}
-public 之前_basic:=strings{之前,以前,前}
-public 之间_basic:=strings{之间,之内,以内,内}
-public 之后_basic:=strings{之后,以后,后}
-public 之上_basic:=strings{之上,以上,上}
-public 之下_basic:=strings{之下,以下,下}
-public 低于_basic:=strings{低于,少于,小于}
-public 高于_basic:=strings{高于,多于,大于}
-public 等于_basic:=strings{等于,同于,相同于}
-public 左右_basic:=strings{左右,上下,前后}
-public 最_basic:=strings{最,非常,很,稍,稍微}
-public 需要_basic:=strings{需要,要,还要}
-public 有_basic:=strings{有,还有}
-public 比_basic:=strings{比,较}
-public 更_basic:=strings{更,更加}
-public 形容词后缀_basic:=strings{得多,些,一些,点,一点,点儿,一点儿,点点}
-public 语气词组:语气词_basic biaodian
-              :语气词_basic 
-              :biaodian
-              
-public 地点前缀状语:=strings{在,是,是在}
-public 地点后缀状语:=strings{是,在}
-public 地点疑问词:=strings{哪,哪里,哪儿,哪些地方,啥地儿,啥地方,啥地,什么地方,什么地儿,哪个地方,这里,这儿,这地方,这地儿,这地,什么位置,什么方位}
-
-public 时间前缀状语:=strings{是,在}
-public 时间后缀状语:=strings{的} 
-public 时间疑问词:=strings{啥时候,啥时间,啥时,什么时间,什么时候,几点,几时,何时}
-
-public 距离前缀状语:=strings{有}
-public 距离后缀状语:=strings{有}
-public 距离疑问词:=strings{多久,多长,多远,好远}
-             
-public 状态前缀状语:=strings{是}
-public 状态后缀状语:=strings{是}
-public 状态疑问词:=strings{怎么样,怎样,怎么,如何,什么样子,什么样,啥样,啥样儿,咋样,啥样}
-
-public 事物前缀状语:=strings{是,有,有没有,是否有,是否存在,还有,是有,都是,都有}
-public 事物后缀状语:=strings{有,是,有没有,是否有,是否存在,还有,是否还有}
-public 事物疑问词:=strings{啥,什么,哪些}
-
-public 数量前缀状语:=strings{大概,是}
-public 数量后缀状语:=strings{大概,是}
-public 数量疑问词:=strings{多少,好多,几个}
-
-量词_alias:=strings{下,个,条,段,些,篇,首,句,出,只,支,张,章,片,本,部,套,集,位,点,股,手,块,元,家}
-public C_数量词 : ["每"]["几"]["几"]量词_alias["儿"]|"全部"|"所有"
-public 量词_basic: 量词_alias
-
-动词 := strings{问,想,给,帮,报,查,问,教,说,讲,来,介绍,解释,咨询,询问,求,推荐,展示,唱,看,查看,算,要,放,念,咏,吟,播,播放,听,查找,吃,导航,指路,带路,引路,
-找, 找到}
-
-其他疑问动词 := strings{跟,能,帮忙,告诉我,的,是,教我做,教我,教教我,知道,能,能不能,可不可以,行不行,重点
-好不好,进行,对,列出,排出,排列出,随便,任意,随意,帮我,替我,为我,可以,我想,了解,给我算算,跟我说说,给我说说,给我,大神}
-
-疑问动词
-: 动词
-: 其他疑问动词
-
-结尾祈使词 := strings{行,可不可以,行不行,好不好,好,可以,能,能不能}
-
-动作词组_量词: [疑问动词 *][C_数量词]
-动作词组 : [疑问动词 *]
-
-public C_人称动作前缀  : [C_人称代词][动作词组_量词][C_人称代词][动作词组_量词]
-public C_人称动作前缀_无量词  : [C_人称代词][动作词组][C_人称代词][动作词组]
-public C_结尾 : [结尾祈使词][语气词_basic +]
-
-              
-
-public 出发_basic:=strings{出发,离开,出,始发,起发,发起,发出}
-public 到达_basic:=strings{到达,抵达,到,去,直达,进,至,停,停靠,能到,goto}
-public 到达符号_basic:=strings{"― ―","―","――","-","--","－","－－","～","~",",","，"}
-public 晚点_basic:=strings{晚点,拖延,延迟,晚,晚了,推迟,延后,晚到,延误,误点}
-public 提前_basic:=strings{提前,早到,提早}
-public 准时_basic:=strings{正点,准时}
-public 从_basic := strings{ "在", "于", "从", "自", "由"}
-public 请_basic:= strings{请,麻烦,麻烦您,麻烦你,劳驾,劳您的驾,劳你的驾,劳烦,劳你驾,劳您驾}
-public 要_basic:= strings{"need",需要,想要,想知道,"want","give"}
-public 查询_basic:= strings{查,查下,查一下,查询,请问,想知道,给一下,告诉,问一下,咨询,询问,查个,查找,查找个,查找一下,问问,问一问,搜索,搜,查一个,介绍,介绍下,介绍一下}
-public 喜欢_basic:=strings{喜欢,中意,爱,喜爱,钟爱,爱恋}
-public 赞扬_basic:=strings{赞, 赞扬, 称赞, 顶, 赞一个, 顶一个, 夸,夸奖}
-public 不要_basic:= strings{"不订", "不定","不需要","不用","不买", "算了", "不定", "不订", "不要", "算了", "拉倒", "拒绝", "否认", "否定","不同意", "不愿意"}
-public 退出_basic:= strings{"退出","exit","quit"}
-
-public 再见_basic:= strings{"再见","bye","回头见",  "回见", "Bye", "bye", "Byebye", "byebye", "bye bye","Ｂye bye","Goodbye","goodbye"
-"Good bye","good bye","see you","see ya"
-"拜拜","拜","88","８８","886","８８６", "8","８","3166","３１６６","下次见","下次再见","待会儿见","过会儿见","过一会儿见","待一会儿见"}
-public 和_basic:= strings{和,与,跟}
-public 并且_basic:= strings{且, 而且,并且, 又,并}
-public 大概_basic:=strings{大概, 大约, 大体, 大致,大体上}
-public 什么_pre_basic:= strings{啥, 什么, 啥样, 什么样, 怎么样, 怎样, 什么情况, 什么个情况, 咋个情况, 什么样子, 啥样子, 啥个样子, 啥个样}
-public 怎样_post_basic:= strings{如何, 怎么样, 怎样, 咋个样, 咋样子, 可以吗, 咋样, 可以不,  咋个样子, 什么情况, 啥个样子,啥样, 什么样, 怎样, 怎么样, 啥样子, 啥个样, 不错, 啥个样 , 咋个情况, 什么样子, 什么个情况, 怎么}
-public 语气词_basic:=strings{"了", "le","啦", "la","拉","喽", "lou","哦", "o","阿","啊","哈", "ha","吗", "ma","吧", "ba",吧,呢,嘛,啊,呀,啦,哇,哈 , 吗, 不 ,了,么, 没, 没有}
-public 非常_pre_basic:=strings{太,很,十分,万分,非常,非常非常,很, 非常, 特别, 十分, 十二分, 百分百, 异常,超常, 超级, 太, 真, 极}
-public 很_post_basic:= strings{极, 极了, 透了,到家, 到家了, 翻了, 得很}
-public 好_basic:= strings{好, 棒, 不错}
-public 时间代词_basic:=strings{"这会", "这小会", "这时间", "这整个天", "这个时候", "这个时刻间", "这一小会儿", "这一整天", "这一个整天儿", 
- "这时间段", "这整天儿", "这一会", "一整天", "这整个天", "这个小会", "这个小会儿", "这一时间段", "这一会儿", "这个时刻之间",  
- "这小会儿", "这个时间", "这时段", "这时候", "这一天儿", "这一刻间", "这个时间段", "这一整天儿", "这一时间", "这一时刻之间", 
- "这个时段", "这个整天", "这一天", "这一刻", "这一时候", "这一时段", "这一个整天", "这个整个天", "一整个天", "这个整个天儿", 
- "这一时刻", "这一小会", "这天儿", "这会儿", "这一会儿", "这段时间", "这一整个天", "这一时刻间", "一整个天儿", "这会儿", "这时刻",    
-}
-public 现在_basic:=strings{现在,目前,当前,当下,当时,现在目前,目前现在}
-public hello_basic:= strings{hello,hi,morning,
-morn,morning,afternoon,noon,evening,"good morning","Good morning","good afternoon","Good afternoon","good noon",
-"Good noon","good evening","Good evening",
-你好
-您好
-早上好
-中午好
-下午好
-晚上好
-上午好
-下午好
-中午好
-晚上好
-哈喽
-哈罗
-嗨
-好
-}
-
-public thank_basic:= strings{
-thanks
-"thank you"
-Thanks
-"Thank you"
-Thanx
-thanx
-"thanks a lot"
-"thanks alot"
-"Thanks alot"
-"Thanks a lot"
-"thank u"
-"Thank u"
-"thank U"
-"Thank U"
-"thank you very much"
-"Thank you very much"
-"thank U very much"
-"thank u very much"
-"Thank u very much"
-"Thank U very much"
-谢
-谢谢
-多谢
-感谢
-感激
-}
-
-public 重来_basic:= strings{"重来","restart","再来","重新"}
-public 是_basic:= strings{"是","是的","确定","y","yes","ok"}
-public 端点站_basic := stringmap{
-"起点" "起点"
-"始发" "起点"
-"终点" "终点"
-"终到" "终点"
-}
-public 经过_basic := strings{到不到,经不经过,到,经,经过,过,经由,路过,途径,途经,过,沿途经,沿途经过,途经过}
+ASCII标点	:=regexp("[\\u0021-\\u002F]|[\\u003A-\\u0040]|[\\u005B-\\u0060]|[\\u007B-\\u007E]|[\\u00A1-\\u00BF]")
+中日韩标点	:=regexp("[\\u2000-\\u212F]|[\\u2190-\\u231F]|[\\u25A0-\\u2642]|[\\u3000-\\u303F]")
+全角形标点	:=regexp("[\\uFE30-\\uFF0F]|[\\uFF1A-\\uFF20]|[\\uFF3B-\\uFF40]|[\\uFF5B-\\uFFE5]")
+public 标点	: ASCII标点|中日韩标点|全角形标点
