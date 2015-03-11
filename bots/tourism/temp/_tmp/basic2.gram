@@ -1,148 +1,799 @@
 namespace basic
 
-section 人称
-public 你_basic:=strings{你,您,阁下}
-public 我_basic:= strings{我,俺,偶,咱}
-public 他_basic:=strings{他,她}
-public 它_basic:=strings{它}
-public 们_basic:=strings{们}
-public 俩_basic:=strings{俩}
+words := wildcard(1,50)
+public C_YY [0]: words => key
 
-public 除_basic:=strings{除,除了,除去,除掉}
-public 之外_basic:=strings{以外,之外,外,不算}
-public 否定词_basic:=strings{不,非,否,不是}
-public 句子前缀:=strings{请问,查询,找,查}
-public 之前_basic:=strings{之前,以前,前}
-public 之间_basic:=strings{之间,之内,以内,内}
-public 之后_basic:=strings{之后,以后,后}
-public 之上_basic:=strings{之上,以上,上}
-public 之下_basic:=strings{之下,以下,下}
-public 低于_basic:=strings{低于,少于,小于}
-public 高于_basic:=strings{高于,多于,大于}
-public 等于_basic:=strings{等于,同于,相同于}
-public 左右_basic:=strings{左右,上下,前后}
-public 最_basic:=strings{最,非常,很,稍,稍微}
-public 需要_basic:=strings{需要,要,还要}
-public 有_basic:=strings{有,还有}
-public 比_basic:=strings{比,较}
-public 更_basic:=strings{更,更加}
-public 形容词后缀_basic:=strings{得多,些,一些,点,一点,点儿,一点儿,点点}
-public 语气词组:语气词_basic biaodian
-:语气词_basic
-:biaodian
+word := wildcard(1,1)
+public C_XX [-1]: word => key
+[-1]: C_XX word => key
 
-public 地点前缀状语:=strings{在,是,是在}
-public 地点后缀状语:=strings{是,在}
-public 地点疑问词:=strings{哪,哪里,哪儿,哪些地方,啥地儿,啥地方,啥地,什么地方,什么地儿,哪个地方,这里,这儿,这地方,这地儿,这地,什么位置,什么方位}
+public C_1X [-1]: word => key
+public C_2X
+[-1]: word => key
+[-2]: word word => key
 
-public 时间前缀状语:=strings{是,在}
-public 时间后缀状语:=strings{的}
-public 时间疑问词:=strings{啥时候,啥时间,啥时,什么时间,什么时候,几点,几时,何时}
+public C_BeginX
+: "NULL" {**basic2_actions action3}
+//
 
-public 距离前缀状语:=strings{有}
-public 距离后缀状语:=strings{有}
-public 距离疑问词:=strings{多久,多长,多远,好远}
+//public C_BeginX
+//[-1]: word {*
+//    value=key; count=1 }
+//[-1]: C_BeginX word {*
+//    value=key; count=count+1 }
 
-public 状态前缀状语:=strings{是}
-public 状态后缀状语:=strings{是}
-public 状态疑问词:=strings{怎么样,怎样,怎么,如何,什么样子,什么样,啥样,啥样儿,咋样,啥样}
+public C_EndX
+: C_BeginX {**basic2_actions action4}
+//
 
-public 事物前缀状语:=strings{是,有,有没有,是否有,是否存在,还有,是有,都是,都有}
-public 事物后缀状语:=strings{有,是,有没有,是否有,是否存在,还有,是否还有}
-public 事物疑问词:=strings{啥,什么,哪些}
+public C_int
+: int_num {**basic2_actions action5}
+//
+: float_num 万 {**basic2_actions action6}
+//
 
-public 数量前缀状语:=strings{大概,是}
-public 数量后缀状语:=strings{大概,是}
-public 数量疑问词:=strings{多少,好多,几个}
+public C_num
+: int_num {**basic2_actions action7}
+//
+: float_num {**basic2_actions action8}
+//
+
+public C_作者 := strings{作者}
+
+C_元 := strings{元, 块, 快}
+CB_人民币 := strings{钱, 大洋, 人民币, "RMB"}
+public C_元钱
+: (C_元)(CB_人民币)
+public C_元钱_All
+: C_元钱
+: C_元
+: CB_人民币
 
 
-public 出发_basic:=strings{出发,离开,出,始发,起发,发起,发出}
-public 到达_basic:=strings{到达,抵达,到,去,直达,进,至,停,停靠,能到,goto}
-public 到达符号_basic:=strings{"― ―","―","――","-","--","－","－－","～","~",",","，"}
-public 晚点_basic:=strings{晚点,拖延,延迟,晚,晚了,推迟,延后,晚到,延误,误点}
-public 提前_basic:=strings{提前,早到,提早}
-public 准时_basic:=strings{正点,准时}
-public 从_basic := strings{ "在", "于", "从", "自", "由"}
-public 请_basic:= strings{请,麻烦,麻烦您,麻烦你,劳驾,劳您的驾,劳你的驾,劳烦,劳你驾,劳您驾}
-public 要_basic:= strings{"need",需要,想要,想知道,"want","give"}
-public 查询_basic:= strings{查,查下,查一下,查询,请问,想知道,给一下,告诉,问一下,咨询,询问,查个,查找,查找个,查找一下,问问,问一问,搜索,搜,查一个,介绍,介绍下,介绍一下}
-public 喜欢_basic:=strings{喜欢,中意,爱,喜爱,钟爱,爱恋}
-public 赞扬_basic:=strings{赞, 赞扬, 称赞, 顶, 赞一个, 顶一个, 夸,夸奖}
-public 不要_basic:= strings{"不订", "不定","不需要","不用","不买", "算了", "不定", "不订", "不要", "算了", "拉倒", "拒绝", "否认", "否定","不同意", "不愿意"}
-public 退出_basic:= strings{"退出","exit","quit"}
+public C_价格:= strings{价格,价钱,价位}
+C_价:= strings{价,钱}
+public C_价格_All
+:C_价格
+:C_价
 
-public 再见_basic:= strings{"再见","bye","回头见",  "回见", "Bye", "bye", "Byebye", "byebye", "bye bye","Ｂye bye","Goodbye","goodbye"
-"Good bye","good bye","see you","see ya"
-"拜拜","拜","88","８８","886","８８６", "8","８","3166","３１６６","下次见","下次再见","待会儿见","过会儿见","过一会儿见","待一会儿见"}
-public 和_basic:= strings{和,与,跟}
-public 并且_basic:= strings{且, 而且,并且, 又,并}
-public 大概_basic:=strings{大概, 大约, 大体, 大致,大体上}
-public 什么_pre_basic:= strings{啥, 什么, 啥样, 什么样, 怎么样, 怎样, 什么情况, 什么个情况, 咋个情况, 什么样子, 啥样子, 啥个样子, 啥个样}
-public 怎样_post_basic:= strings{如何, 怎么样, 怎样, 咋个样, 咋样子, 可以吗, 咋样, 可以不,  咋个样子, 什么情况, 啥个样子,啥样, 什么样, 怎样, 怎么样, 啥样子, 啥个样, 不错, 啥个样 , 咋个情况, 什么样子, 什么个情况, 怎么}
-public 语气词_basic:=strings{"了", "le","啦", "la","拉","喽", "lou","哦", "o","阿","啊","哈", "ha","吗", "ma","吧", "ba",吧,呢,嘛,啊,呀,啦,哇,哈 , 吗, 不 ,了,么, 没, 没有}
-public 非常_pre_basic:=strings{太,很,十分,万分,非常,非常非常,很, 非常, 特别, 十分, 十二分, 百分百, 异常,超常, 超级, 太, 真, 极}
-public 很_post_basic:= strings{极, 极了, 透了,到家, 到家了, 翻了, 得很}
-public 好_basic:= strings{好, 棒, 不错}
-public 时间代词_basic:=strings{"这会", "这小会", "这时间", "这整个天", "这个时候", "这个时刻间", "这一小会儿", "这一整天", "这一个整天儿",
-"这时间段", "这整天儿", "这一会", "一整天", "这整个天", "这个小会", "这个小会儿", "这一时间段", "这一会儿", "这个时刻之间",
-"这小会儿", "这个时间", "这时段", "这时候", "这一天儿", "这一刻间", "这个时间段", "这一整天儿", "这一时间", "这一时刻之间",
-"这个时段", "这个整天", "这一天", "这一刻", "这一时候", "这一时段", "这一个整天", "这个整个天", "一整个天", "这个整个天儿",
-"这一时刻", "这一小会", "这天儿", "这会儿", "这一会儿", "这段时间", "这一整个天", "这一时刻间", "一整个天儿", "这会儿", "这时刻",
-}
-public 现在_basic:=strings{现在,目前,当前,当下,当时,现在目前,目前现在}
-public hello_basic:= strings{hello,hi,morning,
-morn,morning,afternoon,noon,evening,"good morning","Good morning","good afternoon","Good afternoon","good noon",
-"Good noon","good evening","Good evening",
-你好
-您好
-早上好
-中午好
-下午好
-晚上好
-上午好
-下午好
-中午好
-晚上好
-哈喽
-哈罗
-嗨
-好
-}
+public C_费用:= strings{费用,金额,花费,消费}
+C_费:= strings{费,钱}
+public C_费用_All
+:C_费用
+:C_费
 
-public thank_basic:= strings{
-thanks
-"thank you"
-Thanks
-"Thank you"
-Thanx
-thanx
-"thanks a lot"
-"thanks alot"
-"Thanks alot"
-"Thanks a lot"
-"thank u"
-"Thank u"
-"thank U"
-"Thank U"
-"thank you very much"
-"Thank you very much"
-"thank U very much"
-"thank u very much"
-"Thank u very much"
-"Thank U very much"
-谢
-谢谢
-多谢
-感谢
-感激
-}
+public C_价格费用
+: C_价格
+: C_费用
 
-public 重来_basic:= strings{"重来","restart","再来","重新"}
-public 是_basic:= strings{"是","是的","确定","y","yes","ok"}
-public 端点站_basic := stringmap{
-"起点" "起点"
-"始发" "起点"
-"终点" "终点"
-"终到" "终点"
-}
-public 经过_basic := strings{到不到,经不经过,到,经,经过,过,经由,路过,途径,途经,过,沿途经,沿途经过,途经过}
+public C_价格费用_All
+: C_价格_All [C_费用_All]
+: C_费用_All
+
+public C_收取:= strings{收取,收受,缴纳}
+public C_收:= strings{收}
+public C_收取_All
+:C_收取
+:C_收
+
+public C_交纳:= strings{交纳,缴纳,缴付,上缴,上交,呈交}
+public C_交:= strings{交,缴,付}
+public C_交纳_All
+:C_交纳
+:C_交
+
+
+
+CB_大大前天	:= strings{大大前天, 大大前日}
+CB_大前天	:= strings{大前天, 大前日}
+CB_前天	:= strings{前天, 前儿, 前日, 前儿个}
+CB_昨天	:= strings{昨天, 昨儿, 昨日, 昨个, 昨儿个, "yesterday"}
+CB_今天	:= strings{今天, 今儿, 今日, 即日, 今儿个, "today"}
+CB_明天	:= strings{明天, 明儿, 明日, 翌日, 明个, 明儿个, "tomorrow"}
+CB_后天 := strings{后天, 后日, 后儿个, 后个}
+CB_大后天 := strings{大后天, 大后个天, 大后日, 大后个日}
+CB_大大后天 := strings{大大后天, 大大个后天, 大大后日, 大大个后日}
+CB_昨 := strings{昨}
+CB_今 := strings{今}
+CB_明 := strings{明}
+
+public C_今天
+: CB_大大前天	=> "-4"
+: CB_大前天 => "-3"
+: CB_前天	=> "-2"
+: CB_昨天 => "-1"
+: CB_今天 => "0"
+: CB_明天 => "1"
+: CB_后天 => "2"
+: CB_大后天 => "3"
+: CB_大大后天 => "4"
+
+public C_今天_All
+:C_今天 => C_今天.value
+:CB_昨 => "-1"
+:CB_今 => "0"
+:CB_明 => "1"
+
+public C_明天
+:CB_今天 => "0"
+:CB_明天 => "1"
+:CB_后天 => "2"
+:CB_大后天 => "3"
+:CB_大大后天 => "4"
+
+public C_明天_All
+:C_明天 => C_明天.value
+:CB_今 => "0"
+:CB_明 => "1"
+
+public C_的 := strings{的,地, 得}
+
+public C_个 := strings{个}
+
+public C_走:= strings{走}
+
+public C_了 := strings{了}
+
+public C_去 := strings{去,到,离,前往}
+C_过去:= strings{过去,前去}
+public C_过去_ALL
+:C_去
+:C_过去
+
+public C_来 := strings{来}
+public C_过来:= strings{过来,前来,来到,到来}
+public C_过来_ALL
+:C_来
+:C_过来
+
+public C_进 := strings{进,入}
+public C_进去:= strings{进去,进入,进来}
+public C_进去_ALL
+:C_进
+:C_进去
+
+public C_进去_A
+: C_进去_ALL
+: C_过去_ALL
+: C_过来_ALL
+
+public C_号 := strings{号, "#"}
+
+public C_升 := strings{升, "L", "l"}
+public C_一下 := strings{一下}
+public C_下 := strings{下}
+public C_一下_All
+: C_一下
+: C_下
+
+public C_一些 := strings{一些}
+C_些 := strings{些}
+public C_一些_All
+: C_一些
+: C_些
+
+public C_谁:= strings{谁,who,WHO}
+
+
+public CB_我:= strings{我,俺,偶,咱}
+public C_你:=strings{你,您,阁下}
+public C_他:=strings{他,她,它}
+public C_们:=strings{们}
+public C_俩:=strings{俩}
+
+public C_我
+: CB_我
+: C_你
+: C_他
+public C_我们
+: (C_我)(C_想|C_需)
+: (C_我)(C_们)[C_想|C_需]
+: (C_我)[C_们](C_俩)[C_想|C_需]
+public C_我们_All
+:C_我
+:C_我们
+
+public C_究竟 := strings{究竟, 到底, 说到底, 归根结底}
+
+public C_需要 := strings{需要,要求}
+public C_需 := strings{需, 要, 用}
+public C_需要_All
+:C_需要
+:C_需
+
+public C_想要 := strings{想要}
+public C_想 := strings{想, 要}
+public C_想要_All
+:C_想要
+:C_想
+
+public C_应该 := strings{应该, 应该要, 该要}
+public C_该 := strings{应, 该}
+public C_应该_All
+:C_应该
+:C_该
+
+public C_怎样 := strings{	如何, 怎么, 怎么样, 怎样, 咋样,
+应如何, 应怎么, 应怎么样, 应怎样, 应咋样,
+该如何, 该怎么, 该怎么样, 该怎样, 该咋样,
+需如何, 需怎么, 需怎么样, 需怎样, 需咋样,
+要如何, 要怎么, 要怎么样, 要怎样, 要咋样,
+该咋,要咋}
+public C_怎 := strings{怎, 咋}
+public C_怎样_All
+:C_怎样
+:C_怎
+
+public C_能够 := strings{可以, 可能, 能够, 才能, 才可以, 才能够,
+如何能, 怎么能, 怎么样能, 怎样能, 咋样能,
+能不能, 能否, 可否, 可不可以}
+public C_能 := strings{可, 能}
+public C_能够_All
+:C_能够
+:C_能
+
+public C_大约 := strings{大概,大约,大致,大约摸,八成,大略,约莫,约摸,大致说来,粗粗,大体上,大体上说,大致上说,毛估估}
+public C_约 := strings{约}
+public C_大约_All
+:C_大约
+:C_约
+
+
+public C_OMIT
+:(C_究竟)
+:(C_需要)
+:(C_想要)
+:(C_应该)
+:(C_怎样)
+:(C_能够)
+:(C_大约)
+
+public C_XX_OMIT
+:[C_XX](C_究竟)
+:[C_XX](C_需要)
+:[C_XX](C_想要)
+:[C_XX](C_应该)
+:[C_XX](C_怎样)
+:[C_XX](C_能够)
+:[C_XX](C_大约)
+
+public C_OMIT_XX
+:(C_究竟)[C_XX]
+:(C_需要)[C_XX]
+:(C_想要)[C_XX]
+:(C_应该)[C_XX]
+:(C_怎样)[C_XX]
+:(C_能够)[C_XX]
+:(C_大约)[C_XX]
+
+
+public C_现在 := strings{现在, 此时, 此刻, 目前, 当前, 此时此刻, 当前, 如今, 现如今, 当下, 现在目前, 目前现在}
+
+C_这 := strings{这}
+C_那 := strings{那}
+C_哪 := strings{哪}
+
+public C_这么_All
+:C_这["么"]
+:C_那["么"]
+
+CB_这个 := strings{这个,这一个}
+public CB_这个_All
+:CB_这个
+:C_这
+
+C_那个 := strings{那个,那一个}
+public C_那个_All
+:C_那个
+:C_那
+
+public C_这个
+:CB_这个
+:C_那个
+
+public C_这个_All
+:CB_这个_All
+:C_那个_All
+
+CB_哪个 := strings{哪个,哪一个}
+public CB_哪个_All
+:CB_哪个
+:C_哪
+
+public C_哪个
+:CB_哪个
+:C_那个
+
+public C_哪个_All
+:CB_哪个_All
+:C_那个_All
+
+public C_这儿 := strings{这边,这儿,这里,这旮旯}
+public C_这儿_All
+:C_这儿
+:C_这
+
+public C_那儿 := strings{那边,那儿,那里,那旮旯}
+public C_那儿_All
+:C_那儿
+:C_那
+
+public C_这个地方_All
+: [C_在](C_这儿_All)
+: [C_在](C_那儿_All)
+: [C_在](C_这个_All)[C_地址_All]
+: [C_在] C_当地
+
+
+
+
+
+public CB_这些 := strings{这些, 这一些}
+public C_那些 := strings{那些,那一些}
+public C_这些
+:CB_这些
+:C_那些
+
+public C_没有 := strings{没有, 木有, 暂无}
+public C_没 := strings{没, 无}
+public C_没有_All
+:C_没有
+:C_没
+
+
+public C_有 := strings{有}
+
+public C_有没有 := strings{有没有, 有木有}
+public C_有没有_All
+:C_有没有
+:C_有[C_没]
+
+public C_什么 := strings{什么, 甚么, 神马}
+public C_啥 := strings{啥,何}
+public C_什么_All
+:C_什么
+:C_啥
+
+public C_几 := strings{几}
+
+public C_还 := strings{还}
+
+public C_会 := strings{会,会不会}
+
+
+public C_多少 := strings{多少,好多}
+C_多 := strings{多,几}
+public C_多少_All
+: C_多少
+: C_多
+
+// 不同场景下进行扩展
+CB_哪些 := strings{哪些,哪一些}
+public C_哪些
+: CB_哪些
+: C_那些
+
+public C_哪些_All
+: C_哪些
+: C_那 [one]
+: C_哪 [one]
+
+// 不同场景下进行扩展
+public C_有哪些
+: (C_有没有_All)(C_什么)
+: (C_有)(C_哪些)
+: C_哪些
+
+public C_不 := strings{不}
+
+public C_是 := strings{是}
+public C_不是 := strings{不是,否}
+public C_是不是
+:C_是
+:C_不是
+:(C_是)(C_不是)
+
+public C_还是不 := strings{还是,还是不,还不,是不,不是}
+public C_还是不_All
+: C_还是不
+: C_还
+: C_是
+: C_不
+
+// 不同场景下进行扩展
+public C_是哪些
+: (C_是)(C_什么_All)
+: (C_是)(C_哪些)
+
+
+public C_在:= strings{在,于}
+C_位于:= strings{位于,坐落}
+public C_位于_All
+:C_位于
+:C_在
+
+C_当地 := strings{当地,本地,地头,此地}
+
+public C_里面 := strings{里面,里边,里边儿,里面儿,里内,里头,里头儿,之内,以内,之中}
+C_里 := strings{里,内,中}
+public C_里面_All
+: C_当地
+: C_里面
+: C_里
+
+public C_外面:= strings{外面,外边,外边儿,外面儿,外头,外头儿,之外,以外,外围}
+C_外:= strings{外}
+public C_外面_All
+:C_外面
+:C_外
+
+public C_周围:= strings{周围,周边,附近,旁边}
+C_旁:= strings{旁,边}
+public C_周围_All
+:C_周围
+:C_旁
+
+public C_外面周围_All
+:C_外面_All
+:C_周围_All
+:(C_外面_All)(C_周围_All)
+:(C_周围_All)(C_外面_All)
+
+
+public C_外面_周围
+:(C_外面_All)(C_周围_All)
+:(C_周围_All)(C_外面_All)
+
+
+public C_内外:= strings{里外,内外}
+public C_内外_All
+:C_里面_All
+:C_外面周围_All
+:C_内外
+:(C_里面_All)(C_和)(C_外面周围_All)
+:(C_外面周围_All)(C_和)(C_里面_All)
+
+
+public C_远:= strings{远}
+public C_近:= strings{近}
+public C_远近_All
+:C_远
+:C_近
+
+C_长:= strings{长}
+C_短:= strings{短}
+public C_长短_All
+:C_长
+:C_短
+
+
+
+public C_地址:= strings{地方,地儿,地址,地点,方位,位置,地理位置}
+C_地:= strings{地}
+public C_地址_All
+: C_地址
+: C_地
+
+
+public C_啊 := strings{了, 啦, 拉, 喽, 哦, 阿, 啊, 哈, 吗, 吧, 呢, 嘛, 呀, 哇}
+
+public C_行不行 := strings{行不, 行不行, 好不, 好不好}
+public C_行 := strings{行,好}
+
+C_可不可以 := strings{可以,可以不,可不可以 }
+
+public C_End
+: (C_行不行)[C_YY]
+: (C_行)(C_啊 +)[C_YY]
+: (C_可不可以)(C_啊 +)[C_YY]
+: (C_可不可以)
+: (C_啊 +)
+
+C_查询_alias := strings{查出,查找,查看,查查看,查一查,问一问,搜一搜,找找,找找看,找一找,找到,找出,了解 }
+public C_查询
+: C_查询_alias
+: ("查找"|"查看"|"了解")(C_一下_All)
+: (C_查)(C_一下_All)
+public C_查 := strings{查,搜,问,查询,咨询,询问,搜索}
+public C_查询_All
+: C_查询
+: C_查
+
+public C_查查 := strings{查查,问问,搜搜}
+
+
+public C_请你 := strings{请你,请您,麻烦,麻烦您,麻烦你,劳驾,劳您的驾,劳你的驾,劳烦,劳你驾,劳您驾}
+public C_请 := strings{请}
+public C_请你_All
+: C_请你
+: C_请
+
+public C_帮我
+:("帮"|"给"|"为"|"替")(CB_我)
+
+public C_告诉 := strings{告诉,告知}
+public C_告 := strings{告}
+public C_告诉_All
+: C_告诉
+: C_告
+
+public C_带领:= strings{带领,引导,指引}
+public C_带:= strings{带,引,领}
+public C_带领_All
+: C_带领
+: C_带
+
+public C_带我
+:(C_带领_All)(CB_我)
+
+public C_知道 := strings{知道}
+
+public C_Begin
+: [C_YY](C_请你_All)(C_查询_All|C_查查)
+: [C_YY](C_帮我)(C_查询_All|C_查查)
+: [C_YY](C_能够)(C_查询_All|C_查查)
+: [C_YY](C_能够)(C_帮我)
+: [C_YY](C_告诉_All)(CB_我)
+: [C_YY](C_能够)(C_告诉)
+: [C_YY](C_想要_All)(C_知道)
+: [C_YY](C_想要_All)(C_查询_All|C_查查)
+: [C_YY](CB_我)(C_查询_All)
+: [C_XX](CB_我)(C_查查)
+: [C_YY](C_请你)
+: [C_XX](C_帮我)
+: [C_XX][C_能够_All|C_请你_All](C_带我)
+: (C_请你_All)
+: (C_想要_All)
+: (C_能够_All)
+: (C_查询_All)
+
+public C_和 := strings{和, 与, 跟, 同}
+
+public C_以及 := strings{以及}
+public C_及 := strings{及}
+public C_以及_All
+: C_以及
+: C_及
+
+public C_已经:=strings {"已经", "已经有", "已经有了"}
+public C_已:=strings {"已"}
+public C_已经_All
+:C_已经
+:C_已
+
+
+public C_已有:=strings {"已有", "已经有", "已经有了"}
+public C_已有_All
+:C_有
+:C_已有
+
+public C_属于:= strings{属于,算的上}
+public C_属:= strings{属, 是, 为}
+public C_属于_All
+: C_属于
+: C_属
+
+public CB_免除:= strings{免除}
+public C_免除
+: CB_免除
+: C_没有
+public CB_免:= strings{免}
+public C_免
+: CB_免
+: C_没
+public C_免除_All
+: C_免除
+: C_免
+
+public C_估计:= strings{估计, 目测, 估摸, 毛估估, 估摸着}
+
+public C_上下:= strings{上下, 左右}
+
+public C_这样:= strings{这样, 那样}
+
+public C_非常:= strings{非常, 十分, 特别, 尤其, 最最, 比较}
+C_很:= strings{很, 特, 较}
+C_最:= strings{最}
+public C_非常_All
+: C_非常
+: C_很
+: C_最
+
+
+public C_合适:= strings{合适, 适合, 恰当, 适宜, 适于, 宜于}
+
+
+C_更:= strings{更,愈,越}
+C_更加:= strings{更加,愈加}
+public C_更加_All
+: C_更
+: C_更加
+
+
+C_较:= strings{较,略,偏}
+C_蛮:= strings{蛮,挺,相当}
+C_比较:= strings{比较,较之,相对,相对比较,相对而言比较,相比之下较,相比之下,相较之下,略微,稍微,稍稍,比起,偏向,偏往}
+public C_比较_All
+: C_较
+: C_比较
+
+C_都:= strings{都,全部,全部都,全都}
+
+public C_形容程度
+: C_非常_All
+: C_更加_All
+: C_比较_All
+: C_都
+: C_蛮
+
+
+人称代词_alias
+: 你_basic
+: 我_basic
+: 他_basic
+: 它_basic
+: 们_basic
+: 俩_basic
+public C_人称代词 : 人称代词_alias *
+
+public 量词_alias:=strings{下,个,条,段,些,篇,首,句,出,只,支,张,章,片,本,部,套,集,位,点,股,手,块,家,份}
+public C_数量词 : ["每"]["几"][int_num]["几"]量词_alias["儿"]|"全部"|"所有"
+
+动词 := strings{问,想,给,帮,报,查,问,教,说,讲,来,介绍,解释,咨询,询问,求,推荐,展示,唱,看,查看,算,要,放,念,咏,吟,播,播放,听,查找,吃,导航,指路,带路,引路,
+找, 找到, 列举,提示}
+
+其他疑问动词 := strings{跟,能,帮忙,告诉我,的,是,教我做,教我,教教我,知道,能,能否,能不能,可不可以,行不行,重点
+好不好,进行,对,列出,排出,排列出,随便,任意,随意,帮我,替我,为我,可以,我想,了解,给我算算,跟我说说,给我说说,给我,大神}
+
+疑问动词
+: 请_basic
+: 要_basic
+: 查询_basic
+: 动词
+: 其他疑问动词
+
+结尾祈使词 := strings{行,可不可以,行不行,好不好,好,可以,能,能不能,有,没有,有没有}
+
+动作词组_量词: [疑问动词 *][C_数量词]
+动作词组 : [疑问动词 *]
+
+public C_人称动作前缀  : [C_人称代词][动作词组_量词][C_人称代词][动作词组_量词]
+public C_人称动作前缀_无量词  : [C_人称代词][动作词组][C_人称代词][动作词组]
+public C_结尾 : [结尾祈使词][C_的][语气词_basic +][biaodian]
+
+关于_alias := strings{关于,有关,相关,有关于,相关于,有关系}
+public C_关于 := 关于_alias[的]
+
+////////////////////for template function/////////////////////
+public CTF_NULL
+: ["NULL"]
+
+public CTF_OMT_大约
+: C_大约_All
+: C_可能
+: C_估计
+
+public CTF_OMT_多少
+: [CTF_OMT_大约][CTF_OMT_大约]
+: [CTF_OMT_大约][C_还][C_需要_All]
+: [CTF_OMT_大约][C_还][C_会]
+: C_profix_1_All
+
+public CTF_在这个地址
+: [C_在][CB_这个_All][C_地址_All]
+: [C_在][C_这儿_All]
+//////////////////////////////////////////////////////////////
+
+// 部分可选择添加词汇
+C_主要 := strings{主要,重点,重要,根本,重在,着重,首要,关键}
+C_可能 := strings{可能,恐怕,谅必,容许,或是,莫不,唯恐,也许,恐,兴许,或,指不定,或许,想必,说不定,估计}
+public C_可不可行 := strings{好,好不,好不好,可以,可以不,可不可以,能不能,行不行,可不可能,可能不可能,可不可行}
+C_具体 := strings{具体,详细,详尽}
+public C_就 := strings{就}
+C_基本:= strings{基本,主要,大概,概略,大致,大略,大约,简单,一般,通常}
+C_原来 := strings{原本,原来,原先,本来,原有,原始,固有}
+C_至少 := strings{至少,最少,至多,最多}
+C_总:= strings{都,总,共,总共,统共}
+public C_真的:= strings{真的,真}
+
+C_低于:= strings{小于,低于,少于}
+
+public C_小于_后缀
+:C_里面
+:C_里
+:("不"|"没")C_超
+:C_以下
+
+public C_小于_前缀
+:[C_还]("不"|"没")C_超
+:[C_还]("不"|"没")C_超过_All
+:C_低于
+
+public C_大于_后缀
+:C_出头_All
+
+public C_大于_前缀
+:C_超过_All
+:("不"|"没")C_低于
+
+public C_大小_前缀
+:C_大于_前缀{**basic2_actions action9}
+:C_小于_前缀 {**basic2_actions action10}
+
+public C_大小_后缀
+:C_大于_后缀  {**basic2_actions action11}
+:C_小于_后缀{**basic2_actions action12}
+
+C_出头:= strings{出头,过头,之外,以外,外边,以上,之上}
+C_出头_All
+:C_出头
+:C_外
+
+C_超过:= strings{超过,超越,大于,高于,多于}
+C_超:= strings{超,过,到}
+C_超过_All
+:C_超过
+:C_超
+
+C_以下:= strings{以下,之下}
+
+//可选前缀
+public C_optional_prefix
+:(C_optional)+ [C_有没有_All|C_是不是|C_真的|C_就|C_会]+ [C_的]
+
+C_optional
+:(C_究竟)
+:(C_需要_All)
+:(C_想要)
+:(C_应该)
+:(C_是不是)
+:(C_能够_All)
+:(C_主要)
+:(C_具体)
+:(C_大约_All)
+:(C_可能)
+:(C_估计)
+:(C_就)
+:(C_可不可行)
+:(C_基本)
+:(C_属于)
+:(C_能够)("说")
+:(C_都)
+:(C_这样)[C_的]
+:(C_在)
+:(C_真的)
+
+public C_profix : C_optional [C_optional] [C_有没有_All | C_是不是] [C_真的] [C_就] [C_会] [C_的]
+
+public C_可选词汇 : C_profix
+
+//有_什么_哪些_多少
+//怎么样
+public C_adverbs_profix
+:(C_究竟)
+:(C_主要)
+:(C_具体)
+:(C_大约_All)
+:(C_至少)
+:(C_估计)
+:(C_总)
+:(C_基本)
+:(C_应该)
+:(C_都)
+
+public C_auxiliary_verbs_profix
+:(C_可能)
+:(C_应该)
+:(C_能够_All)
+:(C_基本)
+
+C_profix_1
+: [C_adverbs_profix] C_auxiliary_verbs_profix
+: [C_auxiliary_verbs_profix] C_adverbs_profix
+: [C_auxiliary_verbs_profix] C_auxiliary_verbs_profix
+: [C_adverbs_profix] C_adverbs_profix
+
+public C_profix_1_All
+: [C_现在 | C_原来] C_profix_1 [C_是] [C_会]
+: C_profix_1 [C_现在 | C_原来] [C_是] [C_会]
+: (C_现在 | C_原来) [C_是] [C_会]
