@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="receptionist" default="compile" basedir=".">
+<project name="tourism" default="compile" basedir=".">
 	<property name="encoding" value="GB18030" />
 	<property name="maxmemory" value="-Xmx1024M" />
 	<property name="root" location="${basedir}/../.." />
 	<property name="libdir" location="${root}/lib/" />
-	<property name="source" location="${basedir}/definition/grammar" />
+	<!--
+		<property name="source" location="${basedir}/definition/grammar" />
+	-->
+	<path id="source.path">
+		<fileset id="source.set" dir="${basedir}/definition/grammar" includes="**/*.gram" />
+	</path>
+	<property name="source" value="${toString:source.path}"/>
 	<property name="temp" location="${basedir}/temp" />
 	<property name="temp_jar" location="${temp}/grams.jar" />
 	<property name="release" location="${basedir}/execs" />

@@ -5,6 +5,12 @@
 	<property name="root" location="${basedir}/../.." />
 	<property name="libdir" location="${root}/lib/" />
 	<property name="source" location="${basedir}/definition/grammar" />
+	<!--
+	<path id="source.path">
+		<fileset id="source.set" dir="${basedir}/definition/grammar" includes="**/*.gram" />
+	</path>
+	<property name="source" value="${toString:source.path}"/>
+	-->
 	<property name="temp" location="${basedir}/temp" />
 	<property name="temp_jar" location="${temp}/grams.jar" />
 	<property name="release" location="${basedir}/execs" />
