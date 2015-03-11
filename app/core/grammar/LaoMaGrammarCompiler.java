@@ -28,6 +28,48 @@ import play.libs.Json;
 
 
 public class LaoMaGrammarCompiler implements GrammarCompiler {
+    
+    private ArrayList<String> loadFolder(File folder, ArrayList<String> terms) throws Exception {
+        for (String name : folder.list()) {
+            File sub = new File(folder, name);
+            if (sub.isDirectory()) {
+                terms = loadFolder(sub, terms);
+            } else {
+                terms = loadFile(sub, terms);
+            }
+        }
+        return terms;
+    }
+    
+    private ArrayList<String> loadFile(File file, ArrayList<String> terms) throws Exception {
+        FileInputStream fis = new FileInputStream(file);
+        BufferedReader br = new BufferedReader(new InputStreamReader(fis, "GB18030"));
+        String line;
+        String namespace = "default";
+        while ((line = br.readLine()) != null) {
+            //try to find namespace
+            String pattern = "\\s*namespace\\s+([^\\s]+)\\s*";
+            Pattern np = Pattern.compile(pattern);
+            Matcher nm = np.matcher(line);
+            if (nm.matches()) {
+                namespace = nm.group(1).trim();
+            }
+            
+            pattern = "\\s*public\\s+([^:]+):.+";
+            boolean result = line.matches(pattern);
+            if (result) {
+                Pattern p = Pattern.compile(pattern);
+                Matcher m = p.matcher(line);
+                if (m.matches()) {
+                    String publicTerm = m.group(1);
+                    terms.add(namespace + "." + publicTerm.trim());
+                }
+            }
+        }
+        br.close();
+        return terms;
+    }
+    
 	@Override
 	public void compile(String path) throws Exception {
 		try {
@@ -48,39 +90,11 @@ public class LaoMaGrammarCompiler implements GrammarCompiler {
 			//compilation is done, now scan for public terms
 			ArrayList<String> terms = new ArrayList<String>();
 			File grammarFolder = new File(folder, "definition/grammar");
-			for (String name : grammarFolder.list()) {
-			    File grammar = new File(grammarFolder, name);
-			    FileInputStream fis = new FileInputStream(grammar);
-			    BufferedReader br = new BufferedReader(new InputStreamReader(fis, "GB18030"));
-			    String line;
-			    String namespace = "default";
-			    while ((line = br.readLine()) != null) {
-			        //try to find namespace
-			        String pattern = "\\s*namespace\\s+([^\\s]+)\\s*";
-			        Pattern np = Pattern.compile(pattern);
-			        Matcher nm = np.matcher(line);
-			        if (nm.matches()) {
-			            namespace = nm.group(1).trim();
-			        }
-			        
-			        pattern = "\\s*public\\s+([^:]+):.+";
-			        boolean result = line.matches(pattern);
-			        if (result) {
-			            Pattern p = Pattern.compile(pattern);
-			            Matcher m = p.matcher(line);
-			            if (m.matches()) {
-			                String publicTerm = m.group(1);
-			                terms.add(namespace + "." + publicTerm.trim());
-			            }
-			        }
-			    }
-			    br.close();
-			}
+			terms = loadFolder(grammarFolder, terms);
 			//now store all terms to file
 			File termsFile = new File(folder, "definition/terms.json");
 			termsFile.createNewFile();
 			FileUtils.write(termsFile, Json.stringify(Json.toJson(terms)));
-			
 		}
 		catch (IOException e) {
 		    Logger.error(e.getMessage(), e);

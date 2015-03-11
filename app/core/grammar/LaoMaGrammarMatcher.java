@@ -82,6 +82,9 @@ public class LaoMaGrammarMatcher implements GrammarMatcher {
 		if (matcher == null) {
 			throw new Exception("No matcher exists");
 		} else {
+		    //Debug
+		    //Logger.info(Json.stringify(Json.toJson(terms)));
+		    
 			@SuppressWarnings("unchecked")
 			Map<String, Float> result = (Map<String, Float>)matcher.match(query);
 			Float largest = 0f;
