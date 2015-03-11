@@ -9,4 +9,5 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 				didInsertElement: ->
 					@_super()
 					editor = ace.edit 'editor'
+					$('#editor')[0].style.fontSize = '14px'
 

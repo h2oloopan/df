@@ -9,7 +9,8 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
         didInsertElement: function() {
           var editor;
           this._super();
-          return editor = ace.edit('editor');
+          editor = ace.edit('editor');
+          return $('#editor')[0].style.fontSize = '14px';
         }
       });
     }
