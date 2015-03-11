@@ -1,12 +1,14 @@
-define ['routes/testRoute', 'routes/editRoute', 'ehbs!templates/index'], (TestRoute, EditRoute) ->
+define ['routes/testRoute', 'routes/editRoute', 'routes/IDERoute', 'ehbs!templates/index'], (TestRoute, EditRoute, IDERoute) ->
 	return app =
 		start: ->
 			App = Ember.Application.create()
 			App.Router.map ->
 				@route 'test'
 				@route 'edit'
+				@route 'IDE'
 			TestRoute.bind App
 			EditRoute.bind App
+			IDERoute.bind App
 
 			App.IndexRoute = Ember.Route.extend
 				model: ->
