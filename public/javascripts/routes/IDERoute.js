@@ -3,8 +3,25 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
   var IDERoute;
   return IDERoute = {
     bind: function(App) {
-      App.IDERoute = Ember.Route.extend({});
-      App.IDEController = Ember.ObjectController.extend({});
+      App.IDERoute = Ember.Route.extend({
+        model: function() {
+          return new Ember.RSVP.Promise(function(resolve, reject) {
+            return new Ember.RSVP.hash({
+              bots: Ember.$.getJSON('/bot/bots')
+            }).then(function(result) {
+              return resolve({
+                bots: result.bots
+              });
+            }, function(errors) {
+              return reject(errors);
+            });
+          });
+        }
+      });
+      App.IDEController = Ember.ObjectController.extend({
+        definitions: ['Grammar', 'AIML'],
+        selectionChanged: (function() {}).observes('bot', 'definition')
+      });
       return App.IDEView = Ember.View.extend({
         didInsertElement: function() {
           var editor;
