@@ -40,6 +40,12 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 					, (errors) ->
 						alert errors.responseText
 				).observes 'bot', 'type'
+				folderChanged: (->
+					thiz = @
+					folder = @get 'folder'
+					if !folder? then return false
+					
+				).observes 'folder'
 
 			App.IDEView = Ember.View.extend
 				didInsertElement: ->

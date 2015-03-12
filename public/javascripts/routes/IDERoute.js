@@ -55,7 +55,15 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
           }, function(errors) {
             return alert(errors.responseText);
           });
-        }).observes('bot', 'type')
+        }).observes('bot', 'type'),
+        folderChanged: (function() {
+          var folder, thiz;
+          thiz = this;
+          folder = this.get('folder');
+          if (folder == null) {
+            return false;
+          }
+        }).observes('folder')
       });
       return App.IDEView = Ember.View.extend({
         didInsertElement: function() {

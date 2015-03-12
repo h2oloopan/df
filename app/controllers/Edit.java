@@ -30,6 +30,18 @@ public class Edit extends Controller
     @Inject
     private ActorFarm farm;
     
+    public Promise<Result> files() {
+        try {
+            
+        } catch (final Exception e) {
+            return Promise.promise(new Function0<Result>() {
+                public Result apply() {
+                    return badRequest(e.getMessage());
+                }
+            });
+        }
+    }
+    
     public Promise<Result> folders() {
         try {
             final HashMap<String, String> list = new HashMap<String, String>();
@@ -66,8 +78,6 @@ public class Edit extends Controller
         } catch (final Exception e) {
             return Promise.promise(new Function0<Result>() {
                 public Result apply() {
-                    e.printStackTrace();
-                    Logger.error(e.getMessage(), e);
                     return badRequest(e.getMessage());
                 }
             });
