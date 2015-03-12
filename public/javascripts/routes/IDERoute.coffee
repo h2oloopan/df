@@ -15,7 +15,18 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 			App.IDEController = Ember.ObjectController.extend
 				definitions: ['Grammar', 'AIML']
 				selectionChanged: (->
-					
+					thiz = @
+					bot = @get 'bot'
+					definition = @get 'definition'
+					switch definition.toLowerCase()
+						when 'grammar'
+							url = '/bot/grammars?bot=' + bot
+							break
+						when 'aiml'
+							url = '/bot/aimls?bot=' + bot
+							break
+					Ember.$.getJSON(url).then (result) ->
+						thiz.set 
 				).observes 'bot', 'definition'
 
 			App.IDEView = Ember.View.extend

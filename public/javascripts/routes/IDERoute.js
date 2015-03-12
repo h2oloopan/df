@@ -20,7 +20,23 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
       });
       App.IDEController = Ember.ObjectController.extend({
         definitions: ['Grammar', 'AIML'],
-        selectionChanged: (function() {}).observes('bot', 'definition')
+        selectionChanged: (function() {
+          var bot, definition, thiz, url;
+          thiz = this;
+          bot = this.get('bot');
+          definition = this.get('definition');
+          switch (definition.toLowerCase()) {
+            case 'grammar':
+              url = '/bot/grammars?bot=' + bot;
+              break;
+            case 'aiml':
+              url = '/bot/aimls?bot=' + bot;
+              break;
+          }
+          return Ember.$.getJSON(url).then(function(result) {
+            return thiz.set;
+          });
+        }).observes('bot', 'definition')
       });
       return App.IDEView = Ember.View.extend({
         didInsertElement: function() {
