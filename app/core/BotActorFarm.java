@@ -49,6 +49,8 @@ import akka.routing.RoundRobinPool;
 public class BotActorFarm implements ActorFarm {
 	private Map<String, ActorRef> routers;
 	private final String rootPath = "bots";
+	private final String grammarPath = "definition/grammar";
+	private final String aimlPath = "definition/aiml";
 	private final int instances = 4;
 	
 
@@ -255,5 +257,19 @@ public class BotActorFarm implements ActorFarm {
     {
         File file = new File(path);
         file.delete();
+    }
+
+    @Override
+    public String getGrammarPath(String name) throws Exception
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String getAimlPath(String name) throws Exception
+    {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

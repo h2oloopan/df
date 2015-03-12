@@ -31,6 +31,7 @@ public class Edit extends Controller
         try {
             ArrayList<String> list = new ArrayList<String>();
             String bot = request().getQueryString("bot");
+            String type = request().getQueryString("type");
             
         } catch (final Exception e) {
             return Promise.promise(new Function0<Result>() {

@@ -18,4 +18,7 @@ public interface ActorFarm {
 	public void updateFile(String path, String text, String encoding) throws Exception;
 	public void removeFile(String path) throws Exception;
 	public String createFile(String bot, String name, String type, String text) throws Exception; //return path
+	
+	public String getGrammarPath(String name) throws Exception;
+	public String getAimlPath(String name) throws Exception;
 }
