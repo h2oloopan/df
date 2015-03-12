@@ -14,6 +14,7 @@ GET     /bot/grammars               @controllers.Bot.grammars()
 GET     /bot/aimls                  @controllers.Bot.aimls()
 
 #Edit
+GET     /edit/folders               @controllers.Edit.folders()
 GET     /edit/file                  @controllers.Edit.file()
 POST    /edit/upload				@controllers.Edit.upload()
 POST    /edit/create                @controllers.Edit.create()

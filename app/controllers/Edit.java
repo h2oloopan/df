@@ -27,6 +27,19 @@ public class Edit extends Controller
     @Inject
     private ActorFarm farm;
     
+    public Promise<Result> folders() {
+        try {
+            ArrayList<String> list = new ArrayList<String>();
+            String bot = request().getQueryString("bot");
+            
+        } catch (final Exception e) {
+            return Promise.promise(new Function0<Result>() {
+                public Result apply() {
+                    return badRequest(e.getMessage());
+                }
+            });
+        }
+    }
     
     public Promise<Result> file() {
         try {

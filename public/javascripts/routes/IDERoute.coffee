@@ -13,12 +13,12 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 							reject errors
 
 			App.IDEController = Ember.ObjectController.extend
-				definitions: ['Grammar', 'AIML']
+				types: ['Grammar', 'AIML']
 				selectionChanged: (->
 					thiz = @
 					bot = @get 'bot'
-					definition = @get 'definition'
-					switch definition.toLowerCase()
+					type = @get 'type'
+					switch type.toLowerCase()
 						when 'grammar'
 							url = '/bot/grammars?bot=' + bot
 							break
