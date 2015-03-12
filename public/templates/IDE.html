@@ -14,16 +14,12 @@
 				{{view Ember.Select classNames="form-control" content=bots selection=bot}}
 			</div>
 			<div class="form-group">
-				<label>Definition</label>
+				<label>Type</label>
 				{{view Ember.Select classNames="form-control" content=types selection=type}}
 			</div>
 			<div class="form-group">
 				<label>Folder</label>
-				{{view Ember.Select classNames="form-control" content=folders selection=folder}}
-			</div>
-			<div class="form-group">
-				<label>File</label>
-				{{view Ember.Select classNames="form-control" content=files selection=file}}
+				{{view Ember.Select classNames="form-control" optionLabelPath="content.name" content=folders selection=folder}}
 			</div>
 			<button class="btn btn-success" {{action "compile"}}>Compile</button>
 			<button class="btn btn-primary" {{action "reload"}}>Reload</button>

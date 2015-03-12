@@ -43,42 +43,6 @@ public class Bot extends Controller {
 			});
 		}
 	}
-	
-	public Promise<Result> grammars() {
-	    try {
-            String bot = request().getQueryString("bot");
-	        final HashMap<String, String> grammars = farm.getGrammars(bot);
-	        return Promise.promise(new Function0<Result>() {
-	           public Result apply() {
-	               return ok(Json.toJson(grammars));
-	           }
-	        });
-	    } catch (final Exception e) {
-	        return Promise.promise(new Function0<Result>() {
-	           public Result apply() {
-	               return badRequest(e.getMessage());
-	           }
-	        });
-	    }
-	}
-	
-	public Promise<Result> aimls() {
-       try {
-            String bot = request().getQueryString("bot");
-            final HashMap<String, String> grammars = farm.getAimls(bot);
-            return Promise.promise(new Function0<Result>() {
-               public Result apply() {
-                   return ok(Json.toJson(grammars));
-               }
-            });
-        } catch (final Exception e) {
-            return Promise.promise(new Function0<Result>() {
-               public Result apply() {
-                   return badRequest(e.getMessage());
-               }
-            });
-        }
-	}
 
 	public Promise<Result> reload() {
         JsonNode json = request().body().asJson();

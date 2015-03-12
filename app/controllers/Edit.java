@@ -6,12 +6,15 @@
  */
 package controllers;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 
 import core.ActorFarm;
+import play.Logger;
 import play.libs.Json;
 import play.libs.F.Function0;
 import play.libs.F.Promise;
@@ -29,13 +32,42 @@ public class Edit extends Controller
     
     public Promise<Result> folders() {
         try {
-            ArrayList<String> list = new ArrayList<String>();
+            final HashMap<String, String> list = new HashMap<String, String>();
+            
             String bot = request().getQueryString("bot");
             String type = request().getQueryString("type");
+            if (type == null) {
+                throw new Exception("type cannot be empty");
+            }
+            String path = null;
+            switch (type.toLowerCase()) {
+                case "grammar":
+                    path = farm.getGrammarPath(bot);
+                    break;
+                case "aiml":
+                    path = farm.getAimlPath(bot);
+                    break;
+            }
+            if (path != null) {
+                list.put(".", path);
+                for (File entry : new File(path).listFiles()) {
+                    if (entry.isDirectory()) {
+                        list.put(entry.getName(), entry.getCanonicalPath());
+                    }
+                }
+            }
+            
+            return Promise.promise(new Function0<Result>() {
+                public Result apply() {
+                    return ok(Json.toJson(list));
+                }
+            });
             
         } catch (final Exception e) {
             return Promise.promise(new Function0<Result>() {
                 public Result apply() {
+                    e.printStackTrace();
+                    Logger.error(e.getMessage(), e);
                     return badRequest(e.getMessage());
                 }
             });

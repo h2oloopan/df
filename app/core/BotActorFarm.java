@@ -120,45 +120,21 @@ public class BotActorFarm implements ActorFarm {
 		result.addAll(this.routers.keySet());
 		return result;
 	}
-
+	
     @Override
-    public HashMap<String, String> getGrammars(String name)
+    public String getGrammarPath(String name) throws Exception
     {
-        try {
-            File root = new File(rootPath);
-            String path = (new File(root, name)).getCanonicalPath();
-            File folder = new File(new File(path), "definition/grammar");
-            HashMap<String, String> result = new HashMap<String, String>();
-            for (File entry : folder.listFiles()) {
-                if (entry.isFile()) {
-                    result.put(entry.getName(), entry.getCanonicalPath());
-                }
-            }
-            return result;
-        } catch (Exception e) {
-            Logger.error(e.getMessage(), e);
-            return new HashMap<String, String>();
-        }
+        File root = new File(rootPath);
+        File bot = new File(root, name);
+        return new File(bot, grammarPath).getCanonicalPath();
     }
 
     @Override
-    public HashMap<String, String> getAimls(String name)
+    public String getAimlPath(String name) throws Exception
     {
-        try {
-            File root = new File(rootPath);
-            String path = (new File(root, name)).getCanonicalPath();
-            File folder = new File(new File(path), "definition/aiml");
-            HashMap<String, String> result = new HashMap<String, String>();
-            for (File entry : folder.listFiles()) {
-                if (entry.isFile()) {
-                    result.put(entry.getName(), entry.getCanonicalPath());
-                }
-            }
-            return result;
-        } catch (Exception e) {
-            Logger.error(e.getMessage(), e);
-            return new HashMap<String, String>();
-        }
+        File root = new File(rootPath);
+        File bot = new File(root, name);
+        return new File(bot, aimlPath).getCanonicalPath();
     }
 
     @Override
@@ -259,17 +235,5 @@ public class BotActorFarm implements ActorFarm {
         file.delete();
     }
 
-    @Override
-    public String getGrammarPath(String name) throws Exception
-    {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
-    @Override
-    public String getAimlPath(String name) throws Exception
-    {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

@@ -25,18 +25,37 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
           thiz = this;
           bot = this.get('bot');
           type = this.get('type');
+          if ((bot == null) || (type == null)) {
+            return false;
+          }
           switch (type.toLowerCase()) {
             case 'grammar':
-              url = '/bot/grammars?bot=' + bot;
+              url = '/edit/folders?type=grammar&bot=' + bot;
               break;
             case 'aiml':
-              url = '/bot/aimls?bot=' + bot;
+              url = '/edit/folders?type=aiml&bot=' + bot;
               break;
           }
           return Ember.$.getJSON(url).then(function(result) {
-            return thiz.set;
+            var a, key, keys, value, _i, _len;
+            a = [];
+            keys = u.keys(result);
+            for (_i = 0, _len = keys.length; _i < _len; _i++) {
+              key = keys[_i];
+              value = result[key];
+              a.push({
+                name: key,
+                path: value
+              });
+            }
+            thiz.set('folders', a);
+            if (a.length > 0) {
+              return thiz.set('grammar', a[0]);
+            }
+          }, function(errors) {
+            return alert(errors.responseText);
           });
-        }).observes('bot', 'definition')
+        }).observes('bot', 'type')
       });
       return App.IDEView = Ember.View.extend({
         didInsertElement: function() {
