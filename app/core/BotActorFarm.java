@@ -33,6 +33,7 @@ import core.messages.Response;
 import core.storage.ContextProvider;
 import core.storage.LogProvider;
 import core.storage.ProfileProvider;
+import play.Play;
 import play.Logger;
 import play.libs.Akka;
 import play.libs.F.Callback;
@@ -51,7 +52,7 @@ public class BotActorFarm implements ActorFarm {
 	private final String rootPath = "bots";
 	private final String grammarPath = "definition/grammar";
 	private final String aimlPath = "definition/aiml";
-	private final int instances = 4;
+	private final int instances = Play.application().configuration().getInt("bot.instance.number");
 	
 
 	private ContextProvider contextProvider;
