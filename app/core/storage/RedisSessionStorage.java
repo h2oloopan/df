@@ -10,8 +10,6 @@ import redis.clients.jedis.*;
 import scala.concurrent.ExecutionContext;
 
 public class RedisSessionStorage implements SessionStorage{
-	//Make sure "session-context" is defined in application.conf
-	//private ExecutionContext context = Akka.system().dispatchers().lookup("session-context");
 	//Will make this async once jedis supports async access
 	@Override
 	public String get(final String key) throws Exception {
