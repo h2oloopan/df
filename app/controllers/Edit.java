@@ -32,7 +32,21 @@ public class Edit extends Controller
     
     public Promise<Result> files() {
         try {
-            
+            final HashMap<String, String> list = new HashMap<String, String>();
+            String folder = request().getQueryString("folder");
+            if (folder == null) {
+                throw new Exception("folder cannot be empty");
+            }
+            for (File entry : new File(folder).listFiles()) {
+                if (entry.isFile()) {
+                    list.put(entry.getName(), entry.getCanonicalPath());
+                }
+            }
+            return Promise.promise(new Function0<Result>() {
+                public Result apply() {
+                    return ok(Json.toJson(list));
+                }
+            });
         } catch (final Exception e) {
             return Promise.promise(new Function0<Result>() {
                 public Result apply() {

@@ -13,6 +13,7 @@ GET     /bot/bots                   @controllers.Bot.bots()
 
 #Edit
 GET     /edit/folders               @controllers.Edit.folders()
+GET     /edit/files                 @controllers.Edit.files()
 GET     /edit/file                  @controllers.Edit.file()
 POST    /edit/upload				@controllers.Edit.upload()
 POST    /edit/create                @controllers.Edit.create()

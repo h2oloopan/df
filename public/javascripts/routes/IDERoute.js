@@ -50,19 +50,39 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
             }
             thiz.set('folders', a);
             if (a.length > 0) {
-              return thiz.set('grammar', a[0]);
+              return thiz.set('folder', a[0]);
             }
           }, function(errors) {
             return alert(errors.responseText);
           });
         }).observes('bot', 'type'),
         folderChanged: (function() {
-          var folder, thiz;
+          var folder, thiz, url;
           thiz = this;
           folder = this.get('folder');
           if (folder == null) {
             return false;
           }
+          url = '/edit/files?folder=' + folder.path;
+          return Ember.$.getJSON(url).then(function(result) {
+            var a, key, keys, value, _i, _len;
+            a = [];
+            keys = u.keys(result);
+            for (_i = 0, _len = keys.length; _i < _len; _i++) {
+              key = keys[_i];
+              value = result[key];
+              a.push({
+                name: key,
+                path: value
+              });
+            }
+            thiz.set('files', a);
+            if (a.length > 0) {
+              return thiz.set('file', a[0]);
+            }
+          }, function(errors) {
+            return alert(errors.responseText);
+          });
         }).observes('folder')
       });
       return App.IDEView = Ember.View.extend({

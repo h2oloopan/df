@@ -36,7 +36,7 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 								path: value
 
 						thiz.set 'folders', a
-						if a.length > 0 then thiz.set 'grammar', a[0]
+						if a.length > 0 then thiz.set 'folder', a[0]
 					, (errors) ->
 						alert errors.responseText
 				).observes 'bot', 'type'
@@ -44,7 +44,19 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 					thiz = @
 					folder = @get 'folder'
 					if !folder? then return false
-					
+					url = '/edit/files?folder=' + folder.path
+					Ember.$.getJSON(url).then (result) ->
+						a = []
+						keys = u.keys result
+						for key in keys
+							value = result[key]
+							a.push
+								name: key
+								path: value
+						thiz.set 'files', a
+						if a.length > 0 then thiz.set 'file', a[0]
+					, (errors) ->
+						alert errors.responseText
 				).observes 'folder'
 
 			App.IDEView = Ember.View.extend
