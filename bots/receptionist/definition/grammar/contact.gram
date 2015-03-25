@@ -1,9 +1,0 @@
-namespace contact
-
-open basic
-
-废词:=strings{要,想,需要,想要}
-找人:=strings{找人}
-完全找人: [我_basic] [废词] 找人
-
-public find: 完全找人

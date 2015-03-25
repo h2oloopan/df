@@ -1,5 +1,0 @@
-namespace file
-
-文件询问:= strings{这是什么文件}
-
-public acceptable_file_queries: 文件询问

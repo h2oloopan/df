@@ -13,6 +13,16 @@
 	<category>
 		<pattern>
 			<grammar>
+				help.help_time
+			</grammar>
+		</pattern>
+		<template>
+			 现在的时间是 <date jformat="MMM dd zzz yyyy" locale="CN" timezone="Asia/Beijing" />.
+		</template>
+	</category>
+	<category>
+		<pattern>
+			<grammar>
 				help.help_more
 			</grammar>
 		</pattern>
