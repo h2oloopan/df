@@ -30,14 +30,12 @@ public class GetHandler extends TagHandler
         if (predicateName != null)
            result = ps.context.retrievePredicate(predicateName).trim();
         else if (varName != null && tupleName != null) {
-               result = HandlingHelper.tupleGet(tupleName, varName);
-
-           }
+           result = HandlingHelper.tupleGet(tupleName, varName);
+        }
         else if (varName != null) {
            result = ps.vars.get(varName).trim();
         }
         
         return result;
     }
-
 }

@@ -17,7 +17,7 @@
 			</grammar>
 		</pattern>
 		<template>
-			 现在的时间是 <date jformat="MMM dd zzz yyyy" locale="CN" timezone="Asia/Beijing" />.
+			 现在的时间是 <date jformat="HH:mm:ss MMM dd, yyyy" locale="CN" timezone="Asia/Beijing" />.
 		</template>
 	</category>
 	<category>
