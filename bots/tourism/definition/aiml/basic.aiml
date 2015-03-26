@@ -18,18 +18,4 @@
 			很抱歉，我不能理解你说了些什么，你可以试着换一种问法。
 		</template>
 	</category>
-	<category>
-		<pattern>
-			*
-		</pattern>
-		<template>
-			<think>
-			<log>
-				<type>Unhandled Query</type>
-				{input: "<star/>", bot: "tourism"}
-			</log>
-			</think>
-			很抱歉，我不能理解你说了些什么，你可以试着换一种问法。
-		</template>
-	</category>
 </aiml>
