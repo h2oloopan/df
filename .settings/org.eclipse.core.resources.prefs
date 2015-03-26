@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//bots/tourism/definition/grammar/greeting.gram=GB18030
 encoding//bots/tourism/definition/grammar/help.gram=GB18030
 encoding//bots/tourism/definition/grammar/self.gram=GB18030
 encoding//test/supply/grams/g1.gram=GB18030
