@@ -72,7 +72,7 @@ public class Api extends Controller
                         default:
                             rsvpResponse.setStatus(ResponseStatus.Success);
                             rsvpResponse.setAnswer(response.getText());
-                            rsvpResponse.setCertain(false);
+                            rsvpResponse.setCertain(true);
                             break;
                         }
                         String result = getXml(rsvpResponse);
