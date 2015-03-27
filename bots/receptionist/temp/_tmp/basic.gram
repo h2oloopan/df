@@ -1,0 +1,75 @@
+namespace basic
+
+section wildcards
+
+word := wildcard(1,1)
+words := wildcard(1,10000)
+
+public X [-1]: word => key
+[-1]: X word => key
+
+public XX [-1] : words => key
+
+section 通用词汇
+
+public 的 := strings{的,地, 得}
+
+public 方向 := strings{
+东
+西
+南
+北
+东南
+东北
+西南
+西北
+东偏南
+东偏北
+西偏南
+西偏北
+南偏东
+南偏西
+北偏东
+北偏西
+}
+
+
+biaodian_dict := strings{
+"？"
+"?"
+"."
+"。"
+"!"
+"！"
+","
+"，"
+" "
+"　"
+"、"
+";"
+":"
+"；"
+"："
+}
+
+什么_dict := strings{多少, 什么, 啥, 吗, 否}
+问话词 : "是" [什么_dict]
+: 什么_dict
+
+public biaodian : [问话词] biaodian_dict
+: 问话词
+
+public 分割标点 : biaodian
+
+block{汉字,标点}
+增补部首	:=regexp("[\\u2E80-\\u2EFF]")	//共128个(有效9个)
+扩展集A	:=regexp("[\\u3400-\\u4DBF]")	//共6592个字符(有效30个)
+统一汉字	:=regexp("[\\u4E00-\\u9FBF]")	//共20928个字符
+专用部分	:=regexp("[\\uE800-\\uE8FF]")	//共256个(部分组成元素)
+相容汉字	:=regexp("[\\uF900-\\uFAFF]")	//共512个(有效17个)
+public 汉字	: 统一汉字|专用部分|相容汉字|扩展集A|增补部首
+
+ASCII标点	:=regexp("[\\u0021-\\u002F]|[\\u003A-\\u0040]|[\\u005B-\\u0060]|[\\u007B-\\u007E]|[\\u00A1-\\u00BF]")
+中日韩标点	:=regexp("[\\u2000-\\u212F]|[\\u2190-\\u231F]|[\\u25A0-\\u2642]|[\\u3000-\\u303F]")
+全角形标点	:=regexp("[\\uFE30-\\uFF0F]|[\\uFF1A-\\uFF20]|[\\uFF3B-\\uFF40]|[\\uFF5B-\\uFFE5]")
+public 标点	: ASCII标点|中日韩标点|全角形标点

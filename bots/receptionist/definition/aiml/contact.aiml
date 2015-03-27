@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+	<category>
+		<pattern>
+			<grammar>
+				contact.find
+			</grammar>
+		</pattern>
+		<template>
+                    请问你想找谁
+		</template>
+	</category>
+	<category>
+		<pattern>*</pattern>
+                <that>请问你想找谁</that>
+		<template>
+                    <think><set name="person_name"><star/></set></think>
+                    <condition>
+                        <li><name>person_name</name><value><bot name="name"/></value>我就是<bot name="name"/></li>
+                        <li>对不起<star/>不在</li>
+                    </condition>
+		</template>
+	</category>
+</aiml>

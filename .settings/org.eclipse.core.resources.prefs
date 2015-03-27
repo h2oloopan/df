@@ -1,4 +1,15 @@
 eclipse.preferences.version=1
+encoding//bots/receptionist/definition/grammar/ask.gram=GB18030
+encoding//bots/receptionist/definition/grammar/basic/basic.gram=GB18030
+encoding//bots/receptionist/definition/grammar/basic/common.gram=GB18030
+encoding//bots/receptionist/definition/grammar/basic/number.gram=GB18030
+encoding//bots/receptionist/definition/grammar/basic/vocabulary.gram=GB18030
+encoding//bots/receptionist/definition/grammar/contact.gram=GB18030
+encoding//bots/receptionist/definition/grammar/help.gram=GB18030
+encoding//bots/receptionist/definition/grammar/phone.gram=GB18030
+encoding//bots/receptionist/definition/grammar/products.gram=GB18030
+encoding//bots/receptionist/definition/grammar/pss.gram=GB18030
+encoding//bots/receptionist/definition/grammar/self.gram=GB18030
 encoding//bots/tourism/definition/grammar/greeting.gram=GB18030
 encoding//bots/tourism/definition/grammar/help.gram=GB18030
 encoding//bots/tourism/definition/grammar/self.gram=GB18030

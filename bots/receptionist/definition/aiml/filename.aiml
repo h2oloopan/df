@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+	<category>
+		<pattern>
+			<grammar>
+				file.acceptable_file_queries
+			</grammar>
+		</pattern>
+		<template>
+			 这不是什么文件
+		</template>
+	</category>
+</aiml>

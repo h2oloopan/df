@@ -1,0 +1,159 @@
+namespace basic
+
+section number
+
+public cdigit := stringmap{
+"0"  "0"
+"０" "0"
+零 "0"
+"〇" "0"
+一 "1"
+壹 "1"
+"1"  "1"
+"１" "1"
+二 "2"
+两 "2"
+贰 "2"
+"2"  "2"
+"２" "2"
+三 "3"
+叁 "3"
+"3"  "3"
+"３" "3"
+四 "4"
+肆 "4"
+"4"  "4"
+"４" "4"
+五 "5"
+伍 "5"
+"5"  "5"
+"５" "5"
+六 "6"
+陆 "6"
+"6"  "6"
+"６" "6"
+七 "7"
+柒 "7"
+"7"  "7"
+"７" "7"
+八 "8"
+捌 "8"
+"8"  "8"
+"８" "8"
+九 "9"
+玖 "9"
+"9"  "9"
+"９" "9"
+}
+
+public zero := strings{
+零
+"〇"
+}
+
+public one := strings{
+壹
+"一"
+"1"
+"１"
+}
+
+public two := strings{
+贰
+两
+"二"
+"2"
+"２"
+}
+
+public 十 :=stringmap{
+十 "10"
+拾 "10"
+}
+
+public 百 :=strings{
+百
+佰
+}
+
+public 千 :=strings{
+千
+仟
+}
+
+public 万 :=strings{
+万
+}
+
+public 亿 :=strings{
+亿
+}
+
+public 点 :=strings{
+点
+}
+
+public mathnum := regexp("\\d+")
+public floatnum := regexp("\\d+\\.\\d+")
+
+c1 : cdigit => cdigit.value
+
+c2 : c1 => c1.value
+: 十  => 10
+: 十 cdigit => 10 + cdigit.value
+: cdigit 十 => cdigit.value * 10
+: cdigit 十 c1 => cdigit.value * 10 + c1.value
+
+c3 : c2 => c2.value
+: 百 => 100
+: (x:cdigit) 百 (y:cdigit) => x.value * 100 + (y.value * 10)
+: cdigit 百  => cdigit.value * 100
+: cdigit 百 [zero] c2 => cdigit.value * 100 + c2.value
+: cdigit 百 [zero] mathnum => cdigit.value * 100 + mathnum.key
+
+c4 : c3 => c3.value
+: 千 => 1000
+: (x:cdigit) 千 (y:cdigit) => x.value * 1000 + (y.value * 100)
+: cdigit 千  => cdigit.value * 1000
+: cdigit 千 [zero] c3 => cdigit.value * 1000 + c3.value
+: cdigit 千 [zero] mathnum => cdigit.value * 1000 + mathnum.key
+
+c5 : c4 => c4.value
+: 万 => 10000
+: c4 万 cdigit => c4.value * 10000 + (cdigit.value * 1000)
+: c4 万  => c4.value * 10000
+: (x:c4) 万 [zero] (y:c4) => x.value * 10000 + y.value
+
+: mathnum 万  => mathnum.key * 10000
+: c4 万 [zero] mathnum => c4.value * 10000 + mathnum.key
+: (x:mathnum) 万 [zero] (y:mathnum) => x.key * 10000 + y.key
+: mathnum 万 [zero] c4 => mathnum.key * 10000 + c4.value
+
+public c6 : c5 => c5.value
+: c5 亿 cdigit => c5.value * 100000000 + (cdigit.value * 10000000)
+: c5 亿  => c5.value * 100000000
+: (x:c5) 亿 [zero] (y:c5) => x.value * 100000000 + y.value
+
+public cc : (x:cdigit) (y:cdigit) {value = x.value * 10 + y.value; power = 100}
+: cdigit (x:cc) { value = cdigit.value * x.power + x.value; power = x.power * 10 }
+
+public int_num : c6 => c6.value
+: cc => cc.value
+: mathnum => (mathnum.key*1)
+: floatnum 万 {**basic1_actions action1}
+//
+
+
+public float_num : int_num 点 cdigit { value = int_num.value + (cdigit.value * 0.1); power = 0.01 }
+: (x:float_num) cdigit { value = x.value + (cdigit.value * x.power); power = x.power * 0.1}
+: floatnum { value = floatnum.key*1.0 }
+
+: int_num 点 mathnum {**basic1_actions action2}
+//
+//
+//
+//
+//
+
+public edigit := strings{"0","1","2","3","4","5","6","7","8","9"}
+
