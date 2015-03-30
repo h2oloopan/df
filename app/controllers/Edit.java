@@ -106,16 +106,18 @@ public class Edit extends Controller
                public Result apply() {
                    try {
                        if (encoding != null) {
-                           return ok(farm.getFile(path, encoding));
+                           return ok(Json.toJson(farm.getFile(path, encoding)));
                        } else {
-                           return ok(farm.getFile(path));
+                           return ok(Json.toJson(farm.getFile(path)));
                        }
                    } catch (Exception e) {
+                       Logger.error(e.getMessage(), e);
                        return badRequest(e.getMessage());
                    }
                }
             });
         } catch (final Exception e) {
+            Logger.error(e.getMessage(), e);
             return Promise.promise(new Function0<Result>() {
                 public Result apply() {
                     return badRequest(e.getMessage());

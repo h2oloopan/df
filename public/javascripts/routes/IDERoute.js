@@ -83,14 +83,35 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
           }, function(errors) {
             return alert(errors.responseText);
           });
-        }).observes('folder')
+        }).observes('folder'),
+        fileChanged: (function() {
+          var encoding, file, thiz, type, url;
+          thiz = this;
+          file = this.get('file');
+          type = this.get('type');
+          encoding = 'UTF-8';
+          if (file == null) {
+            return false;
+          }
+          if (type.toLowerCase() === 'grammar') {
+            encoding = 'GB18030';
+          }
+          url = '/edit/file?path=' + file.path + '&encoding=' + encoding;
+          return Ember.$.getJSON(url).then(function(result) {
+            return thiz.get('editor').setValue(result);
+          }, function(errors) {
+            return alert(errors.responseText);
+          });
+        }).observes('file')
       });
       return App.IDEView = Ember.View.extend({
         didInsertElement: function() {
           var editor;
           this._super();
           editor = ace.edit('editor');
-          return $('#editor')[0].style.fontSize = '14px';
+          editor.setTheme('ace/theme/chrome');
+          $('#editor')[0].style.fontSize = '14px';
+          return this.set('controller.editor', editor);
         }
       });
     }

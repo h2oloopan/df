@@ -58,10 +58,27 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 					, (errors) ->
 						alert errors.responseText
 				).observes 'folder'
+				fileChanged: (->
+					thiz = @
+					file = @get 'file'
+					type = @get 'type'
+					encoding = 'UTF-8'
+					if !file? then return false
+					if type.toLowerCase() == 'grammar' then encoding = 'GB18030'
+					url = '/edit/file?path=' + file.path + '&encoding=' + encoding
+					Ember.$.getJSON(url).then (result) ->
+						thiz.get('editor').setValue result
+					, (errors) ->
+						alert errors.responseText
+
+				).observes 'file'
 
 			App.IDEView = Ember.View.extend
 				didInsertElement: ->
 					@_super()
 					editor = ace.edit 'editor'
+					editor.setTheme 'ace/theme/chrome'
 					$('#editor')[0].style.fontSize = '14px'
+					@set 'controller.editor', editor
+
 
