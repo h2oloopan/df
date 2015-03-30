@@ -98,11 +98,60 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
           }
           url = '/edit/file?path=' + file.path + '&encoding=' + encoding;
           return Ember.$.getJSON(url).then(function(result) {
-            return thiz.get('editor').setValue(result);
+            var editor;
+            editor = thiz.get('editor');
+            editor.setValue(result);
+            return editor.gotoLine(1);
           }, function(errors) {
             return alert(errors.responseText);
           });
-        }).observes('file')
+        }).observes('file'),
+        actions: {
+          compile: function() {
+            return false;
+          },
+          reload: function() {
+            return false;
+          },
+          save: function() {
+            var editor, encoding, file, thiz, type;
+            thiz = this;
+            file = this.get('file');
+            type = this.get('type');
+            encoding = 'UTF-8';
+            if (file == null) {
+              return false;
+            }
+            if (type.toLowerCase() === 'grammar') {
+              encoding = 'GB18030';
+            }
+            editor = this.get('editor');
+            $.ajax({
+              url: '/edit/upload',
+              type: 'POST',
+              data: JSON.stringify({
+                path: file.path,
+                encoding: encoding,
+                text: editor.getValue()
+              }),
+              contentType: 'application/json; charset=' + encoding
+            }).done(function(result) {
+              alert('File ' + file.name + ' saved to server successfully');
+              return true;
+            }).fail(function(response) {
+              alert(response.responseText);
+              return false;
+            });
+            return false;
+          },
+          discard: function() {
+            var file;
+            file = this.get('file');
+            this.set('file', null);
+            this.set('file', file);
+            return false;
+          }
+        }
       });
       return App.IDEView = Ember.View.extend({
         didInsertElement: function() {

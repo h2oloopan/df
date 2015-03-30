@@ -67,11 +67,45 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 					if type.toLowerCase() == 'grammar' then encoding = 'GB18030'
 					url = '/edit/file?path=' + file.path + '&encoding=' + encoding
 					Ember.$.getJSON(url).then (result) ->
-						thiz.get('editor').setValue result
+						editor = thiz.get 'editor'
+						editor.setValue result
+						editor.gotoLine 1
 					, (errors) ->
 						alert errors.responseText
-
 				).observes 'file'
+				actions:
+					compile: ->
+						return false
+					reload: ->
+						return false
+					save: ->
+						thiz = @
+						file = @get 'file'
+						type = @get 'type'
+						encoding = 'UTF-8'
+						if !file? then return false
+						if type.toLowerCase() == 'grammar' then encoding = 'GB18030'
+						editor = @get 'editor'
+						$.ajax
+							url: '/edit/upload'
+							type: 'POST'
+							data: JSON.stringify
+								path: file.path
+								encoding: encoding
+								text: editor.getValue()
+							contentType: 'application/json; charset=' + encoding
+						.done (result) ->
+							alert 'File ' + file.name + ' saved to server successfully' 
+							return true
+						.fail (response) ->
+							alert response.responseText
+							return false
+						return false
+					discard: ->
+						file = @get 'file'
+						@set 'file', null
+						@set 'file', file
+						return false
 
 			App.IDEView = Ember.View.extend
 				didInsertElement: ->
