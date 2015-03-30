@@ -108,9 +108,43 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
         }).observes('file'),
         actions: {
           compile: function() {
+            var bot;
+            bot = this.get('bot');
+            if (bot == null) {
+              return false;
+            }
+            $.ajax({
+              url: '/bot/compile',
+              type: 'POST',
+              data: JSON.stringify({
+                bot: bot
+              }),
+              contentType: 'application/json; charset=utf-8'
+            }).done(function(result) {
+              return alert('Grammar compilation done for bot ' + bot);
+            }).fail(function(response) {
+              return alert('Grammar compilation failed for bot ' + bot + ' ' + response.responseText);
+            });
             return false;
           },
           reload: function() {
+            var bot;
+            bot = this.get('bot');
+            if (bot == null) {
+              return false;
+            }
+            $.ajax({
+              url: '/bot/reload',
+              type: 'POST',
+              data: JSON.stringify({
+                bot: bot
+              }),
+              contentType: 'application/json; charset=utf-8'
+            }).done(function(result) {
+              return alert('Bot reloaded successfully for bot ' + bot);
+            }).fail(function(response) {
+              return alert('Bot reloading failed for bot ' + bot + ' ' + response.responseText);
+            });
             return false;
           },
           save: function() {

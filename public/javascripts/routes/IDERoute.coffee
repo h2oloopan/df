@@ -75,8 +75,32 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 				).observes 'file'
 				actions:
 					compile: ->
+						bot = @get 'bot'
+						if !bot? then return false
+						$.ajax
+							url: '/bot/compile'
+							type: 'POST'
+							data: JSON.stringify
+								bot: bot
+							contentType: 'application/json; charset=utf-8'
+						.done (result) ->
+							alert 'Grammar compilation done for bot ' + bot
+						.fail (response) ->
+							alert 'Grammar compilation failed for bot ' + bot + ' ' + response.responseText
 						return false
 					reload: ->
+						bot = @get 'bot'
+						if !bot? then return false
+						$.ajax
+							url: '/bot/reload'
+							type: 'POST'
+							data: JSON.stringify
+								bot: bot
+							contentType: 'application/json; charset=utf-8'
+						.done (result) ->
+							alert 'Bot reloaded successfully for bot ' + bot
+						.fail (response) ->
+							alert 'Bot reloading failed for bot ' + bot + ' ' + response.responseText
 						return false
 					save: ->
 						thiz = @
