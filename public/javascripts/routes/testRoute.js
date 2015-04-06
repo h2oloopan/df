@@ -17,36 +17,7 @@ define(['ehbs!templates/test'], function() {
       });
       return App.TestController = Ember.ObjectController.extend({
         actions: {
-          get: function() {
-            var key, thiz;
-            thiz = this;
-            key = this.get('getKey');
-            $.get('/test/get/' + key).done(function(result) {
-              thiz.set('getValue', result);
-              return thiz.set('message', 'Value retrieved from server: [Key]:' + key + ' [Value]:' + result);
-            }).fail(function(response) {
-              return thiz.set('message', 'Value retrieval failed: ' + response.responseText);
-            });
-            return false;
-          },
-          set: function() {
-            var data, key, thiz, value;
-            thiz = this;
-            key = this.get('setKey');
-            value = this.get('setValue');
-            data = {};
-            data[key] = value;
-            $.ajax({
-              type: 'POST',
-              url: '/test/set/' + key,
-              data: JSON.stringify(data),
-              dataType: 'json',
-              contentType: 'application/json; charset=utf-8'
-            }).done(function(result) {
-              return thiz.set('message', 'Value saved to server: [Key]:' + key + ' [Value]:' + value);
-            }).fail(function(response) {
-              return thiz.set('message', 'Value cannot be saved to server: ' + response.responseText);
-            });
+          talk: function(input) {
             return false;
           }
         }

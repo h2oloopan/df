@@ -16,11 +16,16 @@ import core.messages.CommandType;
 import core.messages.Query;
 import core.messages.Response;
 import play.Logger;
+import play.Play;
 import play.libs.Json;
 import play.libs.F.*;
 import play.mvc.*;
 
 public class Bot extends Controller {
+    
+    private final int TIMEOUT_COMPILE = Play.application().configuration().getInt("bot.timeout.compile");
+    private final int TIMEOUT_TALK = Play.application().configuration().getInt("bot.timeout.talk");
+    
 	@Inject
 	private ActorFarm farm;
 	@Inject
@@ -69,7 +74,7 @@ public class Bot extends Controller {
 			Logger.info("Compiling bot " + bot);
 			ActorRef actor = farm.getActor(bot);
 			Query q = new Query(CommandType.COMPILE);
-			return Promise.wrap(ask(actor, q, 60000)).map(
+			return Promise.wrap(ask(actor, q, TIMEOUT_COMPILE)).map(
 			    new Function<Object, Result>() {
 			        public Result apply(Object message) {
 			            Response response = (Response)message;
@@ -114,7 +119,7 @@ public class Bot extends Controller {
 			
 			Query q = new Query(CommandType.RESPOND, uid, sid, query);
 			ActorRef actor = farm.getActor(bot);
-			return Promise.wrap(ask(actor, q, 8000)).map(
+			return Promise.wrap(ask(actor, q, TIMEOUT_TALK)).map(
 				new Function<Object, Result>() {
 					public Result apply(Object message) {
 						Response response = (Response)message;

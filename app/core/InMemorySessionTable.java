@@ -5,8 +5,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 
+import play.Play;
+
 public class InMemorySessionTable implements SessionTable {
-	private final int HOURS = 24;
+	private final int MINUTES = Play.application().configuration().getInt("bot.session.expiry");
 	private HashMap<String, SessionEntry> table;
 	
 	private class SessionEntry {
@@ -46,7 +48,7 @@ public class InMemorySessionTable implements SessionTable {
 			String sid = UUID.randomUUID().toString();
 			Calendar c = Calendar.getInstance();
 			c.setTime(new Date());
-			c.add(Calendar.HOUR, HOURS);
+			c.add(Calendar.MINUTE, MINUTES);
 			Date expiry = c.getTime();
 			entry = new SessionEntry(sid, expiry);
 			table.put(uid, entry);
@@ -59,7 +61,7 @@ public class InMemorySessionTable implements SessionTable {
 				String sid = UUID.randomUUID().toString();
 				Calendar c = Calendar.getInstance();
 				c.setTime(new Date());
-				c.add(Calendar.HOUR, HOURS);
+				c.add(Calendar.MINUTE, MINUTES);
 				expiry = c.getTime();
 				entry.setSid(sid);
 				entry.setExpiry(expiry);
@@ -68,7 +70,7 @@ public class InMemorySessionTable implements SessionTable {
 				//refresh expiry date
 				Calendar c = Calendar.getInstance();
 				c.setTime(new Date());
-				c.add(Calendar.HOUR, HOURS);
+				c.add(Calendar.MINUTE, MINUTES);
 				expiry = c.getTime();
 				entry.setExpiry(expiry);
 				return entry.getSid();
