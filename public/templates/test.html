@@ -10,8 +10,12 @@
 							<p class="help-block">{{bot}}</p>
 						</div>
 						<div class="form-group">
+							<label>User ID</label>
+							{{input class="form-control" value=uid}}
+						</div>
+						<div class="form-group">
 							<label>Conversation Log</label>
-							{{textarea class="form-control" rows="12" value=conversation}}
+							{{textarea class="form-control" rows="12" readonly="true" value=conversation}}
 						</div>
 						<div class="form-group">
 							<label>Input</label>

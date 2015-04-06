@@ -18,6 +18,27 @@ define(['ehbs!templates/test'], function() {
       return App.TestController = Ember.ObjectController.extend({
         actions: {
           talk: function(input) {
+            var bot, thiz, uid;
+            thiz = this;
+            uid = this.get('uid');
+            bot = this.get('bot');
+            $.ajax({
+              url: '/bot/talk',
+              type: 'POST',
+              data: JSON.stringify({
+                bot: bot,
+                uid: uid,
+                query: input
+              }),
+              dataType: 'json',
+              contentType: 'application/json; charset=utf-8'
+            }).done(function(result) {
+              var message;
+              message = '[Bot|' + bot + '] ' + result.text;
+              return thiz.send('update', message);
+            }).fail(function(response) {
+              return alert(response.responseText);
+            });
             return false;
           }
         }
