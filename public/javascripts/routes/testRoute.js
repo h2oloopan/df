@@ -3,9 +3,16 @@ define(['ehbs!templates/test'], function() {
   var TestRoute;
   return TestRoute = {
     bind: function(App) {
+      App.Router.map(function() {
+        return this.route('test', {
+          path: '/test/:name'
+        });
+      });
       App.TestRoute = Ember.Route.extend({
-        model: function() {
-          return {};
+        model: function(params) {
+          return {
+            bot: params.name
+          };
         }
       });
       return App.TestController = Ember.ObjectController.extend({

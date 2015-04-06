@@ -4,19 +4,23 @@
 		"selected_items":
 		[
 			[
-				"inl",
-				"inline-block"
-			],
-			[
-				"resp",
-				"responseText"
-			],
-			[
 				"respon",
 				"responseText"
 			],
 			[
 				"respo",
+				"response"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"resp",
 				"responseText"
 			],
 			[
@@ -43,7 +47,7 @@
 			"file": "public/javascripts/routes/IDERoute.coffee",
 			"settings":
 			{
-				"buffer_size": 1771,
+				"buffer_size": 4003,
 				"line_ending": "Unix"
 			}
 		},
@@ -51,7 +55,7 @@
 			"file": "public/javascripts/routes/IDERoute.js",
 			"settings":
 			{
-				"buffer_size": 3096,
+				"buffer_size": 6628,
 				"line_ending": "Unix"
 			}
 		},
@@ -59,7 +63,7 @@
 			"file": "public/stylesheets/main.css",
 			"settings":
 			{
-				"buffer_size": 535,
+				"buffer_size": 573,
 				"line_ending": "Unix"
 			}
 		},
@@ -67,7 +71,7 @@
 			"file": "public/templates/IDE.html",
 			"settings":
 			{
-				"buffer_size": 1435,
+				"buffer_size": 1631,
 				"line_ending": "Unix"
 			}
 		},
@@ -81,9 +85,14 @@
 		}
 	],
 	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
 	"command_palette":
 	{
 		"height": 75.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -115,6 +124,8 @@
 		"/home/s5pan/Projects/df",
 		"/home/s5pan/Projects/df/public",
 		"/home/s5pan/Projects/df/public/javascripts",
+		"/home/s5pan/Projects/df/public/javascripts/lib",
+		"/home/s5pan/Projects/df/public/javascripts/lib/ace",
 		"/home/s5pan/Projects/df/public/javascripts/routes",
 		"/home/s5pan/Projects/df/public/stylesheets",
 		"/home/s5pan/Projects/df/public/templates"
@@ -224,7 +235,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -233,23 +244,24 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1771,
+						"buffer_size": 4003,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1282,
-								1282
+								2145,
+								2145
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage"
+							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 102.0,
+						"translation.y": 1071.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -261,7 +273,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3096,
+						"buffer_size": 6628,
 						"regions":
 						{
 						},
@@ -282,7 +294,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -291,26 +303,27 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 535,
+						"buffer_size": 573,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								415,
-								415
+								568,
+								568
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -319,26 +332,27 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1435,
+						"buffer_size": 1631,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								429,
-								429
+								1511,
+								1511
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -408,6 +422,7 @@
 	{
 		"height": 0.0
 	},
+	"pinned_build_system": "",
 	"project": "df.sublime-project",
 	"replace":
 	{
@@ -417,6 +432,7 @@
 	"select_file":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
@@ -425,6 +441,7 @@
 	"select_project":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
@@ -433,6 +450,7 @@
 	"select_symbol":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],

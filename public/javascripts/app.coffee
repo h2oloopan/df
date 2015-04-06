@@ -3,7 +3,6 @@ define ['routes/testRoute', 'routes/editRoute', 'routes/IDERoute', 'ehbs!templat
 		start: ->
 			App = Ember.Application.create()
 			App.Router.map ->
-				@route 'test'
 				@route 'edit'
 				@route 'IDE'
 			TestRoute.bind App

@@ -6,7 +6,6 @@ define(['routes/testRoute', 'routes/editRoute', 'routes/IDERoute', 'ehbs!templat
       var App;
       App = Ember.Application.create();
       App.Router.map(function() {
-        this.route('test');
         this.route('edit');
         return this.route('IDE');
       });
