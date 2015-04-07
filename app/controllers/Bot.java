@@ -23,8 +23,8 @@ import play.mvc.*;
 
 public class Bot extends Controller {
     
-    private final int TIMEOUT_COMPILE = Play.application().configuration().getInt("bot.timeout.compile");
-    private final int TIMEOUT_TALK = Play.application().configuration().getInt("bot.timeout.talk");
+    private static final int TIMEOUT_COMPILE = Play.application().configuration().getInt("bot.timeout.compile");
+    private static final int TIMEOUT_TALK = Play.application().configuration().getInt("bot.timeout.talk");
     
 	@Inject
 	private ActorFarm farm;

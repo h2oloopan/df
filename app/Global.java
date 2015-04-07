@@ -2,20 +2,24 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
+import com.google.inject.name.Names;
 
 import core.*;
 import core.bot.*;
 import core.grammar.*;
 import core.storage.*;
 import play.Application;
+import play.Configuration;
 import play.GlobalSettings;
+import play.Logger;
+import play.Play;
 
 
 public class Global extends GlobalSettings {
 	private Injector injector;
 	
 	@Override
-	public void onStart(Application application) {
+	public void onStart(final Application application) {
 		injector = Guice.createInjector(new AbstractModule() {
 			@Override
 			protected void configure() {

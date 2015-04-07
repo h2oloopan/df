@@ -8,7 +8,7 @@ import java.util.UUID;
 import play.Play;
 
 public class InMemorySessionTable implements SessionTable {
-	private final int MINUTES = Play.application().configuration().getInt("bot.session.expiry");
+	private static final int MINUTES = Play.application().configuration().getInt("bot.session.expiry");
 	private HashMap<String, SessionEntry> table;
 	
 	private class SessionEntry {
