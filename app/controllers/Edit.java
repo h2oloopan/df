@@ -14,6 +14,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 
 import core.ActorFarm;
+import core.edit.EditHelper;
+import core.edit.GrammarInfoTree;
 import play.Logger;
 import play.libs.Json;
 import play.libs.F.Function0;
@@ -29,6 +31,24 @@ public class Edit extends Controller
 {
     @Inject
     private ActorFarm farm;
+    
+    public Promise<Result> help() {
+        try {
+            final GrammarInfoTree git = EditHelper.getGrammarInfoTree(bot, term, aimlFile, grammarFolder);
+            return Promise.promise(new Function0<Result>() {
+                public Result apply() {
+                    return ok(Json.toJson(git));
+                }
+            });
+        } catch (final Exception e) {
+            return Promise.promise(new Function0<Result>() {
+               public Result apply() {
+                   Logger.warn(e.getMessage(), e);
+                   return badRequest(e.getMessage());
+               }
+            });
+        }
+    }
     
     public Promise<Result> files() {
         try {
