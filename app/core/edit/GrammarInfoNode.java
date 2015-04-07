@@ -1,10 +1,12 @@
 /**
  *
  * Copyright 2015 RSVP Technologies Inc. All rights reserved.
- * GrammarTree.java
+ * GrammarInfoNode.java
  *
  */
 package core.edit;
+
+import java.util.ArrayList;
 
 import play.libs.Json;
 
@@ -12,15 +14,20 @@ import play.libs.Json;
  *@author Shengying Pan (s5pan@uwaterloo.ca) 
  *@date Apr 7, 2015
  */
-public class GrammarInfoTree
+public class GrammarInfoNode
 {
     public String namespace;
     public String term;
-    public GrammarInfoNode root;
+    public String type;
+    public int line;
+    public ArrayList<GrammarInfoNode> children;
     
-    public GrammarInfoTree(String namespace, String term) {
+    public GrammarInfoNode(String namespace, String term, String type, int line) {
         this.namespace = namespace;
         this.term = term;
+        this.type = type;
+        this.line = line;
+        this.children = new ArrayList<GrammarInfoNode>();
     }
     
     @Override
