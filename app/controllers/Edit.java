@@ -34,10 +34,23 @@ public class Edit extends Controller
     
     public Promise<Result> help() {
         try {
-            final GrammarInfoTree git = EditHelper.getGrammarInfoTree(bot, term, aimlFile, grammarFolder);
+            String bot = request().getQueryString("bot");
+            String term = request().getQueryString("term");
+            String aiml = request().getQueryString("aiml");
+            String grammar = request().getQueryString("grammar");
+            
+            if (aiml == null || grammar != null) {
+                throw new Exception("Not implemented yet");
+            }
+                        
+            File aimlFile = new File(aiml);
+            File grammarFolder = new File(farm.getGrammarPath("bot"));
+            GrammarInfoTree git = EditHelper.getGrammarInfoTree(bot, term, aimlFile, grammarFolder);
+            final JsonNode result = Json.toJson(git);
+            
             return Promise.promise(new Function0<Result>() {
                 public Result apply() {
-                    return ok(Json.toJson(git));
+                    return ok(result);
                 }
             });
         } catch (final Exception e) {

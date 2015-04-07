@@ -49,10 +49,10 @@ import akka.routing.RoundRobinPool;
 
 public class BotActorFarm implements ActorFarm {
 	private Map<String, ActorRef> routers;
-	private final String rootPath = "bots";
-	private final String grammarPath = "definition/grammar";
-	private final String aimlPath = "definition/aiml";
-	private final int instances = Play.application().configuration().getInt("bot.instance.number");
+	private static final String ROOT_PATH = "bots";
+	private static final String GRAMMAR_PATH = "definition/grammar";
+	private static final String AIML_PATH = "definition/aiml";
+	private static final int INSTANCES = Play.application().configuration().getInt("bot.instance.number");
 	
 
 	private ContextProvider contextProvider;
@@ -74,7 +74,7 @@ public class BotActorFarm implements ActorFarm {
 	
 	private void initialize() throws Exception {
 		//initialize all bots under root folder
-		File root = new File(rootPath);
+		File root = new File(ROOT_PATH);
 		String[] bots = root.list(new FilenameFilter() {
 			@Override
 			public boolean accept(File current, String name) {
@@ -99,7 +99,7 @@ public class BotActorFarm implements ActorFarm {
 			String termsPath = (new File(new File(path), "definition/terms.json")).getCanonicalPath();
 		
 			ActorRef router = Akka.system().actorOf(
-			    new RoundRobinPool(instances).withSupervisorStrategy(strategy).props(
+			    new RoundRobinPool(INSTANCES).withSupervisorStrategy(strategy).props(
 			        BotActor.props(contextProvider, profileProvider, grammarCompiler, grammarMatcherProvider.getMatcher(gramsPath, termsPath), logProvider, name, path)
 			        ), "router-" + name);
 			
@@ -125,17 +125,17 @@ public class BotActorFarm implements ActorFarm {
     @Override
     public String getGrammarPath(String name) throws Exception
     {
-        File root = new File(rootPath);
+        File root = new File(ROOT_PATH);
         File bot = new File(root, name);
-        return new File(bot, grammarPath).getCanonicalPath();
+        return new File(bot, GRAMMAR_PATH).getCanonicalPath();
     }
 
     @Override
     public String getAimlPath(String name) throws Exception
     {
-        File root = new File(rootPath);
+        File root = new File(ROOT_PATH);
         File bot = new File(root, name);
-        return new File(bot, aimlPath).getCanonicalPath();
+        return new File(bot, AIML_PATH).getCanonicalPath();
     }
 
     @Override
@@ -202,7 +202,7 @@ public class BotActorFarm implements ActorFarm {
     @Override
     public String createFile(String bot, String name, String type, String text) throws Exception
     {
-        File root = new File(rootPath);
+        File root = new File(ROOT_PATH);
         String path = (new File(root, bot)).getCanonicalPath();
         File folder = null;
         String extension = null;
