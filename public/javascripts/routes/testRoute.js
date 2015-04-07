@@ -16,6 +16,7 @@ define(['ehbs!templates/test'], function() {
         }
       });
       return App.TestController = Ember.ObjectController.extend({
+        conversation: '',
         actions: {
           talk: function(input) {
             var bot, thiz, uid;
@@ -38,7 +39,19 @@ define(['ehbs!templates/test'], function() {
               return thiz.send('update', message);
             }).fail(function(response) {
               return alert(response.responseText);
+            }).always(function() {
+              return thiz.set('input', '');
             });
+            return false;
+          },
+          update: function(msg) {
+            var conv;
+            conv = this.get('conversation');
+            conv += msg + '\r\n';
+            this.set('conversation', conv);
+            setTimeout(function() {
+              return $('textarea').scrollTop($('textarea')[0].scrollHeight);
+            }, 300);
             return false;
           }
         }

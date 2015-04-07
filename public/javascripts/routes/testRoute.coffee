@@ -12,6 +12,7 @@ define ['ehbs!templates/test'], () ->
 
 
 			App.TestController = Ember.ObjectController.extend
+				conversation: ''
 				actions:
 					talk: (input) ->
 						thiz = @
@@ -31,4 +32,14 @@ define ['ehbs!templates/test'], () ->
 							thiz.send 'update', message
 						.fail (response) ->
 							alert response.responseText
+						.always ->
+							thiz.set 'input', ''
+						return false
+					update: (msg) ->
+						conv = @get 'conversation'
+						conv += msg + '\r\n'
+						@set 'conversation', conv
+						setTimeout ->
+							$('textarea').scrollTop $('textarea')[0].scrollHeight
+						, 300
 						return false
