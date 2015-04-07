@@ -30,7 +30,8 @@ public class EditHelper
                 String term = pattern.substring(dot + 1);
                 
                 git = new GrammarInfoTree(namespace, term);
-                
+                GrammarInfoNode root = new GrammarInfoNode(namespace, term, "public", 0);
+                git.root = lookup(grammarFolder, namespace, term, root);
                 
                 cache.put(key, git);
             }
@@ -38,7 +39,11 @@ public class EditHelper
             return git;
         } catch (Exception e) {
             Logger.warn(e.getMessage(), e);
-            return new GrammarInfoTree();
+            return null;
         }
+    }
+    
+    private static GrammarInfoNode lookup(File file, String namespace, String term, GrammarInfoNode node) {
+        return node;
     }
 }
