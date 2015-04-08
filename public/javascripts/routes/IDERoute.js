@@ -20,6 +20,7 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
       });
       App.IDEController = Ember.ObjectController.extend({
         types: ['Grammar', 'AIML'],
+        helpAIML: false,
         selectionChanged: (function() {
           var bot, thiz, type, url;
           thiz = this;
@@ -101,12 +102,32 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
             var editor;
             editor = thiz.get('editor');
             editor.setValue(result);
-            return editor.gotoLine(1);
+            editor.gotoLine(1);
+            return thiz.send('help', 'aiml');
           }, function(errors) {
             return alert(errors.responseText);
           });
         }).observes('file'),
         actions: {
+          help: function(type) {
+            var bot, search, thiz, url;
+            thiz = this;
+            search = function(text) {};
+            if (type.toLowerCase() === 'aiml') {
+              bot = this.get('bot');
+              url = '/edit/map?bot=' + bot;
+              Ember.$.getJSON(url).then(function(result) {
+                var editor, matches;
+                editor = thiz.get('editor');
+                matches = search(editor.getValue());
+                return true;
+              }, function(errors) {
+                console.log(errors);
+                return false;
+              });
+            }
+            return false;
+          },
           compile: function() {
             var bot;
             bot = this.get('bot');
