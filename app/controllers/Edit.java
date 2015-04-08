@@ -71,6 +71,13 @@ public class Edit extends Controller
             if (bot == null) {
                 throw new Exception("Bot does not exist");
             }
+            File folder = new File(farm.getGrammarPath(bot));
+            final HashMap<String, String> map = EditHelper.getTerms(folder.getCanonicalPath());
+            return Promise.promise(new Function0<Result>() {
+                public Result apply() {
+                    return ok(Json.toJson(map));
+                }
+            });
         } catch (final Exception e) {
             return Promise.promise(new Function0<Result>() {
                 public Result apply() {
