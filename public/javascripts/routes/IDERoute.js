@@ -103,7 +103,7 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
             editor = thiz.get('editor');
             editor.setValue(result);
             editor.gotoLine(1);
-            return thiz.send('help', 'aiml');
+            return thiz.send('help', type);
           }, function(errors) {
             return alert(errors.responseText);
           });
@@ -112,14 +112,28 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
           help: function(type) {
             var bot, search, thiz, url;
             thiz = this;
-            search = function(text) {};
+            search = function(text) {
+              var list, match, matches, pattern, term, _i, _len;
+              pattern = /<grammar>[^<]+<\/grammar>/igm;
+              matches = text.match(pattern);
+              list = [];
+              for (_i = 0, _len = matches.length; _i < _len; _i++) {
+                match = matches[_i];
+                term = match.substr(match.indexOf('>') + 1);
+                term = term.substr(0, term.lastIndexOf('<'));
+                term = term.replace('\r', '').replace('\n', '').trim();
+                list.push(term);
+              }
+              return list;
+            };
             if (type.toLowerCase() === 'aiml') {
               bot = this.get('bot');
               url = '/edit/map?bot=' + bot;
               Ember.$.getJSON(url).then(function(result) {
-                var editor, matches;
+                var editor, list;
                 editor = thiz.get('editor');
-                matches = search(editor.getValue());
+                list = search(editor.getValue());
+                console.log(list);
                 return true;
               }, function(errors) {
                 console.log(errors);

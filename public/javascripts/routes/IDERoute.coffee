@@ -71,7 +71,7 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 						editor = thiz.get 'editor'
 						editor.setValue result
 						editor.gotoLine 1
-						thiz.send 'help', 'aiml'
+						thiz.send 'help', type
 					, (errors) ->
 						alert errors.responseText
 				).observes 'file'
@@ -80,7 +80,15 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 						thiz = @
 
 						search = (text) ->
-
+							pattern = ///<grammar>[^<]+</grammar>///igm
+							matches = text.match pattern
+							list = []
+							for match in matches
+								term  = match.substr match.indexOf('>') + 1
+								term = term.substr 0, term.lastIndexOf('<')
+								term = term.replace('\r', '').replace('\n', '').trim()
+								list.push term
+							return list
 
 						if type.toLowerCase() == 'aiml'
 							#async help
@@ -88,7 +96,8 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 							url = '/edit/map?bot=' + bot
 							Ember.$.getJSON(url).then (result) ->
 								editor = thiz.get 'editor'
-								matches = search editor.getValue()
+								list = search editor.getValue()
+								console.log list
 								return true
 							, (errors) ->
 								console.log errors
