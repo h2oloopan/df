@@ -17,10 +17,16 @@ import play.Logger;
  */
 public class EditHelper
 {
-    public static HashMap<String, GrammarInfoTree> cache = new HashMap<String, GrammarInfoTree>();
+    private static HashMap<String, GrammarInfoTree> cache = new HashMap<String, GrammarInfoTree>();
+    private static HashMap<String, String> map = null;
+    
     
     public static GrammarInfoTree getGrammarInfoTree(String bot, String pattern, File aimlFile, File grammarFolder) {
         try {
+            if (map == null) {
+                load(map, grammarFolder);
+            }
+            
             String key = bot + "-" + pattern;
             GrammarInfoTree git = cache.get(key);
             if (git == null) {
@@ -41,6 +47,10 @@ public class EditHelper
             Logger.warn(e.getMessage(), e);
             return null;
         }
+    }
+    
+    private static void load(HashMap<String, String> map, File file) {
+        if (file.is)
     }
     
     private static GrammarInfoNode lookup(File file, String namespace, String term, GrammarInfoNode node) {
