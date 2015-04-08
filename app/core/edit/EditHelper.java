@@ -6,8 +6,13 @@
  */
 package core.edit;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import play.Logger;
 
@@ -49,11 +54,50 @@ public class EditHelper
         }
     }
     
-    private static void load(HashMap<String, String> map, File file) {
-        if (file.is)
+    private static void load(HashMap<String, String> map, File file) throws Exception {
+        if (file.isDirectory()) {
+            //directory
+            for (String name : file.list()) {
+                File sub = new File(file, name);
+                load(map, sub);
+            }
+        } else {
+            //file
+            FileInputStream fis = new FileInputStream(file);
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis, "GB18030"));
+            String line;
+            String namespace = "default";
+            while ((line = br.readLine()) != null) {
+              //try to find namespace
+                String pattern = "\\s*namespace\\s+([^\\s]+)\\s*";
+                Pattern np = Pattern.compile(pattern);
+                Matcher nm = np.matcher(line);
+                if (nm.matches()) {
+                    namespace = nm.group(1).trim();
+                }
+                
+                pattern = "\\s*public\\s+([^:]+):.+";
+                boolean result = line.matches(pattern);
+                if (result) {
+                    Pattern p = Pattern.compile(pattern);
+                    Matcher m = p.matcher(line);
+                    if (m.matches()) {
+                        String publicTerm = m.group(1).trim();
+                        String term = namespace + "." + publicTerm;
+                        map.put(term, file.getCanonicalPath());
+                    }
+                }
+            }
+        }
     }
     
     private static GrammarInfoNode lookup(File file, String namespace, String term, GrammarInfoNode node) {
+        if (node.type == "public") {
+            String path = map.get(namespace + "." + term);
+            if (path != null) {
+                
+            }
+        }
         return node;
     }
 }
