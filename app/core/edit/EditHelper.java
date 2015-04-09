@@ -22,10 +22,63 @@ import play.Logger;
  */
 public class EditHelper
 {
-    private static HashMap<String, GrammarInfoTree> cache = new HashMap<String, GrammarInfoTree>();
-    private static HashMap<String, String> map = null;
+    private static HashMap<String, HashMap<String, String>> cache = new HashMap<String, HashMap<String, String>>();
+    
+    public static HashMap<String, String> getTerms(String folder) {
+        try {
+            HashMap<String, String> result = cache.get(folder);
+            if (result != null) {
+                return result;
+            } else {
+                result = new HashMap<String, String>();
+                load(new File(folder), result);
+                cache.put(folder, result);
+                return result;
+            }
+            
+        } catch (Exception e) {
+            Logger.warn(e.getMessage(), e);
+            return new HashMap<String, String>();
+        }
+    }
+    
+    private static void load(File file, HashMap<String, String> map) throws Exception {
+        if (file.isDirectory()) {
+            for (String name : file.list()) {
+                File sub = new File(file, name);
+                load(sub, map);
+            }
+        } else {
+            FileInputStream fis = new FileInputStream(file);
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis, "GB18030"));
+            String line;
+            String namespace = "default";
+            while ((line = br.readLine()) != null) {
+              //try to find namespace
+                String pattern = "\\s*namespace\\s+([^\\s]+)\\s*";
+                Pattern np = Pattern.compile(pattern);
+                Matcher nm = np.matcher(line);
+                if (nm.matches()) {
+                    namespace = nm.group(1).trim();
+                }
+                
+                pattern = "\\s*public\\s+([^:]+):.+";
+                boolean result = line.matches(pattern);
+                if (result) {
+                    Pattern p = Pattern.compile(pattern);
+                    Matcher m = p.matcher(line);
+                    if (m.matches()) {
+                        String publicTerm = m.group(1).trim();
+                        String term = namespace + "." + publicTerm;
+                        map.put(term, file.getCanonicalPath());
+                    }
+                }
+            }
+        }
+    }
     
     
+    /*
     public static GrammarInfoTree getGrammarInfoTree(String bot, String pattern, File aimlFile, File grammarFolder) {
         try {
             if (map == null) {
@@ -100,4 +153,5 @@ public class EditHelper
         }
         return node;
     }
+    */
 }

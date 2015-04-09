@@ -18,7 +18,7 @@ GET     /edit/file                  @controllers.Edit.file()
 POST    /edit/upload				@controllers.Edit.upload()
 POST    /edit/create                @controllers.Edit.create()
 DELETE  /edit/remove                @controllers.Edit.remove()
-GET     /edit/help                  @controllers.Edit.help()
+GET     /edit/map                   @controllers.Edit.map()
 
 #User
 GET     /users                      @controllers.Users.readAll()

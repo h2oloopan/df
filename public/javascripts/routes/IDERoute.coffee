@@ -14,6 +14,7 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 
 			App.IDEController = Ember.ObjectController.extend
 				types: ['Grammar', 'AIML']
+				helpAIML: false
 				selectionChanged: (->
 					thiz = @
 					bot = @get 'bot'
@@ -70,10 +71,39 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 						editor = thiz.get 'editor'
 						editor.setValue result
 						editor.gotoLine 1
+						thiz.send 'help', type
 					, (errors) ->
 						alert errors.responseText
 				).observes 'file'
 				actions:
+					help: (type) ->
+						thiz = @
+
+						search = (text) ->
+							pattern = ///<grammar>[^<]+</grammar>///igm
+							matches = text.match pattern
+							list = []
+							for match in matches
+								term  = match.substr match.indexOf('>') + 1
+								term = term.substr 0, term.lastIndexOf('<')
+								term = term.replace('\r', '').replace('\n', '').trim()
+								list.push term
+							return list
+
+						if type.toLowerCase() == 'aiml'
+							#async help
+							bot = @get 'bot'
+							url = '/edit/map?bot=' + bot
+							Ember.$.getJSON(url).then (result) ->
+								editor = thiz.get 'editor'
+								list = search editor.getValue()
+								console.log list
+								return true
+							, (errors) ->
+								console.log errors
+								return false
+
+						return false
 					compile: ->
 						bot = @get 'bot'
 						if !bot? then return false
