@@ -109,6 +109,22 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
           });
         }).observes('file'),
         actions: {
+          popover: function(id, file, path) {
+            var thiz, url;
+            thiz = this;
+            url = '/edit/file?encoding=GB18030&path=' + path;
+            Ember.$.getJSON(url).then(function(result) {
+              thiz.set('helper', {
+                title: file,
+                body: result.replace('\n', '<br/><br/>')
+              });
+              return $('.modal').modal('toggle');
+            }, function(errors) {
+              console.log(errors);
+              return false;
+            });
+            return false;
+          },
           help: function(type) {
             var bot, search, thiz, url;
             thiz = this;
@@ -130,15 +146,30 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
               bot = this.get('bot');
               url = '/edit/map?bot=' + bot;
               Ember.$.getJSON(url).then(function(result) {
-                var editor, list;
+                var editor, helpList, item, list, obj, path, _i, _len;
                 editor = thiz.get('editor');
                 list = search(editor.getValue());
-                console.log(list);
+                helpList = [];
+                for (_i = 0, _len = list.length; _i < _len; _i++) {
+                  item = list[_i];
+                  path = result[item];
+                  obj = {
+                    id: path.substr(path.lastIndexOf('/') + 1).replace('.', '-'),
+                    term: item,
+                    file: path.substr(path.lastIndexOf('/') + 1),
+                    path: path
+                  };
+                  helpList.push(obj);
+                }
+                thiz.set('helpList', helpList);
+                thiz.set('helpAIML', true);
                 return true;
               }, function(errors) {
                 console.log(errors);
                 return false;
               });
+            } else {
+              this.set('helpAIML', false);
             }
             return false;
           },

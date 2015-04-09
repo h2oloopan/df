@@ -76,6 +76,20 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 						alert errors.responseText
 				).observes 'file'
 				actions:
+					popover: (id, file, path) ->
+						thiz = @
+						url = '/edit/file?encoding=GB18030&path=' + path
+						Ember.$.getJSON(url).then (result) ->
+							thiz.set 'helper',
+								title: file
+								body: result.replace('\n', '<br/><br/>')
+							$('.modal').modal('toggle')
+						, (errors) ->
+							console.log errors
+							#suppress
+							return false
+
+						return false
 					help: (type) ->
 						thiz = @
 
@@ -97,11 +111,23 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 							Ember.$.getJSON(url).then (result) ->
 								editor = thiz.get 'editor'
 								list = search editor.getValue()
-								console.log list
+								helpList = []
+								for item in list
+									path = result[item]
+									obj =
+										id: path.substr(path.lastIndexOf('/') + 1).replace('.', '-')
+										term: item
+										file: path.substr path.lastIndexOf('/') + 1
+										path: path
+									helpList.push obj
+								thiz.set 'helpList', helpList
+								thiz.set 'helpAIML', true
 								return true
 							, (errors) ->
 								console.log errors
 								return false
+						else
+							@set 'helpAIML', false
 
 						return false
 					compile: ->
