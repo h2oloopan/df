@@ -53,7 +53,7 @@
 					{{#each item in helpList}}
 						<tr>
 							<td>{{item.term}}</td>
-							<td><a href="#" {{action "popover" item.id item.file item.path}} {{bind-attr id=item.id}}>{{item.file}}</a></td>
+							<td><a href="#" {{action "popover" item.term item.file item.path}} {{bind-attr id=item.id}}>{{item.file}}</a></td>
 						</tr>
 					{{/each}}
 				</table>
@@ -65,7 +65,7 @@
 				        <h4 class="modal-title">{{helper.title}}</h4>
 				      </div>
 				      <div class="modal-body">
-				        <p>{{helper.body}}</p>
+				        <p>{{{helper.body}}}</p>
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

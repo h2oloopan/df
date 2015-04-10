@@ -109,14 +109,15 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
           });
         }).observes('file'),
         actions: {
-          popover: function(id, file, path) {
+          popover: function(term, file, path) {
             var thiz, url;
             thiz = this;
+            term = term.substr(term.indexOf('.') + 1);
             url = '/edit/file?encoding=GB18030&path=' + path;
             Ember.$.getJSON(url).then(function(result) {
               thiz.set('helper', {
                 title: file,
-                body: result.replace('\n', '<br/><br/>')
+                body: result.replace(/\n/igm, '<br/><br/>').replace(term, '<span style="color:red;">' + term + '</span>')
               });
               return $('.modal').modal('toggle');
             }, function(errors) {

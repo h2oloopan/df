@@ -76,13 +76,14 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 						alert errors.responseText
 				).observes 'file'
 				actions:
-					popover: (id, file, path) ->
+					popover: (term, file, path) ->
 						thiz = @
+						term = term.substr(term.indexOf('.') + 1)
 						url = '/edit/file?encoding=GB18030&path=' + path
 						Ember.$.getJSON(url).then (result) ->
 							thiz.set 'helper',
 								title: file
-								body: result.replace('\n', '<br/><br/>')
+								body: result.replace(/\n/igm, '<br/><br/>').replace(term, '<span style="color:red;">' + term + '</span>')
 							$('.modal').modal('toggle')
 						, (errors) ->
 							console.log errors
