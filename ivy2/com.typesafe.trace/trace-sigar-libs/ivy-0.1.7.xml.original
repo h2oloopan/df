@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.typesafe.trace</groupId>
+    <artifactId>trace-sigar-libs</artifactId>
+    <packaging>jar</packaging>
+    <description>trace-sigar-libs</description>
+    <version>0.1.7</version>
+    <name>trace-sigar-libs</name>
+    <organization>
+        <name>Typesafe Inc.</name>
+        <url>http://www.typesafe.com</url>
+    </organization>
+</project>
