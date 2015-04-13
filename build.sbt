@@ -16,4 +16,7 @@ libraryDependencies ++= Seq(
 )
 
 //resolvers += "Sedis repository" at "http://pk11-scratch.googlecode.com/svn/trunk/"
-resolvers += "local repo" at "file://" + baseDirectory.value / "repo"
+//resolvers += "local repo" at "file:///" + baseDirectory.value / "repo"
+resolvers ++= Seq(
+	Resolver.file("local repo", file(baseDirectory.value + "/repo"))
+)
