@@ -9,5 +9,5 @@ words := wildcard(1,10000)
 public ask_washroom: 厕所在哪
 想:=strings{想, 要}
 吃喝:=strings{吃, 喝}
-吃喝问题: [我_basic] 想 吃喝 [words]
+吃喝问题: [我_basic] 想 吃喝 [words] [biaodian]
 public ask_吃喝:吃喝问题
