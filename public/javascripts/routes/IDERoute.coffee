@@ -76,6 +76,56 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 						alert errors.responseText
 				).observes 'file'
 				actions:
+					addFolder: ->
+						return false
+					addFile: ->
+						thiz = @
+						bot = @get 'bot'
+						type = @get('type').toLowerCase()
+						extension = '.gram'
+						if type == 'aiml' then extension = '.aiml'
+						name = prompt 'File Name (Without Extension)', 'Filename'
+						if !name? then return false
+
+						$.ajax
+							url: '/edit/create'
+							type: 'POST'
+							data: JSON.stringify
+								bot: bot
+								type: type
+								name: name
+								text: ''
+							contentType: 'application/json; charset=utf-8'
+						.done (result) ->
+							files = thiz.get 'files'
+							fresh =
+								name: name + extension
+								path: result
+							files.pushObject fresh
+							thiz.set 'file', fresh
+							return true
+						.fail (response) ->
+							alert 'Adding definition file failed ' + response.responseText
+							return false
+
+						return false
+					deleteFile: ->
+						thiz = @
+						file = @get 'file'
+						answer = confirm 'Do you want to delete file ' + file.name + '?'
+						if !answer then return false
+						$.ajax
+							url: '/edit/remove?path=' + file.path
+							type: 'DELETE'
+						.done (result) ->
+							files = thiz.get 'files'
+							files.removeObject file
+							if files.length > 0 then thiz.set 'file', files[0]
+							return true
+						.fail (response) ->
+							alert 'Deleting file failed ' + response.responseText
+							return false
+						return false
 					popover: (term, file, path) ->
 						thiz = @
 						term = term.substr(term.indexOf('.') + 1)
@@ -177,6 +227,7 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 							contentType: 'application/json; charset=' + encoding
 						.done (result) ->
 							alert 'File ' + file.name + ' saved to server successfully' 
+							thiz.send 'help', type
 							return true
 						.fail (response) ->
 							alert response.responseText

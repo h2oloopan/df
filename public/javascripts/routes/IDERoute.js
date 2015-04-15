@@ -109,6 +109,73 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
           });
         }).observes('file'),
         actions: {
+          addFolder: function() {
+            return false;
+          },
+          addFile: function() {
+            var bot, extension, name, thiz, type;
+            thiz = this;
+            bot = this.get('bot');
+            type = this.get('type').toLowerCase();
+            extension = '.gram';
+            if (type === 'aiml') {
+              extension = '.aiml';
+            }
+            name = prompt('File Name (Without Extension)', 'Filename');
+            if (name == null) {
+              return false;
+            }
+            $.ajax({
+              url: '/edit/create',
+              type: 'POST',
+              data: JSON.stringify({
+                bot: bot,
+                type: type,
+                name: name,
+                text: ''
+              }),
+              contentType: 'application/json; charset=utf-8'
+            }).done(function(result) {
+              var files, fresh;
+              files = thiz.get('files');
+              fresh = {
+                name: name + extension,
+                path: result
+              };
+              files.pushObject(fresh);
+              thiz.set('file', fresh);
+              return true;
+            }).fail(function(response) {
+              alert('Adding definition file failed ' + response.responseText);
+              return false;
+            });
+            return false;
+          },
+          deleteFile: function() {
+            var answer, file, thiz;
+            thiz = this;
+            file = this.get('file');
+            answer = confirm('Do you want to delete file ' + file.name + '?');
+            if (!answer) {
+              return false;
+            }
+            $.ajax({
+              url: '/edit/remove?path=' + file.path,
+              type: 'DELETE'
+            }).done(function(result) {
+              var files;
+              files = thiz.get('files');
+              files.removeObject(file);
+              if (files.length > 0) {
+                thiz.set('file', files[0]);
+              }
+              return true;
+            }).fail(function(response) {
+              alert('Deleting file failed ' + response.responseText);
+              return false;
+            });
+            return false;
+          },
           popover: function(term, file, path) {
             var thiz, url;
             thiz = this;
@@ -238,6 +305,7 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
               contentType: 'application/json; charset=' + encoding
             }).done(function(result) {
               alert('File ' + file.name + ' saved to server successfully');
+              thiz.send('help', type);
               return true;
             }).fail(function(response) {
               alert(response.responseText);

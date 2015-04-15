@@ -19,11 +19,18 @@
 			</div>
 			<div class="form-group">
 				<label>Folder</label>
-				{{view Ember.Select classNames="form-control" optionLabelPath="content.name" content=folders selection=folder}}
+				<div class="input-group">
+					{{view Ember.Select classNames="form-control" optionLabelPath="content.name" content=folders selection=folder}}
+					<div class="input-group-addon btn-addon" {{action "addFolder"}}>+</div>
+				</div>
 			</div>
 			<div class="form-group">
 				<label>File</label>
-				{{view Ember.Select classNames="form-control" optionLabelPath="content.name" content=files selection=file}}
+				<div class="input-group">
+					{{view Ember.Select classNames="form-control" optionLabelPath="content.name" content=files selection=file}}
+					<div class="input-group-addon btn-addon" {{action "addFile"}}>+</div>
+					<div class="input-group-addon btn-addon" {{action "deleteFile"}}>-</div>
+				</div>
 			</div>
 			<button class="btn btn-success" {{action "compile"}}>Compile</button>
 			<button class="btn btn-primary" {{action "reload"}}>Reload</button>
