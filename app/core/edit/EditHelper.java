@@ -42,6 +42,16 @@ public class EditHelper
         }
     }
     
+    public static void reloadTerms(String folder) {
+        try {
+            HashMap<String, String> result = new HashMap<String, String>();
+            load(new File(folder), result);
+            cache.put(folder, result);
+        } catch (Exception e) {
+            Logger.warn(e.getMessage(), e);
+        }
+    }
+    
     private static void load(File file, HashMap<String, String> map) throws Exception {
         if (file.isDirectory()) {
             for (String name : file.list()) {
