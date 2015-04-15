@@ -1,3 +1,3 @@
 [repositories]
  local
- local-ivy: http://localhost:4000/, (scala_[scalaVersion]/)(sbt_[sbtVersion]/)[organization]/[module]/ivy-[revision].xml, (scala_[scalaVersion]/)(sbt_[sbtVersion]/)[organization]/[module]/[type]s/[artifact](-[revision])(-[classifier]).[ext]
+ m160-ivy: http://m-160.cs.uwaterloo.ca/ivy, (scala_[scalaVersion]/)(sbt_[sbtVersion]/)[organization]/[module]/ivy-[revision].xml, (scala_[scalaVersion]/)(sbt_[sbtVersion]/)[organization]/[module]/[type]s/[artifact](-[revision])(-[classifier]).[ext]
