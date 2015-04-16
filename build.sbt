@@ -14,4 +14,5 @@ libraryDependencies ++= Seq(
   "com.typesafe.play.plugins" %% "play-plugins-redis" % "2.3.1",
   "mysql" % "mysql-connector-java" % "5.1.28"
 )
+
 resolvers += "Sedis repository" at "http://pk11-scratch.googlecode.com/svn/trunk/"
