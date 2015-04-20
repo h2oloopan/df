@@ -7,7 +7,7 @@
 			</grammar>
 		</pattern>
 		<template>
-                    出门左转就是厕所！
+            出门左转就是厕所！
 		</template>
 	</category>
 	<category>
@@ -17,7 +17,7 @@
 			</grammar>
 		</pattern>
 		<template>
-                    厨房里有
+            厨房里有。
 		</template>
 	</category>
 	<category>
@@ -27,7 +27,7 @@
 			</grammar>
 		</pattern>
 		<template>
-                    除了问答我们什么都可以做
+            除了问答我们什么都可以做。
 		</template>
 	</category>
 	<category>
@@ -37,7 +37,7 @@
 	        </grammar>
 	    </pattern>
 	    <template>
-	        对不起，我们不送
+	        对不起，我们不提供这项服务。
 	    </template>
 	</category>
 </aiml>

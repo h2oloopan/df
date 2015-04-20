@@ -1,0 +1,9 @@
+namespace smalltalk
+open basic
+open pss
+
+随便:=strings{随便,顺便,随意}
+转转:=strings{转转,看看,瞅瞅}
+
+随便转转: [我_basic] [C_就] [随便] [转转] [C_结尾]
+public smalltalk_随便转转: 随便转转

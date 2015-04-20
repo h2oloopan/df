@@ -13,7 +13,8 @@ public ask_washroom: 厕所在哪
 吃喝问题: [我_basic] 想 吃喝 [words] [biaodian]
 public ask_吃喝:吃喝问题
 
-送:=strings{送,运,点}
+送:=strings{送,运,点,做,卖}
 不送的东西:=strings{外卖,饭,餐}
-送什么吗:送 不送的东西 [C_结尾]
+送什么吗: [你_basic] [们_basic] 送 不送的东西 [C_结尾]
+
 public ask_送东西:送什么吗

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+	<category>
+		<pattern>
+			<grammar>
+				smalltalk.smalltalk_随便转转
+			</grammar>
+		</pattern>
+		<template>
+		    好的，有问题可以叫我。
+		</template>
+	</category>
+</aiml>
