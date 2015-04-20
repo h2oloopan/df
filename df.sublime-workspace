@@ -4,16 +4,24 @@
 		"selected_items":
 		[
 			[
+				"respon",
+				"responseText"
+			],
+			[
+				"resp",
+				"response"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
 				"min",
 				"min-width"
 			],
 			[
 				"hel",
 				"helpAIML"
-			],
-			[
-				"respon",
-				"responseText"
 			],
 			[
 				"respo",
@@ -28,10 +36,6 @@
 				"inline-block"
 			],
 			[
-				"resp",
-				"responseText"
-			],
-			[
 				"scro",
 				"scrollTop"
 			],
@@ -44,26 +48,18 @@
 	"buffers":
 	[
 		{
-			"file": "public/javascripts/routes/IDERoute.coffee",
-			"settings":
-			{
-				"buffer_size": 5672,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/javascripts/routes/IDERoute.js",
-			"settings":
-			{
-				"buffer_size": 9281,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "public/templates/IDE.html",
 			"settings":
 			{
-				"buffer_size": 2670,
+				"buffer_size": 2984,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/javascripts/routes/IDERoute.coffee",
+			"settings":
+			{
+				"buffer_size": 7121,
 				"line_ending": "Unix"
 			}
 		},
@@ -71,7 +67,7 @@
 			"file": "public/stylesheets/main.css",
 			"settings":
 			{
-				"buffer_size": 627,
+				"buffer_size": 661,
 				"line_ending": "Unix"
 			}
 		},
@@ -127,17 +123,11 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/home/s5pan/Projects/df",
-		"/home/s5pan/Projects/df/app",
-		"/home/s5pan/Projects/df/app/core",
-		"/home/s5pan/Projects/df/app/core/grammar",
-		"/home/s5pan/Projects/df/public",
-		"/home/s5pan/Projects/df/public/stylesheets"
-	],
 	"file_history":
 	[
+		"/home/s5pan/Projects/df/bots/receptionist/definition/grammar/small.gram",
+		"/home/s5pan/Projects/df/public/javascripts/routes/IDERoute.js",
+		"/home/s5pan/Projects/df/public/javascripts/routes/IDERoute.coffee",
 		"/home/s5pan/Projects/df/public/javascripts/lib/ace/editor.js",
 		"/home/s5pan/Projects/df/public/javascripts/routes/testRoute.coffee",
 		"/home/s5pan/Projects/df/app/core/grammar/LaoMaGrammarCompiler.java",
@@ -145,8 +135,6 @@
 		"/home/s5pan/Projects/df/public/templates/edit.html",
 		"/home/s5pan/Projects/df/public/templates/IDE.html",
 		"/home/s5pan/Projects/df/public/stylesheets/main.css",
-		"/home/s5pan/Projects/df/public/javascripts/routes/IDERoute.js",
-		"/home/s5pan/Projects/df/public/javascripts/routes/IDERoute.coffee",
 		"/home/s5pan/Projects/df/bots/receptionist/definition/aiml/help.aiml",
 		"/home/s5pan/Projects/df/public/javascripts/lib/utils.coffee",
 		"/home/s5pan/Projects/df/public/javascripts/lib/utils.js",
@@ -222,83 +210,24 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "public/javascripts/routes/IDERoute.coffee",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5672,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1671,
-								1671
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 427.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "public/javascripts/routes/IDERoute.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9281,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3996,
-								3996
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1532.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "public/templates/IDE.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2670,
+						"buffer_size": 2984,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1836,
-								1836
+								1219,
+								1219
 							]
 						],
 						"settings":
@@ -307,27 +236,56 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 697.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "public/stylesheets/main.css",
+					"buffer": 1,
+					"file": "public/javascripts/routes/IDERoute.coffee",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 627,
+						"buffer_size": 7121,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								624,
-								624
+								2144,
+								2144
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1224.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "public/stylesheets/main.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 661,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								659,
+								659
 							]
 						],
 						"settings":
@@ -339,11 +297,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 3,
 					"file": "public/templates/test.html",
 					"semi_transient": false,
 					"settings":
@@ -368,11 +326,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 4,
 					"file": "public/templates/index.html",
 					"semi_transient": false,
 					"settings":
@@ -397,7 +355,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
