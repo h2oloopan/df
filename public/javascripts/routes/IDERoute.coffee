@@ -125,6 +125,7 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 						.fail (response) ->
 							alert 'Deleting file failed ' + response.responseText
 							return false
+
 						return false
 					popover: (term, file, path) ->
 						thiz = @
@@ -191,6 +192,19 @@ define ['utils', 'ace/ace', 'ehbs!templates/IDE'], (u, ace) ->
 								bot: bot
 							contentType: 'application/json; charset=utf-8'
 						.done (result) ->
+							#reload terms map
+							$.ajax
+								url: '/edit/reloadmap'
+								type: 'POST'
+								data: JSON.stringify
+									bot: bot
+								contentType: 'application/json; charset=utf-8'
+							.done (result) ->
+								#suppress
+								return true
+							.fail (response) ->
+								#suppress
+								return false
 							alert 'Grammar compilation done for bot ' + bot
 						.fail (response) ->
 							alert 'Grammar compilation failed for bot ' + bot + ' ' + response.responseText

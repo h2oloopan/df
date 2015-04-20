@@ -255,6 +255,18 @@ define(['utils', 'ace/ace', 'ehbs!templates/IDE'], function(u, ace) {
               }),
               contentType: 'application/json; charset=utf-8'
             }).done(function(result) {
+              $.ajax({
+                url: '/edit/reloadmap',
+                type: 'POST',
+                data: JSON.stringify({
+                  bot: bot
+                }),
+                contentType: 'application/json; charset=utf-8'
+              }).done(function(result) {
+                return true;
+              }).fail(function(response) {
+                return false;
+              });
               return alert('Grammar compilation done for bot ' + bot);
             }).fail(function(response) {
               return alert('Grammar compilation failed for bot ' + bot + ' ' + response.responseText);

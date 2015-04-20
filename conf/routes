@@ -19,6 +19,7 @@ POST    /edit/upload				@controllers.Edit.upload()
 POST    /edit/create                @controllers.Edit.create()
 DELETE  /edit/remove                @controllers.Edit.remove()
 GET     /edit/map                   @controllers.Edit.map()
+POST    /edit/reloadmap             @controllers.Edit.reloadMap()
 
 #User
 GET     /users                      @controllers.Users.readAll()

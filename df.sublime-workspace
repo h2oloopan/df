@@ -51,15 +51,7 @@
 			"file": "public/templates/IDE.html",
 			"settings":
 			{
-				"buffer_size": 2984,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/javascripts/routes/IDERoute.coffee",
-			"settings":
-			{
-				"buffer_size": 7121,
+				"buffer_size": 3004,
 				"line_ending": "Unix"
 			}
 		},
@@ -125,9 +117,9 @@
 	},
 	"file_history":
 	[
+		"/home/s5pan/Projects/df/public/javascripts/routes/IDERoute.coffee",
 		"/home/s5pan/Projects/df/bots/receptionist/definition/grammar/small.gram",
 		"/home/s5pan/Projects/df/public/javascripts/routes/IDERoute.js",
-		"/home/s5pan/Projects/df/public/javascripts/routes/IDERoute.coffee",
 		"/home/s5pan/Projects/df/public/javascripts/lib/ace/editor.js",
 		"/home/s5pan/Projects/df/public/javascripts/routes/testRoute.coffee",
 		"/home/s5pan/Projects/df/app/core/grammar/LaoMaGrammarCompiler.java",
@@ -210,7 +202,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -219,15 +211,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2984,
+						"buffer_size": 3004,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1219,
-								1219
+								1404,
+								1404
 							]
 						],
 						"settings":
@@ -236,43 +228,14 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "public/javascripts/routes/IDERoute.coffee",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7121,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2144,
-								2144
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1224.0,
+						"translation.y": 102.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 1,
 					"file": "public/stylesheets/main.css",
 					"semi_transient": false,
 					"settings":
@@ -297,11 +260,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 2,
 					"file": "public/templates/test.html",
 					"semi_transient": false,
 					"settings":
@@ -326,11 +289,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 3,
 					"file": "public/templates/index.html",
 					"semi_transient": false,
 					"settings":
@@ -355,7 +318,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
