@@ -23,6 +23,7 @@ public class InputHandler extends TagHandler
     public String handle(Node node, ParseState ps, String previousResult, Set<String> ignoreAttributes) throws Exception
     {
         int index=HandlingHelper.getIndexValue(node, ps, handlers);
+        index = index - 1;
         //return ps.chatSession.inputHistory.getString(index);
         return ps.context.getLastQuery(index);
     }

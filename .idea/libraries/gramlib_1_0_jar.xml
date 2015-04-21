@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="gramlib-1.0.jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/gramlib-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
